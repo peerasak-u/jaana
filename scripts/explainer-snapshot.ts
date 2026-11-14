@@ -3,7 +3,7 @@ import { loadParserResources } from "../bench/gazetteer";
 import { FIELD_NAMES } from "../bench/metrics";
 import { createAddressParser } from "../src";
 import { createAnchorer } from "../src/tagger/anchor";
-import { decodeTags, emissionScores } from "../src/tagger/decode";
+import { decodeTags, emissionScores, spanEdges } from "../src/tagger/decode";
 import { featurize } from "../src/tagger/features";
 import { compileTaggerModel, TAG_COUNT, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
@@ -47,7 +47,7 @@ const records = RECORD_IDS.map((id) => {
 		anchorFlags: Array.from(anchored.flags, (flag) => (flag & 15).toString(16)).join(""),
 		featuresPerCharacter: features[0]?.length ?? 0,
 		freeTags,
-		tags: decodeTags(features, compiled).join(""),
+		tags: decodeTags(features, compiled, spanEdges(record.raw)).join(""),
 		fields,
 		taggerCorrect: correct(fields),
 		engineCorrect: correct(engineFields),

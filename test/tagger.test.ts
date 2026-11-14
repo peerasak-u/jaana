@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
 import { findStandalone, findTruncated } from "../src/tagger/mention";
-import { decodeTags } from "../src/tagger/decode";
+import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -106,15 +106,29 @@ describe("single-run decoding", () => {
 		const tags = decodeTags(sequence, modelPreferring([ADDRESS, OTHER]));
 		expect([...tags]).toEqual([ADDRESS, ADDRESS, OTHER, OTHER, ADDRESS, ADDRESS]);
 	});
+
+	test("a span edge never splits a Thai character cluster or a Latin word", () => {
+		const raw = "ร้านKhun";
+		const features = [0, 0, 1, 1, 0, 1, 1, 1].map((feature) => Int32Array.of(feature));
+		const tags = decodeTags(features, modelPreferring([NAME, OTHER]), spanEdges(raw));
+		expect([...tags]).toEqual([NAME, NAME, NAME, OTHER, OTHER, OTHER, OTHER, OTHER]);
+	});
+
+	test("a name neither starts on an opening bracket nor ends on a space", () => {
+		const raw = "(คุณเอ) ";
+		const features = [...raw].map(() => Int32Array.of(0));
+		const tags = decodeTags(features, modelPreferring([NAME]), spanEdges(raw));
+		expect([...tags]).toEqual([OTHER, NAME, NAME, NAME, NAME, NAME, NAME, OTHER]);
+	});
 });
 
 describe("training", () => {
-	test("a trained model survives quantization and reproduces its training tags", () => {
+	test.each([0, 200])("a model trained with margin %d survives quantization and reproduces its training tags", (margin) => {
 		const examples = [
 			{ features: [0, 0, 1, 2, 2].map((feature) => Int32Array.of(feature)), tags: [NAME, NAME, OTHER, ADDRESS, ADDRESS] },
 			{ features: [2, 1, 0].map((feature) => Int32Array.of(feature)), tags: [ADDRESS, OTHER, NAME] },
 		];
-		const model = trainTagger(examples, { version: "toy", dimension: 4, epochs: 5, seed: 1 });
+		const model = trainTagger(examples, { version: "toy", dimension: 4, epochs: 5, seed: 1, margin });
 		const compiled = compileTaggerModel(model);
 		for (const example of examples) {
 			expect([...decodeTags(example.features, compiled)]).toEqual(example.tags);
@@ -141,6 +155,26 @@ describe("shipped tagger model", () => {
 			province: "สกลนคร",
 			zipcode: "47000",
 		});
+	});
+
+	test("a name between a label and a particle excludes both", () => {
+		const fields = parser.parse(
+			"45 ม.5 ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000 ผู้รับ สมพงษ์ ครับ 0891234567",
+		).fields;
+		expect(fields.name).toBe("สมพงษ์");
+		expect(fields.address).toBe("45 ม.5");
+	});
+
+	test("an order line before the address is not address detail", () => {
+		expect(parser.parse(
+			"เอาเสื้อยืด 2 ตัว สีดำค่ะ โอนแล้วนะคะ\nคุณสมศรี ใจดี\n45 ม.5 ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000\n0891234567",
+		).fields.address).toBe("45 ม.5");
+	});
+
+	test("an organisation keeps its bracketed contact person", () => {
+		expect(parser.parse(
+			"บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)\n99/1 หมู่ 2 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000\n0891234567",
+		).fields.name).toBe("บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)");
 	});
 
 	test("every span reproduces its source offsets", () => {

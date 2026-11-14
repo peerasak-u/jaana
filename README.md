@@ -6,7 +6,7 @@ province, and postcode. It has no runtime dependencies and reads no files.
 
 Two parsers share one gazetteer:
 
-- **Tagger.** A character-level linear model with 32,768 hashed feature buckets
+- **Tagger.** A character-level linear model with 65,536 hashed feature buckets
   and int8 weights. It labels every character, then a deterministic resolver
   maps the administrative spans to one gazetteer tuple. This is the learned
   model.
@@ -36,13 +36,15 @@ contain input text, so do not log them for private data.
 
 | File | Raw | Gzip |
 |---|---:|---:|
-| `resources/tagger-model.json` | 350 KB | 75 KB |
+| `resources/tagger-model.json` | 700 KB | 121 KB |
 | `resources/gazetteer.json` (7,431 tuples) | 345 KB | 61 KB |
-| `dist/index.js` (both parsers) | 60 KB | 14 KB |
+| `dist/index.js` (both parsers) | 69 KB | 16 KB |
 
 The model file holds a base64 Int8Array and an 8x8 transition table. Inference
-is integer addition over 58 hashed features per character, followed by a
-Viterbi pass. It needs `atob`, typed arrays, and nothing else.
+is integer addition over 68 to 75 hashed features per character (character
+n-grams, line classes, cue words, whitespace tokens, Anchor flags), followed
+by a Viterbi pass that keeps run edges where the gold rules allow them. It
+needs `atob`, typed arrays, and nothing else.
 
 ## Commands
 
@@ -66,8 +68,11 @@ bun run train:tagger \
   --extra-dataset $D/address-detail-robust-v1-600-r1.jsonl
 ```
 
-Training takes about four seconds and is deterministic for a given `--seed`.
+Training takes about six seconds and is deterministic for a given `--seed`.
 `--dimension` and `--epochs` change the model size and the number of passes.
+`--margin` (default 200) is the training bonus on wrong tags; 0 is the plain
+perceptron. `scripts/chat/retrain.sh <model.json>` trains with the chat pool
+and runs the chat benchmark.
 
 Compare the tagger with the Candidate Engine on the held-out split and the
 messy fixture:
