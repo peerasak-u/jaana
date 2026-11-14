@@ -23,6 +23,31 @@ export interface TaggerParser {
 	parse(raw: string): TaggedAddress;
 }
 
+const OTHER = TAGS.indexOf("OTHER");
+const BRACKETED = new Set([TAGS.indexOf("NAME"), TAGS.indexOf("ADDRESS_DETAIL")]);
+
+/**
+ * Gold names and address pieces keep a bracket they open, but the tagger
+ * often stops inside one. Extends such a run over untagged text to the
+ * closing bracket on the same line.
+ */
+function closeBrackets(raw: string, tags: Uint8Array): void {
+	let depth = 0;
+	for (let index = 0; index < raw.length; index += 1) {
+		const tag = tags[index]!;
+		if (index > 0 && tag !== tags[index - 1]) depth = 0;
+		if (!BRACKETED.has(tag)) continue;
+		if (raw[index] === "(") depth += 1;
+		if (raw[index] === ")") depth = Math.max(0, depth - 1);
+		if (depth === 0 || tags[index + 1] === tag) continue;
+		let close = index + 1;
+		while (close < raw.length && tags[close] === OTHER && raw[close] !== ")" && raw[close] !== "\n") {
+			close += 1;
+		}
+		if (raw[close] === ")" && tags[close] === OTHER) tags.fill(tag, index + 1, close + 1);
+	}
+}
+
 function runsOf(raw: string, tags: Uint8Array): TaggedSpan[] {
 	const runs: TaggedSpan[] = [];
 	let start = 0;
@@ -73,6 +98,7 @@ export function createTaggerParser(
 			const anchored = anchor(raw);
 			const features = featurize(raw, anchored.flags, compiled.dimension);
 			const tags = decodeTags(features, compiled, spanEdges(raw));
+			closeBrackets(raw, tags);
 			const spans = runsOf(raw, tags);
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
