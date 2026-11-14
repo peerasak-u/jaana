@@ -2,7 +2,7 @@ import { similarityRatio } from "../candidate/fuzzy-match";
 import { normalizeCandidate, normalizePostcode } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
-import { decodeTags, spanEdges } from "./decode";
+import { decodeEmissions, emissionScores, spanEdges } from "./decode";
 import { featurize } from "./features";
 import { recutPhone } from "./phone";
 import { latinSkeleton, thaiSkeleton } from "./romanize";
@@ -355,11 +355,31 @@ export function addressOf(raw: string, ranges: readonly Range[], administrative:
 	return pieces.join(" ");
 }
 
+/** Emission scores, `TAG_COUNT` per UTF-16 unit, and the transition scores the decoder adds between tags. */
+export interface TagScorer {
+	score(raw: string, anchorFlags: Uint8Array): Int32Array;
+	readonly transitions: Int32Array;
+}
+
+export function linearScorer(model: TaggerModel): TagScorer {
+	const compiled = compileTaggerModel(model);
+	return {
+		score: (raw, anchorFlags) => emissionScores(featurize(raw, anchorFlags, compiled.dimension), compiled.weights),
+		transitions: compiled.transitions,
+	};
+}
+
 export function createTaggerParser(
 	model: TaggerModel,
 	locations: readonly LocationTuple[],
 ): TaggerParser {
-	const compiled = compileTaggerModel(model);
+	return createScoredParser(linearScorer(model), locations);
+}
+
+export function createScoredParser(
+	scorer: TagScorer,
+	locations: readonly LocationTuple[],
+): TaggerParser {
 	const anchor = createAnchorer(locations);
 	const resolve = createTupleResolver(locations);
 	const siblingTuples = new Map<string, LocationTuple[]>();
@@ -484,8 +504,7 @@ export function createTaggerParser(
 	return {
 		parse(raw) {
 			const anchored = anchor(raw);
-			const features = featurize(raw, anchored.flags, compiled.dimension);
-			const tags = decodeTags(features, compiled, spanEdges(raw));
+			const tags = decodeEmissions(scorer.score(raw, anchored.flags), scorer.transitions, spanEdges(raw));
 			closeBrackets(raw, tags);
 			attachBracketAfterName(raw, tags);
 			recutPhone(raw, tags);
