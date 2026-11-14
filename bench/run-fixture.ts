@@ -1,12 +1,9 @@
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
-import { createAddressParser, type ParserResources } from "../src";
+import { createAddressParser } from "../src";
 import { loadDataset } from "./dataset";
+import { loadParserResources } from "./gazetteer";
 import { addResult, createMetrics, summarize } from "./metrics";
-
-interface ResourceArtifact {
-	readonly resources: ParserResources;
-}
 
 function argument(name: string, fallback?: string): string {
 	const index = Bun.argv.indexOf(name);
@@ -16,17 +13,13 @@ function argument(name: string, fallback?: string): string {
 }
 
 const datasetPath = argument("--dataset", "bench/fixtures/sakon-messy-v1.jsonl");
-const resourcePath = argument(
-	"--resources",
-	"resources/generated/construction-v3-residual-name-d2048.json",
-);
+const gazetteerPath = argument("--gazetteer", "resources/gazetteer.json");
 const outputPath = argument(
 	"--output",
 	".bench-results/sakon-messy-v1.json",
 );
 const records = await loadDataset(datasetPath);
-const artifact = (await Bun.file(resourcePath).json()) as ResourceArtifact;
-const parser = createAddressParser(artifact.resources);
+const parser = createAddressParser(await loadParserResources(gazetteerPath));
 const metrics = createMetrics();
 const byCase = new Map<string, ReturnType<typeof createMetrics>>();
 
@@ -41,7 +34,7 @@ for (const record of records) {
 const report = {
 	status: "exploratory-messy-fixture",
 	datasetPath,
-	resourcePath,
+	gazetteerPath,
 	evaluatedRecords: records.length,
 	metrics: summarize(metrics),
 	byCaseType: Object.fromEntries(

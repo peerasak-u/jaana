@@ -3,25 +3,6 @@ import { createAddressParser, type ParserResources } from "../src";
 
 const resources: ParserResources = {
 	version: "test-v2",
-	featureDimension: 64,
-	featureConfig: {
-		version: "char-ngram-v2",
-		minCharacterNgram: 1,
-		maxCharacterNgram: 4,
-	},
-	scoringConfig: {
-		version: "label-mix-v1",
-		latentWeightByLabel: {
-			NAME: 0.55,
-			PHONE: 0.55,
-			ADDRESS_DETAIL: 0.55,
-			SUBDISTRICT: 0.55,
-			DISTRICT: 0.55,
-			PROVINCE: 0.55,
-			POSTCODE: 0.55,
-		},
-	},
-	labelDirections: [],
 	locations: [
 		{
 			subdistrict: "ปทุมวัน",
@@ -323,30 +304,6 @@ describe("createAddressParser", () => {
 		const result = parser.parse("บ้านเลขที่ 610330 ปทุมวัน ปทุมวัน กรุงเทพมหานคร");
 
 		expect(result.fields.zipcode).toBeNull();
-	});
-
-	test("rejects unsupported frozen feature resources", () => {
-		expect(() =>
-			createAddressParser({
-				...resources,
-				featureConfig: {
-					...resources.featureConfig,
-					version: "char-ngram-v1" as "char-ngram-v2",
-				},
-			}),
-		).toThrow("Unsupported latent feature version");
-	});
-
-	test("rejects unsupported scoring resources", () => {
-		expect(() =>
-			createAddressParser({
-				...resources,
-				scoringConfig: {
-					...resources.scoringConfig,
-					version: "label-mix-v0" as "label-mix-v1",
-				} as ParserResources["scoringConfig"],
-			}),
-		).toThrow("Unsupported latent scoring version");
 	});
 
 	test("rejects invalid decoder options", () => {

@@ -49,7 +49,7 @@ export function createCandidateEngine(
 			);
 			addSegmentCandidates(context, store);
 			return {
-				candidates: scoreCandidates(context, resources, store),
+				candidates: scoreCandidates(context, store),
 				rejections: [...rejections.values()],
 			};
 		},

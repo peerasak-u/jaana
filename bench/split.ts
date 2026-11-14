@@ -45,7 +45,7 @@ function validateDeclaredTemplates(records: readonly DatasetRecord[]): void {
  * authoritative location tuple. Generator-declared evaluation template
  * families are admitted only to evaluation; declared training families are
  * admitted only to train/development. Ineligible cross-product records are
- * retained in `excluded` for an auditable resource artifact.
+ * retained in `excluded` so the partition stays auditable.
  */
 export function splitForTraining(
 	records: readonly DatasetRecord[],

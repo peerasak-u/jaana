@@ -1,7 +1,11 @@
 import { useMemo, useState } from "react";
+import { expandGazetteer, type CompactGazetteer } from "./gazetteer";
 import { createAddressParser } from "./parser";
-import type { FieldName, ParseResult, ParserResources } from "./types";
-import artifact from "../resources/generated/construction-v3-residual-name-d2048.json";
+import type { TaggerModel } from "./tagger/model";
+import { createTaggerParser } from "./tagger/parser";
+import type { FieldName, ParsedFields, ParserResources } from "./types";
+import gazetteer from "../resources/gazetteer.json";
+import taggerModel from "../resources/tagger-model.json";
 
 const examples = [
 	{
@@ -28,8 +32,60 @@ const fields: ReadonlyArray<{ key: FieldName; label: string }> = [
 	{ key: "zipcode", label: "รหัสไปรษณีย์" },
 ];
 
-const resources = artifact.resources as ParserResources;
+const compact = gazetteer as unknown as CompactGazetteer;
+const resources: ParserResources = {
+	version: compact.version,
+	locations: expandGazetteer(compact),
+};
+const model = taggerModel as TaggerModel;
 const initialInput: string = examples[0].value;
+
+type ParserChoice = "tagger" | "engine";
+
+const parserChoices: ReadonlyArray<{ key: ParserChoice; label: string }> = [
+	{ key: "tagger", label: "Tagger · โมเดลจิ๋ว" },
+	{ key: "engine", label: "Candidate Engine · กฎ" },
+];
+
+interface DemoResult {
+	readonly fields: ParsedFields;
+	readonly headline: string;
+	readonly caption: string;
+	readonly details: readonly string[];
+	readonly abstentions: readonly string[];
+}
+
+const demoParsers: Record<ParserChoice, (raw: string) => DemoResult> = (() => {
+	const tagger = createTaggerParser(model, resources.locations);
+	const engine = createAddressParser(resources);
+	return {
+		tagger(raw) {
+			const result = tagger.parse(raw);
+			const found = Object.values(result.fields).filter((value) => value !== null).length;
+			return {
+				fields: result.fields,
+				headline: `${found}/7`,
+				caption: "fields ที่พบ",
+				details: [`${raw.length} characters tagged`, `${result.spans.length} spans`, model.version],
+				abstentions: [],
+			};
+		},
+		engine(raw) {
+			const result = engine.parse(raw);
+			return {
+				fields: result.fields,
+				headline: `${Math.round(result.confidence * 100)}%`,
+				caption: scoreLabel(result.confidence),
+				details: [
+					`${result.diagnostics.candidatesEvaluated} candidates`,
+					`${result.diagnostics.hypothesesEvaluated} hypotheses`,
+					`${result.spans.length} fields accepted`,
+				],
+				abstentions: result.abstentions.map(({ field, reason }) => `${field} (${reason})`),
+			};
+		},
+	};
+})();
 
 function scoreLabel(confidence: number): string {
 	if (confidence >= 0.8) return "มั่นใจสูง";
@@ -46,11 +102,9 @@ function ResultPanel({
 	result,
 	computeMs,
 }: {
-	result: ParseResult;
+	result: DemoResult;
 	computeMs: number;
 }) {
-	const confidence = Math.round(result.confidence * 100);
-
 	return (
 		<section className="result-panel" aria-live="polite">
 			<div className="result-heading">
@@ -58,9 +112,9 @@ function ResultPanel({
 					<p className="eyebrow">ผลการแยกข้อมูล</p>
 					<h2>Address record</h2>
 				</div>
-				<div className="confidence" title={`คะแนนการเลือก ${confidence}%`}>
-					<strong>{confidence}%</strong>
-					<span>{scoreLabel(result.confidence)}</span>
+				<div className="confidence" title={`${result.headline} ${result.caption}`}>
+					<strong>{result.headline}</strong>
+					<span>{result.caption}</span>
 				</div>
 			</div>
 
@@ -79,17 +133,14 @@ function ResultPanel({
 				<span className="compute-time">
 					compute {formatComputeTime(computeMs)}
 				</span>
-				<span>{result.diagnostics.candidatesEvaluated} candidates</span>
-				<span>{result.diagnostics.hypothesesEvaluated} hypotheses</span>
-				<span>{result.spans.length} fields accepted</span>
+				{result.details.map((detail) => (
+					<span key={detail}>{detail}</span>
+				))}
 			</div>
 
 			{result.abstentions.length > 0 && (
 				<p className="abstentions">
-					<strong>ละเว้นข้อมูล:</strong>{" "}
-					{result.abstentions
-						.map(({ field, reason }) => `${field} (${reason})`)
-						.join(", ")}
+					<strong>ละเว้นข้อมูล:</strong> {result.abstentions.join(", ")}
 				</p>
 			)}
 		</section>
@@ -97,14 +148,14 @@ function ResultPanel({
 }
 
 export function App() {
-	const parser = useMemo(() => createAddressParser(resources), []);
+	const [choice, setChoice] = useState<ParserChoice>("tagger");
 	const [draft, setDraft] = useState(initialInput);
 	const [submitted, setSubmitted] = useState(initialInput);
 	const { result, computeMs } = useMemo(() => {
 		const start = performance.now();
-		const parsed = parser.parse(submitted);
+		const parsed = demoParsers[choice](submitted);
 		return { result: parsed, computeMs: performance.now() - start };
-	}, [parser, submitted]);
+	}, [choice, submitted]);
 
 	function runParser(): void {
 		setSubmitted(draft.trim());
@@ -132,13 +183,13 @@ export function App() {
 						ในเบราว์เซอร์
 					</h1>
 					<p className="lede">
-						พิมพ์ข้อความหนึ่งบรรทัด แล้วดูผลลัพธ์จาก candidate scoring, pruning และ
-						deterministic validation
+						พิมพ์ข้อความที่อยู่ แล้วเทียบผลจากโมเดลจิ๋วที่ติดป้ายทีละตัวอักษร
+						กับ parser แบบกฎ ทั้งสองตัวทำงานในเบราว์เซอร์นี้
 					</p>
 				</div>
 				<div className="resource-note">
 					<span className="resource-dot" />
-					Frozen resource <strong>{resources.version}</strong>
+					Gazetteer <strong>{resources.version}</strong>
 					<a className="explainer-link" href="explainer.html">How it works ↗</a>
 				</div>
 			</header>
@@ -178,6 +229,23 @@ export function App() {
 					</div>
 
 					<div className="example-block">
+						<p>เลือก parser</p>
+						<div className="example-buttons">
+							{parserChoices.map(({ key, label }) => (
+								<button
+									className={`example-button${choice === key ? " active" : ""}`}
+									type="button"
+									key={key}
+									aria-pressed={choice === key}
+									onClick={() => setChoice(key)}
+								>
+									{label}
+								</button>
+							))}
+						</div>
+					</div>
+
+					<div className="example-block">
 						<p>ลองตัวอย่าง</p>
 						<div className="example-buttons">
 							{examples.map((example) => (
@@ -198,7 +266,7 @@ export function App() {
 			</section>
 
 			<footer>
-				<span>Scorer → Pruner → Validator</span>
+				<span>Anchor → Tagger → Resolver</span>
 				<span>Runs fully in your browser</span>
 			</footer>
 		</main>

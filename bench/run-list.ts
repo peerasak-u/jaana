@@ -1,6 +1,6 @@
 import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
-import { createAddressParser, type ParserResources } from "../src";
+import { createAddressParser } from "../src";
 import {
 	addCalibration,
 	createCalibration,
@@ -11,8 +11,8 @@ import {
 	createCandidateFunnel,
 	summarizeCandidateFunnel,
 } from "./funnel";
-import { contentChecksum } from "./integrity";
 import { loadDataset } from "./dataset";
+import { loadParserResources } from "./gazetteer";
 import {
 	parseRecipientList,
 	recipientListBlocks,
@@ -23,10 +23,6 @@ import {
 	exactAcceptance,
 	summarize,
 } from "./metrics";
-
-interface ResourceArtifact {
-	readonly resources: ParserResources;
-}
 
 function argument(name: string, fallback?: string): string {
 	const index = Bun.argv.indexOf(name);
@@ -44,10 +40,7 @@ function percentile(values: readonly number[], p: number): number {
 }
 
 const inputPath = argument("--input");
-const resourcePath = argument(
-	"--resources",
-	"resources/generated/construction-v3-residual-name-d2048.json",
-);
+const gazetteerPath = argument("--gazetteer", "resources/gazetteer.json");
 const outputPath = argument(
 	"--output",
 	".bench-results/recipient-list.json",
@@ -84,48 +77,26 @@ const records = [
 	})),
 ];
 if (records.length === 0) throw new Error("recipient list is empty");
-const artifact = (await Bun.file(resourcePath).json()) as ResourceArtifact;
-const latent = createAddressParser(artifact.resources);
-const noDirections = createAddressParser({
-	...artifact.resources,
-	labelDirections: [],
-});
-const diagnostics = createAddressParser(artifact.resources, {
+const resources = await loadParserResources(gazetteerPath);
+const engine = createAddressParser(resources);
+const diagnostics = createAddressParser(resources, {
 	diagnostics: "full",
 });
-const latentMetrics = createMetrics();
-const noDirectionsMetrics = createMetrics();
+const engineMetrics = createMetrics();
 const funnel = createCandidateFunnel();
-const latentCalibration = createCalibration();
-const noDirectionsCalibration = createCalibration();
-const latentTimes: number[] = [];
-const noDirectionsTimes: number[] = [];
-const byStyle = new Map<
-	string,
-	{
-		latent: ReturnType<typeof createMetrics>;
-		noDirections: ReturnType<typeof createMetrics>;
-	}
->();
+const engineCalibration = createCalibration();
+const engineTimes: number[] = [];
+const byStyle = new Map<string, ReturnType<typeof createMetrics>>();
 
 for (const record of records) {
-	const latentStart = Bun.nanoseconds();
-	const latentResult = latent.parse(record.raw);
-	latentTimes.push((Bun.nanoseconds() - latentStart) / 1_000_000);
-	const noDirectionsStart = Bun.nanoseconds();
-	const noDirectionsResult = noDirections.parse(record.raw);
-	noDirectionsTimes.push((Bun.nanoseconds() - noDirectionsStart) / 1_000_000);
-	addResult(latentMetrics, record.expected, latentResult.fields);
-	addResult(noDirectionsMetrics, record.expected, noDirectionsResult.fields);
-	addCalibration(latentCalibration, record.expected, latentResult);
-	addCalibration(noDirectionsCalibration, record.expected, noDirectionsResult);
+	const engineStart = Bun.nanoseconds();
+	const engineResult = engine.parse(record.raw);
+	engineTimes.push((Bun.nanoseconds() - engineStart) / 1_000_000);
+	addResult(engineMetrics, record.expected, engineResult.fields);
+	addCalibration(engineCalibration, record.expected, engineResult);
 	addCandidateFunnel(funnel, record.expected, diagnostics.parse(record.raw));
-	const style = byStyle.get(record.style) ?? {
-		latent: createMetrics(),
-		noDirections: createMetrics(),
-	};
-	addResult(style.latent, record.expected, latentResult.fields);
-	addResult(style.noDirections, record.expected, noDirectionsResult.fields);
+	const style = byStyle.get(record.style) ?? createMetrics();
+	addResult(style, record.expected, engineResult.fields);
 	byStyle.set(record.style, style);
 }
 
@@ -140,36 +111,24 @@ function timing(values: readonly number[]): object {
 const report = {
 	status: "private-recipient-list-aggregate-only",
 	generatedAt: new Date().toISOString(),
-	resourceVersion: artifact.resources.version,
+	resourceVersion: resources.version,
 	source: {
-		inputChecksum: contentChecksum(input),
+		inputChecksum: new Bun.CryptoHasher("sha256").update(input).digest("hex"),
 		recordCount: records.length,
 		structuredRecords: structuredRecords.length,
 		reviewedSupplementRecords: unstructuredBlocks.length,
 		unmatchedRecords: unmatchedBlocks.length,
 	},
-	latent: {
-		metrics: summarize(latentMetrics),
-		timing: timing(latentTimes),
-		calibration: summarizeCalibration(latentCalibration),
+	engine: {
+		metrics: summarize(engineMetrics),
+		timing: timing(engineTimes),
+		calibration: summarizeCalibration(engineCalibration),
 	},
-	noDirections: {
-		description: "same parser with frozen directions removed",
-		metrics: summarize(noDirectionsMetrics),
-		timing: timing(noDirectionsTimes),
-		calibration: summarizeCalibration(noDirectionsCalibration),
-	},
-	acceptance: exactAcceptance(latentMetrics, minimumExactAccuracy),
+	acceptance: exactAcceptance(engineMetrics, minimumExactAccuracy),
 	byAddressStyle: Object.fromEntries(
 		[...byStyle.entries()]
 			.sort(([left], [right]) => left.localeCompare(right))
-			.map(([style, value]) => [
-				style,
-				{
-					latent: summarize(value.latent),
-					noDirections: summarize(value.noDirections),
-				},
-			]),
+			.map(([style, value]) => [style, summarize(value)]),
 	),
 	candidateFunnel: summarizeCandidateFunnel(funnel),
 	privacy: {
@@ -189,8 +148,7 @@ console.log(
 		{
 			outputPath,
 			records: records.length,
-			latent: report.latent,
-			noDirections: report.noDirections,
+			engine: report.engine,
 		},
 		null,
 		2,

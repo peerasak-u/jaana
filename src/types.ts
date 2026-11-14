@@ -27,34 +27,6 @@ export interface LocationTuple {
 	readonly zipcode: string;
 }
 
-export interface LabelDirection {
-	readonly label: OutputLabel;
-	readonly vector: readonly number[];
-	readonly bias?: number;
-}
-
-export interface LatentFeatureConfig {
-	readonly version: "char-ngram-v2" | "candidate-hash-v3";
-	readonly minCharacterNgram: number;
-	readonly maxCharacterNgram: number;
-	readonly contextWindow?: number;
-}
-
-export interface LegacyLatentScoringConfig {
-	readonly version: "label-mix-v1";
-	readonly latentWeightByLabel: Readonly<Record<OutputLabel, number>>;
-}
-
-export interface ResidualLatentScoringConfig {
-	readonly version: "residual-rank-v2";
-	readonly residualScaleByLabel: Readonly<Record<OutputLabel, number>>;
-	readonly maxAbsoluteResidualLogit: number;
-}
-
-export type LatentScoringConfig =
-	| LegacyLatentScoringConfig
-	| ResidualLatentScoringConfig;
-
 export type CandidateSource =
 	| "recipient"
 	| "structured"
@@ -66,12 +38,7 @@ export type CandidateSource =
 
 export interface ParserResources {
 	readonly version: string;
-	readonly featureDimension: number;
-	readonly featureConfig: LatentFeatureConfig;
-	readonly scoringConfig: LatentScoringConfig;
-	readonly labelDirections: readonly LabelDirection[];
 	readonly locations: readonly LocationTuple[];
-	readonly checksum?: string;
 }
 
 export interface ParserOptions {
@@ -111,13 +78,8 @@ export interface Abstention {
 
 export interface ParseDiagnostics {
 	readonly resourceVersion: string;
-	readonly resourceChecksum?: string;
 	readonly candidatesEvaluated: number;
 	readonly hypothesesEvaluated: number;
-	readonly latentScoring:
-		| "frozen-direction"
-		| "sparse-residual"
-		| "evidence-only";
 	readonly scoreSemantics: "uncalibrated-selection-score";
 	readonly candidateTrace?: readonly CandidateTrace[];
 	readonly candidateRejections?: readonly CandidateRejection[];
@@ -144,7 +106,6 @@ export interface CandidateTrace {
 	readonly start: number;
 	readonly end: number;
 	readonly evidenceScore: number;
-	readonly latentScore: number;
 	readonly score: number;
 	readonly source?: CandidateSource;
 	readonly evidence: readonly EvidenceContribution[];
@@ -176,7 +137,6 @@ export interface Candidate {
 	readonly canonical: string;
 	readonly start: number;
 	readonly end: number;
-	readonly latentScore: number;
 	readonly evidenceScore: number;
 	readonly score: number;
 	readonly source?: CandidateSource;

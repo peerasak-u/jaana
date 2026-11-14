@@ -7,7 +7,6 @@ const diagnostics: ParseDiagnostics = {
 	resourceVersion: "test",
 	candidatesEvaluated: 1,
 	hypothesesEvaluated: 1,
-	latentScoring: "frozen-direction",
 	scoreSemantics: "uncalibrated-selection-score",
 };
 
@@ -18,7 +17,6 @@ function candidate(overrides: Partial<Candidate> = {}): Candidate {
 		canonical: "0812345678",
 		start: 0,
 		end: 10,
-		latentScore: 0.5,
 		evidenceScore: 0.99,
 		score: 0.9,
 		locationIds: [],

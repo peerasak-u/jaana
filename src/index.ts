@@ -1,4 +1,9 @@
+export { expandGazetteer } from "./gazetteer";
+export type { CompactGazetteer } from "./gazetteer";
 export { createAddressParser, parseAddress } from "./parser";
+export { createTaggerParser } from "./tagger/parser";
+export type { TaggedAddress, TaggedSpan, TaggerParser } from "./tagger/parser";
+export type { TaggerModel } from "./tagger/model";
 export { LABELS } from "./types";
 export type {
   Abstention,
@@ -8,9 +13,6 @@ export type {
 	EvidenceContribution,
   FieldName,
   Label,
-  LabelDirection,
-  LatentScoringConfig,
-  LegacyLatentScoringConfig,
   LocationTuple,
   OutputLabel,
   ParseDiagnostics,
@@ -19,6 +21,5 @@ export type {
   ParsedSpan,
   ParserOptions,
   ParserResources,
-  ResidualLatentScoringConfig,
   CandidateSource,
 } from "./types";

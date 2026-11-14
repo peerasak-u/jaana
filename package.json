@@ -13,9 +13,11 @@
     "typecheck": "bunx tsc --noEmit",
     "build": "bun build ./src/index.ts --outdir ./dist --target browser --format esm",
     "build:demo": "vite build",
-    "build:resources": "bun run scripts/build-resources.ts",
-    "check:resource-gate": "bun run scripts/check-resource-gate.ts",
+    "build:gazetteer": "bun run scripts/build-gazetteer.ts",
+    "train:tagger": "bun run scripts/train-tagger.ts",
+    "explainer:snapshot": "bun run scripts/explainer-snapshot.ts",
     "bench": "bun run bench/run.ts",
+    "bench:tagger": "bun run bench/run-tagger.ts",
     "bench:list": "bun run bench/run-list.ts",
     "bench:fixture": "bun run bench/run-fixture.ts"
   },

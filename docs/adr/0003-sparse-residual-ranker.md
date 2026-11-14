@@ -1,6 +1,6 @@
 # ADR-0003: Use a sparse residual ranker for candidate selection
 
-- Status: Accepted
+- Status: Superseded by ADR-0004. The ranker was removed.
 - Date: 2026-07-16
 
 ## Context
