@@ -62,6 +62,11 @@ describe("tuple resolver", () => {
 		});
 	});
 
+	test("a province nickname resolves to its province", () => {
+		expect(resolve({ district: "อ.นาตาล", province: "อุบลฯ" }).province).toBe("อุบลราชธานี");
+		expect(resolve({ district: "เขตจอมทอง", province: "dm," }).province).toBe("กรุงเทพมหานคร");
+	});
+
 	test("an unknown name resolves to nothing", () => {
 		expect(resolve({ province: "ดาวอังคาร" }).province).toBeNull();
 	});
@@ -175,6 +180,13 @@ describe("shipped tagger model", () => {
 		expect(fields.subdistrict).toBeNull();
 		expect(fields.district).toBe("พุทไธสง");
 		expect(fields.address).toBe("62 ม.9 บ้านมะเฟือง");
+	});
+
+	test("a province nickname the Tagger left untagged is still output", () => {
+		expect(parser.parse("ไทรน้อย นนท์ 11150 บ้านเลขที่ 64/1 ม.6 | เบอร์ 0985531276 | พี่โอ๋").fields).toMatchObject({
+			district: "ไทรน้อย",
+			province: "นนทบุรี",
+		});
 	});
 
 	test("empty input yields no fields", () => {

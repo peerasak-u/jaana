@@ -10,6 +10,7 @@ import {
 	closestTuple,
 	createTupleResolver,
 	nameForms,
+	PROVINCE_ALIASES,
 	type AdministrativeField,
 	type AdministrativeTexts,
 	type AdministrativeValues,
@@ -55,7 +56,7 @@ const ADMINISTRATIVE_LABELS = new Map<OutputLabel, AdministrativeField>([
 	["DISTRICT", "district"],
 	["PROVINCE", "province"],
 ]);
-const NO_ADMINISTRATIVE:AdministrativeValues = { subdistrict: null, district: null, province: null, zipcode: null };
+const NO_ADMINISTRATIVE: AdministrativeValues = { subdistrict: null, district: null, province: null, zipcode: null };
 const TAGGED_FIELDS: readonly [OutputLabel, AdministrativeField | "zipcode"][] = [
 	["POSTCODE", "zipcode"],
 	["PROVINCE", "province"],
@@ -84,8 +85,8 @@ function untaggedMentions(
 	const claimed: Range[] = [];
 	for (const [label, field] of TAGGED_FIELDS) {
 		if (spans.some((span) => span.label === label)) continue;
-		const names = field === "province" && tuple.province === "กรุงเทพมหานคร"
-			? [tuple.province, "กรุงเทพ", "กทม"]
+		const names = field === "province"
+			? [tuple.province, ...(PROVINCE_ALIASES.get(tuple.province) ?? [])]
 			: [tuple[field]];
 		for (const name of names) {
 			const found = findStandalone(text, field, name, taken);

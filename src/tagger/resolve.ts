@@ -14,7 +14,28 @@ const PREFIXES: Record<AdministrativeField, readonly string[]> = {
 	district: ["อำเภอ", "เขต", "อ.", "อ"],
 	province: ["จังหวัด", "จ.", "จ"],
 };
-const BANGKOK = /^(กทม\.?|กรุงเทพฯ?|กรุงเทพมหานคร)$/u;
+/** Short forms and nicknames shoppers write for a province. */
+export const PROVINCE_ALIASES: ReadonlyMap<string, readonly string[]> = new Map(Object.entries({
+	กรุงเทพมหานคร: ["กทม", "กทม.", "กรุงเทพ", "กรุงเทพฯ", "dm,"],
+	นนทบุรี: ["นนท์", "นนท"],
+	ปทุมธานี: ["ปทุม"],
+	นครราชสีมา: ["โคราช"],
+	กาญจนบุรี: ["กาญจน์"],
+	อุบลราชธานี: ["อุบล", "อุบลฯ"],
+	สมุทรสาคร: ["มหาชัย"],
+	สมุทรสงคราม: ["แม่กลอง"],
+	สมุทรปราการ: ["ปากน้ำ"],
+	สุพรรณบุรี: ["สุพรรณ"],
+	พระนครศรีอยุธยา: ["อยุธยา"],
+	ฉะเชิงเทรา: ["แปดริ้ว"],
+	นครศรีธรรมราช: ["นครศรี", "นครศรีฯ"],
+	อุดรธานี: ["อุดร"],
+	ประจวบคีรีขันธ์: ["ประจวบ"],
+	สุราษฎร์ธานี: ["สุราษฎร์"],
+}));
+const ALIASED_PROVINCE = new Map(
+	[...PROVINCE_ALIASES].flatMap(([province, aliases]) => aliases.map((alias) => [alias, province] as const)),
+);
 const MIN_FUZZY_RATIO = 0.8;
 const FUZZY_DISCOUNT = 0.9;
 const BARE_CITY_SIMILARITY = 0.9;
@@ -46,7 +67,7 @@ export function formSimilarity(
 	let best = 0;
 	for (const form of forms) {
 		if (form === name) return 1;
-		if (field === "province" && name === "กรุงเทพมหานคร" && BANGKOK.test(form)) return 1;
+		if (field === "province" && ALIASED_PROVINCE.get(form) === name) return 1;
 		if (field === "district" && form === "เมือง" && name.startsWith("เมือง")) {
 			best = Math.max(best, BARE_CITY_SIMILARITY);
 			continue;
@@ -117,7 +138,8 @@ export function createTupleResolver(
 		const forms = nameForms(field, text);
 		for (const form of forms) {
 			if (known[field].has(form)) raise(form, 1);
-			if (field === "province" && BANGKOK.test(form)) raise("กรุงเทพมหานคร", 1);
+			const aliased = field === "province" ? ALIASED_PROVINCE.get(form) : undefined;
+			if (aliased) raise(aliased, 1);
 			if (field === "district" && form === "เมือง") {
 				for (const name of names.district) {
 					if (name.startsWith("เมือง")) raise(name, BARE_CITY_SIMILARITY);
