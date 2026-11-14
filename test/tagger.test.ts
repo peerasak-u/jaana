@@ -138,6 +138,23 @@ describe("shipped tagger model", () => {
 		expect(fields.district).toBe("ลำลูกกา");
 	});
 
+	test("a written postcode overrides an anchor that contradicts it", () => {
+		expect(parser.parse("นายประสิทธิ์ ทองอยู่ 0811234567 5 ม.3 ต.หาดทะนง อ.เมืองอุทัย จ.อุทัยทานี 61000").fields).toMatchObject({
+			subdistrict: "หาดทนง",
+			district: "เมืองอุทัยธานี",
+			province: "อุทัยธานี",
+			zipcode: "61000",
+		});
+	});
+
+	test("a misspelled district resolves within the tuples of the anchored province and postcode", () => {
+		expect(parser.parse("คุณบี 0897153306 199/45 ซ.จันทน์ 18 แขวงยานาวา เขตสาธร กทม 10120").fields).toMatchObject({
+			subdistrict: "ยานนาวา",
+			district: "สาทร",
+			province: "กรุงเทพมหานคร",
+		});
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});

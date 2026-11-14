@@ -1,13 +1,14 @@
 import { similarityRatio } from "../candidate/fuzzy-match";
 import { normalizeCandidate, normalizePostcode } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
-import { createAnchorer } from "./anchor";
+import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
-import { createTupleResolver, nameForms } from "./resolve";
+import { closestTuple, createTupleResolver, nameForms, type AdministrativeTexts } from "./resolve";
 
 const MIN_SIBLING_RATIO = 0.7;
+const DISTRICT_BIT = 1 << ANCHOR_FIELDS.indexOf("district");
 
 export interface TaggedSpan {
 	readonly label: OutputLabel;
@@ -83,6 +84,37 @@ export function createTaggerParser(
 		return best;
 	}
 
+	const postcodeTuples = new Map<string, LocationTuple[]>();
+	for (const location of locations) {
+		const tuples = postcodeTuples.get(location.zipcode) ?? [];
+		tuples.push(location);
+		postcodeTuples.set(location.zipcode, tuples);
+	}
+
+	/**
+	 * The Anchor fixes only the fields it found written exactly. A written
+	 * postcode that contradicts it, or an unconfirmed district, leaves the
+	 * choice to the tagged spans within the tuples the evidence allows.
+	 */
+	function resolveTuple(
+		anchored: Anchor,
+		texts: AdministrativeTexts,
+		written: string | null,
+	): LocationTuple | null {
+		const tuple = anchored.tuple;
+		const inPostcode = written ? postcodeTuples.get(written) : undefined;
+		if (inPostcode && tuple?.zipcode !== written) return closestTuple(inPostcode, texts);
+		if (!tuple || !texts.district) return tuple;
+		let confirmed = 0;
+		for (const flag of anchored.flags) confirmed |= flag;
+		if (confirmed & DISTRICT_BIT) return tuple;
+		const pool = [tuple, ...(inPostcode ?? locations).filter((location) =>
+			ANCHOR_FIELDS.every((field, bit) =>
+				(confirmed & (1 << bit)) === 0 || location[field] === tuple[field]),
+		)];
+		return closestTuple(pool, texts);
+	}
+
 	return {
 		parse(raw) {
 			const anchored = anchor(raw);
@@ -98,22 +130,23 @@ export function createTaggerParser(
 			const district = text("DISTRICT");
 			const province = text("PROVINCE");
 			const zipcode = text("POSTCODE");
-			const tuple = anchored.tuple;
+			const texts = {
+				...(subdistrict ? { subdistrict } : {}),
+				...(district ? { district } : {}),
+				...(province ? { province } : {}),
+			};
+			const written = zipcode ? normalizePostcode(zipcode) : null;
+			const tuple = resolveTuple(anchored, texts, written);
 			const administrative = tuple
 				? {
 					subdistrict: subdistrict
-						? anchoredSubdistrict(tuple, subdistrict, zipcode ? normalizePostcode(zipcode) : null)
+						? anchoredSubdistrict(tuple, subdistrict, written)
 						: null,
 					district: district ? tuple.district : null,
 					province: province ? tuple.province : null,
 					zipcode: zipcode ? tuple.zipcode : null,
 				}
-				: resolve({
-					...(subdistrict ? { subdistrict } : {}),
-					...(district ? { district } : {}),
-					...(province ? { province } : {}),
-					...(zipcode ? { zipcode } : {}),
-				});
+				: resolve({ ...texts, ...(zipcode ? { zipcode } : {}) });
 			const name = text("NAME");
 			const phone = text("PHONE");
 			return {

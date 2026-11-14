@@ -37,6 +37,60 @@ export function nameForms(field: AdministrativeField, text: string): string[] {
 	return [...forms].filter((form) => form.length > 0);
 }
 
+/** Similarity in [0, 1] of the best surface form of a tagged span to one gazetteer name. */
+export function formSimilarity(
+	field: AdministrativeField,
+	forms: readonly string[],
+	name: string,
+): number {
+	let best = 0;
+	for (const form of forms) {
+		if (form === name) return 1;
+		if (field === "province" && name === "กรุงเทพมหานคร" && BANGKOK.test(form)) return 1;
+		if (field === "district" && form === "เมือง" && name.startsWith("เมือง")) {
+			best = Math.max(best, BARE_CITY_SIMILARITY);
+			continue;
+		}
+		best = Math.max(best, similarityRatio(form, name) / 100);
+	}
+	return best;
+}
+
+/**
+ * Picks the tuple of a small pool whose names best match the tagged spans.
+ * Ties keep the earlier tuple, so callers order the pool by preference.
+ */
+export function closestTuple(
+	pool: readonly LocationTuple[],
+	texts: AdministrativeTexts,
+): LocationTuple | null {
+	const forms = ADMINISTRATIVE_FIELDS.map((field) => {
+		const text = texts[field];
+		return text ? nameForms(field, text) : [];
+	});
+	const seen = ADMINISTRATIVE_FIELDS.map(() => new Map<string, number>());
+	let best: LocationTuple | null = null;
+	let bestScore = -1;
+	for (const location of pool) {
+		let score = 0;
+		ADMINISTRATIVE_FIELDS.forEach((field, index) => {
+			if (forms[index]!.length === 0) return;
+			const name = location[field];
+			let similarity = seen[index]!.get(name);
+			if (similarity === undefined) {
+				similarity = formSimilarity(field, forms[index]!, name);
+				seen[index]!.set(name, similarity);
+			}
+			score += similarity;
+		});
+		if (score > bestScore) {
+			best = location;
+			bestScore = score;
+		}
+	}
+	return best;
+}
+
 /**
  * Resolves tagged administrative spans to one gazetteer tuple by summed
  * name similarity. Used when the text holds too few exact names to anchor.
