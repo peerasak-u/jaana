@@ -6,6 +6,8 @@ import { createAnchorer } from "../src/tagger/anchor";
 import { featurize } from "../src/tagger/features";
 import { createTaggerParser } from "../src/tagger/parser";
 import { trainTagger } from "../src/tagger/train";
+import { loadChatPool } from "../bench/chat/load";
+import { poolOf } from "../bench/chat/markup";
 
 function values(name: string): string[] {
 	const result: string[] = [];
@@ -32,7 +34,13 @@ const version = value("--model-version", `thai-address-tagger-d${dimension}`);
 const { locations } = await loadParserResources(gazetteerPath);
 const { split, extraTrain, extraDropped } = await loadTaggerPartitions(datasetPaths, extraPaths);
 const anchor = createAnchorer(locations);
-const trainRecords = [...split.train, ...extraTrain];
+const withChat = Bun.argv.includes("--chat-train");
+const chat = withChat ? await loadChatPool("train", locations) : { records: [], issues: [] };
+if (chat.issues.length > 0) throw new Error(`${chat.issues.length} chat source issues. Run scripts/chat/check.ts`);
+const synthetic = [...split.train, ...extraTrain];
+const trainRecords = withChat
+	? [...synthetic.filter((record) => poolOf(record.seedLocation) !== "bench"), ...chat.records]
+	: synthetic;
 const started = performance.now();
 const model = trainTagger(
 	trainRecords.map((record) => ({
@@ -49,6 +57,8 @@ const artifact = {
 		datasets: datasetPaths.map((path) => basename(path)),
 		extraDatasets: extraPaths.map((path) => basename(path)),
 		trainRecords: trainRecords.length,
+		chatTrainRecords: chat.records.length,
+		benchPoolDropped: synthetic.length + chat.records.length - trainRecords.length,
 		extraDropped,
 		developmentRecords: split.development.length,
 		evaluationRecords: split.evaluation.length,
