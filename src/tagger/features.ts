@@ -131,6 +131,18 @@ export function featurize(
 		nextCue[i] = raw[i] === "\n" ? 0 : cues.starts[i + 1] || nextCue[i + 1]!;
 	}
 	let lastCue = 0;
+	const tokenOf = new Int32Array(n).fill(-1);
+	const tokens: string[] = [];
+	for (let i = 0; i < n; i += 1) {
+		if (/\s/u.test(raw[i]!)) continue;
+		if (i === 0 || /\s/u.test(raw[i - 1]!)) tokens.push("");
+		tokens[tokens.length - 1] += folded[i]!;
+		tokenOf[i] = tokens.length - 1;
+	}
+	const token = (index: number): string => {
+		const text = tokens[index];
+		return text === undefined ? "^" : text.length > 10 ? "#" : text;
+	};
 	const rows: Int32Array[] = [];
 	let line = 0;
 	let lineStart = 0;
@@ -178,6 +190,12 @@ export function featurize(
 		add(`cl:${lastCue}:${cues.inside[i]}`);
 		add(`cn:${cues.inside[i]}:${nextCue[i]}`);
 		if (cues.starts[i]) lastCue = cues.starts[i]!;
+		const t = tokenOf[i]!;
+		if (t >= 0) {
+			add(`w0:${token(t)}`);
+			add(`w-:${token(t - 1)}`);
+			add(`w+:${token(t + 1)}`);
+		}
 		rows.push(Int32Array.from(row));
 		if (raw[i] === "\n") {
 			lastCue = 0;
