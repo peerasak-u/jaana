@@ -8,6 +8,7 @@ import { createTaggerParser } from "../src/tagger/parser";
 import { trainTagger } from "../src/tagger/train";
 import { loadChatPool } from "../bench/chat/load";
 import { fnv1a, poolOf } from "../bench/chat/markup";
+import { AUGMENT_OPS, augmentChatRecords, type AugmentOp } from "../bench/chat/augment";
 
 function values(name: string): string[] {
 	const result: string[] = [];
@@ -38,7 +39,18 @@ const withChat = Bun.argv.includes("--chat-train");
 const chatPercent = Number(value("--chat-percent", "100"));
 const loadedChat = withChat ? await loadChatPool("train", locations) : { records: [], issues: [] };
 if (loadedChat.issues.length > 0) throw new Error(`${loadedChat.issues.length} chat source issues. Run scripts/chat/check.ts`);
-const chat = { records: loadedChat.records.filter((record) => fnv1a(record.id) % 100 < chatPercent) };
+const sampledChat = loadedChat.records.filter((record) => fnv1a(record.id) % 100 < chatPercent);
+const augmentMultiplier = Number(value("--augment", "1"));
+const augmentOps = value("--augment-ops", AUGMENT_OPS.join(",")).split(",") as AugmentOp[];
+for (const op of augmentOps) if (!AUGMENT_OPS.includes(op)) throw new Error(`unknown --augment-ops entry ${op}`);
+const chat = {
+	records: augmentChatRecords(sampledChat, {
+		copies: augmentMultiplier - 1,
+		seed,
+		ops: augmentOps,
+		locations: locations.filter((location) => poolOf(location) === "train"),
+	}),
+};
 const synthetic = [...split.train, ...extraTrain];
 const trainRecords = withChat
 	? [...synthetic.filter((record) => poolOf(record.seedLocation) !== "bench"), ...chat.records]
@@ -60,6 +72,7 @@ const artifact = {
 		extraDatasets: extraPaths.map((path) => basename(path)),
 		trainRecords: trainRecords.length,
 		chatTrainRecords: chat.records.length,
+		augment: augmentMultiplier > 1 ? { multiplier: augmentMultiplier, ops: augmentOps } : undefined,
 		benchPoolDropped: synthetic.length + chat.records.length - trainRecords.length,
 		extraDropped,
 		developmentRecords: split.development.length,
