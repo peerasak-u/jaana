@@ -29,6 +29,7 @@ export function nextTo(raw: string, one: Range, other: Range): boolean {
 function closeBracket(raw: string, range: Range): Range {
 	const text = raw.slice(range.start, range.end);
 	const open = (text.match(/\(/gu) ?? []).length - (text.match(/\)/gu) ?? []).length;
+	if (open < 0 && text.endsWith(")")) return { start: range.start, end: range.end - 1 };
 	if (open <= 0) return range;
 	const close = /^[ \t]*\)/u.exec(raw.slice(range.end));
 	return close ? { start: range.start, end: range.end + close[0].length } : range;

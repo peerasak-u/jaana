@@ -47,6 +47,11 @@ describe("recipient composition", () => {
 		expect(compose("ผม สุเมธ", "ผม", []).name).toBe("ผม");
 	});
 
+	test("a closing bracket the name never opened is left out", () => {
+		expect(compose("56000 (ป้าจันทร์) 0812046693", "ป้าจันทร์)", []).name).toBe("ป้าจันทร์");
+		expect(compose("คุณสมศรี (แม่)", "คุณสมศรี (แม่)", []).name).toBe("คุณสมศรี (แม่)");
+	});
+
 	test("a person bracket left open by the Tagger is closed", () => {
 		expect(compose("บจก.รุ่งเรือง (คุณเอ) 12/3", "(คุณเอ", ["บจก.รุ่งเรือง"]).name).toBe("บจก.รุ่งเรือง (คุณเอ)");
 	});
