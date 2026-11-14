@@ -67,12 +67,13 @@ function distance(left: string, right: string): number {
 	return previous[right.length]!;
 }
 
-function resemblesName(surface: string, canonical: string): boolean {
-	const bare = surface.replace(/[\s.:,\-]/gu, "");
+function resemblesName(surface: string, written: string): boolean {
+	const canonical = written.replace(/[\s.]/gu, "");
+	const bare = surface.replace(/[\s.:,\-ฯ]/gu, "");
 	const forms = [bare, ...PREFIXES.filter((prefix) => bare.startsWith(prefix)).map((prefix) => bare.slice(prefix.length))];
 	return forms.some((form) =>
 		form.length >= 2 &&
-		(distance(form, canonical) / canonical.length <= 0.4 ||
+		(distance(form, canonical) / canonical.length <= 0.5 ||
 			(form.length >= 4 && canonical.startsWith(form))),
 	);
 }

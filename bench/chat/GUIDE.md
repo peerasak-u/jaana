@@ -65,8 +65,17 @@ A field the shopper did not write gets no mark. Do not mark anything else.
   form (`บริษัท ... จำกัด`, `บจก.`, `หจก.`, `ร้าน`).
 - Exclude the label (`ชื่อ:`, `ผู้รับ`, `ส่งให้`, `ถึง`, `attn.`) and any
   particle after the name (`ค่ะ`, `ครับ`, `นะคะ`).
+- A kinship or call word joined to the name is part of it (`ป้าน้อย`,
+  `ลุงสมพงษ์`, `น้องมายด์`, `ครูวาสนา`).
+- Brackets written right after the name are part of it, whatever they hold:
+  a nickname, a relation, a department. `[[N:คุณสมศรี ใจดี (แม่)]]`,
+  `[[N:อบต.หนองบัว (กองคลัง)]]`. The two exceptions: brackets holding
+  address detail are `A` (`[[N:รร.บ้านท่า]] ([[A:ม.3]])`), and brackets
+  holding a remark to the seller are unmarked.
 - An organisation and its contact person written next to each other are one
-  name: `[[N:บจก.รุ่งเรืองการค้า (คุณเอ ฝ่ายจัดซื้อ)]]`.
+  name: `[[N:บจก.รุ่งเรืองการค้า (คุณเอ ฝ่ายจัดซื้อ)]]`. The order does not
+  matter: `[[N:ครูวาสนา ปินตา โรงเรียนบ้านดงวิทยา]]`. "Next to each other" means
+  on the same line with only spaces, brackets, or a slash between them.
 - When a person and an organisation are written apart, the person is `N` and
   the organisation is part of the place, so it goes in `A`:
   `[[N:คุณสมชาย]]` then `[[A:บริษัท เอบีซี จำกัด 12/3 ถ.มิตรภาพ]]`.
@@ -78,7 +87,13 @@ A field the shopper did not write gets no mark. Do not mark anything else.
 
 - Only the number: digits, and any dashes, spaces, dots, `+66`, or `(+66)`
   inside it. Not the label, not an extension (`ต่อ 12`).
-- With two numbers, mark the first one. The second stays unmarked.
+- The phone is the recipient's. When the buyer and the recipient each give a
+  number, mark the recipient's. When the message gives only one number, mark it,
+  whoever it belongs to.
+- With two numbers for the same person, mark the first one. The second stays
+  unmarked.
+  The exception is a correction (`แก้เบอร์เป็น ...`): mark the corrected
+  number, because the first one is wrong.
 - It must be a Thai number: 9 or 10 digits starting with 0, or the `+66`/`66`
   form of one. Invent every number.
 
@@ -91,6 +106,7 @@ A field the shopper did not write gets no mark. Do not mark anything else.
   `[[A:12 ม.4 (ตรงข้ามวัดป่า)]]`, `[[A:88/1 ซ.5 ใกล้เซเว่น]]`.
 - An instruction to the courier does not: `โทรก่อนส่ง`, `ฝากไว้ที่ป้อมยาม`,
   `วางหน้าบ้านได้เลย`. Neither do order details, payment notes, or greetings.
+- `บ้านเลขที่` and `เลขที่` are part of the house number, so they stay in `A`.
 - Exclude the label (`ที่อยู่:`, `ส่งที่`) and punctuation at either edge.
   Punctuation inside stays: `[[A:77/9 ซอยเจริญเมือง 5, ถ.เจริญเมือง]]`.
 - When something that is not address detail interrupts it (a phone, a note, an
