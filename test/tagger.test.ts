@@ -3,7 +3,7 @@ import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
 import { findStandalone, findTruncated } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
-import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
+import { compileTaggerModel, encodeWeights, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
 import { createTupleResolver } from "../src/tagger/resolve";
 import { trainTagger } from "../src/tagger/train";
@@ -140,6 +140,24 @@ describe("training", () => {
 		for (const example of examples) {
 			expect([...decodeTags(example.features, compiled)]).toEqual(example.tags);
 		}
+	});
+
+	test("a model pruned and retrained still reproduces its training tags", () => {
+		const examples = [
+			{ features: [0, 0, 1, 2, 2].map((feature) => Int32Array.of(feature)), tags: [NAME, NAME, OTHER, ADDRESS, ADDRESS] },
+			{ features: [2, 1, 0].map((feature) => Int32Array.of(feature)), tags: [ADDRESS, OTHER, NAME] },
+		];
+		const compiled = compileTaggerModel(trainTagger(examples, { version: "toy", dimension: 4, epochs: 5, seed: 1, prune: 2 }));
+		for (const example of examples) {
+			expect([...decodeTags(example.features, compiled)]).toEqual(example.tags);
+		}
+	});
+
+	test("ascii-encoded weights decode to the same int8 values, large ones included", () => {
+		const weights = Int8Array.from({ length: 4 * TAG_COUNT }, (_, index) => ((index * 37) % 255) - 127);
+		const model = { version: "toy", dimension: 4, encoding: "ascii" as const, weights: encodeWeights(weights), transitions: new Array(TAG_COUNT * TAG_COUNT).fill(0) };
+		expect([...compileTaggerModel(model).weights]).toEqual([...weights]);
+		expect(JSON.parse(JSON.stringify(model)).weights).toBe(model.weights);
 	});
 
 	test("a model whose weights do not match its dimension is rejected", () => {
