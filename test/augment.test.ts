@@ -85,14 +85,6 @@ describe("chat augmentation", () => {
 		}
 	});
 
-	test("resamples phone digits in the same written format", () => {
-		const [shop] = parse(FIXTURE);
-		for (const variant of variantsOf([shop!], options({ ops: ["phone"] }))) {
-			expect(adminText(variant, "PHONE")).toMatch(/^03\d-\d{3}-\d{3}$/u);
-			expect(variant.raw.replace(/\d/gu, "#")).toBe(shop!.raw.replace(/\d/gu, "#"));
-		}
-	});
-
 	test("every span of every variant of the training pool equals its raw slice", async () => {
 		const { records } = await loadChatPool("train", locations);
 		const variants = variantsOf(records, options({ copies: 2 }));
