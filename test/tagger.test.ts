@@ -377,6 +377,12 @@ describe("shipped tagger model", () => {
 		).fields).toMatchObject({ address: "89/14 Moo 3, Pathum-Sam Khok Rd.", subdistrict: "บ้านกระแชง" });
 	});
 
+	test("a field name glued after chat text at the start of an address run is the field", () => {
+		expect(parser.parse(
+			"ส่งให้น้องฝนด้วยค่ะ เพื่อนหนูเองที่ตากฟ้า 56 ม.12 ต.ลำพยนต์ อ.ตากฟ้า นครสรรค์ 0918874430",
+		).fields).toMatchObject({ address: "56 ม.12", district: "ตากฟ้า" });
+	});
+
 	test("every span reproduces its source offsets", () => {
 		const raw = "นายทดสอบ ใจดี 081-234-5678 บ้านเลขที่ 1 ปทุมวัน กรุงเทพมหานคร 10330";
 		const result = parser.parse(raw);

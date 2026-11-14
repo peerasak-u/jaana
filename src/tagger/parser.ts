@@ -117,6 +117,34 @@ export function finishLine(raw: string, tags: Uint8Array): void {
 	}
 }
 
+const THAI_LETTER = /[ก-๎]/u;
+/** District first: one bare mention of a name the subdistrict and district share is the district. */
+const LEAD_FIELDS: readonly AdministrativeField[] = ["district", "subdistrict", "province"];
+
+/**
+ * An address run that starts glued to untagged chat text (`ส่ง|ตะกั่วป่าค่ะ`,
+ * `เพื่อนหนูเองที่|ตากฟ้า 56 ม.12`) and opens with a whole name of the
+ * resolved tuple opens with that field's mention, not with address detail.
+ */
+function gluedFieldWords(
+	raw: string,
+	tags: Uint8Array,
+	address: readonly Range[],
+	tuple: LocationTuple,
+): (Range & { field: AdministrativeField })[] {
+	const leads: (Range & { field: AdministrativeField })[] = [];
+	for (const range of address) {
+		if (range.start === 0 || !THAI_LETTER.test(raw[range.start - 1]!) || tags[range.start - 1] !== OTHER) continue;
+		const field = LEAD_FIELDS.find((candidate) => {
+			const end = range.start + tuple[candidate].length;
+			return raw.startsWith(tuple[candidate], range.start) && end <= range.end &&
+				(end === range.end || !THAI_LETTER.test(raw[end]!));
+		});
+		if (field) leads.push({ start: range.start, end: range.start + tuple[field].length, field });
+	}
+	return leads;
+}
+
 const PREFIX_WORD = /อำเภอ|ตำบล|จังหวัด|แขวง/gu;
 
 const FIELD_TAGS = new Set(["SUBDISTRICT", "DISTRICT", "PROVINCE"].map((tag) => TAGS.indexOf(tag as Tag)));
@@ -488,10 +516,17 @@ export function createTaggerParser(
 			const before = tuple && districtSpan && !kept("SUBDISTRICT") && !untagged.values.subdistrict
 				? subdistrictBefore(raw, tuple, addressRanges, districtSpan, written)
 				: null;
-			const address = addressOf(raw, addressRanges, [...untagged.claimed, ...straddled, ...(before ? [before] : [])]);
+			const leads = tuple ? gluedFieldWords(raw, tags, addressRanges, tuple) : [];
+			const address = addressOf(raw, addressRanges, [
+				...untagged.claimed,
+				...straddled,
+				...(before ? [before] : []),
+				...leads,
+			]);
 			const administrative = tuple
 				? {
 					...NO_ADMINISTRATIVE,
+					...Object.fromEntries(leads.map((lead) => [lead.field, tuple[lead.field]])),
 					...untagged.values,
 					...(before ? { subdistrict: before.name } : {}),
 					...(subdistrict && kept("SUBDISTRICT")
