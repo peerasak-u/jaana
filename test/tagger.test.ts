@@ -5,6 +5,7 @@ import { findStandalone, findTruncated, straddledMentions } from "../src/tagger/
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { addressOf, createTaggerParser } from "../src/tagger/parser";
+import { recutPhone } from "../src/tagger/phone";
 import { createTupleResolver } from "../src/tagger/resolve";
 import { trainTagger } from "../src/tagger/train";
 
@@ -93,6 +94,47 @@ describe("address composition", () => {
 		expect(addressOf(raw, ranges(raw, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
 		const lines = "45 ม.5,\nซ.วัดดอน";
 		expect(addressOf(lines, ranges(lines, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
+	});
+});
+
+describe("phone re-cut", () => {
+	const PHONE = TAGS.indexOf("PHONE");
+	/** Tags a raw text from a parallel string of `N`, `P`, `A`, and `.` (other). */
+	function tagged(raw: string, marks: string): Uint8Array {
+		const byMark: Record<string, number> = { N: NAME, P: PHONE, A: ADDRESS, ".": OTHER };
+		return Uint8Array.from([...marks].map((mark) => byMark[mark]!));
+	}
+	function textOf(raw: string, tags: Uint8Array, tag: number): string {
+		return [...raw].filter((_, index) => tags[index] === tag).join("");
+	}
+
+	test("a mobile number takes its tenth digit back from glued address detail", () => {
+		const raw = "08744120939ม.7";
+		const tags = tagged(raw, "PPPPPPPPPAAAAA");
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("0874412093");
+		expect(textOf(raw, tags, ADDRESS)).toBe("9ม.7");
+	});
+
+	test("an international number keeps its prefix and returns a house-number digit", () => {
+		const named = "ยศ (+66)861174209";
+		const first = tagged(named, "NNNNNNPPPPPPPPPPP");
+		recutPhone(named, first);
+		expect(textOf(named, first, PHONE)).toBe("(+66)861174209");
+		expect(textOf(named, first, NAME)).toBe("ยศ ");
+		const raw = "+66 89 731 4402 112 ม.4";
+		const tags = tagged(raw, "PPPPPPPPPPPPPPPPPAAAAAA");
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("+66 89 731 4402");
+		expect(textOf(raw, tags, ADDRESS)).toBe("112 ม.4");
+	});
+
+	test("of two numbers in one run, the first is the phone", () => {
+		const raw = "0897124063/0613305128นาง";
+		const tags = tagged(raw, "PPPPPPPPPPPPPPPPPPPPPNNN");
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("0897124063");
+		expect(textOf(raw, tags, NAME)).toBe("นาง");
 	});
 });
 

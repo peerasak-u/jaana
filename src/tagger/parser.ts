@@ -4,6 +4,7 @@ import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags, spanEdges } from "./decode";
 import { featurize } from "./features";
+import { recutPhone } from "./phone";
 import { composeRecipient } from "./compose";
 import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
 import { findStandalone, findTruncated, insideOtherName, insidePlaceName, straddledMentions, type Range } from "./mention";
@@ -275,6 +276,7 @@ export function createTaggerParser(
 			const features = featurize(raw, anchored.flags, compiled.dimension);
 			const tags = decodeTags(features, compiled, spanEdges(raw));
 			closeBrackets(raw, tags);
+			recutPhone(raw, tags);
 			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
