@@ -4,7 +4,7 @@ import { createAnchorer } from "../src/tagger/anchor";
 import { findMisspelt, findStandalone, findTruncated, straddledMentions, writesOtherField } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
-import { addressOf, completePostcode, createTaggerParser } from "../src/tagger/parser";
+import { addressOf, completePostcode, createTaggerParser, finishLine } from "../src/tagger/parser";
 import { recutPhone } from "../src/tagger/phone";
 import { latinSkeleton, thaiSkeleton } from "../src/tagger/romanize";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -168,6 +168,17 @@ describe("phone re-cut", () => {
 		completePostcode(raw, tags);
 		expect(textOf(raw, tags, POSTCODE)).toBe("74000");
 		expect(textOf(raw, tags, ADDRESS)).toBe("มหาชัย ");
+	});
+
+	test("an address run one plain word short of its line's end takes that word", () => {
+		const raw = "บจก. ซีเอ็นที มีเดีย กรุ๊ป\nบ้านเลขที่ 18 แม่ไปตลาด โทรก่อน\n12 ม.3 นะคะ";
+		const tags = tagged(raw, ".".repeat(raw.length));
+		const mark = (text: string) => tags.fill(ADDRESS, raw.indexOf(text), raw.indexOf(text) + text.length);
+		mark("บจก. ซีเอ็นที มีเดีย");
+		mark("บ้านเลขที่ 18");
+		mark("12 ม.3");
+		finishLine(raw, tags);
+		expect(textOf(raw, tags, ADDRESS)).toBe("บจก. ซีเอ็นที มีเดีย กรุ๊ปบ้านเลขที่ 1812 ม.3");
 	});
 
 	test("of two numbers in one run, the first is the phone", () => {

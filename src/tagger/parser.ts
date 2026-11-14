@@ -99,6 +99,24 @@ function attachBracketAfterName(raw: string, tags: Uint8Array): void {
 	}
 }
 
+const PLACE_RUNS = new Set([TAGS.indexOf("ORG"), TAGS.indexOf("ADDRESS_DETAIL")]);
+const LINE_REST = /^[ \t]+[\p{L}\p{M}][\p{L}\p{M}.'&]*(?=[ \t]*(?:\n|$))/u;
+const PARTICLE = /ค่ะ|คะ|ครับ|นะ|จ้า|ด้วย/u;
+
+/**
+ * An organisation or address run that stops one plain word short of its
+ * line's end takes that word, as in `บจก. ซีเอ็นที มีเดีย| กรุ๊ป`.
+ */
+export function finishLine(raw: string, tags: Uint8Array): void {
+	for (let end = 1; end < raw.length; end += 1) {
+		const tag = tags[end - 1]!;
+		if (!PLACE_RUNS.has(tag) || tags[end] === tag) continue;
+		const rest = LINE_REST.exec(raw.slice(end))?.[0];
+		if (!rest || PARTICLE.test(rest) || !tags.subarray(end, end + rest.length).every((other) => other === OTHER)) continue;
+		tags.fill(tag, end, end + rest.length);
+	}
+}
+
 const POSTCODE = TAGS.indexOf("POSTCODE");
 const DIGIT = /[0-9๐-๙]/u;
 
@@ -394,6 +412,7 @@ export function createTaggerParser(
 			attachBracketAfterName(raw, tags);
 			recutPhone(raw, tags);
 			completePostcode(raw, tags);
+			finishLine(raw, tags);
 			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
