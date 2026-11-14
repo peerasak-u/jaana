@@ -117,6 +117,35 @@ export function finishLine(raw: string, tags: Uint8Array): void {
 	}
 }
 
+const PREFIX_WORD = /อำเภอ|ตำบล|จังหวัด|แขวง/gu;
+
+const FIELD_TAGS = new Set(["SUBDISTRICT", "DISTRICT", "PROVINCE"].map((tag) => TAGS.indexOf(tag as Tag)));
+
+/**
+ * A run boundary never falls inside a field prefix word. When the rest of
+ * the word is a field run, the whole word is that field's prefix. Otherwise
+ * the rest of the word, and the name glued to it, join the run that holds
+ * the word's first letters, as in the office `ที่ว่าการอำ|เภอท่าตะเกียบ`.
+ */
+export function joinPrefixWords(raw: string, tags: Uint8Array): void {
+	for (const match of raw.matchAll(PREFIX_WORD)) {
+		const start = match.index;
+		const end = start + match[0].length;
+		const tag = tags[start]!;
+		let split = start + 1;
+		while (split < end && tags[split] === tag) split += 1;
+		if (split === end) continue;
+		if (FIELD_TAGS.has(tags[split]!)) {
+			tags.fill(tags[split]!, start, split);
+			continue;
+		}
+		if (tag === OTHER) continue;
+		let stop = end;
+		while (stop < raw.length && /[^\s]/u.test(raw[stop]!) && tags[stop] === tags[split]) stop += 1;
+		tags.fill(tag, split, stop);
+	}
+}
+
 const POSTCODE = TAGS.indexOf("POSTCODE");
 const DIGIT = /[0-9๐-๙]/u;
 
@@ -418,6 +447,7 @@ export function createTaggerParser(
 			recutPhone(raw, tags);
 			completePostcode(raw, tags);
 			finishLine(raw, tags);
+			joinPrefixWords(raw, tags);
 			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;

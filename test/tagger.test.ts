@@ -4,7 +4,7 @@ import { createAnchorer } from "../src/tagger/anchor";
 import { findMisspelt, findStandalone, findTruncated, straddledMentions, writesOtherField } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
-import { addressOf, completePostcode, createTaggerParser, finishLine } from "../src/tagger/parser";
+import { addressOf, completePostcode, createTaggerParser, finishLine, joinPrefixWords } from "../src/tagger/parser";
 import { recutPhone } from "../src/tagger/phone";
 import { latinSkeleton, thaiSkeleton } from "../src/tagger/romanize";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -186,6 +186,22 @@ describe("phone re-cut", () => {
 		mark("12 ม.3");
 		finishLine(raw, tags);
 		expect(textOf(raw, tags, ADDRESS)).toBe("บจก. ซีเอ็นที มีเดีย กรุ๊ปบ้านเลขที่ 1812 ม.3");
+	});
+
+	test("a run boundary inside a field prefix word moves to the word's edge", () => {
+		const DISTRICT = TAGS.indexOf("DISTRICT");
+		const office = "คุณนิพนธ์ ที่ว่าการอำเภอท่าตะเกียบ ห้องปลัด";
+		const split = office.indexOf("เภอ");
+		const tags = tagged(office, "N".repeat(split) + "A".repeat(office.length - split));
+		joinPrefixWords(office, tags);
+		expect(textOf(office, tags, NAME)).toBe("คุณนิพนธ์ ที่ว่าการอำเภอท่าตะเกียบ");
+		expect(textOf(office, tags, ADDRESS)).toBe(" ห้องปลัด");
+		const field = "12 ม.3 อำเภอเมือง";
+		const fieldTags = tagged(field, "A".repeat(field.indexOf("เภอ")) + ".".repeat(field.length - field.indexOf("เภอ")));
+		fieldTags.fill(DISTRICT, field.indexOf("เภอ"));
+		joinPrefixWords(field, fieldTags);
+		expect(textOf(field, fieldTags, DISTRICT)).toBe("อำเภอเมือง");
+		expect(textOf(field, fieldTags, ADDRESS)).toBe("12 ม.3 ");
 	});
 
 	test("of two numbers in one run, the first is the phone", () => {
