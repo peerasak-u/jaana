@@ -1,6 +1,7 @@
-import { TAG_COUNT, type TaggerModel } from "./model";
+import { encodeWeights, TAG_COUNT, type TaggerModel } from "./model";
 
 export interface TaggedExample {
+	/** Read once per training step, so a getter may featurize on demand instead of holding every row. */
 	readonly features: readonly Int32Array[];
 	readonly tags: ArrayLike<number>;
 }
@@ -12,6 +13,12 @@ export interface TrainingOptions {
 	readonly seed: number;
 	/** Score bonus for every wrong tag while training, so updates also fire on narrow wins. */
 	readonly margin?: number;
+	/**
+	 * Weights the first run averages below this many int8 steps are held at
+	 * zero while a second run retrains around them. Zeros gzip to almost
+	 * nothing, so this trades training time for a smaller model.
+	 */
+	readonly prune?: number;
 }
 
 function shuffle<T>(items: T[], seed: number): void {
@@ -99,24 +106,31 @@ class AveragedWeights {
 	}
 }
 
-/**
- * Averaged structured perceptron over hashed character features, quantized
- * to int8. Deterministic for a given seed and example order.
- */
-export function trainTagger(
+interface Averaged {
+	readonly weights: Float64Array;
+	readonly transitions: Float64Array;
+}
+
+/** One full training run. A weight outside `keep` never moves from zero. */
+function averagedPerceptron(
 	examples: readonly TaggedExample[],
 	options: TrainingOptions,
-): TaggerModel {
+	keep?: Uint8Array,
+): Averaged {
 	const weights = new AveragedWeights(options.dimension * TAG_COUNT);
 	const transitions = new AveragedWeights(TAG_COUNT * TAG_COUNT);
+	const update = (index: number, delta: number, step: number): void => {
+		if (keep === undefined || keep[index]) weights.add(index, delta, step);
+	};
 	const order = [...examples];
 	let step = 0;
 	for (let epoch = 0; epoch < options.epochs; epoch += 1) {
 		shuffle(order, options.seed + epoch);
 		for (const example of order) {
 			step += 1;
+			const features = example.features;
 			const guess = bestSequence(
-				example.features,
+				features,
 				weights.live,
 				transitions.live,
 				example.tags,
@@ -126,9 +140,9 @@ export function trainTagger(
 				const gold = example.tags[position]!;
 				const predicted = guess[position]!;
 				if (gold !== predicted) {
-					for (const feature of example.features[position]!) {
-						weights.add(feature * TAG_COUNT + gold, 1, step);
-						weights.add(feature * TAG_COUNT + predicted, -1, step);
+					for (const feature of features[position]!) {
+						update(feature * TAG_COUNT + gold, 1, step);
+						update(feature * TAG_COUNT + predicted, -1, step);
 					}
 				}
 				if (position === 0) continue;
@@ -141,24 +155,42 @@ export function trainTagger(
 			}
 		}
 	}
-	const averagedWeights = weights.average(Math.max(step, 1));
-	const averagedTransitions = transitions.average(Math.max(step, 1));
+	return {
+		weights: weights.average(Math.max(step, 1)),
+		transitions: transitions.average(Math.max(step, 1)),
+	};
+}
+
+/** The int8 step: the largest weight or transition maps to 127. */
+function stepOf(model: Averaged): number {
 	let largest = 0;
-	for (const value of averagedWeights) largest = Math.max(largest, Math.abs(value));
-	for (const value of averagedTransitions) largest = Math.max(largest, Math.abs(value));
-	const scale = largest === 0 ? 1 : largest / 127;
-	const quantized = new Int8Array(averagedWeights.length);
-	for (let index = 0; index < quantized.length; index += 1) {
-		quantized[index] = Math.round(averagedWeights[index]! / scale);
+	for (const value of model.weights) largest = Math.max(largest, Math.abs(value));
+	for (const value of model.transitions) largest = Math.max(largest, Math.abs(value));
+	return largest === 0 ? 1 : largest / 127;
+}
+
+/**
+ * Averaged structured perceptron over hashed character features, quantized
+ * to int8. Deterministic for a given seed and example order. With `prune`,
+ * a second run retrains around the weights the first run left small.
+ */
+export function trainTagger(
+	examples: readonly TaggedExample[],
+	options: TrainingOptions,
+): TaggerModel {
+	let model = averagedPerceptron(examples, options);
+	if (options.prune) {
+		const cut = options.prune * stepOf(model);
+		const keep = Uint8Array.from(model.weights, (value) => (Math.abs(value) >= cut ? 1 : 0));
+		model = averagedPerceptron(examples, options, keep);
 	}
-	let binary = "";
-	for (let index = 0; index < quantized.length; index += 1) {
-		binary += String.fromCharCode(quantized[index]! & 255);
-	}
+	const scale = stepOf(model);
+	const quantized = Int8Array.from(model.weights, (value) => Math.round(value / scale));
 	return {
 		version: options.version,
 		dimension: options.dimension,
-		weights: btoa(binary),
-		transitions: Array.from(averagedTransitions, (value) => Math.round(value / scale)),
+		encoding: "ascii",
+		weights: encodeWeights(quantized),
+		transitions: Array.from(model.transitions, (value) => Math.round(value / scale)),
 	};
 }
