@@ -4,7 +4,7 @@ import { createAnchorer } from "../src/tagger/anchor";
 import { findStandalone, findTruncated } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
-import { createTaggerParser } from "../src/tagger/parser";
+import { addressOf, createTaggerParser } from "../src/tagger/parser";
 import { createTupleResolver } from "../src/tagger/resolve";
 import { trainTagger } from "../src/tagger/train";
 
@@ -57,6 +57,23 @@ describe("administrative mentions", () => {
 		expect(findStandalone("62 ม.9 บ้านมะเฟือง อ.พุทไธสง", "subdistrict", "มะเฟือง", [])).toBeNull();
 		expect(findStandalone("ถ.บางกรวย-ไทรน้อย", "subdistrict", "ไทรน้อย", [])).toBeNull();
 		expect(findStandalone("ม.3 ไร่รถ ดอนเจดีย์", "subdistrict", "ไร่รถ", [])).toEqual({ start: 4, end: 9 });
+	});
+});
+
+describe("address composition", () => {
+	const ranges = (raw: string, ...pieces: string[]) =>
+		pieces.map((piece) => ({ start: raw.indexOf(piece), end: raw.indexOf(piece) + piece.length }));
+
+	test("pieces separated only by a comma are one piece that keeps the comma", () => {
+		const raw = "English Dept., โรงเรียนสาทร 31 ซ.งามดูพลี";
+		expect(addressOf(raw, ranges(raw, "English Dept.", "โรงเรียนสาทร 31 ซ.งามดูพลี"), [])).toBe(raw);
+	});
+
+	test("pieces interrupted by other text are joined with one space", () => {
+		const raw = "45 ม.5 โทร 0891234567 ซ.วัดดอน";
+		expect(addressOf(raw, ranges(raw, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
+		const lines = "45 ม.5,\nซ.วัดดอน";
+		expect(addressOf(lines, ranges(lines, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
 	});
 });
 

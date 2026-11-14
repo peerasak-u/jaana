@@ -158,14 +158,20 @@ function untaggedMentions(
 }
 
 /**
+ * Only punctuation between two address runs on one line: the GUIDE marks
+ * such a stretch as one piece and keeps its inner punctuation.
+ */
+const PUNCTUATION_GAP = /^[ \t]*,[ \t,]*$/u;
+
+/**
  * Address detail from the given ranges in text order, touching or
  * overlapping ranges merged, with the claimed administrative mentions cut out.
  */
-function addressOf(raw: string, ranges: readonly Range[], claimed: readonly Range[]): string {
+export function addressOf(raw: string, ranges: readonly Range[], claimed: readonly Range[]): string {
 	const merged: Range[] = [];
 	for (const range of [...ranges].sort((left, right) => left.start - right.start)) {
 		const last = merged[merged.length - 1];
-		if (last && last.end >= range.start) {
+		if (last && (last.end >= range.start || PUNCTUATION_GAP.test(raw.slice(last.end, range.start)))) {
 			merged[merged.length - 1] = { start: last.start, end: Math.max(last.end, range.end) };
 		} else merged.push(range);
 	}
