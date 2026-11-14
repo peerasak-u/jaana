@@ -5,7 +5,7 @@ import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
-import { findStandalone, insideOtherName, type Range } from "./mention";
+import { findStandalone, insideOtherName, insidePlaceName, type Range } from "./mention";
 import {
 	closestTuple,
 	createTupleResolver,
@@ -100,15 +100,16 @@ function untaggedMentions(
 }
 
 /**
- * Address detail from the given ranges in text order, touching ranges
- * merged, with the claimed administrative mentions cut out.
+ * Address detail from the given ranges in text order, touching or
+ * overlapping ranges merged, with the claimed administrative mentions cut out.
  */
 function addressOf(raw: string, ranges: readonly Range[], claimed: readonly Range[]): string {
 	const merged: Range[] = [];
 	for (const range of [...ranges].sort((left, right) => left.start - right.start)) {
 		const last = merged[merged.length - 1];
-		if (last && last.end === range.start) merged[merged.length - 1] = { start: last.start, end: range.end };
-		else merged.push(range);
+		if (last && last.end >= range.start) {
+			merged[merged.length - 1] = { start: last.start, end: Math.max(last.end, range.end) };
+		} else merged.push(range);
 	}
 	const pieces: string[] = [];
 	for (const span of merged) {
@@ -217,18 +218,25 @@ export function createTaggerParser(
 			};
 			const written = zipcode ? normalizePostcode(zipcode) : null;
 			const tuple = resolveTuple(anchored, texts, written);
-			const misplaced = tuple
-				? spans.filter((span) => {
-					const field = ADMINISTRATIVE_LABELS.get(span.label);
-					return field !== undefined && insideOtherName(raw, span, field, tuple);
-				})
-				: [];
+			const placeNames: Range[] = [];
+			const misplaced: TaggedSpan[] = [];
+			for (const span of spans) {
+				const field = ADMINISTRATIVE_LABELS.get(span.label);
+				if (!tuple || field === undefined) continue;
+				if (insideOtherName(raw, span, field, tuple)) misplaced.push(span);
+				else {
+					const place = insidePlaceName(raw, span, field, tuple[field]);
+					if (!place) continue;
+					misplaced.push(span);
+					placeNames.push(place);
+				}
+			}
 			const fieldSpans = spans.filter((span) => !misplaced.includes(span));
 			const kept = (label: OutputLabel): boolean => fieldSpans.some((span) => span.label === label);
 			const untagged = tuple ? untaggedMentions(raw, tuple, fieldSpans, misplaced) : { values: {}, claimed: [] };
 			const address = addressOf(
 				raw,
-				spans.filter((span) => span.label === "ADDRESS_DETAIL"),
+				[...spans.filter((span) => span.label === "ADDRESS_DETAIL"), ...placeNames],
 				untagged.claimed,
 			);
 			const administrative = tuple

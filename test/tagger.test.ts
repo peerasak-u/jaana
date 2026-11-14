@@ -170,6 +170,13 @@ describe("shipped tagger model", () => {
 		expect(fields.province).toBeNull();
 	});
 
+	test("a place name inside a village name stays in the address detail", () => {
+		const fields = parser.parse("ครูจิราภรณ์ 089-581-4407 62 ม.9 บ้านมะเฟือง อ.พุทไธสง บุรีรัมย์ 31120").fields;
+		expect(fields.subdistrict).toBeNull();
+		expect(fields.district).toBe("พุทไธสง");
+		expect(fields.address).toBe("62 ม.9 บ้านมะเฟือง");
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});
