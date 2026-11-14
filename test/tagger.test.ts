@@ -130,6 +130,13 @@ describe("phone re-cut", () => {
 		expect(textOf(raw, tags, ADDRESS)).toBe("112 ม.4");
 	});
 
+	test("a corrected number replaces the phone it corrects", () => {
+		const raw = "0897012264 ขอโทษครับ เบอร์ผิด ที่ถูกคือ 0897012246 ครับ";
+		const tags = tagged(raw, "P".repeat(10) + ".".repeat(raw.length - 10));
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("0897012246");
+	});
+
 	test("of two numbers in one run, the first is the phone", () => {
 		const raw = "0897124063/0613305128นาง";
 		const tags = tagged(raw, "PPPPPPPPPPPPPPPPPPPPPNNN");

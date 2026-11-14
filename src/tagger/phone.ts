@@ -57,6 +57,28 @@ function numberEnd(raw: string, start: number, limit: number): number | null {
 	return digits === length ? index : null;
 }
 
+const CORRECTION = /แก้เบอร์|แก้ไขเบอร์|เบอร์ผิด|เบอร์ที่ถูก|ที่ถูกคือ/u;
+
+/**
+ * The GUIDE marks the corrected number when the message corrects its phone
+ * (`แก้เบอร์เป็น ...`), because the first one is wrong. Moves the PHONE run
+ * to the first well-formed number after a correction cue.
+ */
+function correctPhone(raw: string, tags: Uint8Array): void {
+	const cue = CORRECTION.exec(raw);
+	if (!cue) return;
+	for (let from = cue.index + cue[0].length; from < raw.length; from += 1) {
+		if (DIGIT.test(raw[from - 1]!) || !/[0+(]/u.test(raw[from]!)) continue;
+		let limit = from;
+		while (limit < raw.length && NUMBER_CHARACTER.test(raw[limit]!)) limit += 1;
+		const to = numberEnd(raw, from, limit);
+		if (to === null || DIGIT.test(raw[to] ?? "")) continue;
+		for (let index = 0; index < tags.length; index += 1) if (tags[index] === PHONE) tags[index] = OTHER;
+		tags.fill(PHONE, from, to);
+		return;
+	}
+}
+
 /**
  * Re-cuts the PHONE run to the first well-formed Thai number in the stretch
  * of number characters around it, as in `ส่งทองใบ0874412093|9ม.7` or
@@ -64,6 +86,7 @@ function numberEnd(raw: string, start: number, limit: number): number | null {
  * touch, characters the number takes leave their run.
  */
 export function recutPhone(raw: string, tags: Uint8Array): void {
+	correctPhone(raw, tags);
 	const start = tags.indexOf(PHONE);
 	if (start < 0) return;
 	let end = start;
