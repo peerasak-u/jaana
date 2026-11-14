@@ -178,6 +178,19 @@ export function featurize(
 		add(`a+:${a(i)}:${a(i + 1)}`);
 		add(`a2:${a(i - 2)}:${a(i)}:${a(i + 2)}`);
 		add(`ac:${a(i)}:${c(i - 1)}${c(i - 2)}`);
+		if (a(i)) {
+			let start = i;
+			while (start > 0 && a(start - 1) === a(i)) start -= 1;
+			let end = i;
+			while (end < n - 1 && a(end + 1) === a(i)) end += 1;
+			const opensToken = start === 0 || k(start - 1) === "S" || k(start - 1) === "N";
+			const closesToken = end === n - 1 || k(end + 1) === "S" || k(end + 1) === "N";
+			const fit = `${opensToken ? 1 : 0}${closesToken ? 1 : 0}`;
+			add(`ar:${a(i)}:${fit}`);
+			add(`arp:${a(i)}:${fit}:${c(start - 1)}${c(start - 2)}${c(start - 3)}`);
+			add(`arn:${a(i)}:${fit}:${c(end + 1)}${c(end + 2)}${c(end + 3)}`);
+			add(`arc:${a(i)}:${fit}:${cues.follows[start]}:${lastCue}`);
+		}
 		const here = lines[line]!;
 		add(`lc:${here}`);
 		add(`lc-:${lines[line - 1] ?? "^"}:${here}`);
