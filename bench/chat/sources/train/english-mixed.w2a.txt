@@ -149,7 +149,7 @@ tags: clean, romanized-name, name-last
 loc: แกดำ | แกดำ | มหาสารคาม | 44190
 tags: single-district-name, office, government, english-attn
 ---
-[[A:สำนักงานเกษตรอำเภอแกดำ]] (attn. [[N:Khun Wipa]])
+[[N:สำนักงานเกษตรอำเภอแกดำ (attn. Khun Wipa)]]
 [[A:ที่ว่าการอำเภอ ชั้น 1]] [[D:แกดำ]] [[V:มหาสารคาม]] [[Z:44190]]
 Tel [[P:043-787-021]]
 ===
@@ -534,7 +534,7 @@ To [[N:Pong]] [[A:21 m4]] [[S:เมืองบางขลัง]] [[D:สว�
 loc: บ่อถ้ำ | ขาณุวรลักษบุรี | กำแพงเพชร | 62140
 tags: police-station, government, english-attn
 ---
-[[A:สภ.บ่อถ้ำ]] (Attn: [[N:Pol. Sgt. Maj. Narong]])
+[[N:สภ.บ่อถ้ำ (Attn: Pol. Sgt. Maj. Narong)]]
 [[A:300 Moo 1 ถ.พหลโยธิน]] [[S:ต.บ่อถ้ำ]] [[D:อ.ขาณุวรลักษบุรี]] [[V:จ.กำแพงเพชร]] [[Z:62140]]
 ===
 loc: จอมสวรรค์ | แม่จัน | เชียงราย | 57110
@@ -775,7 +775,7 @@ tags: alias, typo-subdistrict, english-soi, deep-soi
 loc: สี่พระยา | บางรัก | กรุงเทพมหานคร | 10500
 tags: company, office-tower, english-attn-line, multiline
 ---
-[[A:Brightpath Consulting Co., Ltd.]] (Attn. [[N:Ms. Kanokporn]])
+[[N:Brightpath Consulting Co., Ltd. (Attn. Ms. Kanokporn)]]
 [[A:CP Silom Tower Fl.19, 313 Si Phraya Rd.]]
 [[S:แขวงสี่พระยา]] [[D:เขตบางรัก]] [[Z:10500]]
 Tel [[P:02-635-4410]]

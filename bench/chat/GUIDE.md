@@ -72,6 +72,8 @@ A field the shopper did not write gets no mark. Do not mark anything else.
   `[[N:อบต.หนองบัว (กองคลัง)]]`. The two exceptions: brackets holding
   address detail are `A` (`[[N:รร.บ้านท่า]] ([[A:ม.3]])`), and brackets
   holding a remark to the seller are unmarked.
+  A label inside the brackets does not change this:
+  `[[N:บจก.เอบีซี (attn. คุณบี)]]`.
 - An organisation and its contact person written next to each other are one
   name: `[[N:บจก.รุ่งเรืองการค้า (คุณเอ ฝ่ายจัดซื้อ)]]`. The order does not
   matter: `[[N:ครูวาสนา ปินตา โรงเรียนบ้านดงวิทยา]]`. "Next to each other" means

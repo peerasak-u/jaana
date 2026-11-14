@@ -28,7 +28,8 @@ Check these in every record, because writers disagreed on them:
   a slash between them are one `N`, in either order. Written apart (another
   line, or a label such as `ติดต่อ` or `attn.` between them), the person is
   `N` and the organisation goes in `A`. With no person, the organisation is
-  `N`.
+  `N`. Brackets right after the organisation stay one `N` even when
+  they start with such a label: `[[N:บจก.เอบีซี (attn. คุณบี)]]`.
 - `P` is the recipient's number, not the buyer's. With a correction, it is the
   corrected number. Otherwise the first number.
 - `บ้านเลขที่` and `เลขที่` are inside `A`. `ที่อยู่`, `ส่งที่` and similar labels

@@ -668,7 +668,7 @@ loc: จตุจักร | จตุจักร | กรุงเทพมห
 tags: alias, romanized-admin, office, company, attn-label, same-name-twice
 ---
 Ship to our office
-[[A:Brightline Media Co., Ltd.]] (attn. [[N:Ms. Kanya]])
+[[N:Brightline Media Co., Ltd. (attn. Ms. Kanya)]]
 [[A:9th Fl., 1010 Viphavadi Rangsit Rd.]]
 [[S:Chatuchak]], [[D:Chatuchak]], [[V:Bangkok]] [[Z:10900]]
 [[P:02-937-6614]]

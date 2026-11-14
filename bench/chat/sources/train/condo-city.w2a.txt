@@ -681,7 +681,7 @@ tags: condo, clean, oneline
 loc: ตลาด | พระประแดง | สมุทรปราการ | 10130
 tags: shophouse, partnership, contact-person, multiline
 ---
-[[A:หจก. เจริญพัฒน์อิเล็กทริก]] (ติดต่อ [[N:คุณมานพ ฝ่ายจัดซื้อ]])
+[[N:หจก. เจริญพัฒน์อิเล็กทริก (ติดต่อ คุณมานพ ฝ่ายจัดซื้อ)]]
 [[A:ตึกแถว 3 ชั้น ห้อง 2 เลขที่ 61 ถ.นครเขื่อนขันธ์]]
 [[S:ต.ตลาด]] [[D:อ.พระประแดง]] [[V:สมุทรปราการ]] [[Z:10130]]
 [[P:02-462-8810]]
@@ -743,7 +743,7 @@ tags: housing-estate, deep-soi, multiline, landmark
 loc: วังใหม่ | ปทุมวัน | กรุงเทพมหานคร | 10330
 tags: office-tower, english-mixed, company, contact-person, alias
 ---
-[[A:ABC Asia Consulting Co., Ltd.]] (Attn: [[N:Ms. Pimchanok R.]])
+[[N:ABC Asia Consulting Co., Ltd. (Attn: Ms. Pimchanok R.)]]
 [[A:25th Fl., Room 2501, Chamchuri Square Tower B, 319 Phayathai Rd.]]
 [[S:Wang Mai]], [[D:Pathum Wan]], [[V:Bangkok]] [[Z:10330]]
 [[P:02-160-5582]]
