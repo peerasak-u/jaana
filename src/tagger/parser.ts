@@ -257,6 +257,16 @@ export function createTaggerParser(
 					...(zipcode ? { zipcode: tuple.zipcode } : {}),
 				}
 				: resolve({ ...texts, ...(zipcode ? { zipcode } : {}) });
+			const bare = subdistrict?.trim();
+			if (
+				tuple && bare && tuple.subdistrict === tuple.district &&
+				administrative.district === null && administrative.subdistrict === bare &&
+				raw.indexOf(bare) === raw.lastIndexOf(bare)
+			) {
+				// One bare mention of a name the subdistrict and district share is the district.
+				administrative.district = administrative.subdistrict;
+				administrative.subdistrict = null;
+			}
 			const name = text("NAME");
 			const phone = text("PHONE");
 			return {

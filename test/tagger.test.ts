@@ -197,6 +197,16 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("one bare mention of a name shared by subdistrict and district is the district", () => {
+		const fields = parser.parse("ชื่อ อนุชา พรหมมา\n212/4 ม.1 ถ.สิงหวัฒน์\nวังทอง พิษณุโลก 65130\n062 448 1093").fields;
+		expect(fields.subdistrict).toBeNull();
+		expect(fields.district).toBe("วังทอง");
+		expect(parser.parse("อนุชา 0624481093 212/4 ม.1 วังทอง วังทอง พิษณุโลก 65130").fields).toMatchObject({
+			subdistrict: "วังทอง",
+			district: "วังทอง",
+		});
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});
