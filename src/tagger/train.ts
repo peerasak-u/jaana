@@ -10,6 +10,8 @@ export interface TrainingOptions {
 	readonly dimension: number;
 	readonly epochs: number;
 	readonly seed: number;
+	/** Score bonus for every wrong tag while training, so updates also fire on narrow wins. */
+	readonly margin?: number;
 }
 
 function shuffle<T>(items: T[], seed: number): void {
@@ -25,6 +27,8 @@ function bestSequence(
 	features: readonly Int32Array[],
 	weights: Float32Array,
 	transitions: Float32Array,
+	gold: ArrayLike<number>,
+	margin: number,
 ): Uint8Array {
 	const n = features.length;
 	const tags = new Uint8Array(n);
@@ -33,7 +37,8 @@ function bestSequence(
 	const back = new Uint8Array(n * TAG_COUNT);
 	const emit = new Float64Array(TAG_COUNT);
 	for (let position = 0; position < n; position += 1) {
-		emit.fill(0);
+		emit.fill(margin);
+		emit[gold[position]!] = 0;
 		for (const feature of features[position]!) {
 			const base = feature * TAG_COUNT;
 			for (let tag = 0; tag < TAG_COUNT; tag += 1) emit[tag]! += weights[base + tag]!;
@@ -110,7 +115,13 @@ export function trainTagger(
 		shuffle(order, options.seed + epoch);
 		for (const example of order) {
 			step += 1;
-			const guess = bestSequence(example.features, weights.live, transitions.live);
+			const guess = bestSequence(
+				example.features,
+				weights.live,
+				transitions.live,
+				example.tags,
+				options.margin ?? 0,
+			);
 			for (let position = 0; position < guess.length; position += 1) {
 				const gold = example.tags[position]!;
 				const predicted = guess[position]!;

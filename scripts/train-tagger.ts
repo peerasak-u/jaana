@@ -29,6 +29,7 @@ const outputPath = value("--output", "resources/tagger-model.json");
 const dimension = Number(value("--dimension", "32768"));
 const epochs = Number(value("--epochs", "8"));
 const seed = Number(value("--seed", "20260720"));
+const margin = Number(value("--margin", "200"));
 const version = value("--model-version", `thai-address-tagger-d${dimension}`);
 
 const { locations } = await loadParserResources(gazetteerPath);
@@ -49,7 +50,7 @@ const model = trainTagger(
 		features: featurize(record.raw, anchor(record.raw).flags, dimension),
 		tags: goldTags(record),
 	})),
-	{ version, dimension, epochs, seed },
+	{ version, dimension, epochs, seed, margin },
 );
 const trainingMs = performance.now() - started;
 
@@ -67,6 +68,7 @@ const artifact = {
 		splitMethod: split.method,
 		epochs,
 		seed,
+		margin,
 	},
 };
 const json = `${JSON.stringify(artifact)}\n`;

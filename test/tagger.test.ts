@@ -96,12 +96,12 @@ describe("single-run decoding", () => {
 });
 
 describe("training", () => {
-	test("a trained model survives quantization and reproduces its training tags", () => {
+	test.each([0, 200])("a model trained with margin %d survives quantization and reproduces its training tags", (margin) => {
 		const examples = [
 			{ features: [0, 0, 1, 2, 2].map((feature) => Int32Array.of(feature)), tags: [NAME, NAME, OTHER, ADDRESS, ADDRESS] },
 			{ features: [2, 1, 0].map((feature) => Int32Array.of(feature)), tags: [ADDRESS, OTHER, NAME] },
 		];
-		const model = trainTagger(examples, { version: "toy", dimension: 4, epochs: 5, seed: 1 });
+		const model = trainTagger(examples, { version: "toy", dimension: 4, epochs: 5, seed: 1, margin });
 		const compiled = compileTaggerModel(model);
 		for (const example of examples) {
 			expect([...decodeTags(example.features, compiled)]).toEqual(example.tags);
