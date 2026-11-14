@@ -66,6 +66,27 @@ function closeBrackets(raw: string, tags: Uint8Array): void {
 	}
 }
 
+const NAMED = new Set([TAGS.indexOf("NAME"), TAGS.indexOf("ORG")]);
+const BRACKET_AFTER = /^[ \t]*\([^()\n\d+]*\)/u;
+/** A sentence-final particle: the bracket is a remark to the seller, which the GUIDE leaves unmarked. */
+const REMARK_END = /(?:ค่ะ|คะ|ครับ|นะ|จ้า|จ้ะ|จ๊ะ)\s*\)$/u;
+
+/**
+ * The GUIDE keeps brackets written right after a name in the name, whatever
+ * they hold, as in `ลุงจันทร์ (ผู้รับ)`, unless they hold a remark to the
+ * seller or a number. Extends a name or organisation run over such a
+ * bracket group when the tagger left all of it untagged.
+ */
+function attachBracketAfterName(raw: string, tags: Uint8Array): void {
+	for (let end = 1; end < raw.length; end += 1) {
+		const tag = tags[end - 1]!;
+		if (!NAMED.has(tag) || tags[end] === tag) continue;
+		const group = BRACKET_AFTER.exec(raw.slice(end))?.[0];
+		if (!group || REMARK_END.test(group) || !tags.subarray(end, end + group.length).every((other) => other === OTHER)) continue;
+		tags.fill(tag, end, end + group.length);
+	}
+}
+
 interface Run extends Range {
 	readonly tag: Tag;
 }
@@ -276,6 +297,7 @@ export function createTaggerParser(
 			const features = featurize(raw, anchored.flags, compiled.dimension);
 			const tags = decodeTags(features, compiled, spanEdges(raw));
 			closeBrackets(raw, tags);
+			attachBracketAfterName(raw, tags);
 			recutPhone(raw, tags);
 			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>

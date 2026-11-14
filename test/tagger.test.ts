@@ -262,6 +262,13 @@ describe("shipped tagger model", () => {
 		).fields.name).toBe("บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)");
 	});
 
+	test("a bracket right after the name is part of it unless it is a remark to the seller", () => {
+		expect(parser.parse("085-6623-109 ลุงจันทร์ (ผู้รับ)\nบ้านหัวเสือ ม.2\nแม่ทะ ลำปาง").fields.name).toBe("ลุงจันทร์ (ผู้รับ)");
+		expect(parser.parse(
+			"ด.ญ.ปริม ศรีสุข (ส่งในชื่อลูกสาวค่ะ)\n63 ม.1 ต.โพนครก อ.ท่าตูม จ.สุรินทร์ 32120\n0846629013",
+		).fields.name).toBe("ด.ญ.ปริม ศรีสุข");
+	});
+
 	test("every span reproduces its source offsets", () => {
 		const raw = "นายทดสอบ ใจดี 081-234-5678 บ้านเลขที่ 1 ปทุมวัน กรุงเทพมหานคร 10330";
 		const result = parser.parse(raw);
