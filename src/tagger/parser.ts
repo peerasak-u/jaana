@@ -1,10 +1,13 @@
-import { normalizeCandidate } from "../normalize";
+import { similarityRatio } from "../candidate/fuzzy-match";
+import { normalizeCandidate, normalizePostcode } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { createAnchorer } from "./anchor";
 import { decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
 import { createTupleResolver, nameForms } from "./resolve";
+
+const MIN_SIBLING_RATIO = 0.7;
 
 export interface TaggedSpan {
 	readonly label: OutputLabel;
@@ -44,28 +47,40 @@ export function createTaggerParser(
 	const compiled = compileTaggerModel(model);
 	const anchor = createAnchorer(locations);
 	const resolve = createTupleResolver(locations);
-	const siblingSubdistricts = new Map<string, Set<string>>();
+	const siblingTuples = new Map<string, LocationTuple[]>();
 	for (const location of locations) {
 		const key = `${location.province}\u0000${location.district}`;
-		const siblings = siblingSubdistricts.get(key) ?? new Set<string>();
-		siblings.add(location.subdistrict);
-		siblingSubdistricts.set(key, siblings);
+		const siblings = siblingTuples.get(key) ?? [];
+		siblings.push(location);
+		siblingTuples.set(key, siblings);
 	}
 
 	/**
-	 * The anchor can pick a sibling subdistrict when the written one is
-	 * misspelled. A tagged span naming another subdistrict of the anchored
-	 * district overrides it.
+	 * The anchor picks the first tuple of its district when the written
+	 * subdistrict is misspelled, so the tagged span chooses among the
+	 * district's subdistricts by similarity, within the written postcode
+	 * when it narrows them.
 	 */
-	function anchoredSubdistrict(tuple: LocationTuple, text: string): string {
-		const siblings = siblingSubdistricts.get(`${tuple.province}\u0000${tuple.district}`);
+	function anchoredSubdistrict(tuple: LocationTuple, text: string, zipcode: string | null): string {
+		const siblings = siblingTuples.get(`${tuple.province}\u0000${tuple.district}`) ?? [tuple];
+		const inPostcode = siblings.filter((sibling) => sibling.zipcode === zipcode);
+		const pool = inPostcode.length > 0 ? inPostcode : siblings;
+		let best = tuple.subdistrict;
+		let bestRatio = MIN_SIBLING_RATIO;
 		for (const form of nameForms("subdistrict", text)) {
 			if (form === tuple.subdistrict) return tuple.subdistrict;
+			for (const sibling of siblings) {
+				if (sibling.subdistrict === form) return form;
+			}
+			for (const sibling of pool) {
+				const ratio = similarityRatio(form, sibling.subdistrict) / 100;
+				if (ratio > bestRatio) {
+					best = sibling.subdistrict;
+					bestRatio = ratio;
+				}
+			}
 		}
-		for (const form of nameForms("subdistrict", text)) {
-			if (siblings?.has(form)) return form;
-		}
-		return tuple.subdistrict;
+		return best;
 	}
 
 	return {
@@ -86,7 +101,9 @@ export function createTaggerParser(
 			const tuple = anchored.tuple;
 			const administrative = tuple
 				? {
-					subdistrict: subdistrict ? anchoredSubdistrict(tuple, subdistrict) : null,
+					subdistrict: subdistrict
+						? anchoredSubdistrict(tuple, subdistrict, zipcode ? normalizePostcode(zipcode) : null)
+						: null,
 					district: district ? tuple.district : null,
 					province: province ? tuple.province : null,
 					zipcode: zipcode ? tuple.zipcode : null,

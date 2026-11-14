@@ -132,6 +132,12 @@ describe("shipped tagger model", () => {
 		expect(result.fields.province).toBe("กรุงเทพมหานคร");
 	});
 
+	test("a misspelled subdistrict resolves to the closest subdistrict of the anchored district", () => {
+		const fields = parser.parse("คุณศศิธร 0645508812 5/88 ม.3 ต.บึงคำพ้อย อ.ลำลูกกา จ.ปทุมธานี 12150").fields;
+		expect(fields.subdistrict).toBe("บึงคำพร้อย");
+		expect(fields.district).toBe("ลำลูกกา");
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});
