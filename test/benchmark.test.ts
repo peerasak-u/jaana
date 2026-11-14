@@ -43,7 +43,6 @@ test("candidate funnel separates reachability, selection, and acceptance", () =>
 			resourceVersion: "test",
 			candidatesEvaluated: 1,
 			hypothesesEvaluated: 1,
-			latentScoring: "frozen-direction",
 			scoreSemantics: "uncalibrated-selection-score",
 			candidateTrace: [
 				{
@@ -53,7 +52,6 @@ test("candidate funnel separates reachability, selection, and acceptance", () =>
 					start: 0,
 					end: 5,
 					evidenceScore: 0.9,
-					latentScore: 0.5,
 					score: 0.9,
 					evidence: [],
 					outcome: "accepted",
@@ -136,7 +134,6 @@ test("calibration reports accepted-span Brier score and expected calibration err
 			resourceVersion: "test",
 			candidatesEvaluated: 1,
 			hypothesesEvaluated: 1,
-			latentScoring: "frozen-direction",
 			scoreSemantics: "uncalibrated-selection-score",
 		},
 	};

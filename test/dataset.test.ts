@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { parseJsonl, type DatasetRecord } from "../bench/dataset";
 import { splitByLocation, splitForTraining } from "../bench/split";
-import { contentChecksum, contentSetChecksum } from "../bench/integrity";
 
 function record(id: string, caseType: string, location: DatasetRecord["seedLocation"]): DatasetRecord {
   return {
@@ -169,16 +168,5 @@ describe("dataset boundary", () => {
 			),
 		).toBe(false);
 		expect(split.excluded.length).toBeGreaterThan(0);
-	});
-});
-
-describe("resource provenance", () => {
-	test("combined content checksums are independent of file order and path", () => {
-		const left = contentChecksum("first dataset");
-		const right = contentChecksum("second dataset");
-
-		expect(contentSetChecksum([left, right])).toBe(
-			contentSetChecksum([right, left]),
-		);
 	});
 });

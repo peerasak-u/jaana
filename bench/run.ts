@@ -1,6 +1,6 @@
 import { mkdir } from "node:fs/promises";
 import { basename, dirname } from "node:path";
-import { createAddressParser, type ParserResources } from "../src";
+import { createAddressParser } from "../src";
 import {
 	addCalibration,
 	createCalibration,
@@ -12,24 +12,10 @@ import {
 	createCandidateFunnel,
 	summarizeCandidateFunnel,
 } from "./funnel";
-import { recordsChecksum } from "./integrity";
+import { loadParserResources } from "./gazetteer";
 import { loadLegacyParser } from "./legacy";
 import { addResult, createMetrics, summarize } from "./metrics";
-
-interface Artifact {
-	readonly resources: ParserResources;
-	readonly split: {
-		readonly seed: string;
-		readonly method: string;
-		readonly trainIds: readonly string[];
-		readonly evaluationIds: readonly string[];
-	};
-	readonly source: {
-		readonly datasetChecksum: string;
-		readonly evaluationChecksum: string;
-		readonly recordCount: number;
-	};
-}
+import { splitForTraining } from "./split";
 
 function argument(name: string, fallback?: string): string {
 	const index = Bun.argv.indexOf(name);
@@ -57,17 +43,15 @@ function percentile(values: readonly number[], p: number): number {
 
 const datasetPaths = argumentsFor("--dataset");
 if (datasetPaths.length === 0) throw new Error("missing --dataset");
-const artifactPath = argument(
-	"--resources",
-	"resources/generated/construction-v3-residual-name-d2048.json",
-);
+const gazetteerPath = argument("--gazetteer", "resources/gazetteer.json");
+const splitSeed = argument("--seed", "20260720");
 const legacyPath = argument(
 	"--legacy",
 	`${process.env.HOME}/Workspace/indie/thai-address-splitter`,
 );
 const outputPath = argument(
 	"--output",
-	".bench-results/combined-v4-residual-name-d2048.json",
+	".bench-results/engine.json",
 );
 
 const datasetFamilies = await Promise.all(datasetPaths.map(loadDataset));
@@ -82,78 +66,40 @@ for (const [index, family] of datasetFamilies.entries()) {
 		familyById.set(record.id, familyId);
 	}
 }
-const artifact = (await Bun.file(artifactPath).json()) as Artifact;
-const evalIds = new Set(artifact.split.evaluationIds);
-const evaluation = records.filter((record) => evalIds.has(record.id));
-if (evaluation.length !== evalIds.size) {
-	throw new Error(
-		`dataset changed: found ${evaluation.length}/${evalIds.size} evaluation IDs`,
-	);
-}
-const currentEvaluationChecksum = recordsChecksum(evaluation);
-if (currentEvaluationChecksum !== artifact.source.evaluationChecksum) {
-	throw new Error("evaluation records differ from the resource artifact");
-}
+const split = splitForTraining(records, splitSeed);
+const evaluation = split.evaluation;
+const resources = await loadParserResources(gazetteerPath);
 
-const latent = createAddressParser(artifact.resources);
-const diagnosticParser = createAddressParser(artifact.resources, {
+const engine = createAddressParser(resources);
+const diagnosticParser = createAddressParser(resources, {
 	diagnostics: "full",
 });
-const noDirections = createAddressParser({
-	...artifact.resources,
-	labelDirections: [],
-});
 const legacy = loadLegacyParser(legacyPath);
-const latentMetrics = createMetrics();
-const noDirectionsMetrics = createMetrics();
+const engineMetrics = createMetrics();
 const legacyMetrics = createMetrics();
-const latentTimes: number[] = [];
-const noDirectionsTimes: number[] = [];
+const engineTimes: number[] = [];
 const legacyTimes: number[] = [];
-const byCase = new Map<
-	string,
-	{
-		latent: ReturnType<typeof createMetrics>;
-		noDirections: ReturnType<typeof createMetrics>;
-		legacy: ReturnType<typeof createMetrics>;
-	}
->();
-const byDatasetFamily = new Map<string, {
-	latent: ReturnType<typeof createMetrics>;
-	noDirections: ReturnType<typeof createMetrics>;
+interface SystemMetrics {
+	engine: ReturnType<typeof createMetrics>;
 	legacy: ReturnType<typeof createMetrics>;
-}>();
-const candidateFunnel = createCandidateFunnel();
-const latentCalibration = createCalibration();
-const noDirectionsCalibration = createCalibration();
-
-function fields(record: ReturnType<typeof latent.parse>): ExpectedAddress {
-	return { ...record.fields };
 }
+const byCase = new Map<string, SystemMetrics>();
+const byDatasetFamily = new Map<string, SystemMetrics>();
+const candidateFunnel = createCandidateFunnel();
+const engineCalibration = createCalibration();
 
 for (const record of evaluation) {
-	let latentOutput: ExpectedAddress | null = null;
-	let noDirectionsOutput: ExpectedAddress | null = null;
+	let engineOutput: ExpectedAddress | null = null;
 	let legacyOutput: ExpectedAddress | null = null;
-	let latentResult: ReturnType<typeof latent.parse> | null = null;
-	let noDirectionsResult: ReturnType<typeof noDirections.parse> | null = null;
-	const latentStart = Bun.nanoseconds();
+	let engineResult: ReturnType<typeof engine.parse> | null = null;
+	const engineStart = Bun.nanoseconds();
 	try {
-		latentResult = latent.parse(record.raw);
-		latentOutput = fields(latentResult);
+		engineResult = engine.parse(record.raw);
+		engineOutput = { ...engineResult.fields };
 	} catch {
-		latentOutput = null;
+		engineOutput = null;
 	} finally {
-		latentTimes.push((Bun.nanoseconds() - latentStart) / 1_000_000);
-	}
-	const noDirectionsStart = Bun.nanoseconds();
-	try {
-		noDirectionsResult = noDirections.parse(record.raw);
-		noDirectionsOutput = fields(noDirectionsResult);
-	} catch {
-		noDirectionsOutput = null;
-	} finally {
-		noDirectionsTimes.push((Bun.nanoseconds() - noDirectionsStart) / 1_000_000);
+		engineTimes.push((Bun.nanoseconds() - engineStart) / 1_000_000);
 	}
 	const legacyStart = Bun.nanoseconds();
 	try {
@@ -163,13 +109,9 @@ for (const record of evaluation) {
 	} finally {
 		legacyTimes.push((Bun.nanoseconds() - legacyStart) / 1_000_000);
 	}
-	addResult(latentMetrics, record.expected, latentOutput);
-	addResult(noDirectionsMetrics, record.expected, noDirectionsOutput);
+	addResult(engineMetrics, record.expected, engineOutput);
 	addResult(legacyMetrics, record.expected, legacyOutput);
-	if (latentResult) addCalibration(latentCalibration, record.expected, latentResult);
-	if (noDirectionsResult) {
-		addCalibration(noDirectionsCalibration, record.expected, noDirectionsResult);
-	}
+	if (engineResult) addCalibration(engineCalibration, record.expected, engineResult);
 	addCandidateFunnel(
 		candidateFunnel,
 		record.expected,
@@ -178,22 +120,18 @@ for (const record of evaluation) {
 		record.normalizationExpected,
 	);
 	const slice = byCase.get(record.caseType) ?? {
-		latent: createMetrics(),
-		noDirections: createMetrics(),
+		engine: createMetrics(),
 		legacy: createMetrics(),
 	};
-	addResult(slice.latent, record.expected, latentOutput);
-	addResult(slice.noDirections, record.expected, noDirectionsOutput);
+	addResult(slice.engine, record.expected, engineOutput);
 	addResult(slice.legacy, record.expected, legacyOutput);
 	byCase.set(record.caseType, slice);
 	const familyId = familyById.get(record.id) ?? "unknown";
 	const family = byDatasetFamily.get(familyId) ?? {
-		latent: createMetrics(),
-		noDirections: createMetrics(),
+		engine: createMetrics(),
 		legacy: createMetrics(),
 	};
-	addResult(family.latent, record.expected, latentOutput);
-	addResult(family.noDirections, record.expected, noDirectionsOutput);
+	addResult(family.engine, record.expected, engineOutput);
 	addResult(family.legacy, record.expected, legacyOutput);
 	byDatasetFamily.set(familyId, family);
 }
@@ -210,20 +148,21 @@ const report = {
 	status: "exploratory-synthetic-only",
 	generatedAt: new Date().toISOString(),
 	runtime: { bun: Bun.version, platform: process.platform, arch: process.arch },
-	split: artifact.split,
-	source: artifact.source,
-	evaluatedRecords: evaluation.length,
-	latent: {
-		metrics: summarize(latentMetrics),
-		timing: timing(latentTimes),
-		calibration: summarizeCalibration(latentCalibration),
+	resourceVersion: resources.version,
+	split: {
+		seed: splitSeed,
+		method: split.method,
+		evaluationIds: evaluation.map((record) => record.id),
 	},
-	noDirections: {
-		description:
-			"same retrieval, pruning, and validation with frozen directions removed",
-		metrics: summarize(noDirectionsMetrics),
-		timing: timing(noDirectionsTimes),
-		calibration: summarizeCalibration(noDirectionsCalibration),
+	source: {
+		datasets: datasetPaths.map((path) => basename(path)),
+		recordCount: records.length,
+	},
+	evaluatedRecords: evaluation.length,
+	engine: {
+		metrics: summarize(engineMetrics),
+		timing: timing(engineTimes),
+		calibration: summarizeCalibration(engineCalibration),
 	},
 	legacy: { metrics: summarize(legacyMetrics), timing: timing(legacyTimes) },
 	byCaseType: Object.fromEntries(
@@ -232,8 +171,7 @@ const report = {
 			.map(([key, value]) => [
 				key,
 				{
-					latent: summarize(value.latent),
-					noDirections: summarize(value.noDirections),
+					engine: summarize(value.engine),
 					legacy: summarize(value.legacy),
 				},
 			]),
@@ -244,8 +182,7 @@ const report = {
 			.map(([key, value]) => [
 				key,
 				{
-					latent: summarize(value.latent),
-					noDirections: summarize(value.noDirections),
+					engine: summarize(value.engine),
 					legacy: summarize(value.legacy),
 				},
 			]),
@@ -264,8 +201,7 @@ console.log(
 		{
 			outputPath,
 			evaluatedRecords: evaluation.length,
-			latent: report.latent,
-			noDirections: report.noDirections,
+			engine: report.engine,
 			legacy: report.legacy,
 		},
 		null,

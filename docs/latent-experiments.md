@@ -1,5 +1,9 @@
 # Latent feature experiments
 
+Historical record. ADR-0004 removed the sparse residual ranker, its resource
+artifacts, and the build and gate scripts named below. The commands in this
+file no longer run.
+
 ## Promoted sparse residual v3
 
 The shipped `construction-v3-residual-name-d2048` artifact uses the

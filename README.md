@@ -1,16 +1,48 @@
 # th-address-latent
 
-Browser-compatible Thai address extraction using typed candidate evidence, a
-small sparse latent residual ranker, soft candidate pruning, and deterministic
-validation. Training happens offline; parsing is local and fast.
+Thai address extraction that runs anywhere JavaScript runs. The library takes
+one raw message and returns name, phone, address detail, subdistrict, district,
+province, and postcode. It has no runtime dependencies and reads no files.
 
-## Why Validator and Pruner are separate
+Two parsers share one gazetteer:
 
-- **Scorer** ranks proposed spans. Deterministic evidence supplies the base score; a gated sparse vector may apply a bounded residual correction.
-- **Pruner** searches those hypotheses and softly penalizes overlaps, duplicate fields, unusual order, and inconsistent administrative tuples. It may keep an unusual but plausible result.
-- **Validator** checks the completed result: source offsets, phone/postcode formats, administrative consistency, normalization, confidence, and abstention. It does not create missing candidates.
+- **Tagger.** A character-level linear model with 32,768 hashed feature buckets
+  and int8 weights. It labels every character, then a deterministic resolver
+  maps the administrative spans to one gazetteer tuple. This is the learned
+  model.
+- **Candidate Engine.** Hand-written evidence rules, a pruner, and a validator.
+  It is the rule-based baseline and still wins on the hand-written messy
+  fixture.
 
-This follows katgpt-rs's separation: `ConstraintPruner` removes impossible branches while the Validator is the complete deterministic-referee system.
+## Use
+
+```ts
+import { createTaggerParser, expandGazetteer } from "./src";
+import gazetteer from "./resources/gazetteer.json";
+import model from "./resources/tagger-model.json";
+
+const parser = createTaggerParser(model, expandGazetteer(gazetteer));
+const { fields, spans } = parser.parse(
+  "คุณสมชาย ใจดี\nโทร 089-123-4567\n99/1 หมู่ 2 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000",
+);
+```
+
+`createAddressParser({ version, locations })` builds the Candidate Engine from
+the same expanded gazetteer. Pass `{ diagnostics: "full" }` to it for candidate
+evidence, pruning outcomes, and abstention reasons. Full diagnostics may
+contain input text, so do not log them for private data.
+
+## What ships
+
+| File | Raw | Gzip |
+|---|---:|---:|
+| `resources/tagger-model.json` | 350 KB | 75 KB |
+| `resources/gazetteer.json` (7,431 tuples) | 345 KB | 61 KB |
+| `dist/index.js` (both parsers) | 60 KB | 14 KB |
+
+The model file holds a base64 Int8Array and an 8x8 transition table. Inference
+is integer addition over 58 hashed features per character, followed by a
+Viterbi pass. It needs `atob`, typed arrays, and nothing else.
 
 ## Commands
 
@@ -21,159 +53,107 @@ bun run typecheck
 bun run build
 ```
 
-Build the promoted sparse-residual resource:
+Train the tagger. Base datasets are split into train, development, and
+evaluation. Extra datasets are train-only, and the loader drops every extra
+record that shares a location tuple or template family with a held-out record:
 
 ```bash
-bun run build:resources \
-  --dataset ~/Workspace/indie/thai-address-synth-dataset/data/generated/construction-v1.jsonl \
-  --dataset ~/Workspace/indie/thai-address-synth-dataset/data/generated/name-robust-v1-2040-r1.jsonl \
-  --gazetteer ~/Workspace/indie/thai-address-synth-dataset/data/subdistricts.json \
-  --output resources/generated/construction-v3-residual-name-d2048.json \
-  --resource-version construction-v3-residual-name-d2048 \
-  --seed 20260720 \
-  --dimension 2048 \
-  --max-character-ngram 4 \
-  --context-window 12 \
-  --epochs 4 \
-  --max-negatives 8 \
-  --name-residual-scale 1 \
-  --address-residual-scale 0 \
-  --dataset-balance equal-family \
-  --negative-policy other-spans \
-  --fit-mode pairwise-residual
+D=~/Workspace/indie/thai-address-synth-dataset/data/generated
+bun run train:tagger \
+  --dataset $D/construction-v1.jsonl \
+  --dataset $D/name-robust-v1-2040-r1.jsonl \
+  --extra-dataset $D/chat-v2-scale-1500-r1.jsonl \
+  --extra-dataset $D/address-detail-robust-v1-600-r1.jsonl
 ```
 
-Run the exploratory head-to-head benchmark:
+Training takes about four seconds and is deterministic for a given `--seed`.
+`--dimension` and `--epochs` change the model size and the number of passes.
+
+Compare the tagger with the Candidate Engine on the held-out split and the
+messy fixture:
 
 ```bash
-bun run bench \
-  --dataset ~/Workspace/indie/thai-address-synth-dataset/data/generated/construction-v1.jsonl \
-  --dataset ~/Workspace/indie/thai-address-synth-dataset/data/generated/name-robust-v1-2040-r1.jsonl \
-  --resources resources/generated/construction-v3-residual-name-d2048.json \
-  --legacy ~/Workspace/indie/thai-address-splitter \
-  --output .bench-results/construction-v1.json
+bun run bench:tagger \
+  --dataset $D/construction-v1.jsonl \
+  --dataset $D/name-robust-v1-2040-r1.jsonl
 ```
 
-Run an aggregate-only benchmark over a structured recipient list. Exact input
-and parsed values are never written to the report; unstructured blocks must
-match the reviewed supplement fixture:
+Other benchmarks:
 
 ```bash
-bun run bench:list \
-  --input /path/to/private-recipient-list.txt \
-  --resources resources/generated/construction-v3-residual-name-d2048.json \
-  --min-exact-accuracy 0.95 \
-  --output .bench-results/recipient-list.json
+bun run bench --dataset ... --legacy ~/Workspace/indie/thai-address-splitter
+bun run bench:fixture
+bun run bench:list --input bench/private/list.txt --min-exact-accuracy 0.95
+bun run build:gazetteer
+bun run explainer:snapshot
 ```
 
-The list benchmark defaults to a 95% exact-record acceptance threshold and exits
-non-zero below it. For 58 records this requires at least 56 exact records.
+`explainer:snapshot` re-records the walkthrough data in `explainer.html` from
+the shipped model, so run it after retraining.
 
-`bench/private/` is gitignored; keep private input lists there.
-
-## Candidate engine
-
-`createAddressParser` compiles resource-derived indexes once. Each parse then
-builds immutable context and runs structured, location, and segment candidate
-sources through a seed store, typed evidence rules, scoring, pruning, and final
-validation. See `CONTEXT.md` and `docs/adr/0001-deep-candidate-engine.md` for the
-domain language and decision.
-
-Pass `{ diagnostics: "full" }` to receive candidate evidence, pruning outcomes,
-pre-candidate rejection rules, and exact validation abstention reasons. Full
-diagnostics may contain input text and should not be logged for private data.
-
-The compatibility fields named `confidence` currently contain an uncalibrated
-selection score. Diagnostics report `scoreSemantics: "uncalibrated-selection-score"`.
-
-## Experimental fitting modes
-
-Resource builds accept:
-
-```text
---dataset-balance uniform-records|equal-family
---negative-policy output-only|other-spans
---fit-mode none|gold-centroid|candidate-contrastive|pairwise-residual
-```
-
-`pairwise-residual` learns from each gold candidate against hard candidates
-produced by the real Candidate Engine. It also learns an explicit `NULL`
-choice for absent fields. The learned score is a bounded correction to the
-evidence logit, so a missing direction or a zero label scale reproduces the
-evidence-only score exactly. `none` writes that evidence-only parser.
-
-`bun run build:resources` exits non-zero if the built resource loses its
-evidence-only ablation. Pass `--skip-gate` to write an unpromoted experiment
-artifact anyway; it still refuses to overwrite the default shipped output path,
-so an unpromoted build must target an explicit `--output`. Check that every
-shipped resource still passes its recorded gate, including that only `NAME`
-may carry a nonzero residual scale, with:
-
-```bash
-bun run check:resource-gate
-```
-
-CI runs this check before building the library and demo, on pushes to `main`
-and on pull requests. See `docs/adr/0002-resource-promotion-gate.md`.
-
-## Browser API
-
-```ts
-import { createAddressParser } from "th-address-latent";
-
-const parser = createAddressParser(resources);
-const result = parser.parse("นายทดสอบ ใจดี 081-234-5678 บ้านเลขที่ 1 ปทุมวัน กรุงเทพมหานคร 10330");
-```
-
-The browser receives a frozen resource artifact. It does not fit directions, mutate model weights, run backpropagation, read JSONL, or access the filesystem.
-
-## Latent feature configuration
-
-Every artifact records its feature schema, hash dimension, character n-gram
-range, and context window. The promoted `candidate-hash-v3` schema hashes span
-text, nearby context, boundaries, shape, candidate source, evidence-rule IDs,
-and distances to useful markers into a sparse 2,048-dimensional vector. Runtime
-validates the schema before using a frozen resource. Rebuild resources whenever
-feature semantics change.
+`bench:list` writes aggregate-only results for a private recipient list and
+exits non-zero below the threshold. `bench/private/` is gitignored.
 
 ## Current benchmark verdict
 
-The shipped resource activates a sparse residual only for `NAME`. Enabling the
-same ranker for `ADDRESS_DETAIL` improved synthetic scores but regressed the
-private acceptance list, so address selection remains evidence-only.
+Measured on 2026-11-14 with the shipped model, one run per system.
 
-| Leakage-safe partition | Sparse residual | Evidence-only | Gain |
-|---|---:|---:|---:|
-| Development (401) | 80.3% | 72.6% | +7.7 pp |
-| Evaluation (259) | 64.5% | 62.2% | +2.3 pp |
+| Set | Tagger | Candidate Engine |
+|---|---:|---:|
+| Development, exact records (401) | 352 (87.8%) | 292 (72.8%) |
+| Evaluation, exact records (259) | 205 (79.2%) | 161 (62.2%) |
+| Messy fixture, exact records (20) | 15 | 17 |
+| Evaluation p95 per parse | 6.2 ms | 6.1 ms |
 
-The aggregate-only 58-record private acceptance benchmark remains 56/58 exact
-(96.6%), with a 10.19 ms p95 on the measured run. The synthetic evaluation p95
-is 6.18 ms, only 0.40 ms above evidence-only. These are regression and
-promotion gates, not claims of 95% production accuracy.
+Evaluation fields correct out of 259:
+
+| Field | Tagger | Candidate Engine |
+|---|---:|---:|
+| name | 247 | 216 |
+| phone | 241 | 223 |
+| address | 219 | 190 |
+| subdistrict | 246 | 253 |
+| district | 253 | 253 |
+| province | 258 | 253 |
+| zipcode | 258 | 247 |
+
+Read these numbers with three limits in mind:
+
+- Every training and evaluation record is synthetic. The tagger learned the
+  generator's styles, and it makes boundary mistakes on layouts the generator
+  never produced, such as a `ส่งที่` lead-in before the name.
+- The Candidate Engine was developed against the messy fixture. The tagger
+  never saw it. The fixture has 20 records, so one record is five points.
+- The 58-record private acceptance list has not been run against the tagger.
+  The engine's recorded result on it is 56 exact.
+
+Retraining with a different shuffle seed moves the result by a few records.
+The shipped model is the `--seed 20260720` run, which sits at the top of its
+range. Five seeds per size, exact records as mean and range:
+
+| `--dimension` | Model gzip | Development (401) | Evaluation (259) | Messy fixture (20) |
+|---:|---:|---:|---:|---:|
+| 8,192 | 34 KB | 336.2 (334-342) | 196.4 (195-200) | 12.6 (11-14) |
+| 16,384 | 52 KB | 345.6 (344-347) | 197.0 (194-202) | 14.4 (13-16) |
+| 32,768 (shipped) | 73 KB | 349.4 (346-352) | 202.6 (199-205) | 13.6 (12-15) |
+| 65,536 | 91 KB | 349.6 (347-354) | 199.4 (190-206) | 13.8 (12-15) |
+
+Differences inside these ranges are noise. Fourteen epochs instead of eight
+changed nothing measurable.
 
 ## Evaluation policy
 
-The loader preserves generator-declared train/evaluation provenance and template
-family. Records are partitioned into train, development, evaluation, and
-excluded sets. A complete authoritative location tuple never crosses partitions;
-generator-evaluation template families are admitted only to evaluation, and
-generator-train families only to train/development. Incompatible cross-products
-are excluded. The current combined split is 1,512 train, 401 development, 259
-evaluation, and 669 excluded.
+The loader preserves generator-declared train and evaluation provenance and the
+template family. `splitForTraining` partitions the base datasets with seed
+`20260720`. A complete location tuple never crosses partitions. Evaluation
+template families are admitted only to evaluation.
 
-Selection gold for `NAME` and `ADDRESS_DETAIL` comes from the annotated source
-span after surface normalization. Dataset expectations that expand abbreviations,
-correct typos, or rewrite spacing are normalization tasks and no longer count as
-candidate-selection failures.
+Selection gold for `NAME` and `ADDRESS_DETAIL` is the annotated source span
+after whitespace normalization. Dataset expectations that expand abbreviations
+or correct typos are normalization tasks and do not count as selection
+failures.
 
-The benchmark reports an evidence-only ablation (the `noDirections` report key)
-using the same retrieval, pruning, and validation with frozen latent directions
-removed. The latent component has demonstrated gain only when it beats that
-ablation, not merely when the complete hybrid beats the legacy regex parser.
+Gazetteer provenance and redistribution rights must be resolved before
+publishing the generated browser resources.
 
-Synthetic results remain exploratory. Further address-ranker work needs a
-separately seeded, manually reviewed real-world gold set, especially ambiguous
-recipient/address boundaries and missing fields. Gazetteer provenance and
-redistribution rights must be resolved before publishing generated browser
-resources.
+See `CONTEXT.md` for the domain language and `docs/adr/` for decisions.

@@ -260,6 +260,11 @@ textarea::placeholder {
 	border-color: #e96744;
 	color: #d75c3d;
 }
+.example-button.active {
+	border-color: #e96744;
+	color: #fff8ef;
+	background: #e96744;
+}
 
 .result-heading {
 	padding-bottom: 23px;

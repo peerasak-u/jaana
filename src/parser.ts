@@ -1,5 +1,4 @@
 import { createCandidateEngine } from "./candidates";
-import { validateFeatureConfig, validateScoringConfig } from "./latent/features";
 import { pruneCandidates } from "./decode/pruner";
 import { labelToField } from "./labels";
 import type {
@@ -77,42 +76,14 @@ function validateOptions(options: Required<ParserOptions>): void {
 	}
 }
 
-function validateResources(resources: ParserResources): void {
-	if (!resources.version) throw new Error("resources.version is required");
-	if (
-		!Number.isInteger(resources.featureDimension) ||
-		resources.featureDimension <= 0
-	) {
-		throw new Error("resources.featureDimension must be a positive integer");
-	}
-	validateFeatureConfig(resources.featureConfig);
-	validateScoringConfig(resources.scoringConfig);
-	if (
-		resources.scoringConfig.version === "residual-rank-v2" &&
-		resources.featureConfig.version !== "candidate-hash-v3"
-	) {
-		throw new Error("residual-rank-v2 requires candidate-hash-v3 features");
-	}
-	for (const direction of resources.labelDirections) {
-		if (direction.vector.length !== resources.featureDimension) {
-			throw new Error(`Direction ${direction.label} has the wrong dimension`);
-		}
-	}
-}
-
 export function createAddressParser(
 	resources: ParserResources,
 	options: ParserOptions = {},
 ): AddressParser {
-	validateResources(resources);
+	if (!resources.version) throw new Error("resources.version is required");
 	const resolved = { ...DEFAULT_OPTIONS, ...options };
 	validateOptions(resolved);
 	const candidateEngine = createCandidateEngine(resources);
-	const latentScoring = resources.labelDirections.length === 0
-		? "evidence-only" as const
-		: resources.scoringConfig.version === "residual-rank-v2"
-			? "sparse-residual" as const
-			: "frozen-direction" as const;
 	return {
 		parse(raw: string): ParseResult {
 			const generation = candidateEngine.generate(raw);
@@ -124,12 +95,8 @@ export function createAddressParser(
 			);
 			const diagnostics = {
 				resourceVersion: resources.version,
-				...(resources.checksum === undefined
-					? {}
-					: { resourceChecksum: resources.checksum }),
 				candidatesEvaluated: candidates.length,
 				hypothesesEvaluated: decoded.hypothesesEvaluated,
-				latentScoring,
 				scoreSemantics: "uncalibrated-selection-score" as const,
 			};
 			const result = validateDecodeResult(

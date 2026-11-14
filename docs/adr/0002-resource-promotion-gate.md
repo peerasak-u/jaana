@@ -1,6 +1,6 @@
 # ADR-0002: Gate frozen-resource promotion against evidence-only
 
-- Status: Accepted
+- Status: Superseded by ADR-0004. The gated resource and its gate script were removed.
 - Date: 2026-07-16
 
 ## Context

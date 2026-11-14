@@ -1,4 +1,5 @@
-import type { LocationTuple } from "../src/types";
+import { expandGazetteer, type CompactGazetteer } from "../src/gazetteer";
+import type { LocationTuple, ParserResources } from "../src/types";
 
 function stripPrefix(value: string, prefixes: readonly string[]): string {
   for (const prefix of prefixes) {
@@ -31,4 +32,9 @@ export async function loadGazetteer(path: string): Promise<readonly LocationTupl
     unique.set(Object.values(tuple).join("\u0000"), tuple);
   }
   return [...unique.values()];
+}
+
+export async function loadParserResources(path: string): Promise<ParserResources> {
+  const gazetteer = (await Bun.file(path).json()) as CompactGazetteer;
+  return { version: gazetteer.version, locations: expandGazetteer(gazetteer) };
 }
