@@ -9,6 +9,7 @@ import { findStandalone, insideOtherName, insidePlaceName, type Range } from "./
 import {
 	closestTuple,
 	createTupleResolver,
+	formSimilarity,
 	nameForms,
 	PROVINCE_ALIASES,
 	type AdministrativeField,
@@ -194,9 +195,13 @@ export function createTaggerParser(
 		let confirmed = 0;
 		for (const flag of anchored.flags) confirmed |= flag;
 		if (confirmed & DISTRICT_BIT) return tuple;
+		const subdistrictDisagrees = texts.subdistrict !== undefined &&
+			formSimilarity("subdistrict", nameForms("subdistrict", texts.subdistrict), tuple.subdistrict) < 1;
 		const pool = [tuple, ...(inPostcode ?? locations).filter((location) =>
 			ANCHOR_FIELDS.every((field, bit) =>
-				(confirmed & (1 << bit)) === 0 || location[field] === tuple[field]),
+				(confirmed & (1 << bit)) === 0 ||
+				(field === "subdistrict" && subdistrictDisagrees) ||
+				location[field] === tuple[field]),
 		)];
 		return closestTuple(pool, texts);
 	}

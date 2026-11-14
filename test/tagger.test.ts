@@ -189,6 +189,14 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("a village name that matches another subdistrict does not pin the tuple", () => {
+		expect(parser.parse("นายสมชาย ภูมิวงศ์ 0835518462 39 ม.8 บ.เขวา ต.เขวาไหญ่ อ.กันทรวิไชย มหาสารคาม").fields).toMatchObject({
+			subdistrict: "เขวาใหญ่",
+			district: "กันทรวิชัย",
+			province: "มหาสารคาม",
+		});
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});
