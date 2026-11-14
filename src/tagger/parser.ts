@@ -286,16 +286,20 @@ export function createTaggerParser(
 		zipcode: string | null,
 	): (Range & { name: string }) | null {
 		const range = address.find((candidate) =>
-			candidate.end <= district.start && /^[ \t]*$/u.test(raw.slice(candidate.end, district.start)));
+			candidate.end <= district.start && /^[ \t,]*$/u.test(raw.slice(candidate.end, district.start)));
 		if (!range) return null;
-		const word = /(?:^|\s)([ก-๎]+)$/u.exec(raw.slice(range.start, range.end))?.[1];
+		const piece = raw.slice(range.start, range.end);
+		const thai = /(?:^|\s)([ก-๎]+)$/u.exec(piece)?.[1];
+		const latin = thai ? undefined : /(?:^|,\s*)([A-Za-z][A-Za-z ]*)$/u.exec(piece)?.[1];
+		const word = thai ?? latin;
 		if (!word) return null;
+		const written = thai ?? latinSkeleton(word);
 		const siblings = siblingTuples.get(`${tuple.province}\u0000${tuple.district}`) ?? [tuple];
 		const inPostcode = siblings.filter((sibling) => sibling.zipcode === zipcode);
 		let best: string | null = null;
 		let bestRatio = MIN_WORD_RATIO;
 		for (const sibling of inPostcode.length > 0 ? inPostcode : siblings) {
-			const ratio = similarityRatio(word, sibling.subdistrict) / 100;
+			const ratio = similarityRatio(written, thai ? sibling.subdistrict : thaiSkeleton(sibling.subdistrict)) / 100;
 			if (ratio >= bestRatio) {
 				best = sibling.subdistrict;
 				bestRatio = ratio;

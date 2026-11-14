@@ -310,6 +310,12 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("a romanized subdistrict written before the district after a comma is the subdistrict", () => {
+		expect(parser.parse(
+			"Name: Nattapong\nAddress: 89/14 Moo 3, Pathum-Sam Khok Rd., Ban Krachaeng, Mueang Pathum Thani, Pathum Thani 12000\nPhone: 0817245590",
+		).fields).toMatchObject({ address: "89/14 Moo 3, Pathum-Sam Khok Rd.", subdistrict: "บ้านกระแชง" });
+	});
+
 	test("every span reproduces its source offsets", () => {
 		const raw = "นายทดสอบ ใจดี 081-234-5678 บ้านเลขที่ 1 ปทุมวัน กรุงเทพมหานคร 10330";
 		const result = parser.parse(raw);
