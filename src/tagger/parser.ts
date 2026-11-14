@@ -244,6 +244,11 @@ const PUNCTUATION_GAP = /^[ \t]*,[ \t,]*$/u;
  */
 const BRANCH_NOTE = /(?<!\([ \t]*)(?:สาขาที่[ \t]*[0-9๐-๙]+|สนญ\.|สำนักงานใหญ่)/gu;
 
+/** A form's own field labels with nothing filled in, as `(บ้านเลขที่ หมู่ ตำบล ...)` in a question line. */
+const FORM_LABELS = /^(?:(?:บ้านเลขที่|เลขที่|หมู่ที่|หมู่|ตำบล|อำเภอ|จังหวัด|ที่อยู่)[\s/:,()]*)+$/u;
+/** The label a form answer starts with, which the GUIDE keeps out of the address. */
+const ANSWER_LABEL = /^(?:ตอบ|ที่อยู่)[\s:：]+/u;
+
 function branchNotes(raw: string): Range[] {
 	return [...raw.matchAll(BRANCH_NOTE)].map((match) => ({ start: match.index, end: match.index + match[0].length }));
 }
@@ -269,8 +274,8 @@ export function addressOf(raw: string, ranges: readonly Range[], administrative:
 			.filter((range) => range.start < span.end && span.start < range.end)
 			.sort((left, right) => left.start - right.start);
 		for (const cut of [...cuts, { start: span.end, end: span.end }]) {
-			const piece = raw.slice(start, Math.max(start, cut.start)).replace(/^[\s,]+|[\s,]+$/gu, "");
-			if (piece) pieces.push(piece);
+			const piece = raw.slice(start, Math.max(start, cut.start)).replace(/^[\s,]+|[\s,]+$/gu, "").replace(ANSWER_LABEL, "");
+			if (piece && !FORM_LABELS.test(piece)) pieces.push(piece);
 			start = Math.max(start, cut.end);
 		}
 	}

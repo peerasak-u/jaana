@@ -113,6 +113,13 @@ describe("address composition", () => {
 		expect(addressOf(bracketed, [{ start: 0, end: bracketed.length }], [])).toBe(bracketed);
 	});
 
+	test("a form's unfilled field labels and its answer label are not address detail", () => {
+		const raw = "2. ที่อยู่ (บ้านเลขที่ หมู่ ตำบล) ⏎ ตอบ 31 ม.10 บ้านหนองผือ";
+		expect(addressOf(raw, ranges(raw, "บ้านเลขที่ หมู่", "ตอบ 31 ม.10 บ้านหนองผือ"), [])).toBe("31 ม.10 บ้านหนองผือ");
+		const filled = "บ้านเลขที่ 3 หมู่ที่ 8";
+		expect(addressOf(filled, ranges(filled, filled), [])).toBe(filled);
+	});
+
 	test("pieces interrupted by other text are joined with one space", () => {
 		const raw = "45 ม.5 โทร 0891234567 ซ.วัดดอน";
 		expect(addressOf(raw, ranges(raw, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
