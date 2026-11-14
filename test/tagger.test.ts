@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
-import { boundJoins, decodeTags } from "../src/tagger/decode";
+import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -90,8 +90,15 @@ describe("single-run decoding", () => {
 	test("a span edge never splits a Thai character cluster or a Latin word", () => {
 		const raw = "ร้านKhun";
 		const features = [0, 0, 1, 1, 0, 1, 1, 1].map((feature) => Int32Array.of(feature));
-		const tags = decodeTags(features, modelPreferring([NAME, OTHER]), boundJoins(raw));
+		const tags = decodeTags(features, modelPreferring([NAME, OTHER]), spanEdges(raw));
 		expect([...tags]).toEqual([NAME, NAME, NAME, OTHER, OTHER, OTHER, OTHER, OTHER]);
+	});
+
+	test("a name neither starts on an opening bracket nor ends on a space", () => {
+		const raw = "(คุณเอ) ";
+		const features = [...raw].map(() => Int32Array.of(0));
+		const tags = decodeTags(features, modelPreferring([NAME]), spanEdges(raw));
+		expect([...tags]).toEqual([OTHER, NAME, NAME, NAME, NAME, NAME, NAME, OTHER]);
 	});
 });
 
