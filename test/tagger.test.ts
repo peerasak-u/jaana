@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
-import { findStandalone, findTruncated, straddledMentions } from "../src/tagger/mention";
+import { findMisspelt, findStandalone, findTruncated, straddledMentions } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { addressOf, createTaggerParser } from "../src/tagger/parser";
@@ -72,6 +72,12 @@ describe("administrative mentions", () => {
 		const word = "สถานีดับเพลิงและกู้ภัยบางบำหรุ 140";
 		expect(straddledMentions(word, "subdistrict", "บางบำหรุ", [{ start: 0, end: word.indexOf("บำหรุ") }])).toEqual([]);
 		expect(straddledMentions("บ้านขามป้อม ต.ขามป้อม", "subdistrict", "ขามป้อม", [{ start: 0, end: 11 }])).toEqual([]);
+	});
+
+	test("a misspelt name written on its own is a mention, an exact name inside a road name is not", () => {
+		expect(findMisspelt("ต.โนนชัยศรี อ.โพนทอง รัอยเอ็ด เบอโทร", "province", "ร้อยเอ็ด", [])).toEqual({ start: 21, end: 29 });
+		expect(findMisspelt("ถ.รังสิต-ปทุมธานี บางพูน", "province", "ปทุมธานี", [])).toBeNull();
+		expect(findMisspelt("ถ.รังสิต-ปทุมทานี บางพูน", "province", "ปทุมธานี", [])).toBeNull();
 	});
 
 	test("a name inside a village or road name is not standalone", () => {

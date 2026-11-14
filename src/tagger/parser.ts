@@ -8,7 +8,7 @@ import { recutPhone } from "./phone";
 import { latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
 import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
-import { findStandalone, findTruncated, insideOtherName, insidePlaceName, straddledMentions, type Range } from "./mention";
+import { findMisspelt, findStandalone, findTruncated, insideOtherName, insidePlaceName, straddledMentions, type Range } from "./mention";
 import {
 	ADMINISTRATIVE_FIELDS,
 	closestTuple,
@@ -174,7 +174,8 @@ function untaggedMentions(
 	for (const [label, field] of TAGGED_FIELDS) {
 		if (spans.some((span) => span.label === label)) continue;
 		const found = namesOf(field).map((name) => findStandalone(text, field, name, taken)).find(Boolean) ??
-			(field === "subdistrict" || field === "district" ? findTruncated(text, field, tuple[field], taken) : null);
+			(field === "subdistrict" || field === "district" ? findTruncated(text, field, tuple[field], taken) : null) ??
+			(field === "province" ? findMisspelt(text, field, tuple.province, taken) : null);
 		if (!found) continue;
 		values[field] = tuple[field];
 		taken.push(found);

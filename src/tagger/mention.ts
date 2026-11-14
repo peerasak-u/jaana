@@ -1,3 +1,4 @@
+import { similarityRatio } from "../candidate/fuzzy-match";
 import type { LocationTuple } from "../types";
 import { ADMINISTRATIVE_FIELDS, type AdministrativeField } from "./resolve";
 
@@ -9,6 +10,7 @@ export interface Range {
 }
 
 const MIN_TRUNCATED_LENGTH = 4;
+const MIN_MISSPELT_RATIO = 0.85;
 const THAI_LETTER = /[ก-๎]/u;
 const PREFIX: Record<AdministrativeField, RegExp> = {
 	subdistrict: /(ตำบล|แขวง|ต\.?)\s*$/u,
@@ -112,6 +114,27 @@ export function findTruncated(
 ): Range | null {
 	for (let length = name.length - 1; length >= MIN_TRUNCATED_LENGTH; length -= 1) {
 		const found = findStandalone(raw, field, name.slice(0, length), taken, true);
+		if (found) return found;
+	}
+	return null;
+}
+
+/**
+ * A whole Thai word outside `taken`, bounded by non-letters and with its
+ * field prefix, that misspells `name`, as `รัอยเอ็ด` for ร้อยเอ็ด.
+ */
+export function findMisspelt(
+	raw: string,
+	field: AdministrativeField,
+	name: string,
+	taken: readonly Range[],
+): Range | null {
+	for (const word of raw.matchAll(/[ก-๎]+/gu)) {
+		const start = word.index;
+		const end = start + word[0].length;
+		const ratio = similarityRatio(word[0], name) / 100;
+		if (overlaps(start, end, taken) || ratio < MIN_MISSPELT_RATIO || ratio === 1) continue;
+		const found = standaloneAt(raw, field, { start, end }, taken, false);
 		if (found) return found;
 	}
 	return null;
