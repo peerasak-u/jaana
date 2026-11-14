@@ -11,5 +11,5 @@ bun run scripts/train-tagger.ts \
   --dataset "$D/name-robust-v1-2040-r1.jsonl" \
   --extra-dataset "$D/chat-v2-scale-1500-r1.jsonl" \
   --extra-dataset "$D/address-detail-robust-v1-600-r1.jsonl" \
-  --chat-train --output "$OUT" "$@"
+  --chat-train --augment 16 --output "$OUT" "$@"
 bun run bench/run-chat.ts --model "$OUT" --timing-rounds 1
