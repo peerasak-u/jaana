@@ -5,9 +5,18 @@ import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
-import { closestTuple, createTupleResolver, nameForms, type AdministrativeTexts } from "./resolve";
+import { findStandalone, type Range } from "./mention";
+import {
+	closestTuple,
+	createTupleResolver,
+	nameForms,
+	type AdministrativeField,
+	type AdministrativeTexts,
+	type AdministrativeValues,
+} from "./resolve";
 
 const MIN_SIBLING_RATIO = 0.7;
+const THAI_DIGITS = "๐๑๒๓๔๕๖๗๘๙";
 const DISTRICT_BIT = 1 << ANCHOR_FIELDS.indexOf("district");
 
 export interface TaggedSpan {
@@ -39,6 +48,63 @@ function runsOf(raw: string, tags: Uint8Array): TaggedSpan[] {
 		start = index;
 	}
 	return runs;
+}
+
+const NO_ADMINISTRATIVE: AdministrativeValues = { subdistrict: null, district: null, province: null, zipcode: null };
+const TAGGED_FIELDS:readonly [OutputLabel, AdministrativeField | "zipcode"][] = [
+	["POSTCODE", "zipcode"],
+	["PROVINCE", "province"],
+	["DISTRICT", "district"],
+	["SUBDISTRICT", "subdistrict"],
+];
+
+/**
+ * The resolved tuple's fields that the Tagger missed but the text writes on
+ * their own. A district is claimed before a same-named subdistrict, because
+ * one bare mention of such a name is the district.
+ */
+function untaggedMentions(
+	raw: string,
+	tuple: LocationTuple,
+	spans: readonly TaggedSpan[],
+): { values: Partial<AdministrativeValues>; claimed: Range[] } {
+	const text = raw.replace(/[๐-๙]/gu, (digit) => String(THAI_DIGITS.indexOf(digit)));
+	const taken: Range[] = spans.filter((span) => TAGGED_FIELDS.some(([label]) => label === span.label));
+	const values: Partial<AdministrativeValues> = {};
+	const claimed: Range[] = [];
+	for (const [label, field] of TAGGED_FIELDS) {
+		if (spans.some((span) => span.label === label)) continue;
+		const names = field === "province" && tuple.province === "กรุงเทพมหานคร"
+			? [tuple.province, "กรุงเทพ", "กทม"]
+			: [tuple[field]];
+		for (const name of names) {
+			const found = findStandalone(text, field, name, taken);
+			if (!found) continue;
+			values[field] = tuple[field];
+			taken.push(found);
+			claimed.push(found);
+			break;
+		}
+	}
+	return { values, claimed };
+}
+
+/** Address-detail pieces with the claimed administrative mentions cut out. */
+function addressOf(raw: string, spans: readonly TaggedSpan[], claimed: readonly Range[]): string {
+	const pieces: string[] = [];
+	for (const span of spans) {
+		if (span.label !== "ADDRESS_DETAIL") continue;
+		let start = span.start;
+		const cuts = claimed
+			.filter((range) => range.start < span.end && span.start < range.end)
+			.sort((left, right) => left.start - right.start);
+		for (const cut of [...cuts, { start: span.end, end: span.end }]) {
+			const piece = raw.slice(start, Math.max(start, cut.start)).replace(/^[\s,]+|[\s,]+$/gu, "");
+			if (piece) pieces.push(piece);
+			start = Math.max(start, cut.end);
+		}
+	}
+	return pieces.join(" ");
 }
 
 export function createTaggerParser(
@@ -122,10 +188,6 @@ export function createTaggerParser(
 			const spans = runsOf(raw, tags);
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
-			const address = spans
-				.filter((span) => span.label === "ADDRESS_DETAIL")
-				.map((span) => span.text)
-				.join(" ");
 			const subdistrict = text("SUBDISTRICT");
 			const district = text("DISTRICT");
 			const province = text("PROVINCE");
@@ -137,14 +199,16 @@ export function createTaggerParser(
 			};
 			const written = zipcode ? normalizePostcode(zipcode) : null;
 			const tuple = resolveTuple(anchored, texts, written);
+			const untagged = tuple ? untaggedMentions(raw, tuple, spans) : { values: {}, claimed: [] };
+			const address = addressOf(raw, spans, untagged.claimed);
 			const administrative = tuple
 				? {
-					subdistrict: subdistrict
-						? anchoredSubdistrict(tuple, subdistrict, written)
-						: null,
-					district: district ? tuple.district : null,
-					province: province ? tuple.province : null,
-					zipcode: zipcode ? tuple.zipcode : null,
+					...NO_ADMINISTRATIVE,
+					...untagged.values,
+					...(subdistrict ? { subdistrict: anchoredSubdistrict(tuple, subdistrict, written) } : {}),
+					...(district ? { district: tuple.district } : {}),
+					...(province ? { province: tuple.province } : {}),
+					...(zipcode ? { zipcode: tuple.zipcode } : {}),
 				}
 				: resolve({ ...texts, ...(zipcode ? { zipcode } : {}) });
 			const name = text("NAME");

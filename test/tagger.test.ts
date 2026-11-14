@@ -155,6 +155,15 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("a standalone administrative name the Tagger left untagged is still output", () => {
+		expect(parser.parse("น.ส.ชไมพร อินทร์แก้ว ปทุมธานี คลองหลวง คลองหก 12120 เลขที่ 8/45 หมู่บ้านพิมานรัตน์ ม.10 เบอร์ 0632287104").fields).toMatchObject({
+			subdistrict: "คลองหก",
+			district: "คลองหลวง",
+			province: "ปทุมธานี",
+			zipcode: "12120",
+		});
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});
