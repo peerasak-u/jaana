@@ -95,9 +95,9 @@ tags: phone-in-middle, oneline, no-spaces-around
 loc: บางขุนพรหม | พระนคร | กรุงเทพมหานคร | 10200
 tags: government, landline, mobile-second, department
 ---
-[[N:สำนักงานเขตพระนคร (ฝ่ายการคลัง)]]
+[[A:สำนักงานเขตพระนคร (ฝ่ายการคลัง)]]
 [[A:อาคาร 2 ชั้น 3 ถ.ประชาธิปไตย]] [[S:แขวงบางขุนพรหม]] [[D:เขตพระนคร]] [[V:กรุงเทพฯ]] [[Z:10200]]
-ติดต่อ [[P:0-2281-6609]] หรือมือถือคุณวัชระ 089-115-2347
+ติดต่อ [[P:0-2281-6609]] หรือมือถือ[[N:คุณวัชระ]] 089-115-2347
 ===
 loc: วังน้ำคู้ | เมืองพิษณุโลก | พิษณุโลก | 65230
 tags: correction, later-phone-wins, multi-bubble
@@ -649,9 +649,9 @@ Line ID: sakchai0891
 loc: บางปลา | บางพลี | สมุทรปราการ | 10540
 tags: warehouse, company, landline-extension-tor, mobile
 ---
-[[N:บริษัท โกลเด้นลีฟ โลจิสติกส์ จำกัด (คลังสินค้า B2)]]
+[[A:บริษัท โกลเด้นลีฟ โลจิสติกส์ จำกัด (คลังสินค้า B2)]]
 [[A:99/9 ม.1 ถ.บางพลี-ตำหรุ]] [[S:ต.บางปลา]] [[D:อ.บางพลี]] [[V:สมุทรปราการ]] [[Z:10540]]
-[[P:02-182-6440]] ต่อ 207 คุณเอ้ (คลัง)
+[[P:02-182-6440]] ต่อ 207 [[N:คุณเอ้ (คลัง)]]
 ===
 loc: บางพลับ | ปากเกร็ด | นนทบุรี | 11120
 tags: alias, postcode-before-house-lookalike, phone
@@ -781,7 +781,7 @@ tags: housing-estate, line-at-id, phone, juristic-note
 loc: สุริยวงศ์ | บางรัก | กรุงเทพมหานคร | 10500
 tags: hotel, guest, room-number, front-desk-landline
 ---
-[[N:Mr. Takeshi Mori (Room 1207)]]
+[[N:Mr. Takeshi Mori]] ([[A:Room 1207]])
 [[A:Silom Grand Hotel, 88 ถ.สุรวงศ์]] [[S:แขวงสุริยวงศ์]] [[D:เขตบางรัก]] [[V:กรุงเทพมหานคร]] [[Z:10500]]
 Front desk [[P:02-233-5180]]
 ===

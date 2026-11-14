@@ -7,7 +7,7 @@ import { featurize } from "../src/tagger/features";
 import { createTaggerParser } from "../src/tagger/parser";
 import { trainTagger } from "../src/tagger/train";
 import { loadChatPool } from "../bench/chat/load";
-import { poolOf } from "../bench/chat/markup";
+import { fnv1a, poolOf } from "../bench/chat/markup";
 
 function values(name: string): string[] {
 	const result: string[] = [];
@@ -35,8 +35,10 @@ const { locations } = await loadParserResources(gazetteerPath);
 const { split, extraTrain, extraDropped } = await loadTaggerPartitions(datasetPaths, extraPaths);
 const anchor = createAnchorer(locations);
 const withChat = Bun.argv.includes("--chat-train");
-const chat = withChat ? await loadChatPool("train", locations) : { records: [], issues: [] };
-if (chat.issues.length > 0) throw new Error(`${chat.issues.length} chat source issues. Run scripts/chat/check.ts`);
+const chatPercent = Number(value("--chat-percent", "100"));
+const loadedChat = withChat ? await loadChatPool("train", locations) : { records: [], issues: [] };
+if (loadedChat.issues.length > 0) throw new Error(`${loadedChat.issues.length} chat source issues. Run scripts/chat/check.ts`);
+const chat = { records: loadedChat.records.filter((record) => fnv1a(record.id) % 100 < chatPercent) };
 const synthetic = [...split.train, ...extraTrain];
 const trainRecords = withChat
 	? [...synthetic.filter((record) => poolOf(record.seedLocation) !== "bench"), ...chat.records]
