@@ -31,10 +31,20 @@ const PERSON_CUES = [
 	"คุณ", "K.", "K ", "Khun", "Mr", "Ms", "Mrs", "Miss", "attn", "Attn", "ATTN", "ติดต่อ", "นาย", "นาง",
 	"น.ส.", "นส.", "ครู", "ดร.", "ผอ.", "ภก.", "ภญ.", "ทพ.", "ทพญ.", "นพ.", "พญ.", "พี่", "น้อง", "ป้า",
 	"ลุง", "น้า", "ยาย", "แม่", "พ่อ", "เจ๊", "เฮีย", "โก", "เถ้าแก่", "ช่าง", "หมอ", "พระ", "หลวง",
-	"ผู้จัดการ", "จ.ส.", "ส.อ.", "ส.ต.", "ร.ต.", "พ.ต.", "ด.ต.",
+	"ผู้จัดการ", "จ.ส.", "ส.อ.", "ส.ต.", "ร.ต.", "พ.ต.", "ด.ต.", "Nong", "P'", "Phra", "Dr",
 ] as const;
 
-const ENGLISH_ORG = /\b(?:Co\.?,?\s*Ltd|Ltd|Company|Limited|Shop|Clinic|Studio|Bakery|Farm|Cafe|Coffee|Online|Supply|Hotel|Resort|Store|Trading|Logistics|School|Hospital)\b/u;
+const ENGLISH_ORG = /\b(?:Co\.?,?\s*Ltd|Ltd|Company|Limited|Shop|Clinic|Studio|Bakery|Farm|Caf[eé]|Coffee|Online|Supply|Hotel|Hostel|Homestay|Resort|Store|Trading|Logistics|School|Hospital|Cent(?:er|re)|University|Faculty|Dental|Group|Restaurant|Garage)(?![A-Za-z])/u;
+
+/** Words that mark an organisation wherever they sit in its name. */
+const ORG_WORD = /รีสอร์ท|โฮมสเตย์|เก[สซ]ท?ต์เฮ้?าส์|โฮสเทล|โรงแรม|การค้า|พาณิชย์|จำกัด|คาเฟ่|มินิมาร์ท|ซัพพลาย|เซอร์วิส|ก่อสร้าง|การเกษตร|การช่าง|กรุ๊ป|เทรดดิ้ง|เอ็นจิเนียริ่ง|การพิมพ์|เภสัช|ทันตกรรม|เบเกอรี่|ออนไลน์|แฟชั่น/u;
+
+/** Place words that open an address piece and are never a recipient. */
+const PLACE_START = /^(?:คอนโด|ตลาด|หอพัก|หมู่บ้าน|ทาวน์|แฟลต|อพาร์ท|อาคาร|ตึก|The\s|Condo|Village)/u;
+
+function marksOrg(text: string): boolean {
+	return (ENGLISH_ORG.test(text) || ORG_WORD.test(text)) && !startsWithAny(text, 0, PERSON_CUES);
+}
 
 /** Words that start the location part of an address piece after an organisation. */
 const ADDRESS_START = /^(?:[0-9๐-๙]|บ้านเลขที่|เลขที่|เลข|ม\.|ม\s?[0-9๐-๙]|หมู่|หอพัก|ซ\.|ซอย|ถ\.|ถนน|อาคาร|ตึก|ชั้น|ห้อง|ตรงข้าม|ใกล้|หลัง|ข้าง|ติด|ภายใน|ใน|หน้า|ตู้|ตำบล|ต\.|อ\.|อำเภอ|แขวง|เขต|จ\.|จังหวัด|นิคม|หมู่บ้าน|มบ\.|Room|Floor|Fl\.|Bldg|Building|No\.|Moo|Soi|Rd|Road)/u;
@@ -57,7 +67,7 @@ function orgCueAt(text: string, index: number): boolean {
 function firstOrgCue(text: string): number {
 	if (/^[A-Za-z]/u.test(text) && ENGLISH_ORG.test(text)) return 0;
 	for (let index = 0; index < text.length; index += 1) if (orgCueAt(text, index)) return index;
-	return ENGLISH_ORG.test(text) ? 0 : -1;
+	return marksOrg(text) ? 0 : -1;
 }
 
 function hasPersonCue(text: string): boolean {
@@ -109,7 +119,8 @@ export function splitName(text: string): { org: Range | null; person: Range | nu
 
 /** Length of the organisation that opens an address piece, or 0 when none does. */
 export function leadingOrgLength(text: string): number {
-	if (!orgCueAt(text, 0)) return 0;
+	const cued = orgCueAt(text, 0);
+	if (!cued && (ADDRESS_START.test(text) || PLACE_START.test(text))) return 0;
 	let end = text.length;
 	for (let index = 1; index < text.length; index += 1) {
 		const character = text[index]!;
@@ -136,7 +147,8 @@ export function leadingOrgLength(text: string): number {
 			break;
 		}
 	}
-	return trimRange(text, 0, end).end;
+	const org = trimRange(text, 0, end).end;
+	return cued || marksOrg(text.slice(0, org)) ? org : 0;
 }
 
 function shift(range: Range, by: number): Range {
@@ -173,8 +185,9 @@ export function recipientRelabel(record: Pick<DatasetRecord, "raw" | "spans">): 
 	if (name && person) {
 		for (const span of spans) {
 			if (span.label !== "ADDRESS_DETAIL") continue;
-			const length = leadingOrgLength(span.text);
-			const range = { start: span.start, end: span.start + length };
+			const lead = span.text.length - span.text.trimStart().length;
+			const length = leadingOrgLength(span.text.slice(lead));
+			const range = { start: span.start + lead, end: span.start + lead + length };
 			if (length > 0 && !nextTo(record.raw, name, range)) org.push(range);
 		}
 	}

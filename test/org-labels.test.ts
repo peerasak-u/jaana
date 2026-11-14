@@ -97,6 +97,12 @@ describe("derived organisation tags", () => {
 		expect(tagged(message, "NAME")).toEqual(["(คุณเอ ฝ่ายจัดซื้อ)"]);
 	});
 
+	test("an organisation word anywhere in a name marks it as an organisation", () => {
+		const message = "[[N:บ้านมุงวิวเขาโฮมสเตย์ (คุณกาญจนา)]] [[A:9 ม.2]]";
+		expect(tagged(message, "ORG")).toEqual(["บ้านมุงวิวเขาโฮมสเตย์"]);
+		expect(tagged("[[N:คุณสมชาย]]\n[[A:Silom Grand Hotel, 88 ถ.สุรวงศ์]]", "ORG")).toEqual(["Silom Grand Hotel"]);
+	});
+
 	test("a place word that is never a recipient stays address detail", () => {
 		expect(tagged("[[N:คุณสมชาย]] [[A:หอพักสุขใจ ห้อง 5]]", "ORG")).toEqual([]);
 	});
