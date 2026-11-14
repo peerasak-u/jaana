@@ -22,7 +22,8 @@ import {
 } from "./resolve";
 
 const MIN_SIBLING_RATIO = 0.7;
-const ROMANIZED = /^[^ก-๎]*[A-Za-z][^ก-๎]*$/u;
+const MIN_WORD_RATIO = 0.85;
+const ROMANIZED =/^[^ก-๎]*[A-Za-z][^ก-๎]*$/u;
 const THAI_DIGITS = "๐๑๒๓๔๕๖๗๘๙";
 const DISTRICT_BIT = 1 << ANCHOR_FIELDS.indexOf("district");
 
@@ -269,6 +270,39 @@ export function createTaggerParser(
 		return best;
 	}
 
+	/**
+	 * Shoppers write the subdistrict right before the district. When nothing
+	 * else gives the subdistrict, the last word of the address run that ends
+	 * just before the district mention on its line is the subdistrict if it
+	 * spells, or nearly spells, one of the district's subdistricts, as
+	 * `ม.3 บางเพียง บางบ่อ` for บางเพรียง.
+	 */
+	function subdistrictBefore(
+		raw: string,
+		tuple: LocationTuple,
+		address: readonly Range[],
+		district: Range,
+		zipcode: string | null,
+	): (Range & { name: string }) | null {
+		const range = address.find((candidate) =>
+			candidate.end <= district.start && /^[ \t]*$/u.test(raw.slice(candidate.end, district.start)));
+		if (!range) return null;
+		const word = /(?:^|\s)([ก-๎]+)$/u.exec(raw.slice(range.start, range.end))?.[1];
+		if (!word) return null;
+		const siblings = siblingTuples.get(`${tuple.province}\u0000${tuple.district}`) ?? [tuple];
+		const inPostcode = siblings.filter((sibling) => sibling.zipcode === zipcode);
+		let best: string | null = null;
+		let bestRatio = MIN_WORD_RATIO;
+		for (const sibling of inPostcode.length > 0 ? inPostcode : siblings) {
+			const ratio = similarityRatio(word, sibling.subdistrict) / 100;
+			if (ratio >= bestRatio) {
+				best = sibling.subdistrict;
+				bestRatio = ratio;
+			}
+		}
+		return best ? { start: range.end - word.length, end: range.end, name: best } : null;
+	}
+
 	const postcodeTuples = new Map<string, LocationTuple[]>();
 	for (const location of locations) {
 		const tuples = postcodeTuples.get(location.zipcode) ?? [];
@@ -346,11 +380,16 @@ export function createTaggerParser(
 			const straddled = tuple
 				? ADMINISTRATIVE_FIELDS.flatMap((field) => straddledMentions(raw, field, tuple[field], addressRanges))
 				: [];
-			const address = addressOf(raw, addressRanges, [...untagged.claimed, ...straddled]);
+			const districtSpan = fieldSpans.find((span) => span.label === "DISTRICT");
+			const before = tuple && districtSpan && !kept("SUBDISTRICT") && !untagged.values.subdistrict
+				? subdistrictBefore(raw, tuple, addressRanges, districtSpan, written)
+				: null;
+			const address = addressOf(raw, addressRanges, [...untagged.claimed, ...straddled, ...(before ? [before] : [])]);
 			const administrative = tuple
 				? {
 					...NO_ADMINISTRATIVE,
 					...untagged.values,
+					...(before ? { subdistrict: before.name } : {}),
 					...(subdistrict && kept("SUBDISTRICT")
 						? { subdistrict: anchoredSubdistrict(tuple, subdistrict, written) }
 						: {}),

@@ -285,6 +285,18 @@ describe("shipped tagger model", () => {
 		).fields.name).toBe("ด.ญ.ปริม ศรีสุข");
 	});
 
+	test("an unprefixed, misspelt subdistrict written before the district is the subdistrict", () => {
+		expect(parser.parse("นายอนันต์ ภูผา 0904417726 ห้อง 2-14 ม.3 บางเพียง บางบ่อ สมุทรปราการ 10560").fields).toMatchObject({
+			address: "ห้อง 2-14 ม.3",
+			subdistrict: "บางเพรียง",
+			district: "บางบ่อ",
+		});
+		expect(parser.parse("นายสมชาย 0812345678 45 ม.3 บ้านหนองผือ เมืองสรวง ร้อยเอ็ด 45220").fields).toMatchObject({
+			address: "45 ม.3 บ้านหนองผือ",
+			subdistrict: null,
+		});
+	});
+
 	test("every span reproduces its source offsets", () => {
 		const raw = "นายทดสอบ ใจดี 081-234-5678 บ้านเลขที่ 1 ปทุมวัน กรุงเทพมหานคร 10330";
 		const result = parser.parse(raw);
