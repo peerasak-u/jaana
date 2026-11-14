@@ -207,6 +207,14 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("a field written inside another field's tagged span is still output", () => {
+		expect(parser.parse("16ม4บ้านคำเขื่อนแก้ว คำเขื่อนแก้ว ชานุมาน อำนาจเจริญ / บุญส่ง 0879904411").fields).toMatchObject({
+			subdistrict: "คำเขื่อนแก้ว",
+			district: "ชานุมาน",
+			province: "อำนาจเจริญ",
+		});
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});

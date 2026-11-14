@@ -69,7 +69,9 @@ const TAGGED_FIELDS: readonly [OutputLabel, AdministrativeField | "zipcode"][] =
  * The resolved tuple's fields that the Tagger missed but the text writes on
  * their own. A district is claimed before a same-named subdistrict, because
  * one bare mention of such a name is the district. Misplaced spans count as
- * neither tagged nor free text.
+ * neither tagged nor free text, and a tagged span that holds its own name
+ * leaves the rest of its text free, as in a district span over
+ * `คำเขื่อนแก้ว ชานุมาน`.
  */
 function untaggedMentions(
 	raw: string,
@@ -78,18 +80,28 @@ function untaggedMentions(
 	misplaced: readonly TaggedSpan[],
 ): { values: Partial<AdministrativeValues>; claimed: Range[] } {
 	const text = raw.replace(/[๐-๙]/gu, (digit) => String(THAI_DIGITS.indexOf(digit)));
-	const taken: Range[] = [
-		...misplaced,
-		...spans.filter((span) => TAGGED_FIELDS.some(([label]) => label === span.label)),
-	];
+	const namesOf = (field: AdministrativeField | "zipcode"): string[] => field === "province"
+		? [tuple.province, ...(PROVINCE_ALIASES.get(tuple.province) ?? [])]
+		: [tuple[field]];
+	const taken: Range[] = [...misplaced];
+	for (const span of spans) {
+		const field = TAGGED_FIELDS.find(([label]) => label === span.label)?.[1];
+		if (field === undefined) continue;
+		let own: Range = span;
+		for (const name of namesOf(field)) {
+			const start = text.indexOf(name, span.start);
+			if (start >= 0 && start + name.length <= span.end) {
+				own = { start, end: start + name.length };
+				break;
+			}
+		}
+		taken.push(own);
+	}
 	const values: Partial<AdministrativeValues> = {};
 	const claimed: Range[] = [];
 	for (const [label, field] of TAGGED_FIELDS) {
 		if (spans.some((span) => span.label === label)) continue;
-		const names = field === "province"
-			? [tuple.province, ...(PROVINCE_ALIASES.get(tuple.province) ?? [])]
-			: [tuple[field]];
-		for (const name of names) {
+		for (const name of namesOf(field)) {
 			const found = findStandalone(text, field, name, taken);
 			if (!found) continue;
 			values[field] = tuple[field];
