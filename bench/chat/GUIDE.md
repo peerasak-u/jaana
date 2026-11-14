@@ -110,6 +110,9 @@ A field the shopper did not write gets no mark. Do not mark anything else.
   location (school, company, market, temple).
 - A landmark that says where the place is belongs to `A`, brackets included:
   `[[A:12 ม.4 (ตรงข้ามวัดป่า)]]`, `[[A:88/1 ซ.5 ใกล้เซเว่น]]`.
+- A sentence of chat that only describes the place in general words, before
+  the address itself is written, is not address detail: `ส่งที่ร้านป้าน้อยนะครับ
+  ร้านข้าวแกงข้างบ้านผม` stays unmarked when the address line follows.
 - An instruction to the courier does not: `โทรก่อนส่ง`, `ฝากไว้ที่ป้อมยาม`,
   `วางหน้าบ้านได้เลย`. Neither do order details, payment notes, or greetings.
 - `บ้านเลขที่` and `เลขที่` are part of the house number, so they stay in `A`.
