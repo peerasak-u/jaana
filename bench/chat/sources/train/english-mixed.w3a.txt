@@ -1,0 +1,1118 @@
+===
+loc: คำด้วง | บ้านผือ | อุดรธานี | 41160
+tags: alias, romanized-admin, foreign-buyer, multiline, tambon-amphoe
+---
+Hi, please ship to my wife's family house
+[[N:Mrs. Somjit Hansen]]
+[[A:112 Moo 7]]
+[[S:Tambon Kham Duang]], [[D:Amphoe Ban Phue]]
+[[V:Udon Thani]] [[Z:41160]]
+Tel [[P:086-417-2290]]
+Thank you!
+===
+loc: บางกระบือ | สามโคก | ปทุมธานี | 12160
+tags: english-detail, soi-moo-english, thai-admin, oneline
+---
+ส่ง [[N:Ploy Chanthara]] [[A:29/4 Moo 2 Soi Wat Bang Krabue]] [[S:ต.บางกระบือ]] [[D:อ.สามโคก]] [[V:ปทุมธานี]] [[Z:12160]] [[P:0918840326]] ค่ะ
+===
+loc: โพนงาม | หนองหาน | อุดรธานี | 41130
+tags: alias, romanized-admin, t-a-dot, school, contact-person, org
+---
+[[N:Phon Ngam Pittayakarn School (Teacher Daniel)]]
+[[A:88 Moo 1 Udon-Sakon Rd.]] [[S:T.Phon Ngam]] [[D:A.Nong Han]] [[V:Udon]] [[Z:41130]]
+[[P:0935512087]]
+===
+loc: ไชยวาน | ไชยวาน | อุดรธานี | 41290
+tags: english-name, thai-admin, no-postcode, chat-noise
+---
+hello ka 😊 address na
+[[N:Kittipong S.]]
+[[A:15 หมู่ 9 บ้านโนนสวรรค์]] [[S:ต.ไชยวาน]] [[D:อ.ไชยวาน]] [[V:อุดรธานี]]
+[[P:0624470193]]
+COD นะคะ
+===
+loc: โคกแฝด | หนองจอก | กรุงเทพมหานคร | 10530
+tags: alias, romanized-admin, khwaeng-khet, bangkok, marketplace, comma-separated, plus66
+---
+[[N:Arthit Wongsawat]] | [[P:(+66) 81 552 0947]]
+[[A:77/15 Moo 3, Soi Chueam Samphan 21]], [[S:Khwaeng Khok Faet]], [[D:Khet Nong Chok]], [[V:Bangkok]], [[Z:10530]]
+===
+loc: แม่พูล | ลับแล | อุตรดิตถ์ | 53130
+tags: english-detail, thai-admin, landmark, mixed-script
+---
+ที่อยู่ค่ะ
+[[N:คุณมาลี (May)]] [[P:0897120458]]
+[[A:41 Moo 5 Ban Mae Phun near the durian orchard]]
+[[S:ต.แม่พูล]] [[D:อ.ลับแล]] [[V:จ.อุตรดิตถ์]] [[Z:53130]]
+===
+loc: เชียงของ | นาน้อย | น่าน | 55150
+tags: alias, romanized-admin, homestay, org, no-person, oneline
+---
+Please send to [[N:Doi Phu Kha View Homestay]], [[A:9 Moo 4]], [[S:Chiang Khong]], [[D:Na Noi]], [[V:Nan]] [[Z:55150]] phone [[P:054 791 663]]
+===
+loc: กุดปลาค้าว | เขาวง | กาฬสินธุ์ | 46160
+tags: english-name, thai-admin, foreign-buyer, proxy
+---
+Hi I'm ordering for my mother-in-law, she doesn't speak English
+ชื่อ [[N:นางบุญเรือน ศรีวงศ์]]
+[[A:203 ม.6]] [[S:ต.กุดปลาค้าว]] [[D:อ.เขาวง]] [[V:กาฬสินธุ์]] [[Z:46160]]
+my number [[P:0659013374]] (I'm the one to call)
+===
+loc: นาชุมเห็ด | ย่านตาขาว | ตรัง | 92140
+tags: alias, romanized-admin, lowercase, phone-typed, no-prefix
+---
+name [[N:nattaya k.]]
+addr [[A:55/1 moo 8]] [[S:na chum het]] [[D:yan ta khao]] [[V:trang]] [[Z:92140]]
+tel [[P:0812230846]]
+===
+loc: ดอนตาล | ดอนตาล | มุกดาหาร | 49120
+tags: company, contact-person, attn-separate-line, english-org, thai-admin
+---
+[[A:Mekong Agro Supply Co., Ltd.
+101 Moo 2 ถ.ชยางกูร]]
+Attn: [[N:Khun Wanchai (purchasing)]]
+[[S:ต.ดอนตาล]] [[D:อ.ดอนตาล]] [[V:จ.มุกดาหาร]] [[Z:49120]]
+Tel. [[P:042-689-115]] ext. 204
+===
+loc: วังใหม่ | ปทุมวัน | กรุงเทพมหานคร | 10330
+tags: alias, romanized-admin, hotel, foreign-buyer, room, bangkok
+---
+Hello, I'm a guest at the hotel, please deliver to the front desk with my name
+[[N:Mr. Lukas Becker]] ([[A:Room 1412]])
+[[A:Siam Urban Suites Hotel, 88 Rama 1 Rd.]]
+[[S:Wang Mai]], [[D:Pathum Wan]], [[V:Bangkok]] [[Z:10330]]
+Mobile [[P:+66 92 418 7735]]
+===
+loc: หินมูล | บางเลน | นครปฐม | 73190
+tags: thai-english-mix, thai-admin, chat-noise, glued
+---
+ขอสั่ง 2 ชิ้นค่ะ size L
+ส่ง [[N:Jirapat (Jaa)]]
+[[A:66/3 ม.4 Soi Hin Mun 2]] [[S:ต.หินมูล]][[D:อ.บางเลน]] [[V:นครปฐม]][[Z:73190]]
+[[P:061-773-2051]] โอนแล้วนะคะ
+===
+loc: พืชอุดม | ลำลูกกา | ปทุมธานี | 12150
+tags: alias, romanized-admin, village, learning-centre, org, attn-same-line
+---
+[[N:Little Explorers Learning Centre / Ms. Aranya]]
+[[A:Baan Pruksa 28, 59/120 Moo 6, Lam Luk Ka Rd. Khlong 10]]
+[[S:Tambon Phuet Udom]] [[D:Amphoe Lam Luk Ka]] [[V:Pathum Thani]] [[Z:12150]]
+[[P:02-195-4482]]
+===
+loc: หนองค้างพลู | หนองแขม | กรุงเทพมหานคร | 10160
+tags: english-detail, thai-admin, bangkok, village, delivery-note, alias
+---
+[[N:Khun Bee]] [[P:095-226-8041]]
+[[A:Perfect Place Village, 34/89 Soi Phetkasem 81]] [[S:แขวงหนองค้างพลู]] [[D:เขตหนองแขม]] [[V:กทม]] [[Z:10160]]
+leave with security guard pls
+===
+loc: แม่ปะ | แม่สอด | ตาก | 63110
+tags: alias, romanized-admin, ngo, org, contact-person, foreign-buyer
+---
+Ship to:
+[[N:Borderland Children's Learning Center (Attn. Sarah Miller)]]
+[[A:222 Moo 2, Asia Highway]]
+[[S:Mae Pa]], [[D:Mae Sot]], [[V:Tak]] [[Z:63110]]
+Thailand
+[[P:0807715209]]
+===
+loc: บ้านพร้าว | ป่าพะยอม | พัทลุง | 93110
+tags: thai-english-mix, thai-admin, phone-first, no-postcode
+---
+[[P:0873301962]] [[N:Supachai]] ครับ
+[[A:7/2 Moo 11 บ้านควนสูง]] [[S:ต.บ้านพร้าว]] [[D:อ.ป่าพะยอม]] [[V:พัทลุง]]
+===
+loc: ห้วยสำราญ | กระสัง | บุรีรัมย์ | 31160
+tags: alias, romanized-admin, mixed-script, tambon-thai-prefix
+---
+ส่งของให้ [[N:Khun Rattana Boonmee]] นะคะ
+[[A:140 Moo 3 Ban Nong Waeng]] [[S:Tambon Huai Samran]] [[D:Amphur Krasang]] [[V:Buriram]] [[Z:31160]]
+[[P:089-554-7321]]
+===
+loc: บ้านกอก | จัตุรัส | ชัยภูมิ | 36130
+tags: english-name, thai-admin, cafe, shop, org, no-person
+---
+[[N:The Little Owl Cafe]]
+[[A:12 Moo 1 ถนนชัยภูมิ-นครสวรรค์]]
+[[S:ตำบลบ้านกอก]] [[D:อำเภอจัตุรัส]] [[V:จังหวัดชัยภูมิ]] [[Z:36130]]
+[[P:0844120576]]
+===
+loc: หนองโรง | หนองแค | สระบุรี | 18140
+tags: alias, romanized-admin, factory, company, attn-separate-line, industrial-estate
+---
+Deliver to:
+[[A:Sakura Precision (Thailand) Co., Ltd.
+Nong Khae Industrial Estate, 1/37 Moo 7 Phahonyothin Rd.]]
+[[S:T. Nong Rong]], [[D:A. Nong Khae]], [[V:Saraburi]] [[Z:18140]]
+Attn: [[N:Mr. Hiroshi Tanaka]], Engineering Dept.
+Tel [[P:036-373-920]]
+===
+loc: พญาวัง | บึงสามพัน | เพชรบูรณ์ | 67160
+tags: english-name, thai-admin, oneline, name-last
+---
+[[A:99 ม.10 บ้านพญาวัง]] [[S:ต.พญาวัง]] [[D:อ.บึงสามพัน]] [[V:เพชรบูรณ์]] [[Z:67160]] ผู้รับ [[N:Mr. Tom Wilkins]] [[P:0626654018]]
+===
+loc: บ้านยาง | ลำทะเมนชัย | นครราชสีมา | 30270
+tags: alias, romanized-admin, nickname-province, typing-errors
+---
+hi admin
+pls send to [[N:Noppadol]]
+[[A:5 Mu 12 Baan Yang]] [[S:Ban yang]] [[D:Lam Thamenchai]] [[V:Korat]] [[Z:30270]]
+[[P:0910026637]] thx
+===
+loc: ไทรม้า | เมืองนนทบุรี | นนทบุรี | 11000
+tags: english-detail, thai-admin, condo, soi-english
+---
+[[N:Ms. Jennifer Park]]
+[[A:The Line Condo Bldg B Fl.18 Rm 1807, 9 Soi Sai Ma 5]]
+[[S:ต.ไทรม้า]] [[D:อ.เมืองนนทบุรี]] [[V:นนทบุรี]] [[Z:11000]]
+[[P:0957281143]]
+===
+loc: บางแคเหนือ | บางแค | กรุงเทพมหานคร | 10160
+tags: alias, romanized-admin, bangkok, bkk, company, contact-person
+---
+[[N:Prime Print & Pack Co., Ltd. (Khun Tik - Accounting)]]
+[[A:456/7 Phetkasem Rd. Soi 63]]
+[[S:Bang Khae Nuea]] [[D:Bang Khae]] [[V:BKK]] [[Z:10160]]
+[[P:02-413-5576]]
+===
+loc: หนองค้า | พยุห์ | ศรีสะเกษ | 33230
+tags: thai-english-mix, thai-admin, bubbles, order-detail
+---
+want 3 boxes of the green tea
+[[N:Wipawee Thongdee]]
+[[A:32 หมู่ 4]] [[S:ต.หนองค้า]] [[D:อ.พยุห์]] [[V:ศรีสะเกษ]] [[Z:33230]]
+oh tel [[P:0849935016]] ka
+===
+loc: ท่าแซะ | ท่าแซะ | ชุมพร | 86140
+tags: alias, romanized-admin, same-name-twice, oneline, comma-separated
+---
+[[N:Mr. Chaiwat Kaewmanee]], [[A:61/2 Moo 1, Phetkasem Road]], [[S:Tha Sae]], [[D:Tha Sae]], [[V:Chumphon]], [[Z:86140]], [[P:077-541-258]]
+===
+loc: บางไทรป่า | บางเลน | นครปฐม | 73130
+tags: english-detail, thai-admin, farm, org, no-person
+---
+ส่งที่ฟาร์มค่ะ
+[[N:Green Valley Orchid Farm]]
+[[A:47 Moo 5]] [[S:ต.บางไทรป่า]] [[D:อ.บางเลน]] [[V:จ.นครปฐม]] [[Z:73130]]
+[[P:081 990 4157]] (office)
+===
+loc: ไทรน้อย | ไทรน้อย | นนทบุรี | 11150
+tags: alias, romanized-admin, written-once, district-only
+---
+Hello! ship to [[N:Kanokwan P.]]
+[[A:88/12 Moo 3 Soi Sai Noi 10]], [[D:Sai Noi]], [[V:Nonthaburi]] [[Z:11150]]
+call [[P:0627730418]] before deliver
+===
+loc: ดอนขมิ้น | ท่ามะกา | กาญจนบุรี | 71120
+tags: english-name, thai-admin, temple-landmark, nickname-province
+---
+[[N:Mr. Peter Collins (คุณปีเตอร์)]]
+[[A:150 Moo 2 behind Wat Don Khamin]]
+[[S:ต.ดอนขมิ้น]] [[D:อ.ท่ามะกา]] [[V:กาญจน์]] [[Z:71120]]
+[[P:0834410729]]
+===
+loc: เกษตรวิสัย | เกษตรวิสัย | ร้อยเอ็ด | 45150
+tags: alias, romanized-admin, school, attn-separate-line, org
+---
+Attn: [[N:Teacher Emily Rhodes]]
+[[A:Kaset Wisai Wittayakhom School, English Program Office, 300 Moo 1]]
+[[S:Tambon Kaset Wisai]], [[D:Amphoe Kaset Wisai]]
+[[V:Roi Et]] [[Z:45150]]
+[[P:043-589-216]]
+===
+loc: ลำต้อยติ่ง | หนองจอก | กรุงเทพมหานคร | 10530
+tags: english-name, thai-admin, bangkok, chat-noise, delivery-note
+---
+สวัสดีค่ะ ส่งที่นี่นะคะ 🙏
+[[N:Nong May]]
+[[A:19/5 Moo 9 Soi Lam Toi Ting]] [[S:แขวงลำต้อยติ่ง]] [[D:เขตหนองจอก]] [[V:กรุงเทพฯ]] [[Z:10530]]
+[[P:0986613402]]
+ห้ามส่ง Flash นะคะ
+===
+loc: บ้านควน | หลังสวน | ชุมพร | 86110
+tags: alias, romanized-admin, no-name, oneline, glued-postcode
+---
+send to [[A:23 M.6 Ban Khuan]] [[S:T.Ban Khuan]] [[D:A.Lang Suan]] [[V:Chumphon]][[Z:86110]] tel.[[P:0817726504]]
+===
+loc: สัมพันธวงศ์ | สัมพันธวงศ์ | กรุงเทพมหานคร | 10100
+tags: shop, english-org, contact-person, thai-admin, bangkok, chinatown
+---
+[[N:Golden Dragon Trading (Khun Lek)]]
+[[A:415 Yaowarat Rd.]] [[S:แขวงสัมพันธวงศ์]] [[D:เขตสัมพันธวงศ์]] [[V:กรุงเทพมหานคร]] [[Z:10100]]
+[[P:02-221-6038]]
+ขอใบเสร็จด้วยค่ะ
+===
+loc: โพธิ์ทอง | เสลภูมิ | ร้อยเอ็ด | 45120
+tags: alias, romanized-admin, no-phone, foreign-buyer, short
+---
+For [[N:Mr. Mark Evans]]: [[A:78 Moo 4]], [[S:Pho Thong]], [[D:Selaphum]], [[V:Roi-Et]] [[Z:45120]]. Phone in my profile.
+===
+loc: จันทรเกษม | จตุจักร | กรุงเทพมหานคร | 10900
+tags: office, company, attn-separate-line, english-org, thai-admin, bangkok, building, alias
+---
+To: [[A:BlueWave Digital Co., Ltd.
+12th Floor, Major Tower, 1839 Phahonyothin Rd.]]
+[[S:แขวงจันทรเกษม]] [[D:เขตจตุจักร]] [[V:กทม.]] [[Z:10900]]
+Attn [[N:K.Pim (HR)]]
+[[P:02 054 7719]]
+===
+loc: บางตาหงาย | บรรพตพิสัย | นครสวรรค์ | 60180
+tags: alias, romanized-admin, missing-subdistrict-prefix, older-buyer
+---
+Dear seller,
+Please post the book to
+[[N:Mrs. Duangjai Smith]]
+[[A:47 Moo 3]]
+[[S:Bang Ta Ngai]]
+[[D:Amphoe Banphot Phisai]]
+[[V:Changwat Nakhon Sawan]] [[Z:60180]]
+Many thanks, Duangjai
+===
+loc: ดอนมะโนรา | บางคนที | สมุทรสงคราม | 75120
+tags: english-detail, resort, org, no-person, thai-admin, nickname-province, alias
+---
+[[N:Baan Rim Klong Resort]] [[A:9/9 Moo 5]] [[S:ต.ดอนมะโนรา]] [[D:อ.บางคนที]] [[V:แม่กลอง]] [[Z:75120]] โทร [[P:0866029145]]
+===
+loc: เพหลา | คลองท่อม | กระบี่ | 81120
+tags: alias, romanized-admin, rubber-farm, landmark, foreign-buyer
+---
+Hi there, address for the parcel:
+[[N:Anna Lindqvist]]
+[[A:115 Moo 2, Phetkasem Rd. (opposite PTT station)]]
+[[S:Phe La]], [[D:Khlong Thom]], [[V:Krabi]] [[Z:81120]]
+[[P:+66 63 508 2194]]
+===
+loc: หัวถนน | คลองขลุง | กำแพงเพชร | 62120
+tags: english-name, thai-admin, facebook-name, no-subdistrict-prefix
+---
+[[N:Fon Fon Shop'z]] นะคะ
+[[A:61 หมู่ 7]] [[S:หัวถนน]] [[D:อ.คลองขลุง]] [[V:จ.กำแพงเพชร]] [[Z:62120]]
+[[P:0928841507]]
+===
+loc: ดู่ | กันทรารมย์ | ศรีสะเกษ | 33130
+tags: alias, romanized-admin, no-postcode, phone-dots, caps
+---
+NAME: [[N:SOMPONG JAIDEE]]
+ADDRESS: [[A:9 MOO 10 BAN DU]], [[S:TAMBON DU]], [[D:AMPHOE KANTHARAROM]], [[V:SISAKET]]
+PHONE: [[P:081.665.3207]]
+===
+loc: บ้านพานถม | พระนคร | กรุงเทพมหานคร | 10200
+tags: thai-english-mix, guesthouse, org, contact-person, thai-admin, bangkok, no-postcode
+---
+ส่งที่ [[N:Banglamphu Backpackers Hostel (คุณจอย reception)]]
+[[A:52 Soi Ban Phan Thom, Phra Sumen Rd.]]
+[[S:แขวงบ้านพานถม]] [[D:เขตพระนคร]] [[V:กรุงเทพฯ]]
+[[P:0614402879]]
+===
+loc: ป่าร่อน | กาญจนดิษฐ์ | สุราษฎร์ธานี | 84160
+tags: alias, romanized-admin, nickname-province, mixed-script
+---
+[[N:Khun Jeab]] [[P:089 870 3126]]
+[[A:28/1 Moo 9]] [[S:Pa Ron]] [[D:Kanchanadit]] [[V:Surat]] [[Z:84160]]
+ส่ง kerry นะคะ
+===
+loc: โนนหวาย | หนองวัวซอ | อุดรธานี | 41220
+tags: english-name, thai-admin, no-district-prefix, bubbles, correction
+---
+[[N:Wanida Moore]]
+[[A:166 ม.2 บ้านโนนหวาย]] [[S:ต.โนนหวาย]] [[D:หนองวัวซอ]] [[V:อุดรธานี]] [[Z:41220]]
+0845507132
+sorry wrong number, correct is [[P:0845507123]]
+===
+loc: ช่างปี่ | ศีขรภูมิ | สุรินทร์ | 32110
+tags: alias, romanized-admin, school, org, no-person
+---
+[[N:Chang Pi Community School]]
+[[A:1 Moo 1]] [[S:Tambon Chang Pi]] [[D:Amphoe Sikhoraphum]] [[V:Surin]] [[Z:32110]]
+Tel. [[P:044-561-308]]
+===
+loc: นาโพธิ์ | พิบูลมังสาหาร | อุบลราชธานี | 34110
+tags: english-detail, thai-admin, nickname-province, oneline, glued, alias
+---
+[[N:คุณปุ๋ย]][[P:0937705284]] [[A:84 Moo 3 Ban Na Pho]] [[S:ต.นาโพธิ์]] [[D:อ.พิบูลฯ]] [[V:อุบล]] [[Z:34110]]
+===
+loc: บางปูใหม่ | เมืองสมุทรปราการ | สมุทรปราการ | 10280
+tags: alias, romanized-admin, factory, company, contact-person, industrial-estate, extension
+---
+[[N:Thai Kosei Electronics Co., Ltd. / Ms. Napat (Warehouse)]]
+[[A:Bangpoo Industrial Estate, 699 Moo 4 Soi 6C, Sukhumvit Rd.]]
+[[S:Bang Pu Mai]], [[D:Mueang Samut Prakan]], [[V:Samut Prakan]] [[Z:10280]]
+Tel: [[P:02-709-4433]] ext 118
+===
+loc: ท่าเรือ | ท่ามะกา | กาญจนบุรี | 71130
+tags: english-name, thai-admin, no-phone, short
+---
+[[N:Ms. Yuki Tanaka]] [[A:56/3 Moo 1]] [[S:ต.ท่าเรือ]] [[D:อ.ท่ามะกา]] [[V:กาญจนบุรี]] [[Z:71130]]
+===
+loc: ศรีสุข | สำโรงทาบ | สุรินทร์ | 32170
+tags: alias, romanized-admin, proxy, foreign-buyer, delivery-note
+---
+I'm buying as a gift for my girlfriend's dad
+Receiver: [[N:Mr. Prasit Srisuk]]
+[[A:71 Moo 6]] [[S:T.Si Suk]] [[D:A.Samrong Thap]] [[V:Surin]] [[Z:32170]]
+his phone [[P:0857142069]] (he speaks Thai only, maybe call in Thai pls)
+===
+loc: ช่องแคบ | พบพระ | ตาก | 63160
+tags: english-detail, thai-admin, clinic, org, no-person, mixed-script
+---
+[[N:Phop Phra Health Clinic]]
+[[A:120 Moo 5 Asia 12 Road]]
+[[S:ต.ช่องแคบ]] [[D:อ.พบพระ]] [[V:ตาก]] [[Z:63160]]
+[[P:055-508-271]]
+===
+loc: คำแมด | ซำสูง | ขอนแก่น | 40170
+tags: alias, romanized-admin, oneline, no-separators, phone-first
+---
+[[P:0954417820]] [[N:Thanakorn]] [[A:33 Moo 2]] [[S:Kham Maet]] [[D:Sam Sung]] [[V:Khon Kaen]] [[Z:40170]] krub
+===
+loc: ลำสินธุ์ | ศรีนครินทร์ | พัทลุง | 93000
+tags: thai-english-mix, thai-admin, chat-noise, order-detail, cod
+---
+CF ค่ะ สีขาว M x2
+[[N:Natcha]] / [[P:088-217-6643]]
+[[A:7 Moo 8 Ban Lam Sin]] [[S:ต.ลำสินธุ์]] [[D:อ.ศรีนครินทร์]] [[V:พัทลุง]] [[Z:93000]]
+เก็บปลายทาง
+===
+loc: สวนพริกไทย | เมืองปทุมธานี | ปทุมธานี | 12000
+tags: alias, romanized-admin, marketplace, plus66, comma-separated, village
+---
+[[N:Pornthip Kaewsai]] [[P:(+66)862190475]]
+[[A:111/52 Moo 4, The Connect Village]], [[S:Suan Phrik Thai]], [[D:Mueang Pathum Thani]], [[V:Pathum Thani]], [[Z:12000]]
+===
+loc: นาด่าน | สุวรรณคูหา | หนองบัวลำภู | 39270
+tags: english-name, thai-admin, temple, monk, org
+---
+ถวาย [[N:Phra Michael Thitavaro]]
+[[A:Wat Pa Na Dan (Forest monastery) Moo 3]]
+[[S:ต.นาด่าน]] [[D:อ.สุวรรณคูหา]] [[V:หนองบัวลำภู]] [[Z:39270]]
+[[P:0812274590]] (lay supporter)
+===
+loc: บางพลัด | บางพลัด | กรุงเทพมหานคร | 10700
+tags: alias, romanized-admin, bangkok, condo, khet-only
+---
+[[N:Chris Taylor]]
+[[A:Lumpini Place Pinklao, Bldg A, Rm 2210, 1 Charan Sanitwong 88]]
+[[D:Khet Bang Phlat]], [[V:Bangkok]] [[Z:10700]]
+LINE me before arrive [[P:0644827715]]
+===
+loc: บางปะกอก | ราษฎร์บูรณะ | กรุงเทพมหานคร | 10140
+tags: english-detail, thai-admin, bangkok, soi-english, missing-province
+---
+[[N:คุณอ้อม]] โทร [[P:0899041236]]
+[[A:22/14 Soi Suksawat 30 Suksawat Rd.]] [[S:แขวงบางปะกอก]] [[D:เขตราษฎร์บูรณะ]] [[Z:10140]]
+===
+loc: ทุ่งเขาหลวง | ทุ่งเขาหลวง | ร้อยเอ็ด | 45170
+tags: alias, romanized-admin, written-once, no-name, short
+---
+[[A:105 Moo 7]] [[D:Thung Khao Luang]] [[V:Roi Et]] [[Z:45170]] / [[P:0827783310]]
+===
+loc: สบแม่ข่า | หางดง | เชียงใหม่ | 50230
+tags: english-detail, thai-admin, coworking, company, attn-separate-line
+---
+[[A:Nimbus Craft Studio Co., Ltd.
+88/3 Moo 6, Hang Dong-Samoeng Rd.]]
+[[S:ต.สบแม่ข่า]] [[D:อ.หางดง]] [[V:จ.เชียงใหม่]] [[Z:50230]]
+c/o [[N:Khun Nok]]
+[[P:053-441-907]]
+===
+loc: ดงลาน | สีชมพู | ขอนแก่น | 40220
+tags: alias, romanized-admin, caps, spaces, typo-roman
+---
+To [[N:MISS SUDA PHOMMA]]
+[[A:24  MOO  5]]  [[S:T . DONG LAN]]  [[D:A . SI CHOMPHU]]  [[V:KHONKAEN]]  [[Z:40220]]
+[[P:08 7531 0294]]
+===
+loc: แพรกษา | เมืองสมุทรปราการ | สมุทรปราการ | 10280
+tags: english-detail, thai-admin, village, nickname-province, alias
+---
+ส่ง [[N:Bank]] นะครับ [[P:0631185542]]
+[[A:Casa City Village, 199/408 Moo 5 Theparak Rd.]] [[S:ต.แพรกษา]] [[D:อ.เมือง]] [[V:ปากน้ำ]] [[Z:10280]]
+===
+loc: ดาวเรือง | เมืองสระบุรี | สระบุรี | 18000
+tags: alias, romanized-admin, hotel, org, contact-person, attn-brackets
+---
+[[N:Saraburi Grand Hotel & Convention (Attn: Sales Manager Khun Oil)]]
+[[A:50/1 Phahonyothin Rd.]]
+[[S:Dao Rueang]], [[D:Mueang Saraburi]], [[V:Saraburi]] [[Z:18000]]
+[[P:036-213-480]]
+===
+loc: นาหว้า | จะนะ | สงขลา | 90130
+tags: english-name, thai-admin, no-postcode, muslim-name
+---
+[[N:Mr. Abdullah Samae]]
+[[A:12 ม.3 บ้านนาหว้า]] [[S:ต.นาหว้า]] [[D:อ.จะนะ]] [[V:สงขลา]]
+[[P:0872204618]]
+===
+loc: สามพระยา | ชะอำ | เพชรบุรี | 76120
+tags: alias, romanized-admin, hotel, resort, org, attn-separate-line, foreign-buyer
+---
+Good morning! Please deliver the banners to our venue:
+[[A:Seabreeze Cha-am Beach Resort, Events Office
+222/1 Moo 4, Phetkasem Rd. km 210]]
+[[S:Tambon Sam Phraya]], [[D:Amphoe Cha-am]], [[V:Phetchaburi]] [[Z:76120]]
+Attn. [[N:Mr. Daniel Hartmann]]
+Mobile [[P:0815529068]]
+Thanks a lot
+===
+loc: จิกดู่ | หัวตะพาน | อำนาจเจริญ | 37240
+tags: english-name, thai-admin, oneline, name-last, no-phone
+---
+[[A:58 ม.5 บ้านจิกดู่]] [[S:ต.จิกดู่]] [[D:อ.หัวตะพาน]] [[V:อำนาจเจริญ]] [[Z:37240]] ชื่อ [[N:Jenny Saengchai]]
+===
+loc: บ้านโพธิ์ | เสนา | พระนครศรีอยุธยา | 13110
+tags: alias, romanized-admin, ayutthaya, romanized-short-province, glued
+---
+[[N:Khun Mod]] [[P:0896652037]]
+[[A:14/2 Moo 3]] [[S:T.Ban Pho]] [[D:A.Sena]] [[V:Ayutthaya]][[Z:13110]]
+===
+loc: โนนรัง | เขื่องใน | อุบลราชธานี | 34320
+tags: thai-english-mix, thai-admin, chat-noise, emoji, english-labels
+---
+Name : [[N:นางสาวสุนิสา บุญมา]]
+Address : [[A:91 หมู่ 2]] [[S:ต.โนนรัง]] [[D:อ.เขื่องใน]] [[V:จ.อุบลราชธานี]] [[Z:34320]]
+Tel : [[P:0631907745]]
+ขอบคุณค่ะ 💕
+===
+loc: ขามทะเลสอ | ขามทะเลสอ | นครราชสีมา | 30280
+tags: alias, romanized-admin, same-name-twice, school, contact-person, slash
+---
+[[N:Kham Thale So School / Mr. James Cooper (English Dept.)]]
+[[A:239 Moo 1]], [[S:Kham Thale So]], [[D:Kham Thale So]], [[V:Nakhon Ratchasima]] [[Z:30280]]
+[[P:044-397-125]]
+===
+loc: ค้อใหญ่ | พนมไพร | ร้อยเอ็ด | 45140
+tags: english-detail, thai-admin, no-subdistrict, landmark
+---
+ส่งให้ [[N:Mae Nuan]] ค่ะ
+[[A:36 Moo 9 next to 7-Eleven]] [[D:อ.พนมไพร]] [[V:ร้อยเอ็ด]] [[Z:45140]]
+[[P:0819953372]]
+===
+loc: ตาลเนิ้ง | สว่างแดนดิน | สกลนคร | 47240
+tags: alias, romanized-admin, oneline, comma-separated, romanized-name
+---
+[[N:Siriporn Thongsuk]], [[A:150 Moo 6]], [[S:Tan Noeng]], [[D:Sawang Daen Din]], [[V:Sakon Nakhon]] [[Z:47240]], [[P:0864401582]]
+===
+loc: นางรำ | ประทาย | นครราชสีมา | 30180
+tags: english-detail, thai-admin, nickname-province, no-postcode, alias
+---
+[[N:Pongsak]] krub
+[[P:0926675014]]
+[[A:3 Moo 11 Ban Nang Ram]] [[S:ต.นางรำ]] [[D:อ.ประทาย]] [[V:โคราช]]
+===
+loc: บางหลวง | เมืองปทุมธานี | ปทุมธานี | 12000
+tags: alias, romanized-admin, company, contact-person, two-line-org, tax-invoice
+---
+Please issue tax invoice + ship to:
+[[N:Riverside Learning Hub Co., Ltd. (Khun Aor, Admin)]]
+[[A:88 Moo 2, Pathum Thani-Bang Len Rd.]]
+[[S:Bang Luang]], [[D:Muang Pathumthani]], [[V:Pathumthani]] [[Z:12000]]
+Tax ID 0135562014782 (HQ)
+Tel [[P:02-581-9036]]
+===
+loc: บางตะไนย์ | ปากเกร็ด | นนทบุรี | 11120
+tags: english-name, thai-admin, village, soi-english, foreign-buyer
+---
+Deliver to [[N:Mr. Kevin O'Brien]]
+[[A:Chaiyapruek Village, 59/77 Soi 9, Moo 1]]
+[[S:ต.บางตะไนย์]] [[D:อ.ปากเกร็ด]] [[V:จ.นนทบุรี]] [[Z:11120]]
+if I am out my wife can sign, tel [[P:0815074399]]
+===
+loc: ศาลเจ้าพ่อเสือ | พระนคร | กรุงเทพมหานคร | 10200
+tags: alias, romanized-admin, bangkok, shop, org, no-person, oneline
+---
+[[N:Sao Ching Cha Paper Shop]] [[A:63 Tanao Rd.]] [[S:San Chao Pho Suea]] [[D:Phra Nakhon]] [[V:Bangkok]] [[Z:10200]] [[P:02-622-1504]]
+===
+loc: เมืองสรวง | เมืองสรวง | ร้อยเอ็ด | 45220
+tags: thai-english-mix, thai-admin, same-name-twice, lowercase-name
+---
+ที่อยู่จ้า
+[[N:nong fern]]
+[[A:77 ม.1]] [[S:ต.เมืองสรวง]] [[D:อ.เมืองสรวง]] [[V:ร้อยเอ็ด]] [[Z:45220]]
+[[P:0846628107]]
+===
+loc: เขาทอง | เมืองกระบี่ | กระบี่ | 81000
+tags: alias, romanized-admin, resort, org, no-person, marketplace, plus66
+---
+[[N:Khao Thong Hillside Villas]] | [[P:(+66) 75 636 214]]
+[[A:199 Moo 1, Krabi-Ao Luek Road]], [[S:Khao Thong]], [[D:Mueang Krabi]], [[V:Krabi]], [[Z:81000]]
+===
+loc: บางเขน | เมืองนนทบุรี | นนทบุรี | 11000
+tags: english-detail, thai-admin, condo, amphoe-mueang-short, thai-name
+---
+[[N:น.ส.อรอุมา จันทร์หอม]] [[P:0972215846]]
+[[A:Plum Condo Rattanathibet, Bldg C, Fl. 7, Rm. 712]]
+[[S:ต.บางเขน]] [[D:อ.เมือง]] [[V:นนทบุรี]] [[Z:11000]]
+===
+loc: ห้วยข้าวก่ำ | จุน | พะเยา | 56150
+tags: alias, romanized-admin, no-phone, desktop, formal
+---
+Recipient: [[N:Mr. Somsak Inthawong]]
+Address: [[A:46 Moo 3, Ban Huai Khao Kam]]
+[[S:Tambon Huai Khao Kam]]
+[[D:Amphoe Chun]]
+[[V:Phayao]] [[Z:56150]]
+===
+loc: ร่มเย็น | เชียงคำ | พะเยา | 56110
+tags: english-detail, thai-admin, coffee-farm, org, no-person, no-postcode
+---
+[[N:Rom Yen Coffee Farm]] [[A:125 Moo 8]] [[S:ต.ร่มเย็น]] [[D:อ.เชียงคำ]] [[V:จ.พะเยา]] [[P:0899170354]]
+===
+loc: บางแก้ว | เมืองอ่างทอง | อ่างทอง | 14000
+tags: alias, romanized-admin, typo-roman, missing-district
+---
+[[N:Khun Tukta]]
+[[A:19/7 Mooo 5]] [[S:Bang Kaew]] [[V:Ang Thong]] [[Z:14000]]
+tel [[P:0866721408]]
+===
+loc: ชุมแสง | กระสัง | บุรีรัมย์ | 31160
+tags: thai-english-mix, thai-admin, chat-noise, payment
+---
+โอนแล้วค่ะ 590฿
+[[N:Jum]] [[P:0617702391]]
+[[A:102 Moo 4 Ban Chum Saeng]] [[S:ต.ชุมแสง]] [[D:อ.กระสัง]] [[V:บุรีรัมย์]] [[Z:31160]]
+===
+loc: โหรา | อาจสามารถ | ร้อยเอ็ด | 45160
+tags: alias, romanized-admin, oneline, abbrev-roman, no-name
+---
+[[A:70 M.8]] [[S:T.Hora]] [[D:A.At Samat]] [[V:Roi Et]] [[Z:45160]] [[P:0937281145]]
+===
+loc: เกาะสะบ้า | เทพา | สงขลา | 90150
+tags: english-detail, thai-admin, homestay, org, contact-person
+---
+[[N:Saba Island Homestay (Bang Yusof)]]
+[[A:5 Moo 2]] [[S:ต.เกาะสะบ้า]] [[D:อ.เทพา]] [[V:สงขลา]] [[Z:90150]]
+[[P:0890056721]]
+===
+loc: บ้านฝาง | กระนวน | ขอนแก่น | 40170
+tags: alias, romanized-admin, foreign-buyer, proxy, multiline
+---
+Hi! This is for my friend's grandmother, I'll pay.
+Name: [[N:Grandma Thongkham]]
+[[A:41 Moo 10 Ban Fang]]
+[[S:Ban Fang]], [[D:Kranuan]], [[V:Khon Kaen]]
+[[Z:40170]]
+Contact: [[P:0632297510]] (Mint)
+===
+loc: ท่าบอน | ระโนด | สงขลา | 90140
+tags: english-detail, thai-admin, no-prefix, oneline
+---
+[[N:Arif]] [[A:12/1 Moo 6]] [[S:ท่าบอน]] [[D:ระโนด]] [[V:สงขลา]] [[Z:90140]] [[P:062-551-9087]]
+===
+loc: รอบเวียง | เมืองเชียงราย | เชียงราย | 57000
+tags: alias, romanized-admin, cafe, shop, attn-separate-line, english-org
+---
+Please send to the shop:
+[[A:Little Lanna Bakery, 390/2 Banphaprakan Rd.]]
+[[S:Rob Wiang]], [[D:Mueang Chiang Rai]], [[V:Chiang Rai]] [[Z:57000]]
+Attn: [[N:Khun Fah]]
+[[P:053-711-648]]
+===
+loc: ปากหมัน | ด่านซ้าย | เลย | 42120
+tags: english-name, thai-admin, missing-postcode, delivery-note
+---
+[[N:Ms. Laura Bennett]]
+[[A:17 หมู่ 3]] [[S:ต.ปากหมัน]] [[D:อ.ด่านซ้าย]] [[V:จ.เลย]]
+[[P:0843310786]]
+Please call before delivery, I'm teaching during the day
+===
+loc: วังหลุม | ตะพานหิน | พิจิตร | 66150
+tags: alias, romanized-admin, mixed-script, thai-name
+---
+[[N:สมหญิง แก้วกล้า]]
+[[A:63 Moo 4]] [[S:Wang Lum]] [[D:Taphan Hin]] [[V:Phichit]] [[Z:66150]]
+[[P:0879935108]]
+===
+loc: เชียงรากน้อย | สามโคก | ปทุมธานี | 12160
+tags: english-detail, thai-admin, university, dormitory, room
+---
+[[N:Pakorn W. (Student)]]
+[[A:Sunflower Dorm, Building 3, Room 315, 9 Moo 1 Tiwanon Rd.]]
+[[S:ต.เชียงรากน้อย]] [[D:อ.สามโคก]] [[V:ปทุมธานี]] [[Z:12160]]
+[[P:0957713024]]
+===
+loc: บ้านม่วง | สังคม | หนองคาย | 43160
+tags: alias, romanized-admin, foreign-buyer, retiree, long
+---
+Hello, I live in a small village near the Mekong. Please write the address in English because my postman knows me :)
+[[N:Mr. Graham Hughes]]
+[[A:88 Moo 2 Ban Muang]]
+[[S:T. Ban Muang]], [[D:A. Sangkhom]], [[V:Nong Khai]] [[Z:43160]]
+[[P:0614490537]]
+===
+loc: ทุ่งวัดดอน | สาทร | กรุงเทพมหานคร | 10120
+tags: english-detail, thai-admin, bangkok, office-tower, company, attn-separate-line
+---
+[[A:Lumen Legal Advisory Ltd.
+Floor 21, Sathorn Square Tower, 98 North Sathorn Rd.]]
+[[S:แขวงทุ่งวัดดอน]] [[D:เขตสาทร]] [[V:กรุงเทพมหานคร]] [[Z:10120]]
+Attn: [[N:Ms. Wanwisa (Reception)]]
+[[P:02-108-4421]]
+===
+loc: หนองเอี่ยน | คำชะอี | มุกดาหาร | 49110
+tags: alias, romanized-admin, oneline, lowercase, glued
+---
+[[N:k.aom]] [[P:0827749163]] [[A:22 moo7]] [[S:t.nong ian]] [[D:a.kham cha-i]] [[V:mukdahan]][[Z:49110]]
+===
+loc: ละเอาะ | น้ำเกลี้ยง | ศรีสะเกษ | 33130
+tags: thai-english-mix, thai-admin, school, org, no-person, typo-province
+---
+[[N:Ban La Or School]] ([[A:Moo 1]])
+[[S:ต.ละเอาะ]] [[D:อ.น้ำเกลี้ยง]] [[V:ศรีษะเกษ]] [[Z:33130]]
+[[P:045-826-110]]
+===
+loc: ตลาดกรวด | เมืองอ่างทอง | อ่างทอง | 14000
+tags: alias, romanized-admin, marketplace, bilingual-components, plus66
+---
+[[N:Thanyarat Meesuk]] | [[P:(+66) 89 301 7746]]
+[[A:47/5 Moo 2, Soi Talat Kruat]]
+[[V:Ang Thong/ อ่างทอง]], [[D:Mueang Ang Thong/ เมืองอ่างทอง]], [[S:Talat Kruat/ ตลาดกรวด]], [[Z:14000]]
+===
+loc: ลาดกระทิง | สนามชัยเขต | ฉะเชิงเทรา | 24160
+tags: english-detail, thai-admin, nickname-province, alias, chat-noise
+---
+แอดคะ ส่งของที่นี่นะ
+[[N:Khun Pla]] [[A:18 Moo 7 Ban Lat Krathing]] [[S:ต.ลาดกระทิง]] [[D:อ.สนามชัยเขต]] [[V:แปดริ้ว]] [[Z:24160]]
+[[P:0855416209]] ขอบคุณค่า
+===
+loc: พิมาน | นาแก | นครพนม | 48130
+tags: alias, romanized-admin, autocorrect, typo-roman
+---
+[[N:Wichai Phonsri]]
+[[A:66 Moon 4]] [[S:Tambon Phiman]] [[D:Amphibian Na Kae]] [[V:Nakhon Phanom]] [[Z:48130]]
+[[P:0884126703]]
+(sorry autocorrect lol, Moo 4 / Amphoe)
+===
+loc: แม่นาจาง | แม่ลาน้อย | แม่ฮ่องสอน | 58120
+tags: english-detail, thai-admin, ngo, org, contact-person, hill-village
+---
+[[N:Hill Tribe Learning Centre (Kru Naw)]]
+[[A:Ban Huai Hom, Moo 6]]
+[[S:ต.แม่นาจาง]] [[D:อ.แม่ลาน้อย]] [[V:จ.แม่ฮ่องสอน]] [[Z:58120]]
+[[P:0817840265]]
+===
+loc: ศิลาแลง | ปัว | น่าน | 55120
+tags: alias, romanized-admin, oneline, no-name, thai-labels
+---
+ที่อยู่ [[A:120 Moo 9]] [[S:Sila Laeng]] [[D:Pua]] [[V:Nan]] [[Z:55120]] เบอร์ [[P:0935502148]]
+===
+loc: บางจาก | ภาษีเจริญ | กรุงเทพมหานคร | 10160
+tags: english-detail, thai-admin, bangkok, two-phones, soi-english
+---
+[[N:Kwan]] 🌸
+[[A:25/8 Soi Phetkasem 30]] [[S:แขวงบางจาก]] [[D:เขตภาษีเจริญ]] [[V:กรุงเทพ]] [[Z:10160]]
+[[P:0917728350]] / 0823304419
+===
+loc: ท่าเสา | ไทรโยค | กาญจนบุรี | 71150
+tags: alias, romanized-admin, resort, raft-house, org, attn-separate-line
+---
+[[A:Kwai Noi Floating Rafts, 1 Moo 3]]
+[[S:Tha Sao]], [[D:Sai Yok]], [[V:Kanchanaburi]] [[Z:71150]]
+c/o [[N:Ms. Jirawan]]
+[[P:0865109472]]
+pls ship by EMS, Kerry doesn't reach the pier
+===
+loc: ในเมือง | เมืองพิจิตร | พิจิตร | 66000
+tags: thai-english-mix, thai-admin, school, org, contact-person, english-program
+---
+[[N:Pichit Wittaya School, EP Office (Mr. Ryan Lee)]]
+[[A:45 Bueng Si Fai Rd.]] [[S:ต.ในเมือง]] [[D:อ.เมืองพิจิตร]] [[V:พิจิตร]] [[Z:66000]]
+[[P:056-611-284]]
+===
+loc: โนนเต็ง | คง | นครราชสีมา | 30260
+tags: alias, romanized-admin, nickname-province, thai-digits-phone
+---
+ชื่อ [[N:Jeerawat]]
+[[A:7 Moo 12]] [[S:Non Teng]] [[D:Khong]] [[V:Korat]] [[Z:30260]]
+[[P:๐๘๙ ๒๒๑ ๔๕๗๓]]
+===
+loc: บ้านชี | บ้านหมี่ | ลพบุรี | 15180
+tags: english-name, thai-admin, no-postcode, glued, mobile
+---
+[[N:Mr.Somchai Lee]][[P:0832256190]]
+[[A:56ม.4]][[S:ต.บ้านชี]][[D:อ.บ้านหมี่]][[V:ลพบุรี]]
+===
+loc: บางโฉลง | บางพลี | สมุทรปราการ | 10540
+tags: alias, romanized-admin, warehouse, company, contact-person, industrial
+---
+[[N:Asia Pacific Freight Solutions Co., Ltd. (Attn. Khun Benz, Warehouse 3)]]
+[[A:99/9 Moo 15, Bangna-Trad Rd. km 18]]
+[[S:Bang Chalong]], [[D:Bang Phli]], [[V:Samut Prakan]] [[Z:10540]]
+[[P:02-338-1902]]
+===
+loc: บางตลาด | ปากเกร็ด | นนทบุรี | 11120
+tags: english-detail, thai-admin, condo, line-id-noise
+---
+[[N:Ms. Mia Chen (คุณเมีย)]]
+[[A:Supalai Loft Chaengwattana, Rm 1503]]
+[[S:ต.บางตลาด]] [[D:อ.ปากเกร็ด]] [[V:นนทบุรี]] [[Z:11120]]
+Line: miachen88
+Tel. [[P:0902237718]]
+===
+loc: มวกเหล็ก | มวกเหล็ก | สระบุรี | 18180
+tags: alias, romanized-admin, dairy-farm, homestay, org, no-person, same-name-twice
+---
+[[N:Muak Lek Valley Farmstay]], [[A:333 Moo 9, Mittraphap Rd.]], [[S:Muak Lek]], [[D:Muak Lek]], [[V:Saraburi]] [[Z:18180]]. [[P:036-341-772]]
+===
+loc: โคกขมิ้น | พลับพลาชัย | บุรีรัมย์ | 31250
+tags: thai-english-mix, thai-admin, bubbles, phone-later
+---
+[[N:Toey]]
+[[A:94 Moo 3]] [[S:ต.โคกขมิ้น]] [[D:อ.พลับพลาชัย]] [[V:บุรีรัมย์]] [[Z:31250]]
+อ้อ เบอร์ [[P:0618804379]] นะคะ
+===
+loc: พุคา | บ้านหมี่ | ลพบุรี | 15110
+tags: alias, romanized-admin, foreign-buyer, army-wife, landmark
+---
+Ship to [[N:Mrs. Kanya Robinson]]
+[[A:12 Moo 7 (near Phu Kha temple)]]
+[[S:Tambon Phu Kha]], [[D:Amphoe Ban Mi]], [[V:Lopburi]] [[Z:15110]]
+[[P:+66-81-447-2305]]
+===
+loc: บ้าหวี | หาดสำราญ | ตรัง | 92120
+tags: english-name, thai-admin, oneline, no-subdistrict-prefix
+---
+ส่ง [[N:Rizal Bin Ahmad]] [[A:15 Moo 4]] [[S:บ้าหวี]] [[D:อ.หาดสำราญ]] [[V:ตรัง]] [[Z:92120]] tel [[P:0865543290]]
+===
+loc: ภูสิงห์ | สหัสขันธ์ | กาฬสินธุ์ | 46140
+tags: alias, romanized-admin, museum, org, contact-person
+---
+[[N:Phu Sing Dino Learning Park (Education Team)]]
+[[A:200 Moo 2]]
+[[S:Phu Sing]], [[D:Sahatsakhan]], [[V:Kalasin]] [[Z:46140]]
+Tel [[P:043-871-014]]
+===
+loc: เมืองเปลือย | ศรีสมเด็จ | ร้อยเอ็ด | 45000
+tags: english-detail, thai-admin, missing-phone, desktop
+---
+Recipient: [[N:Somkiat Phanphet]]
+Address: [[A:31 Moo 5, Ban Mueang Plueai]]
+[[S:ต.เมืองเปลือย]] [[D:อ.ศรีสมเด็จ]] [[V:จ.ร้อยเอ็ด]] [[Z:45000]]
+===
+loc: ลานหอย | บ้านด่านลานหอย | สุโขทัย | 64140
+tags: alias, romanized-admin, oneline, comma-separated, caps
+---
+[[N:PIMCHANOK R.]], [[A:72 MOO 1]], [[S:LAN HOI]], [[D:BAN DAN LAN HOI]], [[V:SUKHOTHAI]] [[Z:64140]] TEL [[P:0897713028]]
+===
+loc: น้ำเชี่ยว | แหลมงอบ | ตราด | 23120
+tags: english-detail, thai-admin, homestay, org, no-person, english-note
+---
+[[N:Nam Chiao Mangrove Homestay]]
+[[A:9 Moo 1 Ban Nam Chiao]] [[S:ต.น้ำเชี่ยว]] [[D:อ.แหลมงอบ]] [[V:ตราด]] [[Z:23120]]
+[[P:0819437265]]
+any day except Monday ok
+===
+loc: เกาะใหญ่ | กระแสสินธุ์ | สงขลา | 90270
+tags: alias, romanized-admin, no-postcode, short, mixed-script
+---
+[[N:คุณอัมพร]] [[A:44 Moo 3]] [[S:Ko Yai]] [[D:Krasae Sin]] [[V:Songkhla]] [[P:0841106629]]
+===
+loc: บุ่งไหม | วารินชำราบ | อุบลราชธานี | 34190
+tags: english-detail, thai-admin, university, dormitory, nickname-province, alias
+---
+[[N:Nattapong (Golf)]]
+[[A:Ubon Uni Dorm 5, Room 208, 85 Sathonlamark Rd.]]
+[[S:ต.บุ่งไหม]] [[D:อ.วาริน]] [[V:อุบลฯ]] [[Z:34190]]
+[[P:0928815067]]
+===
+loc: อ้อมเกร็ด | ปากเกร็ด | นนทบุรี | 11120
+tags: alias, romanized-admin, coworking, company, slash, contact-person
+---
+[[N:Koh Kret Craft Studio / Khun Mint]]
+[[A:12/6 Moo 2 Soi Om Kret 3]]
+[[S:Om Kret]] [[D:Pak Kret]] [[V:Nonthaburi]] [[Z:11120]]
+[[P:0816649302]]
+===
+loc: คลองหนึ่ง | คลองหลวง | ปทุมธานี | 12120
+tags: english-detail, thai-admin, science-park, company, attn-separate-line, extension
+---
+Deliver to:
+[[A:Thailand Science Park, INC1 Building, Room 214
+NovaBio Labs Co., Ltd.
+111 Phahonyothin Rd.]]
+[[S:ต.คลองหนึ่ง]] [[D:อ.คลองหลวง]] [[V:ปทุมธานี]] [[Z:12120]]
+Attn: [[N:Dr. Kittisak]]
+Tel [[P:02-564-7120]] ext. 3214
+===
+loc: หนองแซง | หนองแซง | สระบุรี | 18170
+tags: alias, romanized-admin, written-once, no-subdistrict, foreign-buyer
+---
+[[N:Mr. Ahmed Khan]] [[P:0954478210]]
+[[A:3/5 Moo 6]] [[D:Nong Saeng]] [[V:Saraburi]] [[Z:18170]]
+===
+loc: บางหมาก | เมืองชุมพร | ชุมพร | 86000
+tags: english-name, thai-admin, amphoe-mueang-short, landmark
+---
+[[N:Khun Nattawut]] 📞 [[P:081-370-5526]]
+[[A:57/2 Moo 4 opposite Bang Mak market]] [[S:ต.บางหมาก]] [[D:อ.เมือง]] [[V:ชุมพร]] [[Z:86000]]
+===
+loc: แพรกศรีราชา | สรรคบุรี | ชัยนาท | 17140
+tags: alias, romanized-admin, mixed-script, tambon-amphoe-thai-name
+---
+ส่งให้ [[N:Mae Somsri]] นะคะ
+[[A:88 Moo 1]] [[S:Phraek Si Racha]], [[D:Sankhaburi]], [[V:Chai Nat]] [[Z:17140]]
+[[P:0866102397]]
+===
+loc: หนองยาง | เฉลิมพระเกียรติ | นครราชสีมา | 30230
+tags: thai-english-mix, thai-admin, cod, no-name
+---
+COD ka
+[[A:21 Moo 8 Ban Nong Yang]] [[S:ต.หนองยาง]] [[D:อ.เฉลิมพระเกียรติ]] [[V:นครราชสีมา]] [[Z:30230]]
+[[P:0874402136]]
+===
+loc: หนองแรด | เทิง | เชียงราย | 57230
+tags: alias, romanized-admin, temple, org, contact-person, monk
+---
+[[N:Wat Nong Raet (Phra Ajahn Somkid)]]
+[[A:1 Moo 3]] [[S:Nong Raet]], [[D:Thoeng]], [[V:Chiang Rai]] [[Z:57230]]
+[[P:0817045523]]
+===
+loc: ปะเหลียน | ปะเหลียน | ตรัง | 92180
+tags: english-detail, thai-admin, same-name-twice, no-name
+---
+[[A:92 Moo 5, Ban Pa Lian]] [[S:ต.ปะเหลียน]] [[D:อ.ปะเหลียน]] [[V:ตรัง]] [[Z:92180]]
+[[P:0849011257]]
+===
+loc: บางรักพัฒนา | บางบัวทอง | นนทบุรี | 11110
+tags: alias, romanized-admin, village, marketplace, comma-separated, masked-phone-noise
+---
+[[N:Chutima Rakdee]] [[P:(+66) 95 337 1804]]
+[[A:88/219 Moo 6, Pruksa Ville 71, Soi Bang Rak Phatthana 2]], [[S:Bang Rak Phatthana]], [[D:Bang Bua Thong]], [[V:Nonthaburi]], [[Z:11110]]
+Order #2411093384721
+===
+loc: คูหาสวรรค์ | เมืองพัทลุง | พัทลุง | 93000
+tags: english-detail, thai-admin, shop, org, no-person, oneline
+---
+[[N:Thale Noi Surf & Bike Shop]] [[A:23/4 Ramet Rd.]] [[S:ต.คูหาสวรรค์]] [[D:อ.เมืองพัทลุง]] [[V:พัทลุง]] [[Z:93000]] [[P:074-612-338]]
+===
+loc: ศาลารีไทย | เสาไห้ | สระบุรี | 18160
+tags: alias, romanized-admin, typo-roman, no-name
+---
+pls ship here
+[[A:61 Moo 3]] [[S:Sala Ri Thai]] [[D:Sao Hai]] [[V:Saraburee]] [[Z:18160]]
+call [[P:0896620413]]
+===
+loc: โนนสะอาด | หนองเรือ | ขอนแก่น | 40210
+tags: thai-english-mix, thai-admin, nickname-name, chat-noise, emoji
+---
+ส่งที่นี่ค่า 👇👇
+[[N:Kanittha (Ploy)]]
+[[A:108 หมู่ 5 บ้านโนนสะอาด]]
+[[S:ต.โนนสะอาด]] [[D:อ.หนองเรือ]] [[V:ขอนแก่น]] [[Z:40210]]
+[[P:062 448 1937]]
+ขอบคุณค่ะ ❤️
+===
+loc: บางขนุน | บางกรวย | นนทบุรี | 11130
+tags: alias, romanized-admin, learning-centre, org, attn-separate-line, two-phones
+---
+[[A:Bright Minds Tutoring Centre, 2nd floor, 45/18 Moo 4 Bang Kruai-Sai Noi Rd.]]
+[[S:Bang Khanun]], [[D:Bang Kruai]], [[V:Nonthaburi]] [[Z:11130]]
+Attn: [[N:Teacher Nan]]
+Tel [[P:02-447-8813]], 0814427705
+===
+loc: กุดแห่ | นากลาง | หนองบัวลำภู | 39170
+tags: english-name, thai-admin, no-district, foreign-buyer
+---
+Hello I want 1 set
+[[N:Mr. Jonas Weber]]
+[[A:17 Moo 2]] [[S:ต.กุดแห่]] [[V:หนองบัวลำภู]] [[Z:39170]]
+[[P:0638017724]]
+===
+loc: น้ำสุด | พัฒนานิคม | ลพบุรี | 15140
+tags: alias, romanized-admin, oneline, sunflower-farm, org, no-person
+---
+[[N:Sunny Fields Farm Cafe]] [[A:250 Moo 9]] [[S:T.Nam Sut]] [[D:A.Phatthana Nikhom]] [[V:Lop Buri]] [[Z:15140]] T. [[P:0815562380]]
+===
+loc: นาเพียง | ชุมแพ | ขอนแก่น | 40130
+tags: english-detail, thai-admin, phone-first, no-postcode, glued
+---
+[[P:0897014526]]
+[[N:Somporn]]
+[[A:11/1 Moo 6 Ban Na Phiang]] [[S:ต.นาเพียง]] [[D:อ.ชุมแพ]] [[V:จ.ขอนแก่น]]
+===
+loc: ทุ่งพระยา | สนามชัยเขต | ฉะเชิงเทรา | 24160
+tags: alias, romanized-admin, long-romanization, tambon-amphoe, formal
+---
+[[N:Mr. Anucha Phrommin]]
+[[A:58 Moo 11]], [[S:Tambon Thung Phraya]]
+[[D:Amphoe Sanam Chai Khet]], [[V:Chachoengsao]] [[Z:24160]]
+[[P:0842295587]]
+===
+loc: บ่อแก้ว | สะเมิง | เชียงใหม่ | 50250
+tags: english-detail, thai-admin, eco-camp, org, contact-person, foreign-buyer
+---
+[[N:Pine Forest Eco Camp (Ms. Claire Dubois)]]
+[[A:99 Moo 4, Samoeng-Wat Chan Rd.]]
+[[S:ต.บ่อแก้ว]] [[D:อ.สะเมิง]] [[V:เชียงใหม่]] [[Z:50250]]
+[[P:0631125890]]
+signal is weak up here, pls send SMS
+===
+loc: บางรักใหญ่ | บางบัวทอง | นนทบุรี | 11110
+tags: alias, romanized-admin, no-postcode, english-labels
+---
+Name: [[N:Pakpoom Sae-Lim]]
+Addr: [[A:39/4 Moo 1 Soi Wat Bang Rak Yai]]
+Subdistrict: [[S:Bang Rak Yai]]
+District: [[D:Bang Bua Thong]]
+Province: [[V:Nonthaburi]]
+Tel: [[P:0918823046]]
+===
+loc: หนองสามวัง | หนองเสือ | ปทุมธานี | 12170
+tags: english-name, thai-admin, khlong, landmark, oneline, alias
+---
+[[N:Mr. Paul Grant]] [[P:0866471209]] [[A:21 Moo 3 Khlong 11 near the bridge]] [[S:ต.หนองสามวัง]] [[D:อ.หนองเสือ]] [[V:ปทุมฯ]] [[Z:12170]]
+===
+loc: เวียงชัย | พยัคฆภูมิพิสัย | มหาสารคาม | 44110
+tags: alias, romanized-admin, school, org, contact-person, long-district
+---
+[[N:Wiang Chai Witthaya School (Ms. Rebecca Hall, Foreign Teacher)]]
+[[A:64 Moo 1]]
+[[S:Wiang Chai]], [[D:Phayakkhaphum Phisai]], [[V:Maha Sarakham]] [[Z:44110]]
+===
+loc: สามเสนนอก | ห้วยขวาง | กรุงเทพมหานคร | 10310
+tags: english-detail, thai-admin, bangkok, condo, alias, bkk-short
+---
+[[N:Khun Gift]] [[P:0952284716]]
+[[A:Noble Revolve Ratchada 2, 27th Fl., Unit 27/118, Ratchadaphisek Rd.]] [[S:แขวงสามเสนนอก]] [[D:เขตห้วยขวาง]] [[V:กทม]] [[Z:10310]]
+===
+loc: ดู่ลาด | ทรายมูล | ยโสธร | 35170
+tags: alias, romanized-admin, lowercase, oneline, no-postcode
+---
+send pls -> [[N:noi]] [[A:9 moo 2]] [[S:du lat]] [[D:sai mun]] [[V:yasothon]] [[P:0860917743]]
+===
+loc: ศาลาธรรมสพน์ | ทวีวัฒนา | กรุงเทพมหานคร | 10170
+tags: english-detail, thai-admin, bangkok, international-school, org, attn-separate-line
+---
+[[A:Greenfield International School, Admissions Office
+99 Phutthamonthon Sai 3 Rd.]]
+[[S:แขวงศาลาธรรมสพน์]] [[D:เขตทวีวัฒนา]] [[V:กรุงเทพฯ]] [[Z:10170]]
+Attn [[N:Ms. Olivia Grant]]
+[[P:02-888-1450]]
+===
+loc: ศาลาครุ | หนองเสือ | ปทุมธานี | 12170
+tags: alias, romanized-admin, plant-nursery, shop, org, no-person
+---
+[[N:Green Thumb Plant Nursery]]
+[[A:77 Moo 8, Khlong 12 Rd.]]
+[[S:Sala Khru]], [[D:Nong Suea]], [[V:Pathum Thani]] [[Z:12170]]
+[[P:0817736054]]
+===
+loc: เขาใหญ่ | ชะอำ | เพชรบุรี | 76120
+tags: english-name, thai-admin, villa, name-last, landmark
+---
+[[A:Villa 12, Palm Hills, 3/45 Moo 5 (behind Palm Hills Golf)]] [[S:ต.เขาใหญ่]] [[D:อ.ชะอำ]] [[V:เพชรบุรี]] [[Z:76120]]
+receiver [[N:Mrs. Helen Ward]] [[P:0893372516]]
+===
+loc: จรเข้บัว | ลาดพร้าว | กรุงเทพมหานคร | 10230
+tags: alias, romanized-admin, bangkok, khwaeng-khet, soi-deep
+---
+[[N:Jakkrit Boonsong]]
+[[A:15/202 Soi Lat Phrao 71 Yaek 8]]
+[[S:Khwaeng Chorakhe Bua]], [[D:Khet Lat Phrao]], [[V:Bangkok]] [[Z:10230]]
+[[P:0814452973]]
+===
+loc: บางแค | บางแค | กรุงเทพมหานคร | 10160
+tags: english-detail, thai-admin, bangkok, mall, shop, contact-person
+---
+[[N:Happy Paws Pet Shop (คุณแนน)]]
+[[A:The Mall Bang Khae, 2nd Fl. Rm 2B-14, 275 Phetkasem Rd.]]
+[[S:แขวงบางแค]] [[D:เขตบางแค]] [[V:กรุงเทพมหานคร]] [[Z:10160]]
+[[P:0947702318]]
+===
+loc: บางเมืองใหม่ | เมืองสมุทรปราการ | สมุทรปราการ | 10270
+tags: alias, romanized-admin, oneline, comma-separated, mueang-short
+---
+[[N:Wasan T.]], [[A:301/7 Moo 9, Soi Thetsaban Bang Mueang 12]], [[S:Bang Mueang Mai]], [[D:Muang]], [[V:Samutprakarn]], [[Z:10270]], [[P:0985531247]]
+===
+loc: อีง่อง | จตุรพักตรพิมาน | ร้อยเอ็ด | 45180
+tags: english-name, thai-admin, proxy, foreign-buyer, thai-receiver
+---
+Sending a gift to my nanny's family
+Receiver: [[N:นางทองใบ ศรีจันทร์]]
+[[A:66 หมู่ 4]] [[S:ต.อีง่อง]] [[D:อ.จตุรพักตรพิมาน]] [[V:ร้อยเอ็ด]] [[Z:45180]]
+Her son's phone [[P:0872261934]]
+===
+loc: ธวัชบุรี | ธวัชบุรี | ร้อยเอ็ด | 45170
+tags: alias, romanized-admin, hospital, org, contact-person, department
+---
+[[N:Thawat Buri Hospital, Pharmacy Dept. (Khun Jiraporn)]]
+[[A:150 Moo 1]], [[S:T.Thawat Buri]], [[D:A.Thawat Buri]], [[V:Roi Et]] [[Z:45170]]
+[[P:043-569-020]]
+===
+loc: โซง | น้ำยืน | อุบลราชธานี | 34260
+tags: english-detail, thai-admin, no-phone, short
+---
+[[N:Kru Daeng]] [[A:42 Moo 7]] [[S:ต.โซง]] [[D:อ.น้ำยืน]] [[V:อุบลราชธานี]] [[Z:34260]]
+===
+loc: เคร็ง | ชะอวด | นครศรีธรรมราช | 80180
+tags: alias, romanized-admin, nickname-province, mixed-script
+---
+[[N:Bang Kamon]] [[P:0846613278]]
+[[A:88 Moo 2 Ban Khreng]] [[S:Khreng]] [[D:Cha-uat]] [[V:Nakhon Si]] [[Z:80180]]
+ส่งไปรษณีย์นะครับ
+===
+loc: กบินทร์ | กบินทร์บุรี | ปราจีนบุรี | 25110
+tags: english-detail, thai-admin, factory, company, attn-separate-line, industrial
+---
+[[A:Eastern Packaging Industry Co., Ltd.
+304 Industrial Park, 129 Moo 7]]
+[[S:ต.กบินทร์]] [[D:อ.กบินทร์บุรี]] [[V:ปราจีนบุรี]] [[Z:25110]]
+Attn: [[N:Mr. Suthep (QC)]]
+[[P:037-204-551]]
+===
+loc: ลำผักชี | หนองจอก | กรุงเทพมหานคร | 10530
+tags: alias, romanized-admin, bangkok, mosque-landmark, foreign-buyer
+---
+Hi! Address:
+[[N:Fatima Rahman]]
+[[A:41/3 Moo 6 near Darul Ihsan Mosque]]
+[[S:Lam Phak Chi]], [[D:Nong Chok]], [[V:Bkk.]] [[Z:10530]]
+[[P:0657721983]]
+===
+loc: แพรกษาใหม่ | เมืองสมุทรปราการ | สมุทรปราการ | 10280
+tags: english-detail, thai-admin, village, typo-province, no-name
+---
+[[A:Pruksa Ville 46, 88/12 Moo 2]] [[S:ต.แพรกษาใหม่]] [[D:อ.เมืองสมุทรปราการ]] [[V:สมุทรปรากาน]] [[Z:10280]]
+[[P:0827034416]]
+===
+loc: มะกอกเหนือ | ควนขนุน | พัทลุง | 93150
+tags: alias, romanized-admin, no-district, no-postcode, short
+---
+[[N:Khun Rewat]] [[A:21 Moo 5]] [[S:Makok Nuea]] [[V:Phatthalung]] [[P:0895501873]]
+===
+loc: หานโพธิ์ | เขาชัยสน | พัทลุง | 93130
+tags: thai-english-mix, thai-admin, school, org, no-person, brackets-moo
+---
+[[N:Ban Han Pho School]] ([[A:Moo 4]]) [[S:ต.หานโพธิ์]] [[D:อ.เขาชัยสน]] [[V:จ.พัทลุง]] [[Z:93130]] Tel. [[P:074-695-207]]
+===
+loc: หัวหมาก | บางกะปิ | กรุงเทพมหานคร | 10240
+tags: alias, romanized-admin, bangkok, condo, foreign-buyer, mixed-script
+---
+[[N:Ms. Sophie Martin]]
+[[A:condo Lumpini Ville Ramkhamhaeng 24, Bldg B, Rm 1105]] [[S:แขวงหัวหมาก]] [[D:Bang Kapi]] [[V:Bangkok]] [[Z:10240]]
+[[P:0961147258]]
+===
+loc: ม่วงหวาน | น้ำพอง | ขอนแก่น | 40310
+tags: english-detail, thai-admin, sugar-mill, company, contact-person, slash
+---
+[[N:Nam Phong Sugar Co., Ltd. / Khun Weerapon (Store)]]
+[[A:333 Moo 3]] [[S:ต.ม่วงหวาน]] [[D:อ.น้ำพอง]] [[V:ขอนแก่น]] [[Z:40310]]
+[[P:043-441-260]]
+===
+loc: แหลมฟ้าผ่า | พระสมุทรเจดีย์ | สมุทรปราการ | 10290
+tags: alias, romanized-admin, seafood-restaurant, shop, org, no-person, oneline
+---
+[[N:Fa Pha Seafood Restaurant]], [[A:9/9 Moo 1 Suk Sawat Rd.]], [[S:Laem Fa Pha]], [[D:Phra Samut Chedi]], [[V:Samut Prakan]] [[Z:10290]] / [[P:02-819-4473]]
+===
+loc: วัดราชบพิธ | พระนคร | กรุงเทพมหานคร | 10200
+tags: english-name, thai-admin, bangkok, shophouse, missing-postcode
+---
+[[N:Ms. Grace Wong (คุณเกรซ)]]
+[[A:12 Fueang Nakhon Rd.]] [[S:แขวงวัดราชบพิธ]] [[D:เขตพระนคร]] [[V:กรุงเทพฯ]]
+[[P:0917745302]]
+===
+loc: เนินเพิ่ม | นครไทย | พิษณุโลก | 65120
+tags: alias, romanized-admin, caps, desktop, no-phone
+---
+To: [[N:MR. BOONCHU KHAMDEE]]
+[[A:57 MOO 13]], [[S:TAMBON NOEN PHOEM]], [[D:AMPHOE NAKHON THAI]], [[V:PHITSANULOK]] [[Z:65120]]
