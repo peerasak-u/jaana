@@ -221,10 +221,22 @@ function untaggedMentions(
 const PUNCTUATION_GAP = /^[ \t]*,[ \t,]*$/u;
 
 /**
- * Address detail from the given ranges in text order, touching or
- * overlapping ranges merged, with the claimed administrative mentions cut out.
+ * A branch designation written outside brackets is a tax-invoice note, not
+ * address detail. In brackets after a company it belongs to the name.
  */
-export function addressOf(raw: string, ranges: readonly Range[], claimed: readonly Range[]): string {
+const BRANCH_NOTE = /(?<!\([ \t]*)(?:สาขาที่[ \t]*[0-9๐-๙]+|สนญ\.|สำนักงานใหญ่)/gu;
+
+function branchNotes(raw: string): Range[] {
+	return [...raw.matchAll(BRANCH_NOTE)].map((match) => ({ start: match.index, end: match.index + match[0].length }));
+}
+
+/**
+ * Address detail from the given ranges in text order, touching or
+ * overlapping ranges merged, with the claimed administrative mentions and
+ * branch notes cut out.
+ */
+export function addressOf(raw: string, ranges: readonly Range[], administrative: readonly Range[]): string {
+	const claimed = [...administrative, ...branchNotes(raw)];
 	const merged: Range[] = [];
 	for (const range of [...ranges].sort((left, right) => left.start - right.start)) {
 		const last = merged[merged.length - 1];

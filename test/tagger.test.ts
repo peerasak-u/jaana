@@ -104,6 +104,15 @@ describe("address composition", () => {
 		expect(addressOf(raw, ranges(raw, "English Dept.", "โรงเรียนสาทร 31 ซ.งามดูพลี"), [])).toBe(raw);
 	});
 
+	test("a branch note outside brackets is not address detail, one in brackets is", () => {
+		const raw = "บริษัท ท่าเรือคอนกรีตอัดแรง จำกัด สนญ.\n28 หมู่ 6";
+		expect(addressOf(raw, [{ start: 0, end: raw.length }], [])).toBe("บริษัท ท่าเรือคอนกรีตอัดแรง จำกัด 28 หมู่ 6");
+		const numbered = "บริษัท ริเวอร์ไซด์ จำกัด สาขาที่ 00003 2150/7 ถนนเจริญกรุง";
+		expect(addressOf(numbered, [{ start: 0, end: numbered.length }], [])).toBe("บริษัท ริเวอร์ไซด์ จำกัด 2150/7 ถนนเจริญกรุง");
+		const bracketed = "บริษัท สระบุรีวัสดุภัณฑ์ จำกัด (สำนักงานใหญ่) 12 ม.3";
+		expect(addressOf(bracketed, [{ start: 0, end: bracketed.length }], [])).toBe(bracketed);
+	});
+
 	test("pieces interrupted by other text are joined with one space", () => {
 		const raw = "45 ม.5 โทร 0891234567 ซ.วัดดอน";
 		expect(addressOf(raw, ranges(raw, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
