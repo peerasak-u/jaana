@@ -5,6 +5,30 @@ const SINGLE_RUN_BIT = [0, 1, 2, 0, 4, 8, 16, 32];
 const MASK_COUNT = 64;
 const STATE_COUNT = TAG_COUNT * MASK_COUNT;
 const UNREACHABLE = -(2 ** 30);
+const BINDS_TO_PREVIOUS = /[ะ-ฺๅ็-๎]/u;
+const BINDS_TO_NEXT = /[เ-ไ]/u;
+const LATIN = /[A-Za-z]/u;
+
+/**
+ * Positions that must carry the previous position's tag: inside a Thai
+ * character cluster (a vowel or tone mark, or after a leading vowel) and
+ * inside a Latin word. No gold span edge in the datasets falls there.
+ */
+export function boundJoins(raw: string): Uint8Array {
+	const joins = new Uint8Array(raw.length);
+	for (let index = 1; index < raw.length; index += 1) {
+		const previous = raw[index - 1]!;
+		const current = raw[index]!;
+		if (
+			BINDS_TO_PREVIOUS.test(current) ||
+			BINDS_TO_NEXT.test(previous) ||
+			(LATIN.test(previous) && LATIN.test(current))
+		) {
+			joins[index] = 1;
+		}
+	}
+	return joins;
+}
 
 export function emissionScores(
 	features: readonly Int32Array[],
@@ -25,11 +49,13 @@ export function emissionScores(
 
 /**
  * Best tag sequence in which every single-run tag appears as at most one
- * contiguous run. The state is (current tag, set of single-run tags used).
+ * contiguous run, and the tag never changes where `joins` is set. The state
+ * is (current tag, set of single-run tags used).
  */
 export function decodeTags(
 	features: readonly Int32Array[],
 	model: Pick<CompiledTaggerModel, "weights" | "transitions">,
+	joins: Uint8Array = new Uint8Array(features.length),
 ): Uint8Array {
 	const n = features.length;
 	const tags = new Uint8Array(n);
@@ -44,6 +70,7 @@ export function decodeTags(
 	}
 	for (let position = 1; position < n; position += 1) {
 		current.fill(UNREACHABLE);
+		const joined = joins[position] === 1;
 		for (let tag = 0; tag < TAG_COUNT; tag += 1) {
 			const bit = SINGLE_RUN_BIT[tag]!;
 			for (let mask = 0; mask < MASK_COUNT; mask += 1) {
@@ -52,7 +79,7 @@ export function decodeTags(
 				let best = previous[stay]! + transitions[tag * TAG_COUNT + tag]!;
 				let from = stay;
 				const sourceMask = mask & ~bit;
-				for (let source = 0; source < TAG_COUNT; source += 1) {
+				for (let source = 0; source < TAG_COUNT && !joined; source += 1) {
 					if (source === tag) continue;
 					const sourceBit = SINGLE_RUN_BIT[source]!;
 					if ((sourceMask & sourceBit) !== sourceBit) continue;

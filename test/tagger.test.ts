@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
-import { decodeTags } from "../src/tagger/decode";
+import { boundJoins, decodeTags } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -85,6 +85,13 @@ describe("single-run decoding", () => {
 	test("ADDRESS_DETAIL may form several runs", () => {
 		const tags = decodeTags(sequence, modelPreferring([ADDRESS, OTHER]));
 		expect([...tags]).toEqual([ADDRESS, ADDRESS, OTHER, OTHER, ADDRESS, ADDRESS]);
+	});
+
+	test("a span edge never splits a Thai character cluster or a Latin word", () => {
+		const raw = "ร้านKhun";
+		const features = [0, 0, 1, 1, 0, 1, 1, 1].map((feature) => Int32Array.of(feature));
+		const tags = decodeTags(features, modelPreferring([NAME, OTHER]), boundJoins(raw));
+		expect([...tags]).toEqual([NAME, NAME, NAME, OTHER, OTHER, OTHER, OTHER, OTHER]);
 	});
 });
 

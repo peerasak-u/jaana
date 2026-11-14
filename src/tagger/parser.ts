@@ -1,7 +1,7 @@
 import { normalizeCandidate } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { createAnchorer } from "./anchor";
-import { decodeTags } from "./decode";
+import { boundJoins, decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
 import { createTupleResolver, nameForms } from "./resolve";
@@ -71,7 +71,8 @@ export function createTaggerParser(
 	return {
 		parse(raw) {
 			const anchored = anchor(raw);
-			const tags = decodeTags(featurize(raw, anchored.flags, compiled.dimension), compiled);
+			const features = featurize(raw, anchored.flags, compiled.dimension);
+			const tags = decodeTags(features, compiled, boundJoins(raw));
 			const spans = runsOf(raw, tags);
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
