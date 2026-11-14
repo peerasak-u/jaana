@@ -1,5 +1,6 @@
+import { similarityRatio } from "../candidate/fuzzy-match";
 import type { LocationTuple } from "../types";
-import { ADMINISTRATIVE_FIELDS, type AdministrativeField } from "./resolve";
+import { ADMINISTRATIVE_FIELDS, nameForms, type AdministrativeField } from "./resolve";
 
 export type LocationNames = Pick<LocationTuple, AdministrativeField>;
 
@@ -9,6 +10,7 @@ export interface Range {
 }
 
 const MIN_TRUNCATED_LENGTH = 4;
+const MIN_MISSPELT_RATIO = 0.85;
 const THAI_LETTER = /[ก-๎]/u;
 const PREFIX: Record<AdministrativeField, RegExp> = {
 	subdistrict: /(ตำบล|แขวง|ต\.?)\s*$/u,
@@ -57,6 +59,17 @@ export function insideOtherName(
 }
 
 /**
+ * Whether a span tagged as `field` writes, with no prefix, exactly the
+ * name another field of the tuple has, as a district span over the
+ * subdistrict `บางโทรัด`. Such a span is that other field.
+ */
+export function writesOtherField(text: string, field: AdministrativeField, tuple: LocationNames): boolean {
+	const forms = nameForms(field, text);
+	return forms.length === 1 && !forms.includes(tuple[field]) && ADMINISTRATIVE_FIELDS.some((other) =>
+		tuple[other] !== tuple[field] && forms.includes(tuple[other]));
+}
+
+/**
  * Where `name` is written on its own outside `taken`, with its field prefix:
  * bounded by non-letters, a field prefix, or a neighbouring field, and not
  * part of a village, road, or organisation name. With `prefixed`, only a
@@ -76,15 +89,28 @@ export function findStandalone(
 			if (!/\d/u.test(raw[start - 1] ?? "") && !/\d/u.test(raw[end] ?? "")) return { start, end };
 			continue;
 		}
-		const left = prefixStart(raw, field, start);
-		if (prefixed && left === start) continue;
-		const adjoins = (index: number) => taken.some((range) => range.end === index || range.start === index);
-		const leftOk = left === 0 || !THAI_LETTER.test(raw[left - 1]!) || adjoins(left);
-		const rightOk =
-			end === raw.length || !THAI_LETTER.test(raw[end]!) || FOLLOWER.test(raw.slice(end)) || adjoins(end);
-		if (leftOk && rightOk && placeWordBefore(raw, left, start) === null) return { start: left, end };
+		const found = standaloneAt(raw, field, { start, end }, taken, prefixed);
+		if (found) return found;
 	}
 	return null;
+}
+
+/** The mention, prefix included, when the written name at `name` stands on its own in the sense of `findStandalone`. */
+function standaloneAt(
+	raw: string,
+	field: AdministrativeField,
+	name: Range,
+	taken: readonly Range[],
+	prefixed: boolean,
+): Range | null {
+	const { start, end } = name;
+	const left = prefixStart(raw, field, start);
+	if (prefixed && left === start) return null;
+	const adjoins = (index: number) => taken.some((range) => range.end === index || range.start === index);
+	const leftOk = left === 0 || !THAI_LETTER.test(raw[left - 1]!) || adjoins(left);
+	const rightOk =
+		end === raw.length || !THAI_LETTER.test(raw[end]!) || FOLLOWER.test(raw.slice(end)) || adjoins(end);
+	return leftOk && rightOk && placeWordBefore(raw, left, start) === null ? { start: left, end } : null;
 }
 
 /**
@@ -102,6 +128,52 @@ export function findTruncated(
 		if (found) return found;
 	}
 	return null;
+}
+
+/**
+ * A whole Thai word outside `taken`, bounded by non-letters and with its
+ * field prefix, that misspells `name`, as `รัอยเอ็ด` for ร้อยเอ็ด.
+ */
+export function findMisspelt(
+	raw: string,
+	field: AdministrativeField,
+	name: string,
+	taken: readonly Range[],
+): Range | null {
+	for (const word of raw.matchAll(/[ก-๎]+/gu)) {
+		const start = word.index;
+		const end = start + word[0].length;
+		const ratio = similarityRatio(word[0], name) / 100;
+		if (overlaps(start, end, taken) || ratio < MIN_MISSPELT_RATIO || ratio === 1) continue;
+		const found = standaloneAt(raw, field, { start, end }, taken, false);
+		if (found) return found;
+	}
+	return null;
+}
+
+/**
+ * Standalone mentions of `name`, prefix included, that the address only
+ * partly covers: a run edge that falls inside a written field name, as in
+ * `ถ.พญาไท แขวงถน|นพญาไท`, is a slip, and the whole mention is the field.
+ */
+export function straddledMentions(
+	raw: string,
+	field: AdministrativeField,
+	name: string,
+	address: readonly Range[],
+): Range[] {
+	const covered: Range[] = [];
+	for (const range of [...address].sort((left, right) => left.start - right.start)) {
+		const last = covered[covered.length - 1];
+		if (last && last.end >= range.start) covered[covered.length - 1] = { start: last.start, end: Math.max(last.end, range.end) };
+		else covered.push(range);
+	}
+	return occurrences(raw, name).flatMap((written) => {
+		const mention = standaloneAt(raw, field, written, [], false);
+		const straddles = mention !== null && covered.some((range) =>
+			overlaps(mention.start, mention.end, [range]) && !contains(range, written));
+		return straddles ? [mention] : [];
+	});
 }
 
 function prefixStart(raw: string, field: AdministrativeField, start: number): number {

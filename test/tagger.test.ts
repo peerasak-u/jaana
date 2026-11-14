@@ -1,10 +1,19 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
-import { findStandalone, findTruncated } from "../src/tagger/mention";
+import { findMisspelt, findStandalone, findTruncated, straddledMentions, writesOtherField } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
-import { createTaggerParser } from "../src/tagger/parser";
+import {
+	addressOf,
+	chatDebris,
+	completePostcode,
+	createTaggerParser,
+	finishLine,
+	joinPrefixWords,
+} from "../src/tagger/parser";
+import { recutPhone } from "../src/tagger/phone";
+import { latinSkeleton, thaiSkeleton } from "../src/tagger/romanize";
 import { createTupleResolver } from "../src/tagger/resolve";
 import { trainTagger } from "../src/tagger/train";
 
@@ -53,10 +62,186 @@ describe("administrative mentions", () => {
 		expect(findTruncated("ป้อมปราบ 10100", "district", "ป้อมปราบศัตรูพ่าย", [])).toBeNull();
 	});
 
+	test("a field mention an address run edge falls inside is the field, prefix included", () => {
+		const raw = "ห้อง 1802 ถ.พญาไท\nแขวงถนนพญาไท เขตราชเทวี";
+		const address = [{ start: 0, end: raw.indexOf("นพญาไท เขต") }];
+		expect(straddledMentions(raw, "subdistrict", "ถนนพญาไท", address)).toEqual([
+			{ start: raw.indexOf("แขวง"), end: raw.indexOf(" เขต") },
+		]);
+		expect(straddledMentions("9 หมู่ 12,ต.ท่านางงาม,อ.บางระกำ", "subdistrict", "ท่านางงาม", [{ start: 0, end: 12 }])).toEqual([
+			{ start: 10, end: 21 },
+		]);
+	});
+
+	test("a field name the address holds whole, or that is part of a road or word, stays address", () => {
+		const road = "ซ.12 ถ.ไทรน้อย-ราษฎร์นิยม อ.ไทรน้อย";
+		expect(straddledMentions(road, "subdistrict", "ราษฎร์นิยม", [{ start: 0, end: road.indexOf("ฎร์") }])).toEqual([]);
+		const word = "สถานีดับเพลิงและกู้ภัยบางบำหรุ 140";
+		expect(straddledMentions(word, "subdistrict", "บางบำหรุ", [{ start: 0, end: word.indexOf("บำหรุ") }])).toEqual([]);
+		expect(straddledMentions("บ้านขามป้อม ต.ขามป้อม", "subdistrict", "ขามป้อม", [{ start: 0, end: 11 }])).toEqual([]);
+	});
+
+	test("a misspelt name written on its own is a mention, an exact name inside a road name is not", () => {
+		expect(findMisspelt("ต.โนนชัยศรี อ.โพนทอง รัอยเอ็ด เบอโทร", "province", "ร้อยเอ็ด", [])).toEqual({ start: 21, end: 29 });
+		expect(findMisspelt("ถ.รังสิต-ปทุมธานี บางพูน", "province", "ปทุมธานี", [])).toBeNull();
+		expect(findMisspelt("ถ.รังสิต-ปทุมทานี บางพูน", "province", "ปทุมธานี", [])).toBeNull();
+	});
+
+	test("a bare span that writes another field's exact name is that field", () => {
+		const tuple = { subdistrict: "บางโทรัด", district: "เมืองสมุทรสาคร", province: "สมุทรสาคร" };
+		expect(writesOtherField("บางโทรัด", "district", tuple)).toBe(true);
+		const shared = { subdistrict: "ลาดบัวขาว", district: "สีคิ้ว", province: "นครราชสีมา" };
+		expect(writesOtherField("ต.สีคิ้ว", "subdistrict", shared)).toBe(false);
+		expect(writesOtherField("เมืองสมุทรสาคร", "district", tuple)).toBe(false);
+	});
+
 	test("a name inside a village or road name is not standalone", () => {
 		expect(findStandalone("62 ม.9 บ้านมะเฟือง อ.พุทไธสง", "subdistrict", "มะเฟือง", [])).toBeNull();
 		expect(findStandalone("ถ.บางกรวย-ไทรน้อย", "subdistrict", "ไทรน้อย", [])).toBeNull();
 		expect(findStandalone("ม.3 ไร่รถ ดอนเจดีย์", "subdistrict", "ไร่รถ", [])).toEqual({ start: 4, end: 9 });
+	});
+});
+
+describe("address composition", () => {
+	const ranges = (raw: string, ...pieces: string[]) =>
+		pieces.map((piece) => ({ start: raw.indexOf(piece), end: raw.indexOf(piece) + piece.length }));
+
+	test("pieces separated only by a comma are one piece that keeps the comma", () => {
+		const raw = "English Dept., โรงเรียนสาทร 31 ซ.งามดูพลี";
+		expect(addressOf(raw, ranges(raw, "English Dept.", "โรงเรียนสาทร 31 ซ.งามดูพลี"), [])).toBe(raw);
+	});
+
+	test("a branch note outside brackets is not address detail, one in brackets is", () => {
+		const raw = "บริษัท ท่าเรือคอนกรีตอัดแรง จำกัด สนญ.\n28 หมู่ 6";
+		expect(addressOf(raw, [{ start: 0, end: raw.length }], [])).toBe("บริษัท ท่าเรือคอนกรีตอัดแรง จำกัด 28 หมู่ 6");
+		const numbered = "บริษัท ริเวอร์ไซด์ จำกัด สาขาที่ 00003 2150/7 ถนนเจริญกรุง";
+		expect(addressOf(numbered, [{ start: 0, end: numbered.length }], [])).toBe("บริษัท ริเวอร์ไซด์ จำกัด 2150/7 ถนนเจริญกรุง");
+		const bracketed = "บริษัท สระบุรีวัสดุภัณฑ์ จำกัด (สำนักงานใหญ่) 12 ม.3";
+		expect(addressOf(bracketed, [{ start: 0, end: bracketed.length }], [])).toBe(bracketed);
+	});
+
+	test("a form's unfilled field labels and its answer label are not address detail", () => {
+		const raw = "2. ที่อยู่ (บ้านเลขที่ หมู่ ตำบล) ⏎ ตอบ 31 ม.10 บ้านหนองผือ";
+		expect(addressOf(raw, ranges(raw, "บ้านเลขที่ หมู่", "ตอบ 31 ม.10 บ้านหนองผือ"), [])).toBe("31 ม.10 บ้านหนองผือ");
+		const filled = "บ้านเลขที่ 3 หมู่ที่ 8";
+		expect(addressOf(filled, ranges(filled, filled), [])).toBe(filled);
+	});
+
+	test("pieces interrupted by other text are joined with one space", () => {
+		const raw = "45 ม.5 โทร 0891234567 ซ.วัดดอน";
+		expect(addressOf(raw, ranges(raw, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
+		const lines = "45 ม.5,\nซ.วัดดอน";
+		expect(addressOf(lines, ranges(lines, "45 ม.5", "ซ.วัดดอน"), [])).toBe("45 ม.5 ซ.วัดดอน");
+	});
+});
+
+describe("phone re-cut", () => {
+	const PHONE = TAGS.indexOf("PHONE");
+	/** Tags a raw text from a parallel string of `N`, `P`, `A`, and `.` (other). */
+	function tagged(raw: string, marks: string): Uint8Array {
+		const byMark: Record<string, number> = { N: NAME, P: PHONE, A: ADDRESS, ".": OTHER };
+		return Uint8Array.from([...marks].map((mark) => byMark[mark]!));
+	}
+	function textOf(raw: string, tags: Uint8Array, tag: number): string {
+		return [...raw].filter((_, index) => tags[index] === tag).join("");
+	}
+
+	test("a mobile number takes its tenth digit back from glued address detail", () => {
+		const raw = "08744120939ม.7";
+		const tags = tagged(raw, "PPPPPPPPPAAAAA");
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("0874412093");
+		expect(textOf(raw, tags, ADDRESS)).toBe("9ม.7");
+	});
+
+	test("an international number keeps its prefix and returns a house-number digit", () => {
+		const named = "ยศ (+66)861174209";
+		const first = tagged(named, "NNNNNNPPPPPPPPPPP");
+		recutPhone(named, first);
+		expect(textOf(named, first, PHONE)).toBe("(+66)861174209");
+		expect(textOf(named, first, NAME)).toBe("ยศ ");
+		const raw = "+66 89 731 4402 112 ม.4";
+		const tags = tagged(raw, "PPPPPPPPPPPPPPPPPAAAAAA");
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("+66 89 731 4402");
+		expect(textOf(raw, tags, ADDRESS)).toBe("112 ม.4");
+	});
+
+	test("a corrected number replaces the phone it corrects", () => {
+		const raw = "0897012264 ขอโทษครับ เบอร์ผิด ที่ถูกคือ 0897012246 ครับ";
+		const tags = tagged(raw, "P".repeat(10) + ".".repeat(raw.length - 10));
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("0897012246");
+	});
+
+	test("a postcode run split inside its five digits takes the rest of them", () => {
+		const POSTCODE = TAGS.indexOf("POSTCODE");
+		const raw = "มหาชัย 74000 ห้อง 25";
+		const tags = tagged(raw, "AAAAAAAAA" + ".".repeat(raw.length - 9));
+		tags.fill(POSTCODE, raw.indexOf("000"), raw.indexOf("000") + 3);
+		completePostcode(raw, tags);
+		expect(textOf(raw, tags, POSTCODE)).toBe("74000");
+		expect(textOf(raw, tags, ADDRESS)).toBe("มหาชัย ");
+	});
+
+	test("an address run one plain word short of its line's end takes that word", () => {
+		const raw = "บจก. ซีเอ็นที มีเดีย กรุ๊ป\nบ้านเลขที่ 18 แม่ไปตลาด โทรก่อน\n12 ม.3 นะคะ";
+		const tags = tagged(raw, ".".repeat(raw.length));
+		const mark = (text: string) => tags.fill(ADDRESS, raw.indexOf(text), raw.indexOf(text) + text.length);
+		mark("บจก. ซีเอ็นที มีเดีย");
+		mark("บ้านเลขที่ 18");
+		mark("12 ม.3");
+		finishLine(raw, tags);
+		expect(textOf(raw, tags, ADDRESS)).toBe("บจก. ซีเอ็นที มีเดีย กรุ๊ปบ้านเลขที่ 1812 ม.3");
+	});
+
+	test("a run boundary inside a field prefix word moves to the word's edge", () => {
+		const DISTRICT = TAGS.indexOf("DISTRICT");
+		const office = "คุณนิพนธ์ ที่ว่าการอำเภอท่าตะเกียบ ห้องปลัด";
+		const split = office.indexOf("เภอ");
+		const tags = tagged(office, "N".repeat(split) + "A".repeat(office.length - split));
+		joinPrefixWords(office, tags);
+		expect(textOf(office, tags, NAME)).toBe("คุณนิพนธ์ ที่ว่าการอำเภอท่าตะเกียบ");
+		expect(textOf(office, tags, ADDRESS)).toBe(" ห้องปลัด");
+		const field = "12 ม.3 อำเภอเมือง";
+		const fieldTags = tagged(field, "A".repeat(field.indexOf("เภอ")) + ".".repeat(field.length - field.indexOf("เภอ")));
+		fieldTags.fill(DISTRICT, field.indexOf("เภอ"));
+		joinPrefixWords(field, fieldTags);
+		expect(textOf(field, fieldTags, DISTRICT)).toBe("อำเภอเมือง");
+		expect(textOf(field, fieldTags, ADDRESS)).toBe("12 ม.3 ");
+	});
+
+	test("a digit-free address run glued to chat text is debris when another piece holds the place", () => {
+		const raw = "ขอสั่งเครื่องวัดความดันดิจิตอล 3 เครื่อง ส่งวัดราวต้นจันทร์ ม.1";
+		const tags = tagged(raw, ".".repeat(raw.length));
+		const piece = (text: string) => ({ start: raw.indexOf(text), end: raw.indexOf(text) + text.length });
+		const address = [piece("ความดันดิจิตอล"), piece("วัดราวต้นจันทร์ ม.1")];
+		for (const range of address) tags.fill(ADDRESS, range.start, range.end);
+		expect(chatDebris(raw, tags, address)).toEqual([address[0]!]);
+		expect(chatDebris(raw, tags, [address[0]!])).toEqual([]);
+	});
+
+	test("of two numbers in one run, the first is the phone", () => {
+		const raw = "0897124063/0613305128นาง";
+		const tags = tagged(raw, "PPPPPPPPPPPPPPPPPPPPPNNN");
+		recutPhone(raw, tags);
+		expect(textOf(raw, tags, PHONE)).toBe("0897124063");
+		expect(textOf(raw, tags, NAME)).toBe("นาง");
+	});
+});
+
+describe("romanized names", () => {
+	test("a romanized subdistrict has the consonant skeleton of its Thai name", () => {
+		expect(latinSkeleton("Tambon Ko Kaeo")).toBe(thaiSkeleton("เกาะแก้ว"));
+		expect(latinSkeleton("T.Tad Thong")).toBe(thaiSkeleton("ตาดทอง"));
+		expect(latinSkeleton("Ban Paeng")).toBe(thaiSkeleton("บ้านแป้ง"));
+		expect(latinSkeleton("Ban Paeng")).not.toBe(thaiSkeleton("ช้างน้อย"));
+	});
+
+	test("a romanized subdistrict resolves among the anchored district's subdistricts", () => {
+		const parser = createTaggerParser(shippedModel, locations);
+		expect(parser.parse("Chalermchai 12/1 Moo 5 Ban Paeng, Bang Sai, Phra Nakhon Si Ayutthaya 13190 0891174402").fields.subdistrict)
+			.toBe("บ้านแป้ง");
 	});
 });
 
@@ -182,6 +367,37 @@ describe("shipped tagger model", () => {
 		expect(parser.parse(
 			"บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)\n99/1 หมู่ 2 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000\n0891234567",
 		).fields.name).toBe("บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)");
+	});
+
+	test("a bracket right after the name is part of it unless it is a remark to the seller", () => {
+		expect(parser.parse("085-6623-109 ลุงจันทร์ (ผู้รับ)\nบ้านหัวเสือ ม.2\nแม่ทะ ลำปาง").fields.name).toBe("ลุงจันทร์ (ผู้รับ)");
+		expect(parser.parse(
+			"ด.ญ.ปริม ศรีสุข (ส่งในชื่อลูกสาวค่ะ)\n63 ม.1 ต.โพนครก อ.ท่าตูม จ.สุรินทร์ 32120\n0846629013",
+		).fields.name).toBe("ด.ญ.ปริม ศรีสุข");
+	});
+
+	test("an unprefixed, misspelt subdistrict written before the district is the subdistrict", () => {
+		expect(parser.parse("นายอนันต์ ภูผา 0904417726 ห้อง 2-14 ม.3 บางเพียง บางบ่อ สมุทรปราการ 10560").fields).toMatchObject({
+			address: "ห้อง 2-14 ม.3",
+			subdistrict: "บางเพรียง",
+			district: "บางบ่อ",
+		});
+		expect(parser.parse("นายสมชาย 0812345678 45 ม.3 บ้านหนองผือ เมืองสรวง ร้อยเอ็ด 45220").fields).toMatchObject({
+			address: "45 ม.3 บ้านหนองผือ",
+			subdistrict: null,
+		});
+	});
+
+	test("a romanized subdistrict written before the district after a comma is the subdistrict", () => {
+		expect(parser.parse(
+			"Name: Nattapong\nAddress: 89/14 Moo 3, Pathum-Sam Khok Rd., Ban Krachaeng, Mueang Pathum Thani, Pathum Thani 12000\nPhone: 0817245590",
+		).fields).toMatchObject({ address: "89/14 Moo 3, Pathum-Sam Khok Rd.", subdistrict: "บ้านกระแชง" });
+	});
+
+	test("a field name glued after chat text at the start of an address run is the field", () => {
+		expect(parser.parse(
+			"ส่งให้น้องฝนด้วยค่ะ เพื่อนหนูเองที่ตากฟ้า 56 ม.12 ต.ลำพยนต์ อ.ตากฟ้า นครสรรค์ 0918874430",
+		).fields).toMatchObject({ address: "56 ม.12", district: "ตากฟ้า" });
 	});
 
 	test("every span reproduces its source offsets", () => {
