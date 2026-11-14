@@ -78,6 +78,10 @@ A field the shopper did not write gets no mark. Do not mark anything else.
   name: `[[N:บจก.รุ่งเรืองการค้า (คุณเอ ฝ่ายจัดซื้อ)]]`. The order does not
   matter: `[[N:ครูวาสนา ปินตา โรงเรียนบ้านดงวิทยา]]`. "Next to each other" means
   on the same line with only spaces, brackets, or a slash between them.
+- A department or job title written next to a person without brackets, with no
+  organisation on that line, is not part of the name:
+  `ฝ่ายจัดซื้อ [[N:คุณกิตติศักดิ์]]`, `[[N:คุณปวีณา]] ฝ่ายบัญชี`. Next to an
+  organisation it is part of the organisation: `[[N:รพ.บางซ้าย ฝ่ายเภสัชกรรม]]`.
 - When a person and an organisation are written apart, the person is `N` and
   the organisation is part of the place, so it goes in `A`:
   `[[N:คุณสมชาย]]` then `[[A:บริษัท เอบีซี จำกัด 12/3 ถ.มิตรภาพ]]`.
