@@ -19,6 +19,7 @@ describe("recipient composition", () => {
 	const cases: readonly [string, string, string | null, readonly string[], string | null, readonly string[]][] = [
 		["organisation then bracketed person on one line", "บจก.รุ่งเรือง (คุณเอ) 12/3 ถ.มิตรภาพ", "(คุณเอ)", ["บจก.รุ่งเรือง"], "บจก.รุ่งเรือง (คุณเอ)", []],
 		["person then organisation on one line", "ครูวาสนา ปินตา โรงเรียนบ้านดง ม.3", "ครูวาสนา ปินตา", ["โรงเรียนบ้านดง"], "ครูวาสนา ปินตา โรงเรียนบ้านดง", []],
+		["person inside a bracket opened after the organisation", "บริษัท สาทรมีเดีย จำกัด (attn. คุณเบญ) อาคาร 1", "คุณเบญ)", ["บริษัท สาทรมีเดีย จำกัด"], "บริษัท สาทรมีเดีย จำกัด (attn. คุณเบญ)", []],
 		["organisation and person joined by a slash", "หจก.ไชยวาน / คุณบุญเลิศ", "คุณบุญเลิศ", ["หจก.ไชยวาน"], "หจก.ไชยวาน / คุณบุญเลิศ", []],
 		["organisation on its own line goes to the address", "ร้านขายยาธีรเภสัช\nภก.ธีรวัฒน์ ใจบุญ\nเลขที่ 201", "ภก.ธีรวัฒน์ ใจบุญ", ["ร้านขายยาธีรเภสัช"], "ภก.ธีรวัฒน์ ใจบุญ", ["ร้านขายยาธีรเภสัช"]],
 		["a field between them keeps them apart", "คุณสมชาย 0812345678 บริษัท เอบีซี จำกัด", "คุณสมชาย", ["บริษัท เอบีซี จำกัด"], "คุณสมชาย", ["บริษัท เอบีซี จำกัด"]],

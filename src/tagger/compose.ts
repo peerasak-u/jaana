@@ -12,8 +12,13 @@ export interface Recipient {
 /** Only spaces, brackets, or a slash on one line join an organisation and a person into one name. */
 const JOINER = /^[ \t ()[\]/]*$/u;
 
+/** A bracket opened after the left part and still open where the right part starts, as in `บจก.เอ (attn. คุณบี)`. */
+const INSIDE_BRACKET = /^[ \t ]*\([^()\n]*$/u;
+
 function joins(raw: string, left: Range, right: Range): boolean {
-	return left.end <= right.start && JOINER.test(raw.slice(left.end, right.start));
+	if (left.end > right.start) return false;
+	const gap = raw.slice(left.end, right.start);
+	return JOINER.test(gap) || INSIDE_BRACKET.test(gap);
 }
 
 /** Whether two ranges are written next to each other in the sense of the recipient rule. */
