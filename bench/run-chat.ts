@@ -16,6 +16,7 @@ function option(name: string): string | undefined {
 const modelPath = option("--model") ?? "resources/tagger-model.json";
 const outputPath = option("--output") ?? ".bench-results/chat.json";
 const failuresPath = option("--failures") ?? ".bench-results/chat-dev-failures.jsonl";
+const test1FailuresPath = ".bench-results/chat-test1-failures.jsonl";
 const minimum = option("--min-test-exact");
 const rounds = Number(option("--timing-rounds") ?? "3");
 
@@ -115,8 +116,17 @@ function time(set: readonly ChatRecord[]) {
 	}));
 }
 
-const dev = evaluate(records.filter((record) => splitOf(record.raw) === "dev"), true);
-const test = evaluate(records.filter((record) => splitOf(record.raw) === "test"), false);
+/**
+ * The first benchmark batch is split in two by hash: dev, and test1, which was
+ * sealed until 2026-11-15 and is now a second development set. Files written
+ * later as `<category>.v2.txt` are the sealed holdout. Only its totals are
+ * ever printed.
+ */
+const isHoldout = (record: ChatRecord): boolean => /\.v2-\d+$/u.test(record.id);
+const first = records.filter((record) => !isHoldout(record));
+const dev = evaluate(first.filter((record) => splitOf(record.raw) === "dev"), true);
+const test1 = evaluate(first.filter((record) => splitOf(record.raw) === "test"), true);
+const test = evaluate(records.filter(isHoldout), false);
 const modelText = await Bun.file(modelPath).text();
 const line = (set: ReturnType<typeof evaluate>) => ({
 	records: set.records,
@@ -131,13 +141,15 @@ const line = (set: ReturnType<typeof evaluate>) => ({
 const report = {
 	model: { path: modelPath, version: model.version, bytes: modelText.length, gzipBytes: Bun.gzipSync(modelText).length },
 	dev: { records: dev.records, systems: dev.systems, categories: dev.categories },
-	test: { records: test.records, systems: test.systems, categories: test.categories },
+	test1: { records: test1.records, systems: test1.systems, categories: test1.categories },
+	holdout: { records: test.records, systems: test.systems, categories: test.categories },
 	timing: time(records),
 };
 await mkdir(".bench-results", { recursive: true });
 await Bun.write(outputPath, `${JSON.stringify(report, null, 2)}\n`);
 await Bun.write(failuresPath, dev.failures.map((failure) => JSON.stringify(failure)).join("\n") + "\n");
-console.log(JSON.stringify({ model: report.model, dev: line(dev), test: line(test), timing: report.timing, outputPath, failuresPath }, null, 2));
+await Bun.write(test1FailuresPath, test1.failures.map((failure) => JSON.stringify(failure)).join("\n") + "\n");
+console.log(JSON.stringify({ model: report.model, dev: line(dev), test1: line(test1), holdout: line(test), timing: report.timing, outputPath, failuresPath, test1FailuresPath }, null, 2));
 
 if (minimum !== undefined) {
 	const acceptance = exactAcceptance(test.metrics.tagger, Number(minimum));
