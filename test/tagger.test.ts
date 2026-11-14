@@ -137,6 +137,26 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("a name between a label and a particle excludes both", () => {
+		const fields = parser.parse(
+			"45 ม.5 ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000 ผู้รับ สมพงษ์ ครับ 0891234567",
+		).fields;
+		expect(fields.name).toBe("สมพงษ์");
+		expect(fields.address).toBe("45 ม.5");
+	});
+
+	test("an order line before the address is not address detail", () => {
+		expect(parser.parse(
+			"เอาเสื้อยืด 2 ตัว สีดำค่ะ โอนแล้วนะคะ\nคุณสมศรี ใจดี\n45 ม.5 ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000\n0891234567",
+		).fields.address).toBe("45 ม.5");
+	});
+
+	test("an organisation keeps its bracketed contact person", () => {
+		expect(parser.parse(
+			"บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)\n99/1 หมู่ 2 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000\n0891234567",
+		).fields.name).toBe("บจก.สกลรุ่งเรือง (คุณมานี ฝ่ายบัญชี)");
+	});
+
 	test("every span reproduces its source offsets", () => {
 		const raw = "นายทดสอบ ใจดี 081-234-5678 บ้านเลขที่ 1 ปทุมวัน กรุงเทพมหานคร 10330";
 		const result = parser.parse(raw);
