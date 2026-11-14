@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
+import { findStandalone, findTruncated } from "../src/tagger/mention";
 import { decodeTags } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
@@ -42,6 +43,20 @@ describe("tuple anchoring", () => {
 
 	test("Thai digits in the postcode anchor like ASCII digits", () => {
 		expect(anchor("ต.ธาตุเชิงชุม จ.สกลนคร ๔๗๐๐๐").tuple?.zipcode).toBe("47000");
+	});
+});
+
+describe("administrative mentions", () => {
+	test("a prefixed leading part of a long name is a mention of it", () => {
+		const raw = "10100 เขตป้อมปราบ แขวงวัดโสมนัส";
+		expect(findTruncated(raw, "district", "ป้อมปราบศัตรูพ่าย", [])).toEqual({ start: 6, end: 17 });
+		expect(findTruncated("ป้อมปราบ 10100", "district", "ป้อมปราบศัตรูพ่าย", [])).toBeNull();
+	});
+
+	test("a name inside a village or road name is not standalone", () => {
+		expect(findStandalone("62 ม.9 บ้านมะเฟือง อ.พุทไธสง", "subdistrict", "มะเฟือง", [])).toBeNull();
+		expect(findStandalone("ถ.บางกรวย-ไทรน้อย", "subdistrict", "ไทรน้อย", [])).toBeNull();
+		expect(findStandalone("ม.3 ไร่รถ ดอนเจดีย์", "subdistrict", "ไร่รถ", [])).toEqual({ start: 4, end: 9 });
 	});
 });
 

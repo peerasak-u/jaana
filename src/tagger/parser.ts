@@ -5,7 +5,7 @@ import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
-import { findStandalone, insideOtherName, insidePlaceName, type Range } from "./mention";
+import { findStandalone, findTruncated, insideOtherName, insidePlaceName, type Range } from "./mention";
 import {
 	closestTuple,
 	createTupleResolver,
@@ -101,14 +101,12 @@ function untaggedMentions(
 	const claimed: Range[] = [];
 	for (const [label, field] of TAGGED_FIELDS) {
 		if (spans.some((span) => span.label === label)) continue;
-		for (const name of namesOf(field)) {
-			const found = findStandalone(text, field, name, taken);
-			if (!found) continue;
-			values[field] = tuple[field];
-			taken.push(found);
-			claimed.push(found);
-			break;
-		}
+		const found = namesOf(field).map((name) => findStandalone(text, field, name, taken)).find(Boolean) ??
+			(field === "subdistrict" || field === "district" ? findTruncated(text, field, tuple[field], taken) : null);
+		if (!found) continue;
+		values[field] = tuple[field];
+		taken.push(found);
+		claimed.push(found);
 	}
 	return { values, claimed };
 }

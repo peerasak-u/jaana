@@ -8,6 +8,7 @@ export interface Range {
 	readonly end: number;
 }
 
+const MIN_TRUNCATED_LENGTH = 4;
 const THAI_LETTER = /[ก-๎]/u;
 const PREFIX: Record<AdministrativeField, RegExp> = {
 	subdistrict: /(ตำบล|แขวง|ต\.?)\s*$/u,
@@ -58,13 +59,15 @@ export function insideOtherName(
 /**
  * Where `name` is written on its own outside `taken`, with its field prefix:
  * bounded by non-letters, a field prefix, or a neighbouring field, and not
- * part of a village, road, or organisation name.
+ * part of a village, road, or organisation name. With `prefixed`, only a
+ * mention after a written field prefix counts.
  */
 export function findStandalone(
 	raw: string,
 	field: AdministrativeField | "zipcode",
 	name: string,
 	taken: readonly Range[],
+	prefixed = false,
 ): Range | null {
 	for (let start = raw.indexOf(name); start >= 0; start = raw.indexOf(name, start + 1)) {
 		const end = start + name.length;
@@ -74,11 +77,29 @@ export function findStandalone(
 			continue;
 		}
 		const left = prefixStart(raw, field, start);
+		if (prefixed && left === start) continue;
 		const adjoins = (index: number) => taken.some((range) => range.end === index || range.start === index);
 		const leftOk = left === 0 || !THAI_LETTER.test(raw[left - 1]!) || adjoins(left);
 		const rightOk =
 			end === raw.length || !THAI_LETTER.test(raw[end]!) || FOLLOWER.test(raw.slice(end)) || adjoins(end);
 		if (leftOk && rightOk && placeWordBefore(raw, left, start) === null) return { start: left, end };
+	}
+	return null;
+}
+
+/**
+ * A prefixed mention of the leading part of `name`, as `เขตป้อมปราบ` for
+ * ป้อมปราบศัตรูพ่าย or `อ.อรัญ` for อรัญประเทศ.
+ */
+export function findTruncated(
+	raw: string,
+	field: AdministrativeField,
+	name: string,
+	taken: readonly Range[],
+): Range | null {
+	for (let length = name.length - 1; length >= MIN_TRUNCATED_LENGTH; length -= 1) {
+		const found = findStandalone(raw, field, name.slice(0, length), taken, true);
+		if (found) return found;
 	}
 	return null;
 }
