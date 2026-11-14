@@ -240,7 +240,9 @@ export function createTaggerParser(
 	return {
 		parse(raw) {
 			const anchored = anchor(raw);
-			const tags = decodeTags(featurize(raw, anchored.flags, compiled.dimension), compiled);
+			const lineBreaks = new Uint8Array(raw.length);
+			for (let index = 0; index < raw.length; index += 1) lineBreaks[index] = raw[index] === "\n" ? 1 : 0;
+			const tags = decodeTags(featurize(raw, anchored.flags, compiled.dimension), compiled, lineBreaks);
 			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;

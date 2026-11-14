@@ -23,13 +23,18 @@ export function emissionScores(
 	return scores;
 }
 
+/** Only address detail may contain a line break, so a break is OTHER or ADDRESS_DETAIL. */
+const CROSSES_LINE = [true, false, false, true, false, false, false, false, false];
+
 /**
  * Best tag sequence in which every single-run tag appears as at most one
- * contiguous run. The state is (current tag, set of single-run tags used).
+ * contiguous run and no field but address detail covers a position marked
+ * in `lineBreaks`. The state is (current tag, set of single-run tags used).
  */
 export function decodeTags(
 	features: readonly Int32Array[],
 	model: Pick<CompiledTaggerModel, "weights" | "transitions">,
+	lineBreaks?: Uint8Array,
 ): Uint8Array {
 	const n = features.length;
 	const tags = new Uint8Array(n);
@@ -40,11 +45,14 @@ export function decodeTags(
 	let current = new Int32Array(STATE_COUNT);
 	const back = new Int16Array(n * STATE_COUNT);
 	for (let tag = 0; tag < TAG_COUNT; tag += 1) {
+		if (lineBreaks?.[0] === 1 && !CROSSES_LINE[tag]) continue;
 		previous[tag * MASK_COUNT + SINGLE_RUN_BIT[tag]!] = emit[tag]!;
 	}
 	for (let position = 1; position < n; position += 1) {
 		current.fill(UNREACHABLE);
+		const lineBreak = lineBreaks?.[position] === 1;
 		for (let tag = 0; tag < TAG_COUNT; tag += 1) {
+			if (lineBreak && !CROSSES_LINE[tag]) continue;
 			const bit = SINGLE_RUN_BIT[tag]!;
 			for (let mask = 0; mask < MASK_COUNT; mask += 1) {
 				if ((mask & bit) !== bit) continue;
