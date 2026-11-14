@@ -25,6 +25,33 @@ function bucket(key: string, dimension: number): number {
 	return (hash >>> 0) % dimension;
 }
 
+const PHONE_LIKE = /(?:\+?66|0)[0-9](?:[\s.-]?[0-9]){7,8}(?![0-9])/u;
+const POSTCODE_LIKE = /(?<![0-9])[0-9]{5}(?![0-9])/u;
+
+/**
+ * One coarse class per line: anchored, holds a phone, holds a postcode,
+ * digit-run count and length. Order and chat lines differ from address
+ * lines in these, beyond the reach of the character window.
+ */
+function lineSummaries(raw: string, anchorFlags: Uint8Array): string[] {
+	const summaries: string[] = [];
+	let start = 0;
+	for (const text of raw.split("\n")) {
+		const digits = text.replace(/[๐-๙]/gu, (digit) => String(digit.charCodeAt(0) - 0x0e50));
+		let anchored = 0;
+		for (let index = start; index < start + text.length; index += 1) {
+			if ((anchorFlags[index] ?? 0) & 15) anchored = 1;
+		}
+		const runs = Math.min(digits.match(/[0-9]+/gu)?.length ?? 0, 3);
+		const length = text.length < 15 ? 0 : text.length < 40 ? 1 : text.length < 80 ? 2 : 3;
+		summaries.push(
+			`${anchored}${PHONE_LIKE.test(digits) ? 1 : 0}${POSTCODE_LIKE.test(digits) ? 1 : 0}${runs}${length}`,
+		);
+		start += text.length + 1;
+	}
+	return summaries;
+}
+
 /**
  * Hashed feature buckets for every UTF-16 unit of `raw`. Changing any key
  * below changes the meaning of trained weights, so retrain the model.
@@ -53,6 +80,7 @@ export function featurize(
 		runEnd[i] = i < n - 1 && classes[i] === classes[i + 1] ? runEnd[i + 1]! : i;
 	}
 	const digitCount = classes.filter((value) => value === "D").length;
+	const lines = lineSummaries(raw, anchorFlags);
 	const rows: Int32Array[] = [];
 	let line = 0;
 	let lineStart = 0;
@@ -88,6 +116,12 @@ export function featurize(
 		add(`a+:${a(i)}:${a(i + 1)}`);
 		add(`a2:${a(i - 2)}:${a(i)}:${a(i + 2)}`);
 		add(`ac:${a(i)}:${c(i - 1)}${c(i - 2)}`);
+		const here = lines[line]!;
+		add(`lc:${here}`);
+		add(`lc-:${lines[line - 1] ?? "^"}:${here}`);
+		add(`lc+:${here}:${lines[line + 1] ?? "^"}`);
+		add(`lf:${line === 0 ? 1 : 0}${line === lines.length - 1 ? 1 : 0}`);
+		add(`lk:${here}:${classes[i]}`);
 		rows.push(Int32Array.from(row));
 		if (raw[i] === "\n") {
 			line += 1;
