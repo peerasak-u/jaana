@@ -5,6 +5,7 @@ import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags, spanEdges } from "./decode";
 import { featurize } from "./features";
 import { recutPhone } from "./phone";
+import { latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
 import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
 import { findStandalone, findTruncated, insideOtherName, insidePlaceName, straddledMentions, type Range } from "./mention";
@@ -21,6 +22,7 @@ import {
 } from "./resolve";
 
 const MIN_SIBLING_RATIO = 0.7;
+const ROMANIZED = /^[^ก-๎]*[A-Za-z][^ก-๎]*$/u;
 const THAI_DIGITS = "๐๑๒๓๔๕๖๗๘๙";
 const DISTRICT_BIT = 1 << ANCHOR_FIELDS.indexOf("district");
 
@@ -240,6 +242,17 @@ export function createTaggerParser(
 		const pool = inPostcode.length > 0 ? inPostcode : siblings;
 		let best = tuple.subdistrict;
 		let bestRatio = MIN_SIBLING_RATIO;
+		if (ROMANIZED.test(text)) {
+			const written = latinSkeleton(text);
+			for (const sibling of pool) {
+				const ratio = similarityRatio(written, thaiSkeleton(sibling.subdistrict)) / 100;
+				if (ratio > bestRatio) {
+					best = sibling.subdistrict;
+					bestRatio = ratio;
+				}
+			}
+			return best;
+		}
 		for (const form of nameForms("subdistrict", text)) {
 			if (form === tuple.subdistrict) return tuple.subdistrict;
 			for (const sibling of siblings) {

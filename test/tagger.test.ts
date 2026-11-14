@@ -6,6 +6,7 @@ import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { addressOf, createTaggerParser } from "../src/tagger/parser";
 import { recutPhone } from "../src/tagger/phone";
+import { latinSkeleton, thaiSkeleton } from "../src/tagger/romanize";
 import { createTupleResolver } from "../src/tagger/resolve";
 import { trainTagger } from "../src/tagger/train";
 
@@ -135,6 +136,21 @@ describe("phone re-cut", () => {
 		recutPhone(raw, tags);
 		expect(textOf(raw, tags, PHONE)).toBe("0897124063");
 		expect(textOf(raw, tags, NAME)).toBe("นาง");
+	});
+});
+
+describe("romanized names", () => {
+	test("a romanized subdistrict has the consonant skeleton of its Thai name", () => {
+		expect(latinSkeleton("Tambon Ko Kaeo")).toBe(thaiSkeleton("เกาะแก้ว"));
+		expect(latinSkeleton("T.Tad Thong")).toBe(thaiSkeleton("ตาดทอง"));
+		expect(latinSkeleton("Ban Paeng")).toBe(thaiSkeleton("บ้านแป้ง"));
+		expect(latinSkeleton("Ban Paeng")).not.toBe(thaiSkeleton("ช้างน้อย"));
+	});
+
+	test("a romanized subdistrict resolves among the anchored district's subdistricts", () => {
+		const parser = createTaggerParser(shippedModel, locations);
+		expect(parser.parse("Chalermchai 12/1 Moo 5 Ban Paeng, Bang Sai, Phra Nakhon Si Ayutthaya 13190 0891174402").fields.subdistrict)
+			.toBe("บ้านแป้ง");
 	});
 });
 
