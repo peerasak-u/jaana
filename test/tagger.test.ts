@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
-import { findStandalone, findTruncated } from "../src/tagger/mention";
+import { findStandalone, findTruncated, straddledMentions } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
 import { addressOf, createTaggerParser } from "../src/tagger/parser";
@@ -51,6 +51,25 @@ describe("administrative mentions", () => {
 		const raw = "10100 เขตป้อมปราบ แขวงวัดโสมนัส";
 		expect(findTruncated(raw, "district", "ป้อมปราบศัตรูพ่าย", [])).toEqual({ start: 6, end: 17 });
 		expect(findTruncated("ป้อมปราบ 10100", "district", "ป้อมปราบศัตรูพ่าย", [])).toBeNull();
+	});
+
+	test("a field mention an address run edge falls inside is the field, prefix included", () => {
+		const raw = "ห้อง 1802 ถ.พญาไท\nแขวงถนนพญาไท เขตราชเทวี";
+		const address = [{ start: 0, end: raw.indexOf("นพญาไท เขต") }];
+		expect(straddledMentions(raw, "subdistrict", "ถนนพญาไท", address)).toEqual([
+			{ start: raw.indexOf("แขวง"), end: raw.indexOf(" เขต") },
+		]);
+		expect(straddledMentions("9 หมู่ 12,ต.ท่านางงาม,อ.บางระกำ", "subdistrict", "ท่านางงาม", [{ start: 0, end: 12 }])).toEqual([
+			{ start: 10, end: 21 },
+		]);
+	});
+
+	test("a field name the address holds whole, or that is part of a road or word, stays address", () => {
+		const road = "ซ.12 ถ.ไทรน้อย-ราษฎร์นิยม อ.ไทรน้อย";
+		expect(straddledMentions(road, "subdistrict", "ราษฎร์นิยม", [{ start: 0, end: road.indexOf("ฎร์") }])).toEqual([]);
+		const word = "สถานีดับเพลิงและกู้ภัยบางบำหรุ 140";
+		expect(straddledMentions(word, "subdistrict", "บางบำหรุ", [{ start: 0, end: word.indexOf("บำหรุ") }])).toEqual([]);
+		expect(straddledMentions("บ้านขามป้อม ต.ขามป้อม", "subdistrict", "ขามป้อม", [{ start: 0, end: 11 }])).toEqual([]);
 	});
 
 	test("a name inside a village or road name is not standalone", () => {

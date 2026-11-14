@@ -76,15 +76,28 @@ export function findStandalone(
 			if (!/\d/u.test(raw[start - 1] ?? "") && !/\d/u.test(raw[end] ?? "")) return { start, end };
 			continue;
 		}
-		const left = prefixStart(raw, field, start);
-		if (prefixed && left === start) continue;
-		const adjoins = (index: number) => taken.some((range) => range.end === index || range.start === index);
-		const leftOk = left === 0 || !THAI_LETTER.test(raw[left - 1]!) || adjoins(left);
-		const rightOk =
-			end === raw.length || !THAI_LETTER.test(raw[end]!) || FOLLOWER.test(raw.slice(end)) || adjoins(end);
-		if (leftOk && rightOk && placeWordBefore(raw, left, start) === null) return { start: left, end };
+		const found = standaloneAt(raw, field, { start, end }, taken, prefixed);
+		if (found) return found;
 	}
 	return null;
+}
+
+/** The mention, prefix included, when the written name at `name` stands on its own in the sense of `findStandalone`. */
+function standaloneAt(
+	raw: string,
+	field: AdministrativeField,
+	name: Range,
+	taken: readonly Range[],
+	prefixed: boolean,
+): Range | null {
+	const { start, end } = name;
+	const left = prefixStart(raw, field, start);
+	if (prefixed && left === start) return null;
+	const adjoins = (index: number) => taken.some((range) => range.end === index || range.start === index);
+	const leftOk = left === 0 || !THAI_LETTER.test(raw[left - 1]!) || adjoins(left);
+	const rightOk =
+		end === raw.length || !THAI_LETTER.test(raw[end]!) || FOLLOWER.test(raw.slice(end)) || adjoins(end);
+	return leftOk && rightOk && placeWordBefore(raw, left, start) === null ? { start: left, end } : null;
 }
 
 /**
@@ -102,6 +115,31 @@ export function findTruncated(
 		if (found) return found;
 	}
 	return null;
+}
+
+/**
+ * Standalone mentions of `name`, prefix included, that the address only
+ * partly covers: a run edge that falls inside a written field name, as in
+ * `ถ.พญาไท แขวงถน|นพญาไท`, is a slip, and the whole mention is the field.
+ */
+export function straddledMentions(
+	raw: string,
+	field: AdministrativeField,
+	name: string,
+	address: readonly Range[],
+): Range[] {
+	const covered: Range[] = [];
+	for (const range of [...address].sort((left, right) => left.start - right.start)) {
+		const last = covered[covered.length - 1];
+		if (last && last.end >= range.start) covered[covered.length - 1] = { start: last.start, end: Math.max(last.end, range.end) };
+		else covered.push(range);
+	}
+	return occurrences(raw, name).flatMap((written) => {
+		const mention = standaloneAt(raw, field, written, [], false);
+		const straddles = mention !== null && covered.some((range) =>
+			overlaps(mention.start, mention.end, [range]) && !contains(range, written));
+		return straddles ? [mention] : [];
+	});
 }
 
 function prefixStart(raw: string, field: AdministrativeField, start: number): number {

@@ -6,8 +6,9 @@ import { decodeTags, spanEdges } from "./decode";
 import { featurize } from "./features";
 import { composeRecipient } from "./compose";
 import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
-import { findStandalone, findTruncated, insideOtherName, insidePlaceName, type Range } from "./mention";
+import { findStandalone, findTruncated, insideOtherName, insidePlaceName, straddledMentions, type Range } from "./mention";
 import {
+	ADMINISTRATIVE_FIELDS,
 	closestTuple,
 	createTupleResolver,
 	formSimilarity,
@@ -304,11 +305,11 @@ export function createTaggerParser(
 			const fieldSpans = spans.filter((span) => !misplaced.includes(span));
 			const kept = (label: OutputLabel): boolean => fieldSpans.some((span) => span.label === label);
 			const untagged = tuple ? untaggedMentions(raw, tuple, fieldSpans, misplaced) : { values: {}, claimed: [] };
-			const address = addressOf(
-				raw,
-				[...spans.filter((span) => span.label === "ADDRESS_DETAIL"), ...placeNames],
-				untagged.claimed,
-			);
+			const addressRanges = [...spans.filter((span) => span.label === "ADDRESS_DETAIL"), ...placeNames];
+			const straddled = tuple
+				? ADMINISTRATIVE_FIELDS.flatMap((field) => straddledMentions(raw, field, tuple[field], addressRanges))
+				: [];
+			const address = addressOf(raw, addressRanges, [...untagged.claimed, ...straddled]);
 			const administrative = tuple
 				? {
 					...NO_ADMINISTRATIVE,
