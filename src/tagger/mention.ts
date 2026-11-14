@@ -1,4 +1,7 @@
-import type { AdministrativeField } from "./resolve";
+import type { LocationTuple } from "../types";
+import { ADMINISTRATIVE_FIELDS, type AdministrativeField } from "./resolve";
+
+export type LocationNames = Pick<LocationTuple, AdministrativeField>;
 
 export interface Range {
 	readonly start: number;
@@ -16,6 +19,38 @@ const PLACE_MARKER = /(บ้าน|หมู่บ้าน|มบ\.|ถ\.|ถ�
 
 function overlaps(start: number, end: number, ranges: readonly Range[]): boolean {
 	return ranges.some((range) => start < range.end && range.start < end);
+}
+
+function occurrences(raw: string, name: string): Range[] {
+	const found: Range[] = [];
+	for (let start = raw.indexOf(name); start >= 0; start = raw.indexOf(name, start + 1)) {
+		found.push({ start, end: start + name.length });
+	}
+	return found;
+}
+
+const contains = (outer: Range, inner: Range): boolean =>
+	outer.start <= inner.start && inner.end <= outer.end;
+
+/**
+ * Whether a span tagged as `field` only covers part of another field's
+ * longer name, as `พังงา` inside the district `เมืองพังงา` or `บางเขน`
+ * inside the subdistrict `ตลาดบางเขน`.
+ */
+export function insideOtherName(
+	raw: string,
+	span: Range,
+	field: AdministrativeField,
+	tuple: LocationNames,
+): boolean {
+	const own = occurrences(raw, tuple[field]).filter((range) => contains(range, span));
+	return ADMINISTRATIVE_FIELDS.some((other) => {
+		if (other === field || tuple[other] === tuple[field]) return false;
+		return occurrences(raw, tuple[other]).some((outer) =>
+			contains(outer, span) &&
+			own.every((range) => contains(outer, range) && outer.end - outer.start > range.end - range.start),
+		);
+	});
 }
 
 /**

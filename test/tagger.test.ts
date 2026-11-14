@@ -164,6 +164,12 @@ describe("shipped tagger model", () => {
 		});
 	});
 
+	test("a province written only inside its city district's name is not output", () => {
+		const fields = parser.parse("ณัฐวุฒิ หมานหลี 0623391457 5/1 ม.1 ต.ป่ากอ อ.เมืองพังงา 82000").fields;
+		expect(fields.district).toBe("เมืองพังงา");
+		expect(fields.province).toBeNull();
+	});
+
 	test("empty input yields no fields", () => {
 		expect(Object.values(parser.parse("").fields).every((value) => value === null)).toBe(true);
 	});

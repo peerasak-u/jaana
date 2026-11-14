@@ -5,7 +5,7 @@ import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags } from "./decode";
 import { featurize } from "./features";
 import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
-import { findStandalone, type Range } from "./mention";
+import { findStandalone, insideOtherName, type Range } from "./mention";
 import {
 	closestTuple,
 	createTupleResolver,
@@ -50,8 +50,13 @@ function runsOf(raw: string, tags: Uint8Array): TaggedSpan[] {
 	return runs;
 }
 
-const NO_ADMINISTRATIVE: AdministrativeValues = { subdistrict: null, district: null, province: null, zipcode: null };
-const TAGGED_FIELDS:readonly [OutputLabel, AdministrativeField | "zipcode"][] = [
+const ADMINISTRATIVE_LABELS = new Map<OutputLabel, AdministrativeField>([
+	["SUBDISTRICT", "subdistrict"],
+	["DISTRICT", "district"],
+	["PROVINCE", "province"],
+]);
+const NO_ADMINISTRATIVE:AdministrativeValues = { subdistrict: null, district: null, province: null, zipcode: null };
+const TAGGED_FIELDS: readonly [OutputLabel, AdministrativeField | "zipcode"][] = [
 	["POSTCODE", "zipcode"],
 	["PROVINCE", "province"],
 	["DISTRICT", "district"],
@@ -61,15 +66,20 @@ const TAGGED_FIELDS:readonly [OutputLabel, AdministrativeField | "zipcode"][] = 
 /**
  * The resolved tuple's fields that the Tagger missed but the text writes on
  * their own. A district is claimed before a same-named subdistrict, because
- * one bare mention of such a name is the district.
+ * one bare mention of such a name is the district. Misplaced spans count as
+ * neither tagged nor free text.
  */
 function untaggedMentions(
 	raw: string,
 	tuple: LocationTuple,
 	spans: readonly TaggedSpan[],
+	misplaced: readonly TaggedSpan[],
 ): { values: Partial<AdministrativeValues>; claimed: Range[] } {
 	const text = raw.replace(/[๐-๙]/gu, (digit) => String(THAI_DIGITS.indexOf(digit)));
-	const taken: Range[] = spans.filter((span) => TAGGED_FIELDS.some(([label]) => label === span.label));
+	const taken: Range[] = [
+		...misplaced,
+		...spans.filter((span) => TAGGED_FIELDS.some(([label]) => label === span.label)),
+	];
 	const values: Partial<AdministrativeValues> = {};
 	const claimed: Range[] = [];
 	for (const [label, field] of TAGGED_FIELDS) {
@@ -89,11 +99,19 @@ function untaggedMentions(
 	return { values, claimed };
 }
 
-/** Address-detail pieces with the claimed administrative mentions cut out. */
-function addressOf(raw: string, spans: readonly TaggedSpan[], claimed: readonly Range[]): string {
+/**
+ * Address detail from the given ranges in text order, touching ranges
+ * merged, with the claimed administrative mentions cut out.
+ */
+function addressOf(raw: string, ranges: readonly Range[], claimed: readonly Range[]): string {
+	const merged: Range[] = [];
+	for (const range of [...ranges].sort((left, right) => left.start - right.start)) {
+		const last = merged[merged.length - 1];
+		if (last && last.end === range.start) merged[merged.length - 1] = { start: last.start, end: range.end };
+		else merged.push(range);
+	}
 	const pieces: string[] = [];
-	for (const span of spans) {
-		if (span.label !== "ADDRESS_DETAIL") continue;
+	for (const span of merged) {
 		let start = span.start;
 		const cuts = claimed
 			.filter((range) => range.start < span.end && span.start < range.end)
@@ -199,15 +217,29 @@ export function createTaggerParser(
 			};
 			const written = zipcode ? normalizePostcode(zipcode) : null;
 			const tuple = resolveTuple(anchored, texts, written);
-			const untagged = tuple ? untaggedMentions(raw, tuple, spans) : { values: {}, claimed: [] };
-			const address = addressOf(raw, spans, untagged.claimed);
+			const misplaced = tuple
+				? spans.filter((span) => {
+					const field = ADMINISTRATIVE_LABELS.get(span.label);
+					return field !== undefined && insideOtherName(raw, span, field, tuple);
+				})
+				: [];
+			const fieldSpans = spans.filter((span) => !misplaced.includes(span));
+			const kept = (label: OutputLabel): boolean => fieldSpans.some((span) => span.label === label);
+			const untagged = tuple ? untaggedMentions(raw, tuple, fieldSpans, misplaced) : { values: {}, claimed: [] };
+			const address = addressOf(
+				raw,
+				spans.filter((span) => span.label === "ADDRESS_DETAIL"),
+				untagged.claimed,
+			);
 			const administrative = tuple
 				? {
 					...NO_ADMINISTRATIVE,
 					...untagged.values,
-					...(subdistrict ? { subdistrict: anchoredSubdistrict(tuple, subdistrict, written) } : {}),
-					...(district ? { district: tuple.district } : {}),
-					...(province ? { province: tuple.province } : {}),
+					...(subdistrict && kept("SUBDISTRICT")
+						? { subdistrict: anchoredSubdistrict(tuple, subdistrict, written) }
+						: {}),
+					...(kept("DISTRICT") ? { district: tuple.district } : {}),
+					...(kept("PROVINCE") ? { province: tuple.province } : {}),
 					...(zipcode ? { zipcode: tuple.zipcode } : {}),
 				}
 				: resolve({ ...texts, ...(zipcode ? { zipcode } : {}) });
