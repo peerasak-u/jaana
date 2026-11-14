@@ -35,7 +35,7 @@ function closeBracket(raw: string, range: Range): Range {
 }
 
 /** A label the GUIDE keeps out of the name, written as its own word before it. */
-const LEADING_LABEL = /^(?:ตอบ|จริง|ชื่อจริง|ชื่อ|ผู้รับ|ส่งให้|ถึง|c\/o|To|recipient)[\s:：]+/iu;
+const LEADING_LABEL = /^(?:(?:ตอบ|จริง|ชื่อจริง|ชื่อ|ผู้รับ|ส่งให้|ถึง|c\/o|To|recipient)[\s:：]+|[^\s:：()]+[ \t]*[:：][ \t]*|(?:ผม|ดิฉัน)(?=[ก-๎]))/iu;
 /** A particle the GUIDE keeps out of the name, written as its own word after it. */
 const TRAILING_PARTICLE = /\s+(?:นะ|ค่ะ|คะ|ครับ|จ้า|จ้ะ|นะคะ|นะครับ|นะจ้ะ|นะจ๊ะ|ด้วยนะ|ด้วย|ด้วยค่ะ|ด้วยครับ)$/u;
 
