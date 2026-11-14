@@ -26,7 +26,7 @@ const extraPaths = values("--extra-dataset");
 if (datasetPaths.length === 0) throw new Error("at least one --dataset is required");
 const gazetteerPath = value("--gazetteer", "resources/gazetteer.json");
 const outputPath = value("--output", "resources/tagger-model.json");
-const dimension = Number(value("--dimension", "32768"));
+const dimension = Number(value("--dimension", "65536"));
 const epochs = Number(value("--epochs", "8"));
 const seed = Number(value("--seed", "20260720"));
 const margin = Number(value("--margin", "200"));
