@@ -145,6 +145,22 @@ function gluedFieldWords(
 	return leads;
 }
 
+/** A word that opens a place or organisation name, which shoppers glue to `ส่ง`. */
+const PLACE_OPENER = /^(?:วัด|ร้าน|โรง|บจก|บมจ|หจก|บริษัท|รร\.|รพ\.|บ้าน|หมู่บ้าน|คลินิก|สหกรณ์|ตลาด|สำนักงาน|ที่ทำการ|ศูนย์|หอ|อาคาร|คอนโด)/u;
+
+/**
+ * Address runs that start glued to untagged chat text and hold no digit
+ * or place word,
+ * as `เครื่องวัด|ความดันดิจิตอล`, when another address piece holds the
+ * place: a word of the conversation, not address detail.
+ */
+export function chatDebris(raw: string, tags: Uint8Array, address: readonly Range[]): Range[] {
+	const glued = address.filter((range) =>
+		range.start > 0 && THAI_LETTER.test(raw[range.start - 1]!) && tags[range.start - 1] === OTHER &&
+		!/[0-9๐-๙]/u.test(raw.slice(range.start, range.end)) && !PLACE_OPENER.test(raw.slice(range.start, range.end)));
+	return glued.length < address.length ? glued : [];
+}
+
 const PREFIX_WORD = /อำเภอ|ตำบล|จังหวัด|แขวง/gu;
 
 const FIELD_TAGS = new Set(["SUBDISTRICT", "DISTRICT", "PROVINCE"].map((tag) => TAGS.indexOf(tag as Tag)));
@@ -516,12 +532,14 @@ export function createTaggerParser(
 			const before = tuple && districtSpan && !kept("SUBDISTRICT") && !untagged.values.subdistrict
 				? subdistrictBefore(raw, tuple, addressRanges, districtSpan, written)
 				: null;
+			const debris = chatDebris(raw, tags, addressRanges);
 			const leads = tuple ? gluedFieldWords(raw, tags, addressRanges, tuple) : [];
 			const address = addressOf(raw, addressRanges, [
 				...untagged.claimed,
 				...straddled,
 				...(before ? [before] : []),
 				...leads,
+				...debris,
 			]);
 			const administrative = tuple
 				? {

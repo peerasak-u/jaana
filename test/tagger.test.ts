@@ -4,7 +4,14 @@ import { createAnchorer } from "../src/tagger/anchor";
 import { findMisspelt, findStandalone, findTruncated, straddledMentions, writesOtherField } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
-import { addressOf, completePostcode, createTaggerParser, finishLine, joinPrefixWords } from "../src/tagger/parser";
+import {
+	addressOf,
+	chatDebris,
+	completePostcode,
+	createTaggerParser,
+	finishLine,
+	joinPrefixWords,
+} from "../src/tagger/parser";
 import { recutPhone } from "../src/tagger/phone";
 import { latinSkeleton, thaiSkeleton } from "../src/tagger/romanize";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -202,6 +209,16 @@ describe("phone re-cut", () => {
 		joinPrefixWords(field, fieldTags);
 		expect(textOf(field, fieldTags, DISTRICT)).toBe("อำเภอเมือง");
 		expect(textOf(field, fieldTags, ADDRESS)).toBe("12 ม.3 ");
+	});
+
+	test("a digit-free address run glued to chat text is debris when another piece holds the place", () => {
+		const raw = "ขอสั่งเครื่องวัดความดันดิจิตอล 3 เครื่อง ส่งวัดราวต้นจันทร์ ม.1";
+		const tags = tagged(raw, ".".repeat(raw.length));
+		const piece = (text: string) => ({ start: raw.indexOf(text), end: raw.indexOf(text) + text.length });
+		const address = [piece("ความดันดิจิตอล"), piece("วัดราวต้นจันทร์ ม.1")];
+		for (const range of address) tags.fill(ADDRESS, range.start, range.end);
+		expect(chatDebris(raw, tags, address)).toEqual([address[0]!]);
+		expect(chatDebris(raw, tags, [address[0]!])).toEqual([]);
 	});
 
 	test("of two numbers in one run, the first is the phone", () => {
