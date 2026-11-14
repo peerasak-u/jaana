@@ -14,7 +14,28 @@ const PREFIXES: Record<AdministrativeField, readonly string[]> = {
 	district: ["อำเภอ", "เขต", "อ.", "อ"],
 	province: ["จังหวัด", "จ.", "จ"],
 };
-const BANGKOK = /^(กทม\.?|กรุงเทพฯ?|กรุงเทพมหานคร)$/u;
+/** Short forms and nicknames shoppers write for a province. */
+export const PROVINCE_ALIASES: ReadonlyMap<string, readonly string[]> = new Map(Object.entries({
+	กรุงเทพมหานคร: ["กทม", "กทม.", "กรุงเทพ", "กรุงเทพฯ", "dm,"],
+	นนทบุรี: ["นนท์", "นนท"],
+	ปทุมธานี: ["ปทุม"],
+	นครราชสีมา: ["โคราช"],
+	กาญจนบุรี: ["กาญจน์"],
+	อุบลราชธานี: ["อุบล", "อุบลฯ"],
+	สมุทรสาคร: ["มหาชัย"],
+	สมุทรสงคราม: ["แม่กลอง"],
+	สมุทรปราการ: ["ปากน้ำ"],
+	สุพรรณบุรี: ["สุพรรณ"],
+	พระนครศรีอยุธยา: ["อยุธยา"],
+	ฉะเชิงเทรา: ["แปดริ้ว"],
+	นครศรีธรรมราช: ["นครศรี", "นครศรีฯ"],
+	อุดรธานี: ["อุดร"],
+	ประจวบคีรีขันธ์: ["ประจวบ"],
+	สุราษฎร์ธานี: ["สุราษฎร์"],
+}));
+const ALIASED_PROVINCE = new Map(
+	[...PROVINCE_ALIASES].flatMap(([province, aliases]) => aliases.map((alias) => [alias, province] as const)),
+);
 const MIN_FUZZY_RATIO = 0.8;
 const FUZZY_DISCOUNT = 0.9;
 const BARE_CITY_SIMILARITY = 0.9;
@@ -35,6 +56,60 @@ export function nameForms(field: AdministrativeField, text: string): string[] {
 		}
 	}
 	return [...forms].filter((form) => form.length > 0);
+}
+
+/** Similarity in [0, 1] of the best surface form of a tagged span to one gazetteer name. */
+export function formSimilarity(
+	field: AdministrativeField,
+	forms: readonly string[],
+	name: string,
+): number {
+	let best = 0;
+	for (const form of forms) {
+		if (form === name) return 1;
+		if (field === "province" && ALIASED_PROVINCE.get(form) === name) return 1;
+		if (field === "district" && form === "เมือง" && name.startsWith("เมือง")) {
+			best = Math.max(best, BARE_CITY_SIMILARITY);
+			continue;
+		}
+		best = Math.max(best, similarityRatio(form, name) / 100);
+	}
+	return best;
+}
+
+/**
+ * Picks the tuple of a small pool whose names best match the tagged spans.
+ * Ties keep the earlier tuple, so callers order the pool by preference.
+ */
+export function closestTuple(
+	pool: readonly LocationTuple[],
+	texts: AdministrativeTexts,
+): LocationTuple | null {
+	const forms = ADMINISTRATIVE_FIELDS.map((field) => {
+		const text = texts[field];
+		return text ? nameForms(field, text) : [];
+	});
+	const seen = ADMINISTRATIVE_FIELDS.map(() => new Map<string, number>());
+	let best: LocationTuple | null = null;
+	let bestScore = -1;
+	for (const location of pool) {
+		let score = 0;
+		ADMINISTRATIVE_FIELDS.forEach((field, index) => {
+			if (forms[index]!.length === 0) return;
+			const name = location[field];
+			let similarity = seen[index]!.get(name);
+			if (similarity === undefined) {
+				similarity = formSimilarity(field, forms[index]!, name);
+				seen[index]!.set(name, similarity);
+			}
+			score += similarity;
+		});
+		if (score > bestScore) {
+			best = location;
+			bestScore = score;
+		}
+	}
+	return best;
 }
 
 /**
@@ -63,7 +138,8 @@ export function createTupleResolver(
 		const forms = nameForms(field, text);
 		for (const form of forms) {
 			if (known[field].has(form)) raise(form, 1);
-			if (field === "province" && BANGKOK.test(form)) raise("กรุงเทพมหานคร", 1);
+			const aliased = field === "province" ? ALIASED_PROVINCE.get(form) : undefined;
+			if (aliased) raise(aliased, 1);
 			if (field === "district" && form === "เมือง") {
 				for (const name of names.district) {
 					if (name.startsWith("เมือง")) raise(name, BARE_CITY_SIMILARITY);
