@@ -34,6 +34,12 @@ describe("recipient composition", () => {
 		});
 	}
 
+	test("a label word before the name and a particle after it are left out", () => {
+		expect(compose("ตอบ วนิดา พลเยี่ยม", "ตอบ วนิดา พลเยี่ยม", []).name).toBe("วนิดา พลเยี่ยม");
+		expect(compose("ส่งชื่อ แม่หนิง นะจ้ะ", "แม่หนิง นะจ้ะ", []).name).toBe("แม่หนิง");
+		expect(compose("ก๊ะนะ 12 ม.3", "ก๊ะนะ", []).name).toBe("ก๊ะนะ");
+	});
+
 	test("a person bracket left open by the Tagger is closed", () => {
 		expect(compose("บจก.รุ่งเรือง (คุณเอ) 12/3", "(คุณเอ", ["บจก.รุ่งเรือง"]).name).toBe("บจก.รุ่งเรือง (คุณเอ)");
 	});

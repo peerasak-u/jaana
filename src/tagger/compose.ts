@@ -34,6 +34,19 @@ function closeBracket(raw: string, range: Range): Range {
 	return close ? { start: range.start, end: range.end + close[0].length } : range;
 }
 
+/** A label the GUIDE keeps out of the name, written as its own word before it. */
+const LEADING_LABEL = /^(?:ตอบ|จริง|ชื่อจริง|ชื่อ|ผู้รับ|ส่งให้|ถึง|c\/o|To|recipient)[\s:：]+/iu;
+/** A particle the GUIDE keeps out of the name, written as its own word after it. */
+const TRAILING_PARTICLE = /\s+(?:นะ|ค่ะ|คะ|ครับ|จ้า|จ้ะ|นะคะ|นะครับ|นะจ้ะ|นะจ๊ะ|ด้วยนะ|ด้วย|ด้วยค่ะ|ด้วยครับ)$/u;
+
+function trimLabels(raw: string, range: Range): Range {
+	const text = raw.slice(range.start, range.end);
+	const leading = LEADING_LABEL.exec(text)?.[0].length ?? 0;
+	const trailing = TRAILING_PARTICLE.exec(text.slice(leading))?.[0].length ?? 0;
+	if (leading + trailing >= text.length) return range;
+	return { start: range.start + leading, end: range.end - trailing };
+}
+
 /**
  * Applies the recipient rule of `bench/chat/GUIDE.md` to the Tagger's
  * person (NAME) run and organisation (ORG) runs:
@@ -61,5 +74,5 @@ export function composeRecipient(raw: string, person: Range | null, orgs: readon
 			break;
 		}
 	}
-	return { name: closeBracket(raw, name), address: pending };
+	return { name: closeBracket(raw, trimLabels(raw, name)), address: pending };
 }
