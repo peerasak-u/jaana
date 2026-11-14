@@ -71,8 +71,11 @@ bun run train:tagger \
 Training takes about six seconds and is deterministic for a given `--seed`.
 `--dimension` and `--epochs` change the model size and the number of passes.
 `--margin` (default 200) is the training bonus on wrong tags; 0 is the plain
-perceptron. `scripts/chat/retrain.sh <model.json>` trains with the chat pool
-and runs the chat benchmark.
+perceptron. `--prune` (default 2) holds weights the first run left below that
+many int8 steps at zero and trains a second run around them, which cuts the
+gzipped model from about 145 KB to about 61 KB for about two dev records;
+`--prune 0` trains once. `scripts/chat/retrain.sh <model.json>` trains with
+the chat pool and runs the chat benchmark.
 
 Compare the tagger with the Candidate Engine on the held-out split and the
 messy fixture:

@@ -31,7 +31,7 @@ const dimension = Number(value("--dimension", "65536"));
 const epochs = Number(value("--epochs", "8"));
 const seed = Number(value("--seed", "20260720"));
 const margin = Number(value("--margin", "200"));
-const prune = Number(value("--prune", "0"));
+const prune = Number(value("--prune", "2"));
 const version = value("--model-version", `thai-address-tagger-d${dimension}`);
 
 const { locations } = await loadParserResources(gazetteerPath);
