@@ -8,7 +8,16 @@ import { recutPhone } from "./phone";
 import { latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
 import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
-import { findMisspelt, findStandalone, findTruncated, insideOtherName, insidePlaceName, straddledMentions, type Range } from "./mention";
+import {
+	findMisspelt,
+	findStandalone,
+	findTruncated,
+	insideOtherName,
+	insidePlaceName,
+	straddledMentions,
+	writesOtherField,
+	type Range,
+} from "./mention";
 import {
 	ADMINISTRATIVE_FIELDS,
 	closestTuple,
@@ -88,6 +97,27 @@ function attachBracketAfterName(raw: string, tags: Uint8Array): void {
 		if (!group || REMARK_END.test(group) || !tags.subarray(end, end + group.length).every((other) => other === OTHER)) continue;
 		tags.fill(tag, end, end + group.length);
 	}
+}
+
+const POSTCODE = TAGS.indexOf("POSTCODE");
+const DIGIT = /[0-9๐-๙]/u;
+
+/**
+ * A postcode is five digits written together. A POSTCODE run that holds
+ * fewer takes the digits glued to it when that makes exactly five, as in
+ * `74|000`.
+ */
+export function completePostcode(raw: string, tags: Uint8Array): void {
+	const start = tags.indexOf(POSTCODE);
+	if (start < 0) return;
+	let end = start;
+	while (end < raw.length && tags[end] === POSTCODE) end += 1;
+	let low = start;
+	while (low > 0 && DIGIT.test(raw[low - 1]!)) low -= 1;
+	let high = end;
+	while (high < raw.length && DIGIT.test(raw[high]!)) high += 1;
+	const digits = (from: number, to: number) => [...raw.slice(from, to)].filter((character) => DIGIT.test(character)).length;
+	if (digits(start, end) !== 5 && digits(low, high) === 5 && high - low === 5) tags.fill(POSTCODE, low, high);
 }
 
 interface Run extends Range {
@@ -351,6 +381,7 @@ export function createTaggerParser(
 			closeBrackets(raw, tags);
 			attachBracketAfterName(raw, tags);
 			recutPhone(raw, tags);
+			completePostcode(raw, tags);
 			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
@@ -367,10 +398,12 @@ export function createTaggerParser(
 			const tuple = resolveTuple(anchored, texts, written);
 			const placeNames: Range[] = [];
 			const misplaced: TaggedSpan[] = [];
+			const mislabeled: TaggedSpan[] = [];
 			for (const span of spans) {
 				const field = ADMINISTRATIVE_LABELS.get(span.label);
 				if (!tuple || field === undefined) continue;
-				if (insideOtherName(raw, span, field, tuple)) misplaced.push(span);
+				if (writesOtherField(span.text, field, tuple)) mislabeled.push(span);
+				else if (insideOtherName(raw, span, field, tuple)) misplaced.push(span);
 				else {
 					const place = insidePlaceName(raw, span, field, tuple[field]);
 					if (!place) continue;
@@ -378,7 +411,7 @@ export function createTaggerParser(
 					placeNames.push(place);
 				}
 			}
-			const fieldSpans = spans.filter((span) => !misplaced.includes(span));
+			const fieldSpans = spans.filter((span) => !misplaced.includes(span) && !mislabeled.includes(span));
 			const kept = (label: OutputLabel): boolean => fieldSpans.some((span) => span.label === label);
 			const untagged = tuple ? untaggedMentions(raw, tuple, fieldSpans, misplaced) : { values: {}, claimed: [] };
 			const addressRanges = [...spans.filter((span) => span.label === "ADDRESS_DETAIL"), ...placeNames];

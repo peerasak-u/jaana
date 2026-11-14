@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { loadParserResources } from "../bench/gazetteer";
 import { createAnchorer } from "../src/tagger/anchor";
-import { findMisspelt, findStandalone, findTruncated, straddledMentions } from "../src/tagger/mention";
+import { findMisspelt, findStandalone, findTruncated, straddledMentions, writesOtherField } from "../src/tagger/mention";
 import { decodeTags, spanEdges } from "../src/tagger/decode";
 import { compileTaggerModel, TAG_COUNT, TAGS, type TaggerModel } from "../src/tagger/model";
-import { addressOf, createTaggerParser } from "../src/tagger/parser";
+import { addressOf, completePostcode, createTaggerParser } from "../src/tagger/parser";
 import { recutPhone } from "../src/tagger/phone";
 import { latinSkeleton, thaiSkeleton } from "../src/tagger/romanize";
 import { createTupleResolver } from "../src/tagger/resolve";
@@ -80,6 +80,14 @@ describe("administrative mentions", () => {
 		expect(findMisspelt("ถ.รังสิต-ปทุมทานี บางพูน", "province", "ปทุมธานี", [])).toBeNull();
 	});
 
+	test("a bare span that writes another field's exact name is that field", () => {
+		const tuple = { subdistrict: "บางโทรัด", district: "เมืองสมุทรสาคร", province: "สมุทรสาคร" };
+		expect(writesOtherField("บางโทรัด", "district", tuple)).toBe(true);
+		const shared = { subdistrict: "ลาดบัวขาว", district: "สีคิ้ว", province: "นครราชสีมา" };
+		expect(writesOtherField("ต.สีคิ้ว", "subdistrict", shared)).toBe(false);
+		expect(writesOtherField("เมืองสมุทรสาคร", "district", tuple)).toBe(false);
+	});
+
 	test("a name inside a village or road name is not standalone", () => {
 		expect(findStandalone("62 ม.9 บ้านมะเฟือง อ.พุทไธสง", "subdistrict", "มะเฟือง", [])).toBeNull();
 		expect(findStandalone("ถ.บางกรวย-ไทรน้อย", "subdistrict", "ไทรน้อย", [])).toBeNull();
@@ -141,6 +149,16 @@ describe("phone re-cut", () => {
 		const tags = tagged(raw, "P".repeat(10) + ".".repeat(raw.length - 10));
 		recutPhone(raw, tags);
 		expect(textOf(raw, tags, PHONE)).toBe("0897012246");
+	});
+
+	test("a postcode run split inside its five digits takes the rest of them", () => {
+		const POSTCODE = TAGS.indexOf("POSTCODE");
+		const raw = "มหาชัย 74000 ห้อง 25";
+		const tags = tagged(raw, "AAAAAAAAA" + ".".repeat(raw.length - 9));
+		tags.fill(POSTCODE, raw.indexOf("000"), raw.indexOf("000") + 3);
+		completePostcode(raw, tags);
+		expect(textOf(raw, tags, POSTCODE)).toBe("74000");
+		expect(textOf(raw, tags, ADDRESS)).toBe("มหาชัย ");
 	});
 
 	test("of two numbers in one run, the first is the phone", () => {

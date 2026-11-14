@@ -1,6 +1,6 @@
 import { similarityRatio } from "../candidate/fuzzy-match";
 import type { LocationTuple } from "../types";
-import { ADMINISTRATIVE_FIELDS, type AdministrativeField } from "./resolve";
+import { ADMINISTRATIVE_FIELDS, nameForms, type AdministrativeField } from "./resolve";
 
 export type LocationNames = Pick<LocationTuple, AdministrativeField>;
 
@@ -56,6 +56,17 @@ export function insideOtherName(
 			own.every((range) => contains(outer, range) && outer.end - outer.start > range.end - range.start),
 		);
 	});
+}
+
+/**
+ * Whether a span tagged as `field` writes, with no prefix, exactly the
+ * name another field of the tuple has, as a district span over the
+ * subdistrict `บางโทรัด`. Such a span is that other field.
+ */
+export function writesOtherField(text: string, field: AdministrativeField, tuple: LocationNames): boolean {
+	const forms = nameForms(field, text);
+	return forms.length === 1 && !forms.includes(tuple[field]) && ADMINISTRATIVE_FIELDS.some((other) =>
+		tuple[other] !== tuple[field] && forms.includes(tuple[other]));
 }
 
 /**
