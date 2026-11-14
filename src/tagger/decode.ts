@@ -1,7 +1,7 @@
 import { TAG_COUNT, TAGS, type CompiledTaggerModel } from "./model";
 
 /** NAME, PHONE and the four administrative tags may each form one run. */
-const SINGLE_RUN_BIT = [0, 1, 2, 0, 4, 8, 16, 32];
+const SINGLE_RUN_BIT = [0, 1, 2, 0, 4, 8, 16, 32, 0];
 const MASK_COUNT = 64;
 const STATE_COUNT = TAG_COUNT * MASK_COUNT;
 const UNREACHABLE = -(2 ** 30);
@@ -14,23 +14,25 @@ const OTHER_BIT = 1 << TAGS.indexOf("OTHER");
 const PHONE_BIT = 1 << TAGS.indexOf("PHONE");
 const ADDRESS_BIT = 1 << TAGS.indexOf("ADDRESS_DETAIL");
 
-/** Per position, the tags (as bits) whose run may start there and end there. */
+/** Per position, the tags (as bits) whose run may start there, end there, and cover it. */
 export interface SpanEdges {
-	readonly opens: Uint8Array;
-	readonly closes: Uint8Array;
+	readonly opens: Uint16Array;
+	readonly closes: Uint16Array;
+	readonly covers: Uint16Array;
 }
 
 /**
  * Where a run may start and end, from the gold rules. A field starts on a
  * letter or digit (a phone also on `+` or `(`, an address on `#`) and ends on
  * one or on `)` or `.`. No run starts inside a Thai character cluster (a
- * vowel or tone mark, or after a leading vowel) or a Latin word. No gold span
- * in the training data breaks these.
+ * vowel or tone mark, or after a leading vowel) or a Latin word. Only address
+ * detail may cover a line break. No gold span in the training data breaks these.
  */
 export function spanEdges(raw: string): SpanEdges {
 	const n = raw.length;
-	const opens = new Uint8Array(n);
-	const closes = new Uint8Array(n);
+	const opens = new Uint16Array(n);
+	const closes = new Uint16Array(n);
+	const covers = new Uint16Array(n);
 	for (let index = 0; index < n; index += 1) {
 		const character = raw[index]!;
 		const word = WORD.test(character);
@@ -39,6 +41,7 @@ export function spanEdges(raw: string): SpanEdges {
 			: OTHER_BIT |
 				("+(".includes(character) ? PHONE_BIT : 0) |
 				(character === "#" ? ADDRESS_BIT : 0);
+		covers[index] = character === "\n" ? OTHER_BIT | ADDRESS_BIT : ANY_TAG;
 		closes[index] = word || character === ")" || character === "." ? ANY_TAG : OTHER_BIT;
 	}
 	for (let index = 1; index < n; index += 1) {
@@ -53,11 +56,12 @@ export function spanEdges(raw: string): SpanEdges {
 			closes[index - 1] = 0;
 		}
 	}
-	return { opens, closes };
+	return { opens, closes, covers };
 }
 
 function unconstrained(n: number): SpanEdges {
-	return { opens: new Uint8Array(n).fill(ANY_TAG), closes: new Uint8Array(n).fill(ANY_TAG) };
+	const any = new Uint16Array(n).fill(ANY_TAG);
+	return { opens: any, closes: any, covers: any };
 }
 
 export function emissionScores(
@@ -92,17 +96,18 @@ export function decodeTags(
 	if (n === 0) return tags;
 	const emit = emissionScores(features, model.weights);
 	const transitions = model.transitions;
-	const { opens, closes } = edges;
+	const { opens, closes, covers } = edges;
 	let previous = new Int32Array(STATE_COUNT).fill(UNREACHABLE);
 	let current = new Int32Array(STATE_COUNT);
 	const back = new Int16Array(n * STATE_COUNT);
 	for (let tag = 0; tag < TAG_COUNT; tag += 1) {
-		if (opens[0]! & (1 << tag)) previous[tag * MASK_COUNT + SINGLE_RUN_BIT[tag]!] = emit[tag]!;
+		if (opens[0]! & covers[0]! & (1 << tag)) previous[tag * MASK_COUNT + SINGLE_RUN_BIT[tag]!] = emit[tag]!;
 	}
 	for (let position = 1; position < n; position += 1) {
 		current.fill(UNREACHABLE);
 		const closing = closes[position - 1]!;
 		for (let tag = 0; tag < TAG_COUNT; tag += 1) {
+			if ((covers[position]! & (1 << tag)) === 0) continue;
 			const opening = (opens[position]! & (1 << tag)) !== 0;
 			const bit = SINGLE_RUN_BIT[tag]!;
 			for (let mask = 0; mask < MASK_COUNT; mask += 1) {

@@ -1,6 +1,7 @@
 import { normalizeCandidate } from "../../src/normalize";
 import type { Label, LocationTuple, OutputLabel } from "../../src/types";
 import type { DatasetSpan, ExpectedAddress } from "../dataset";
+import { splitName } from "../org-labels";
 import { fnv1a, type ChatRecord } from "./markup";
 
 /** A record cut into consecutive pieces of text. A piece with no label is unmarked text. */
@@ -17,7 +18,8 @@ interface Draft {
 type Random = () => number;
 
 interface Donors {
-	readonly names: readonly string[];
+	/** Donor names by kind, so a person is swapped only for a person and an organisation for an organisation. */
+	readonly names: ReadonlyMap<string, readonly string[]>;
 	readonly locations: readonly LocationTuple[];
 }
 
@@ -121,9 +123,17 @@ function swapLocation(draft: Draft, donors: Donors, random: Random): Draft {
 	return { segments, location };
 }
 
+/** Whether a name holds an organisation, a person, or both, which decides how its record is tagged. */
+function nameKind(text: string): string {
+	const parts = splitName(text);
+	return `${parts.org !== null}:${parts.person !== null}`;
+}
+
 function swapName(draft: Draft, donors: Donors, random: Random): Draft {
 	const segments = draft.segments.map((segment): Segment =>
-		segment.label === "NAME" ? { ...segment, text: pick(donors.names, random) } : segment,
+		segment.label === "NAME"
+			? { ...segment, text: pick(donors.names.get(nameKind(segment.text))!, random) }
+			: segment,
 	);
 	return { ...draft, segments };
 }
@@ -168,7 +178,16 @@ function assemble(source: ChatRecord, draft: Draft, id: string): ChatRecord {
 }
 
 function donorsOf(records: readonly ChatRecord[], locations: readonly LocationTuple[]): Donors {
-	const names = records.flatMap((record) => record.spans.filter((span) => span.label === "NAME").map((span) => span.text));
+	const names = new Map<string, string[]>();
+	for (const record of records) {
+		for (const span of record.spans) {
+			if (span.label !== "NAME") continue;
+			const kind = nameKind(span.text);
+			const same = names.get(kind) ?? [];
+			same.push(span.text);
+			names.set(kind, same);
+		}
+	}
 	return { names, locations };
 }
 

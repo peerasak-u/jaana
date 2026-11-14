@@ -4,7 +4,8 @@ import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeTags, spanEdges } from "./decode";
 import { featurize } from "./features";
-import { compileTaggerModel, TAGS, type TaggerModel } from "./model";
+import { composeRecipient } from "./compose";
+import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
 import { findStandalone, findTruncated, insideOtherName, insidePlaceName, type Range } from "./mention";
 import {
 	closestTuple,
@@ -39,7 +40,7 @@ export interface TaggerParser {
 }
 
 const OTHER = TAGS.indexOf("OTHER");
-const BRACKETED = new Set([TAGS.indexOf("NAME"), TAGS.indexOf("ADDRESS_DETAIL")]);
+const BRACKETED = new Set([TAGS.indexOf("NAME"), TAGS.indexOf("ORG"), TAGS.indexOf("ADDRESS_DETAIL")]);
 
 /**
  * Gold names and address pieces keep a bracket they open, but the tagger
@@ -63,18 +64,38 @@ function closeBrackets(raw: string, tags: Uint8Array): void {
 	}
 }
 
-function runsOf(raw: string, tags: Uint8Array): TaggedSpan[] {
-	const runs: TaggedSpan[] = [];
+interface Run extends Range {
+	readonly tag: Tag;
+}
+
+function runsOf(raw: string, tags: Uint8Array): Run[] {
+	const runs: Run[] = [];
 	let start = 0;
 	for (let index = 1; index <= raw.length; index += 1) {
 		if (index < raw.length && tags[index] === tags[start]) continue;
 		const tag = TAGS[tags[start]!]!;
-		if (tag !== "OTHER") {
-			runs.push({ label: tag, text: raw.slice(start, index), start, end: index });
-		}
+		if (tag !== "OTHER") runs.push({ tag, start, end: index });
 		start = index;
 	}
 	return runs;
+}
+
+/** Output spans after the organisation runs are resolved into the name or the address. */
+function spansOf(raw: string, runs: readonly Run[]): TaggedSpan[] {
+	const recipient = composeRecipient(
+		raw,
+		runs.find((run) => run.tag === "NAME") ?? null,
+		runs.filter((run) => run.tag === "ORG"),
+	);
+	const span = (label: OutputLabel, range: Range): TaggedSpan =>
+		({ label, text: raw.slice(range.start, range.end), start: range.start, end: range.end });
+	const spans: TaggedSpan[] = [];
+	for (const run of runs) {
+		if (run.tag !== "NAME" && run.tag !== "ORG" && run.tag !== "OTHER") spans.push(span(run.tag, run));
+	}
+	if (recipient.name) spans.push(span("NAME", recipient.name));
+	for (const range of recipient.address) spans.push(span("ADDRESS_DETAIL", range));
+	return spans.sort((left, right) => left.start - right.start);
 }
 
 const ADMINISTRATIVE_LABELS = new Map<OutputLabel, AdministrativeField>([
@@ -247,7 +268,7 @@ export function createTaggerParser(
 			const features = featurize(raw, anchored.flags, compiled.dimension);
 			const tags = decodeTags(features, compiled, spanEdges(raw));
 			closeBrackets(raw, tags);
-			const spans = runsOf(raw, tags);
+			const spans = spansOf(raw, runsOf(raw, tags));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
 			const subdistrict = text("SUBDISTRICT");

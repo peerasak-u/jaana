@@ -120,6 +120,13 @@ describe("single-run decoding", () => {
 		const tags = decodeTags(features, modelPreferring([NAME]), spanEdges(raw));
 		expect([...tags]).toEqual([OTHER, NAME, NAME, NAME, NAME, NAME, NAME, OTHER]);
 	});
+
+	test("only ADDRESS_DETAIL may cover a line break", () => {
+		const raw = "a\nb";
+		const everywhere = [0, 0, 0].map((feature) => Int32Array.of(feature));
+		expect([...decodeTags(everywhere, modelPreferring([NAME]), spanEdges(raw))][1]).not.toBe(NAME);
+		expect([...decodeTags(everywhere, modelPreferring([ADDRESS]), spanEdges(raw))]).toEqual([ADDRESS, ADDRESS, ADDRESS]);
+	});
 });
 
 describe("training", () => {

@@ -7,6 +7,7 @@ export const TAGS = [
 	"DISTRICT",
 	"PROVINCE",
 	"POSTCODE",
+	"ORG",
 ] as const;
 
 export type Tag = (typeof TAGS)[number];
@@ -37,20 +38,48 @@ export function compileTaggerModel(model: TaggerModel): CompiledTaggerModel {
 	for (let index = 0; index < binary.length; index += 1) {
 		weights[index] = (binary.charCodeAt(index) << 24) >> 24;
 	}
+	const trained = weights.length / model.dimension;
 	if (
 		!Number.isInteger(model.dimension) ||
 		model.dimension <= 0 ||
-		weights.length !== model.dimension * TAG_COUNT
+		!Number.isInteger(trained) ||
+		trained < 1 ||
+		trained > TAG_COUNT
 	) {
 		throw new Error("tagger model weights do not match its dimension");
 	}
-	if (model.transitions.length !== TAG_COUNT * TAG_COUNT) {
-		throw new Error("tagger model transitions must be TAG_COUNT squared");
+	if (model.transitions.length !== trained * trained) {
+		throw new Error("tagger model transitions must be its tag count squared");
 	}
 	return {
 		version: model.version,
 		dimension: model.dimension,
-		weights,
-		transitions: Int32Array.from(model.transitions),
+		...widen(weights, model.transitions, model.dimension, trained),
 	};
+}
+
+const NEVER = -128;
+
+/**
+ * Tags are only ever appended, so a model trained before a tag existed
+ * scores that tag so low that decoding never picks it.
+ */
+function widen(
+	weights: Int8Array,
+	transitions: readonly number[],
+	dimension: number,
+	trained: number,
+): { weights: Int8Array; transitions: Int32Array } {
+	if (trained === TAG_COUNT) return { weights, transitions: Int32Array.from(transitions) };
+	const wide = new Int8Array(dimension * TAG_COUNT).fill(NEVER);
+	for (let feature = 0; feature < dimension; feature += 1) {
+		wide.set(weights.subarray(feature * trained, (feature + 1) * trained), feature * TAG_COUNT);
+	}
+	const wideTransitions = new Int32Array(TAG_COUNT * TAG_COUNT);
+	for (let source = 0; source < trained; source += 1) {
+		for (let target = 0; target < trained; target += 1) {
+			wideTransitions[source * TAG_COUNT + target] = transitions[source * trained + target]!;
+		}
+	}
+	return { weights: wide, transitions: wideTransitions };
 }
