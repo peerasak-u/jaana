@@ -1,5 +1,6 @@
 import { TAGS } from "../src/tagger/model";
 import { loadDatasets, type DatasetRecord } from "./dataset";
+import { recipientRelabel } from "./org-labels";
 import { splitForTraining, type TrainingDatasetSplit } from "./split";
 
 export const SPLIT_SEED = "20260720";
@@ -15,6 +16,9 @@ export function goldTags(record: DatasetRecord): Uint8Array {
 		while (end > start && /\s/u.test(record.raw[end - 1]!)) end -= 1;
 		tags.fill(tag, start, end);
 	}
+	const relabel = recipientRelabel(record);
+	for (const range of relabel.org) tags.fill(TAGS.indexOf("ORG"), range.start, range.end);
+	for (const range of relabel.other) tags.fill(0, range.start, range.end);
 	return tags;
 }
 

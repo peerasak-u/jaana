@@ -1,7 +1,7 @@
 import { TAG_COUNT, type CompiledTaggerModel } from "./model";
 
 /** NAME, PHONE and the four administrative tags may each form one run. */
-const SINGLE_RUN_BIT = [0, 1, 2, 0, 4, 8, 16, 32];
+const SINGLE_RUN_BIT = [0, 1, 2, 0, 4, 8, 16, 32, 0];
 const MASK_COUNT = 64;
 const STATE_COUNT = TAG_COUNT * MASK_COUNT;
 const UNREACHABLE = -(2 ** 30);
