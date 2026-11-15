@@ -137,8 +137,8 @@ export function App() {
 			<header className="topbar">
 				<div className="wrap topbar-inner">
 					<a className="brand" href="#top">
-						<span className="brand-mark" aria-hidden="true">ที่</span>
-						th-address-latent
+						<span className="brand-mark" aria-hidden="true">จ่า</span>
+						Jaana
 					</a>
 					<nav aria-label="สารบัญ">
 						<a href="#try">ทดลองใช้</a>
@@ -236,7 +236,7 @@ export function App() {
 					<div className="wrap en">
 						<h2>In English</h2>
 						<p>
-							th-address-latent extracts the seven shipping fields (name, phone, address detail, subdistrict,
+							Jaana (จ่าหน้า, the Thai word for addressing a parcel) extracts the seven shipping fields (name, phone, address detail, subdistrict,
 							district, province, postcode) from a free-form Thai chat message. A small character-level tagger labels
 							the text, constrained Viterbi decoding turns labels into spans, and a resolver snaps the
 							administrative spans to one real tuple from a{" "}
@@ -252,7 +252,7 @@ export function App() {
 			</main>
 
 			<footer className="wrap footer">
-				<span>th-address-latent</span>
+				<span>Jaana · จ่าหน้า</span>
 				<a href="explainer.html">Explainer</a>
 				{REPO_URL && <a href={REPO_URL}>Source</a>}
 			</footer>

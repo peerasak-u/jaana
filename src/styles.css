@@ -166,7 +166,8 @@ textarea {
 .brand-mark {
 	display: inline-grid;
 	place-items: center;
-	width: 30px;
+	min-width: 30px;
+	padding: 0 4px;
 	height: 30px;
 	border: 2px solid var(--ink);
 	border-radius: 6px;
