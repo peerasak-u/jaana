@@ -71,6 +71,8 @@ def forward(w, item):
     f = gru(x, w["forwardInput"], w["forwardHidden"], w["forwardInputBias"], w["forwardHiddenBias"], False)
     b = gru(x, w["backwardInput"], w["backwardHidden"], w["backwardInputBias"], w["backwardHiddenBias"], True)
     logits = np.concatenate([f, b], 1) @ w["out"].T + w["outBias"]
+    if w["crf"]:
+        return logits
     logits = logits - logits.max(1, keepdims=True)
     return logits - np.log(np.exp(logits).sum(1, keepdims=True))
 
@@ -86,8 +88,8 @@ def main():
     args = parser.parse_args()
     os.chdir(ROOT)
     saved = torch.load(os.path.join("resources/experiments/neural/runs", args.run, "model.pt"), map_location="cpu")
-    if saved["args"]["arch"] != "gru" or saved["args"]["crf"] or saved["args"]["stack"]:
-        raise SystemExit("only the plain BiGRU tagger exports")
+    if saved["args"]["arch"] != "gru" or saved["args"]["stack"]:
+        raise SystemExit("only the BiGRU tagger exports")
     state = {k: v.numpy().astype(np.float32) for k, v in saved["state"].items()}
     vocab = saved["vocab"]
     keys = sorted(vocab, key=vocab.get)
@@ -96,7 +98,7 @@ def main():
     model = {"kind": "neural-bigru", "version": f"thai-address-bigru-{args.run}", "vocabulary": "".join(keys),
              "hidden": int(state["gru.weight_hh_l0"].shape[1]), "width": int(state["project.weight"].shape[0]),
              "embedding": int(state["embed.weight"].shape[1]), "tensors": {}, "biases": {}}
-    weights = {}
+    weights = {"crf": "transitions" in state}
     for name, key in TENSORS:
         q, scale = quantise(state[key])
         model["tensors"][name] = {"shape": list(q.shape), "scale": scale, "data": base64.b64encode(q.tobytes()).decode()}
@@ -104,6 +106,10 @@ def main():
     for name, key in BIASES:
         model["biases"][name] = [round(float(v), 6) for v in state[key]]
         weights[name] = np.array(model["biases"][name], dtype=np.float32)
+    transitions = np.zeros((TAG_COUNT, TAG_COUNT))
+    if "transitions" in state:
+        transitions = np.round(state["transitions"] * SCALE)
+        model["transitions"] = [int(v) for v in transitions.reshape(-1)]
     text = json.dumps(model, separators=(",", ":"))
     with open(args.output, "w") as handle:
         handle.write(text + "\n")
@@ -120,7 +126,7 @@ def main():
     items = [encode(r, vocab) for r in records]
     scores = [np.maximum(np.round(forward(weights, item) * SCALE), FLOOR) for item in items]
     path = args.output.replace(".json", ".reference-scores.json")
-    result = evaluate(scores, np.zeros((TAG_COUNT, TAG_COUNT)), records, path)
+    result = evaluate(scores, transitions, records, path)
     params = sum(int(np.prod(t["shape"])) for t in model["tensors"].values()) + sum(len(b) for b in model["biases"].values())
     import gzip
     print(json.dumps({"output": args.output, "params": params, "bytes": len(text), "gzipBytes": len(gzip.compress(text.encode())),

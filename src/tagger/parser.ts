@@ -379,23 +379,29 @@ export function linearScorer(model: TaggerModel): TagScorer {
 }
 
 function neuralScorer(model: NeuralTaggerModel): TagScorer {
-	return { score: createNeuralEmitter(model), transitions: new Int32Array(TAG_COUNT * TAG_COUNT) };
+	const transitions = new Int32Array(TAG_COUNT * TAG_COUNT);
+	if (model.transitions) {
+		if (model.transitions.length !== transitions.length) throw new Error("neural tagger transitions must be the tag count squared");
+		transitions.set(model.transitions);
+	}
+	return { score: createNeuralEmitter(model), transitions };
 }
 
-/** Linear scores plus `neuralWeight` times the neural ones, under the linear transitions. */
+/** Linear scores plus `neuralWeight` times the neural ones, and likewise for transitions. */
 function ensembleScorer(model: EnsembleTaggerModel): TagScorer {
 	const linear = linearScorer(model.linear);
-	const neural = createNeuralEmitter(model.neural);
+	const neural = neuralScorer(model.neural);
+	const transitions = linear.transitions.map((value, index) => Math.round(value + model.neuralWeight * neural.transitions[index]!));
 	return {
 		score(raw, anchorFlags) {
 			const scores = linear.score(raw, anchorFlags);
-			const extra = neural(raw, anchorFlags);
+			const extra = neural.score(raw, anchorFlags);
 			for (let index = 0; index < scores.length; index += 1) {
 				scores[index] = Math.round(scores[index]! + model.neuralWeight * extra[index]!);
 			}
 			return scores;
 		},
-		transitions: linear.transitions,
+		transitions,
 	};
 }
 

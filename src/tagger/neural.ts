@@ -38,7 +38,9 @@ interface QuantisedTensor {
 /**
  * A character BiGRU tagger, written by `scripts/neural/export_model.py`.
  * Character `vocabulary[i]` has id `i + 2`; an unseen character has id 1.
- * Gates follow PyTorch's GRU order: reset, update, new.
+ * Gates follow PyTorch's GRU order: reset, update, new. A model trained
+ * with a CRF scores raw logits and carries its tag transitions; otherwise
+ * it scores log-probabilities and has none.
  */
 export interface NeuralTaggerModel {
 	readonly kind: "neural-bigru";
@@ -49,6 +51,8 @@ export interface NeuralTaggerModel {
 	readonly hidden: number;
 	readonly tensors: Readonly<Record<(typeof TENSOR_NAMES)[number], QuantisedTensor>>;
 	readonly biases: Readonly<Record<(typeof BIAS_NAMES)[number], readonly number[]>>;
+	/** `TAG_COUNT * TAG_COUNT` integer scores, source tag major, on the emission scale. */
+	readonly transitions?: readonly number[];
 }
 
 type Weights = Record<(typeof TENSOR_NAMES)[number] | (typeof BIAS_NAMES)[number], Float32Array>;
@@ -161,6 +165,7 @@ export function createNeuralEmitter(model: NeuralTaggerModel): (raw: string, anc
 	for (let index = 0; index < model.vocabulary.length; index += 1) ids.set(model.vocabulary[index]!, index + FIRST_ID);
 	const { embedding: e, width, hidden } = model;
 	const inputs = e + FEATURE_BITS;
+	const crf = model.transitions !== undefined;
 	return (raw, anchorFlags) => {
 		const n = raw.length;
 		const cues = cueMarksOfRaw(raw);
@@ -193,9 +198,12 @@ export function createNeuralEmitter(model: NeuralTaggerModel): (raw: string, anc
 				logits[tag] = sum;
 				if (sum > largest) largest = sum;
 			}
-			let total = 0;
-			for (let tag = 0; tag < TAG_COUNT; tag += 1) total += Math.exp(logits[tag]! - largest);
-			const log = Math.log(total);
+			let log = -largest;
+			if (!crf) {
+				let total = 0;
+				for (let tag = 0; tag < TAG_COUNT; tag += 1) total += Math.exp(logits[tag]! - largest);
+				log = Math.log(total);
+			}
 			for (let tag = 0; tag < TAG_COUNT; tag += 1) {
 				scores[t * TAG_COUNT + tag] = Math.max(FLOOR, Math.round((logits[tag]! - largest - log) * SCALE));
 			}
