@@ -69,7 +69,7 @@ const CUES: readonly (readonly string[])[] = [
 		"แพ็ค", "ปลายทาง", "cod", "ด้วย", "ไม่อยู่", "ก่อนส่ง"],
 ];
 
-interface CueMarks {
+export interface CueMarks {
 	readonly inside: Uint8Array;
 	readonly starts: Uint8Array;
 	/** Cue categories that end right before this position, past spaces and colons. */
@@ -94,6 +94,15 @@ function cueMarks(lower: string): CueMarks {
 		}
 	});
 	return { inside, starts, follows };
+}
+
+function cueMarksOf(folded: readonly string[]): CueMarks {
+	return cueMarks(folded.map((value) => (value.length === 1 ? value : "?")).join(""));
+}
+
+/** Cue-word marks per UTF-16 unit of `raw`, one bit per cue category, as the features see them. */
+export function cueMarksOfRaw(raw: string): CueMarks {
+	return cueMarksOf(Array.from({ length: raw.length }, (_, index) => fold(raw[index]!)));
 }
 
 /**
@@ -125,7 +134,7 @@ export function featurize(
 	}
 	const digitCount = classes.filter((value) => value === "D").length;
 	const lines = lineSummaries(raw, anchorFlags);
-	const cues = cueMarks(folded.map((value) => (value.length === 1 ? value : "?")).join(""));
+	const cues = cueMarksOf(folded);
 	const nextCue = new Uint8Array(n + 1);
 	for (let i = n - 1; i >= 0; i -= 1) {
 		nextCue[i] = raw[i] === "\n" ? 0 : cues.starts[i + 1] || nextCue[i + 1]!;

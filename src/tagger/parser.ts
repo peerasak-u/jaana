@@ -2,12 +2,21 @@ import { similarityRatio } from "../candidate/fuzzy-match";
 import { normalizeCandidate, normalizePostcode } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
-import { decodeTags, spanEdges } from "./decode";
+import { decodeEmissions, emissionScores, spanEdges } from "./decode";
 import { featurize } from "./features";
 import { recutPhone } from "./phone";
 import { latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
-import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
+import {
+	compileTaggerModel,
+	TAG_COUNT,
+	TAGS,
+	type AnyTaggerModel,
+	type EnsembleTaggerModel,
+	type Tag,
+	type TaggerModel,
+} from "./model";
+import { createNeuralEmitter, type NeuralTaggerModel } from "./neural";
 import {
 	findMisspelt,
 	findStandalone,
@@ -355,11 +364,69 @@ export function addressOf(raw: string, ranges: readonly Range[], administrative:
 	return pieces.join(" ");
 }
 
+/** Emission scores, `TAG_COUNT` per UTF-16 unit, and the transition scores the decoder adds between tags. */
+export interface TagScorer {
+	score(raw: string, anchorFlags: Uint8Array): Int32Array;
+	readonly transitions: Int32Array;
+}
+
+export function linearScorer(model: TaggerModel): TagScorer {
+	const compiled = compileTaggerModel(model);
+	return {
+		score: (raw, anchorFlags) => emissionScores(featurize(raw, anchorFlags, compiled.dimension), compiled.weights),
+		transitions: compiled.transitions,
+	};
+}
+
+function neuralScorer(model: NeuralTaggerModel): TagScorer {
+	const transitions = new Int32Array(TAG_COUNT * TAG_COUNT);
+	if (model.transitions) {
+		if (model.transitions.length !== transitions.length) throw new Error("neural tagger transitions must be the tag count squared");
+		transitions.set(model.transitions);
+	}
+	return { score: createNeuralEmitter(model), transitions };
+}
+
+/** Linear scores plus `neuralWeight` times the neural ones, and likewise for transitions. */
+function ensembleScorer(model: EnsembleTaggerModel): TagScorer {
+	const linear = linearScorer(model.linear);
+	const neural = neuralScorer(model.neural);
+	const transitions = linear.transitions.map((value, index) => Math.round(value + model.neuralWeight * neural.transitions[index]!));
+	return {
+		score(raw, anchorFlags) {
+			const scores = linear.score(raw, anchorFlags);
+			const extra = neural.score(raw, anchorFlags);
+			for (let index = 0; index < scores.length; index += 1) {
+				scores[index] = Math.round(scores[index]! + model.neuralWeight * extra[index]!);
+			}
+			return scores;
+		},
+		transitions,
+	};
+}
+
+function scorerOf(model: AnyTaggerModel): TagScorer {
+	switch (model.kind) {
+		case undefined:
+			return linearScorer(model);
+		case "neural-bigru":
+			return neuralScorer(model);
+		case "ensemble":
+			return ensembleScorer(model);
+	}
+}
+
 export function createTaggerParser(
-	model: TaggerModel,
+	model: AnyTaggerModel,
 	locations: readonly LocationTuple[],
 ): TaggerParser {
-	const compiled = compileTaggerModel(model);
+	return createScoredParser(scorerOf(model), locations);
+}
+
+export function createScoredParser(
+	scorer: TagScorer,
+	locations: readonly LocationTuple[],
+): TaggerParser {
 	const anchor = createAnchorer(locations);
 	const resolve = createTupleResolver(locations);
 	const siblingTuples = new Map<string, LocationTuple[]>();
@@ -484,8 +551,7 @@ export function createTaggerParser(
 	return {
 		parse(raw) {
 			const anchored = anchor(raw);
-			const features = featurize(raw, anchored.flags, compiled.dimension);
-			const tags = decodeTags(features, compiled, spanEdges(raw));
+			const tags = decodeEmissions(scorer.score(raw, anchored.flags), scorer.transitions, spanEdges(raw));
 			closeBrackets(raw, tags);
 			attachBracketAfterName(raw, tags);
 			recutPhone(raw, tags);

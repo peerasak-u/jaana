@@ -91,11 +91,18 @@ export function decodeTags(
 	model: Pick<CompiledTaggerModel, "weights" | "transitions">,
 	edges: SpanEdges = unconstrained(features.length),
 ): Uint8Array {
-	const n = features.length;
+	return decodeEmissions(emissionScores(features, model.weights), model.transitions, edges);
+}
+
+/** `decodeTags` over emission scores already computed, `TAG_COUNT` per position. */
+export function decodeEmissions(
+	emit: Int32Array,
+	transitions: Int32Array,
+	edges: SpanEdges = unconstrained(emit.length / TAG_COUNT),
+): Uint8Array {
+	const n = emit.length / TAG_COUNT;
 	const tags = new Uint8Array(n);
 	if (n === 0) return tags;
-	const emit = emissionScores(features, model.weights);
-	const transitions = model.transitions;
 	const { opens, closes, covers } = edges;
 	let previous = new Int32Array(STATE_COUNT).fill(UNREACHABLE);
 	let current = new Int32Array(STATE_COUNT);

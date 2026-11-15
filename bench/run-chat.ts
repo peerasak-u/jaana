@@ -1,7 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import { createAddressParser } from "../src";
 import { createTaggerParser } from "../src/tagger/parser";
-import type { TaggerModel } from "../src/tagger/model";
+import type { AnyTaggerModel } from "../src/tagger/model";
 import { loadChatPool } from "./chat/load";
 import { splitOf, type ChatRecord } from "./chat/markup";
 import type { ExpectedAddress } from "./dataset";
@@ -21,7 +21,7 @@ const minimum = option("--min-test-exact");
 const rounds = Number(option("--timing-rounds") ?? "3");
 
 const { locations } = await loadParserResources("resources/gazetteer.json");
-const model = (await Bun.file(modelPath).json()) as TaggerModel;
+const model = (await Bun.file(modelPath).json()) as AnyTaggerModel;
 const systems = {
 	tagger: createTaggerParser(model, locations),
 	engine: createAddressParser({ version: "gazetteer", locations }),

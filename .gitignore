@@ -6,3 +6,4 @@ bench/private/
 resources/experiments/
 *.log
 .DS_Store
+__pycache__/

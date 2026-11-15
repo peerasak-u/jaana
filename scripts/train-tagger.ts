@@ -1,14 +1,13 @@
 import { basename } from "node:path";
 import { loadParserResources } from "../bench/gazetteer";
-import { goldTags, loadTaggerPartitions } from "../bench/tagger-data";
+import { goldTags } from "../bench/tagger-data";
+import { loadTrainingRecords } from "../bench/training-records";
 import { addResult, createMetrics } from "../bench/metrics";
 import { createAnchorer } from "../src/tagger/anchor";
 import { featurize } from "../src/tagger/features";
 import { createTaggerParser } from "../src/tagger/parser";
 import { trainTagger } from "../src/tagger/train";
-import { loadChatPool } from "../bench/chat/load";
-import { fnv1a, poolOf } from "../bench/chat/markup";
-import { AUGMENT_OPS, augmentChatRecords, type AugmentOp } from "../bench/chat/augment";
+import { AUGMENT_OPS, type AugmentOp } from "../bench/chat/augment";
 
 function values(name: string): string[] {
 	const result: string[] = [];
@@ -35,28 +34,20 @@ const prune = Number(value("--prune", "2"));
 const version = value("--model-version", `thai-address-tagger-d${dimension}`);
 
 const { locations } = await loadParserResources(gazetteerPath);
-const { split, extraTrain, extraDropped } = await loadTaggerPartitions(datasetPaths, extraPaths);
-const anchor = createAnchorer(locations);
-const withChat = Bun.argv.includes("--chat-train");
-const chatPercent = Number(value("--chat-percent", "100"));
-const loadedChat = withChat ? await loadChatPool("train", locations) : { records: [], issues: [] };
-if (loadedChat.issues.length > 0) throw new Error(`${loadedChat.issues.length} chat source issues. Run scripts/chat/check.ts`);
-const sampledChat = loadedChat.records.filter((record) => fnv1a(record.id) % 100 < chatPercent);
 const augmentMultiplier = Number(value("--augment", "1"));
 const augmentOps = value("--augment-ops", AUGMENT_OPS.join(",")).split(",") as AugmentOp[];
-for (const op of augmentOps) if (!AUGMENT_OPS.includes(op)) throw new Error(`unknown --augment-ops entry ${op}`);
-const chat = {
-	records: augmentChatRecords(sampledChat, {
-		copies: augmentMultiplier - 1,
-		seed,
-		ops: augmentOps,
-		locations: locations.filter((location) => poolOf(location) === "train"),
-	}),
-};
-const synthetic = [...split.train, ...extraTrain];
-const trainRecords = withChat
-	? [...synthetic.filter((record) => poolOf(record.seedLocation) !== "bench"), ...chat.records]
-	: synthetic;
+const { partitions, records: trainRecords, chatRecords, benchPoolDropped } = await loadTrainingRecords({
+	datasetPaths,
+	extraPaths,
+	locations,
+	withChat: Bun.argv.includes("--chat-train"),
+	chatPercent: Number(value("--chat-percent", "100")),
+	augment: augmentMultiplier,
+	augmentOps,
+	seed,
+});
+const { split, extraDropped } = partitions;
+const anchor = createAnchorer(locations);
 const started = performance.now();
 const model = trainTagger(
 	trainRecords.map((record) => {
@@ -78,9 +69,9 @@ const artifact = {
 		datasets: datasetPaths.map((path) => basename(path)),
 		extraDatasets: extraPaths.map((path) => basename(path)),
 		trainRecords: trainRecords.length,
-		chatTrainRecords: chat.records.length,
+		chatTrainRecords: chatRecords,
 		augment: augmentMultiplier > 1 ? { multiplier: augmentMultiplier, ops: augmentOps } : undefined,
-		benchPoolDropped: synthetic.length + chat.records.length - trainRecords.length,
+		benchPoolDropped,
 		extraDropped,
 		developmentRecords: split.development.length,
 		evaluationRecords: split.evaluation.length,
