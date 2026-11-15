@@ -7,9 +7,7 @@ function asciiDigits(value: string): string {
 }
 
 export function normalizePhone(value: string): string | null {
-	let digits = asciiDigits(value).replace(/\D/g, "");
-  if (digits.startsWith("0066")) digits = `0${digits.slice(4)}`;
-  else if (digits.startsWith("66")) digits = `0${digits.slice(2)}`;
+	const digits = asciiDigits(value).replace(/\D/g, "").replace(/^(0066|66)0?/u, "0");
   return /^0\d{8,9}$/.test(digits) ? digits : null;
 }
 

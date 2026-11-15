@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { createAddressParser, type ParserResources } from "../src";
+import { normalizePhone } from "../src/normalize";
 
 const resources: ParserResources = {
 	version: "test-v2",
@@ -12,6 +13,14 @@ const resources: ParserResources = {
 		},
 	],
 };
+
+describe("normalizePhone", () => {
+	test("accepts the +66 form with or without the national 0", () => {
+		expect(normalizePhone("+66 81 234 5678")).toBe("0812345678");
+		expect(normalizePhone("+660812345678")).toBe("0812345678");
+		expect(normalizePhone("0066812345678")).toBe("0812345678");
+	});
+});
 
 describe("createAddressParser", () => {
 	test("extracts a complete no-space address through candidates, pruning, and validation", () => {

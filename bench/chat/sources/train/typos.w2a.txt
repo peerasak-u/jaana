@@ -1,0 +1,895 @@
+===
+loc: บ้านขวาง | มหาราช | พระนครศรีอยุธยา | 13150
+tags: typo-subdistrict, typo-district, typo-province, tone-mark, r-l-swap, extra-letter
+---
+ส่งที่นี่ค่ะ
+[[N:คุณมาลัย ศรีวงษ์]]
+[[A:56 ม.4]] [[S:ต.บ้านขว้าง]] [[D:อ.มหาลาช]] [[V:จ.พระนครศรีอยุทธยา]] [[Z:13150]]
+[[P:081-447-2930]]
+===
+loc: สถาน | นาน้อย | น่าน | 55150
+tags: typo-subdistrict, typo-district, typo-province, missing-tone, oneline
+---
+[[N:ลุงสมบัติ ใจคำ]] [[A:12 หมู่ 7]] [[S:ต.สถาร]] [[D:อ.นาน้อน]] [[V:นาน]] [[Z:55150]] โทร [[P:0896120437]]
+===
+loc: โนนสมบูรณ์ | บ้านแฮด | ขอนแก่น | 40110
+tags: typo-subdistrict, typo-district, typo-province, missing-karan, typo-label, wrong-tone
+---
+ที่อยุ่ค่ะ
+[[N:นางสาวกัญญา พลราช]]
+[[A:88 ม.2]] [[S:ต.โนนสมบูรณ]] [[D:อ.บ้านแฮ็ด]]
+[[V:ขอนแก้น]] [[Z:40110]]
+เบอ [[P:0937720184]]
+===
+loc: สำโรงใต้ | พระประแดง | สมุทรปราการ | 10130
+tags: shop, typo-subdistrict, typo-district, typo-province, r-l-swap, doubled-char, dropped-char, landline
+---
+[[N:ร้านเจ๊ติ๋มอะไหล่ยนต์]] [[A:199/4 ถ.ปู่เจ้าสมิงพราย]] [[S:ต.สำโลงใต้]] [[D:อ.พระประแดงง]] [[V:สมุทปราการ]] [[Z:10130]] [[P:02-384-1176]]
+===
+loc: แม่กลอง | เมืองสมุทรสงคราม | สมุทรสงคราม | 75000
+tags: typo-subdistrict, typo-province, l-r-swap, dropped-char, chat-noise, amphoe-mueang
+---
+แอดคะ ขอสั่งเพิ่ม 2 กล่องค่ะ
+ส่ง [[N:พี่ปุ้ม]] [[A:45/1 ถ.เพชรสมุทร]] [[S:ต.แม่กรอง]] [[D:อ.เมือง]] [[V:สมุทสงคาม]] [[Z:75000]]
+[[P:086-552-0193]] โอนแล้วนะคะ
+===
+loc: รังสิต | ธัญบุรี | ปทุมธานี | 12110
+tags: typo-subdistrict, typo-district, typo-province, tho-swap, name-last, no-prefix-province
+---
+[[A:99/12 หมู่บ้านรังสิตวิลล์ ซ.รังสิต-นครนายก 24]] [[S:ต.รังสิด]] [[D:อ.ทัญบุรี]] [[V:ปทุมทานี]] [[Z:12110]] [[N:กิตติพงษ์]] [[P:0812290468]]
+===
+loc: เพ | เมืองระยอง | ระยอง | 21160
+tags: typo-subdistrict, typo-province, adjacent-key, vowel-slip, labels
+---
+ชื่อ [[N:นายอนุชา ทองเพชร]]
+ที่อยู่ [[A:23 ม.3 บ้านพลา]] [[S:ต.แพ]] [[D:อ.เมือง]] [[V:จ.ระยอว]] [[Z:21160]]
+โทร [[P:0894411026]]
+===
+loc: คลองปาง | รัษฎา | ตรัง | 92160
+tags: typo-subdistrict, typo-district, do-chada-to-patak, no-prefix, particle-glued
+---
+ส่ง [[N:ครูสุนีย์ แก้วมณี]] [[A:7 ม.1]] [[S:คลองปาน]] [[D:รัษฏา]] [[V:ตรัง]] โทร[[P:0817739025]]ค่ะ
+===
+loc: เคียนซา | เคียนซา | สุราษฎร์ธานี | 84260
+tags: typo-district, typo-province, extra-tone, do-chada-to-patak, same-name-once
+---
+[[N:นายเดชา หนูแก้ว]]
+[[A:150 ม.5]] [[D:เคียนซ่า]] [[V:สุราษฏร์ธานี]] [[Z:84260]]
+[[P:0623318840]]
+===
+loc: สามเสนนอก | ห้วยขวาง | กรุงเทพมหานคร | 10310
+tags: company, bangkok, typo-subdistrict, typo-district, typo-province, vowel-slip, extra-tone, dropped-char
+---
+[[N:บริษัท ไทยเจริญซัพพลาย จำกัด]]
+[[A:88/9 ซ.ประชาราษฎร์บำเพ็ญ 14]]
+[[S:แขวงสามแสนนอก]] [[D:เขตห้วยขว้าง]] [[V:กรุงเทพมหานค]] [[Z:10310]]
+ติดต่อฝ่ายบัญชี [[P:02-275-6614]]
+===
+loc: ปากแพรก | ทุ่งสง | นครศรีธรรมราช | 80110
+tags: typo-subdistrict, typo-district, typo-province, dropped-char, extra-tone, doubled-char, name-last
+---
+[[A:31/7 ถ.ชัยชุมพล]] [[S:ต.ปากแพก]] [[D:อ.ทุ่งส่ง]] [[V:นครศรีธรรมมราช]] [[Z:80110]] [[N:น้องเฟิร์น]] [[P:095-118-3307]]
+===
+loc: บ่อแดง | สทิงพระ | สงขลา | 90190
+tags: typo-subdistrict, typo-district, typo-province, extra-tone, sound-spelling, dropped-char, phone-first-line
+---
+[[N:นางจำเนียร ขาวผ่อง]] [[P:0846620137]]
+[[A:4 ม.6]] [[S:ต.บ่อแด่ง]] [[D:อ.สะทิงพระ]] [[V:จ.สงขา]] [[Z:90190]]
+===
+loc: ยางคราม | ดอยหล่อ | เชียงใหม่ | 50160
+tags: typo-subdistrict, typo-district, typo-province, dropped-char, missing-tone, vowel-slip
+---
+ที่อยู่จ้า
+[[N:ศิริพร อินต๊ะ]]
+[[A:72 ม.9]] [[S:ต.ยางคาม]] [[D:อ.ดอยหลอ]] [[V:เชียงไหม่]] [[Z:50160]]
+[[P:0981127745]]
+===
+loc: พิมาน | เมืองสตูล | สตูล | 91000
+tags: typo-subdistrict, typo-district, typo-province, no-nor-swap, sound-spelling, n-l-swap
+---
+[[N:นายฮาซัน หมัดหลี]] [[A:14 ถ.สตูลธานี]] [[S:ต.พิมาณ]] [[D:อ.เมืองสะตูล]] [[V:สตูน]] [[Z:91000]] [[P:0887720316]]
+===
+loc: เมืองเหนือ | เมืองศรีสะเกษ | ศรีสะเกษ | 33000
+tags: clinic, organisation, typo-subdistrict, typo-province, vowel-slip, conflation
+---
+[[N:คลินิกหมอสมชายเวชกรรม]]
+[[A:210 ถ.กสิกรรม]] [[S:ต.เมืองเหนิอ]] [[D:อ.เมือง]] [[V:จ.ศรีษะเกษ]] [[Z:33000]]
+โทร [[P:045-611-298]]
+===
+loc: ละหาร | บางบัวทอง | นนทบุรี | 11110
+tags: typo-subdistrict, typo-district, typo-province, r-n-swap, dropped-char, r-l-swap, proxy-label
+---
+[[A:55/321 มบ.พฤกษา 6]] [[S:ต.ละหาน]] [[D:อ.บางบัวทอ]] [[V:นนทบุลี]] [[Z:11110]] ส่งให้ [[N:คุณต้นข้าว]] [[P:0614490082]]
+===
+loc: อ้อมเกร็ด | ปากเกร็ด | นนทบุรี | 11120
+tags: typo-subdistrict, typo-district, r-l-swap, alias
+---
+[[N:วัชระ พึ่งบุญ]]
+[[A:9/45 ม.3]] [[S:ต.อ้อมเกล็ด]] [[D:อ.ปากเกล็ด]] [[V:นนท์]] [[Z:11120]]
+[[P:0827713560]]
+===
+loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
+tags: bangkok, typo-subdistrict, missing-tone, alias, oneline
+---
+[[N:คุณวิภาวดี]] [[A:1234 ถ.ประชาราษฎร์สาย 2]] [[S:แขวงบางซือ]] [[D:เขตบางซื่อ]] [[V:กทม]] [[Z:10800]] [[P:0894417702]]
+===
+loc: หนองปลาหมอ | หนองแค | สระบุรี | 18140
+tags: typo-subdistrict, typo-province, spurious-karan, r-l-swap, no-phone
+---
+[[N:ป้าสายทอง]] [[A:3 ม.8]] [[S:ต.หนองปลาหมอร์]] [[D:อ.หนองแค]] [[V:สระบุลี]] [[Z:18140]]
+===
+loc: ท่าคอย | ท่ายาง | เพชรบุรี | 76130
+tags: typo-subdistrict, typo-district, typo-province, extra-tone, adjacent-key, transposed-letters, name-after-address
+---
+สวัสดีค่ะ ขอส่งของที่
+[[A:66 ม.2]] [[S:ต.ท่าค่อย]] [[D:อ.ท่ายาว]] [[V:เพรชบุรี]] [[Z:76130]]
+[[N:คุณสมหญิง วงษ์ทอง]] [[P:0897761205]]
+===
+loc: ลานตากฟ้า | นครชัยศรี | นครปฐม | 73120
+tags: temple, organisation, typo-subdistrict, typo-district, typo-province, chai-spelling, adjacent-key
+---
+[[N:วัดลานตากฟ้า (พระครูวิมล)]] [[S:ต.ลานตาคฟ้า]] [[D:อ.นครไชยศรี]] [[V:จ.นครปถม]] [[Z:73120]] [[P:034-226-118]]
+===
+loc: ร่องเคาะ | วังเหนือ | ลำปาง | 52140
+tags: typo-subdistrict, typo-district, typo-province, r-l-swap, vowel-slip, adjacent-key, name-last
+---
+[[A:25 ม.4 บ้านร่องเคาะ]] [[S:ต.ล่องเคาะ]] [[D:อ.วังเหนิอ]] [[V:ลำปาว]] [[Z:52140]] [[N:นายบุญมา]] [[P:0815560348]]
+===
+loc: โพธิ์กลาง | เมืองนครราชสีมา | นครราชสีมา | 30000
+tags: typo-subdistrict, typo-province, sound-spelling, so-swap, amphoe-mueang
+---
+[[N:สุภาวดี มณีรัตน์]]
+[[A:9/1 ม.10]] [[S:ต.โพกลาง]] [[D:อ.เมือง]] [[V:นครราชศรีมา]] [[Z:30000]]
+[[P:0657719042]]
+===
+loc: จอมทอง | จอมทอง | กรุงเทพมหานคร | 10150
+tags: bangkok, typo-subdistrict, extra-tone, same-name-twice, name-last
+---
+[[A:77 ซ.เอกชัย 33]] [[S:แขวงจอมท่อง]] [[D:เขตจอมทอง]] [[V:กรุงเทพฯ]] [[Z:10150]] [[N:คุณนันทนา]] [[P:0918802231]]
+===
+loc: เกาะสาหร่าย | เมืองสตูล | สตูล | 91000
+tags: typo-subdistrict, r-l-swap, courier-note, island
+---
+ส่งไป [[N:บังเลาะห์]] [[A:5 ม.1 บ้านตันหยงอุมา]] [[S:ต.เกาะสาหล่าย]] [[D:อ.เมือง]] [[V:สตูล]] [[Z:91000]] [[P:0874430195]] ฝากไว้ท่าเรือได้ค่ะ
+===
+loc: ระวะ | ระโนด | สงขลา | 90140
+tags: typo-subdistrict, typo-district, extra-tone, r-l-swap, no-postcode
+---
+[[N:นายเฉลิม ทองย้อย]] [[A:41 ม.3]] [[S:ต.ระว่ะ]] [[D:อ.ละโนด]] [[V:สงขลา]] [[P:0819927440]]
+===
+loc: บางนา | บางนา | กรุงเทพมหานคร | 10260
+tags: company, contact-person, bangkok, typo-subdistrict, doubled-char, extension
+---
+[[N:บจก.สยามโฟลว์เทค (คุณจิรายุ ฝ่ายจัดซื้อ)]]
+[[A:1/88 ถ.บางนา-ตราด กม.3]]
+[[S:แขวงบางนาา]] [[D:เขตบางนา]] [[V:กรุงเทพ]] [[Z:10260]]
+[[P:02-744-1902]] ต่อ 15
+===
+loc: ท่าคา | อัมพวา | สมุทรสงคราม | 75110
+tags: typo-subdistrict, typo-district, extra-tone, sound-spelling, name-after-address
+---
+[[A:34 ม.5]] [[S:ต.ท่าค่า]] [[D:อ.อำพวา]] [[V:สมุทรสงคราม]] [[Z:75110]] [[N:แม่น้อย]] [[P:0861120385]] ค่ะ
+===
+loc: จานแสนไชย | ห้วยทับทัน | ศรีสะเกษ | 33210
+tags: typo-subdistrict, typo-district, typo-province, chai-spelling, extra-tone, sound-spelling
+---
+[[N:นายวีระพงษ์ ศรีจันทร์]]
+[[A:102 ม.6]]
+[[S:ต.จานแสนชัย]] [[D:อ.ห้วยทับทั้น]]
+[[V:ศรีสะเกด]] [[Z:33210]]
+[[P:0628804571]]
+===
+loc: ข่อยสูง | ตรอน | อุตรดิตถ์ | 53140
+tags: typo-subdistrict, typo-district, typo-province, vowel-slip, r-l-swap, missing-karan, no-prefix
+---
+[[N:สมศักดิ์ บุญเรือง]] [[A:8 ม.2]] [[S:ข่อยสุง]] [[D:ตลอน]] [[V:อุตรดิต]] [[Z:53140]] [[P:0899012644]]
+===
+loc: แว้ง | แว้ง | นราธิวาส | 96160
+tags: typo-subdistrict, typo-province, wrong-tone, sound-spelling, same-name-twice
+---
+[[N:นางรอฮานี เจ๊ะมะ]] [[A:19 ม.2 บ้านบือแรง]] [[S:ต.แว่ง]] [[D:อ.แว้ง]] [[V:นราธิวาด]] [[Z:96160]] [[P:0937741026]]
+===
+loc: ทางช้าง | บางบาล | พระนครศรีอยุธยา | 13250
+tags: form, typo-subdistrict, typo-district, typo-province, alias, missing-tone, n-l-swap
+---
+ชื่อ: [[N:ธีรวัฒน์ คงสวัสดิ์]]
+ที่อยู่: [[A:44 ม.1]] [[S:ต.ทางชาง]] [[D:อ.บางบาน]] [[V:อยุทยา]] [[Z:13250]]
+tel: [[P:089 330 1847]]
+===
+loc: เวียง | ไชยา | สุราษฎร์ธานี | 84110
+tags: typo-district, typo-province, extra-tone, dropped-char, name-after-address
+---
+[[A:5/3 ถ.ศรีวิชัย]] [[S:ต.เวียง]] [[D:อ.ไชย่า]] [[V:สุราษร์ธานี]] [[Z:84110]]
+[[N:พี่หนิง]] [[P:0846672910]]
+===
+loc: นาเฉลียง | หนองไผ่ | เพชรบูรณ์ | 67220
+tags: school, organisation, typo-subdistrict, typo-district, typo-province, transposed-letters, missing-karan, missing-tone
+---
+[[N:โรงเรียนบ้านนาเฉลียง (ครูอรุณี)]]
+[[S:ต.นาฉเลียง]] [[D:อ.หนองไพ]] [[V:จ.เพชรบูรณ]] [[Z:67220]]
+[[P:056-719-334]]
+===
+loc: บางดี | ห้วยยอด | ตรัง | 92210
+tags: typo-subdistrict, typo-district, typo-province, vowel-slip, adjacent-key, doubled-char, no-prefix, phone-before-address
+---
+[[P:0612248803]] [[A:61 ม.4]] [[S:บางดิ]] [[D:ห้วยยอก]] [[V:ตรังง]] [[Z:92210]]
+===
+loc: เมืองพล | พล | ขอนแก่น | 40120
+tags: typo-subdistrict, typo-district, typo-province, sound-spelling, l-n-swap, missing-tone
+---
+[[N:นายประยุทธ แสนทวีสุข]]
+[[A:333 ถ.มลิวรรณ]] [[S:ต.เมืองผล]] [[D:อ.พน]] [[V:ขอนแกน]] [[Z:40120]]
+[[P:0817740026]]
+===
+loc: คลองควาย | สามโคก | ปทุมธานี | 12160
+tags: typo-subdistrict, typo-district, dropped-char, kho-swap, alias, name-last
+---
+[[A:12/7 ม.3]] [[S:ต.คองควาย]] [[D:อ.สามโคค]] [[V:ปทุม]] [[Z:12160]] [[N:คุณสายใจ]] [[P:0954410382]]
+===
+loc: ป่าสัก | เมืองลำพูน | ลำพูน | 51000
+tags: typo-subdistrict, typo-district, kho-swap, n-l-swap, address-first, labels
+---
+ขอส่งที่ [[A:189 ม.5]] [[S:ต.ป่าสัค]] [[D:อ.เมืองลำพูล]] [[V:ลำพูน]] [[Z:51000]]
+ชื่อ [[N:อำพร ปัญญาดี]] เบอร์ [[P:0837729115]]
+===
+loc: ปากเกร็ด | ปากเกร็ด | นนทบุรี | 11120
+tags: partnership, organisation, typo-subdistrict, typo-district, r-l-swap, doubled-char, same-name-twice, landline
+---
+[[N:หจก.ทวีทรัพย์ก่อสร้าง]]
+[[A:47/12 ถ.แจ้งวัฒนะ]]
+[[S:ต.ปากเกล็ด]] [[D:อ.ปากเกร็ดด]] [[V:จ.นนทบุรี]] [[Z:11120]]
+[[P:02-583-7710]]
+===
+loc: ป่าร่อน | กาญจนดิษฐ์ | สุราษฎร์ธานี | 84160
+tags: typo-subdistrict, typo-district, r-l-swap, missing-karan, alias
+---
+[[N:นายสุรชัย ชูแก้ว]] [[A:9 ม.7]] [[S:ต.ป่าล่อน]] [[D:อ.กาญจนดิษ]] [[V:สุราษ]] [[Z:84160]] [[P:0656630184]]
+===
+loc: ลำโพ | บางบัวทอง | นนทบุรี | 11110
+tags: display-name, phinthu-prefix, typo-subdistrict, pho-swap, emoji
+---
+[[N:Kwan 🌸]]
+[[A:88/150 ม.5 หมู่บ้านบัวทองธานี]]
+[[S:ตฺลำโผ]] [[D:อฺบางบัวทอง]] [[V:นนทบุรี]] [[Z:11110]]
+[[P:0918836602]]
+===
+loc: ทุ่งควายกิน | แกลง | ระยอง | 21110
+tags: typo-subdistrict, typo-district, wrong-letter, l-r-swap, name-after-address
+---
+[[A:56 ม.9]] [[S:ต.ทุ่งความกิน]] [[D:อ.แกรง]] [[V:ระยอง]] [[N:ลุงทองดี]] โทร [[P:0819950372]]
+===
+loc: ท่าตะคร้อ | ท่าม่วง | กาญจนบุรี | 71130
+tags: typo-subdistrict, typo-district, typo-province, r-l-swap, dropped-char, no-nor-swap
+---
+[[N:น.ส.พัชรา ม่วงศรี]]
+[[A:72 ม.1]]
+[[S:ต.ท่าตะคล้อ]] [[D:อ.ท่าม่าง]] [[V:กาญจณบุรี]] [[Z:71130]]
+[[P:0896621430]]
+===
+loc: วังเย็น | แปลงยาว | ฉะเชิงเทรา | 24190
+tags: typo-subdistrict, typo-province, wrong-tone, cho-swap, name-after-address
+---
+[[A:3/1 ม.4]] [[S:ต.วังเย้น]] [[D:อ.แปลงยาว]] [[V:ชะเชิงเทรา]] [[Z:24190]] [[N:นายมานพ]] [[P:0626610938]]
+===
+loc: พระโขนง | คลองเตย | กรุงเทพมหานคร | 10110
+tags: bangkok, typo-subdistrict, n-l-swap, alias
+---
+[[A:23/45 ซ.สุขุมวิท 50]]
+[[S:แขวงพระโขลง]] [[D:เขตคลองเตย]] [[V:กทม.]] [[Z:10110]]
+[[P:0897716020]]
+===
+loc: คลองด่าน | บางบ่อ | สมุทรปราการ | 10550
+tags: company, factory, typo-subdistrict, typo-province, n-r-swap, oneline
+---
+[[N:บริษัท ไทยรุ่งเรืองฟู้ดส์ จำกัด]] [[A:99 ม.12 ถ.สุขุมวิท กม.42]] [[S:ต.คลองด่าร]] [[D:อ.บางบ่อ]] [[V:สมุทรปรากาน]] [[Z:10550]] [[P:02-330-1457]]
+===
+loc: นาราชควาย | เมืองนครพนม | นครพนม | 48000
+tags: typo-subdistrict, typo-province, r-l-swap, doubled-char
+---
+[[N:นางบุญเรือน ศรีวงศ์]] [[A:45 ม.6]] [[S:ต.นาลาชควาย]] [[D:อ.เมืองนครพนม]] [[V:นครพนน]] [[Z:48000]] [[P:0849901273]]
+===
+loc: หลักหก | เมืองปทุมธานี | ปทุมธานี | 12000
+tags: typo-label, typo-subdistrict, typo-district, kho-swap, tho-swap, no-province, nickname
+---
+ที่อยู๋
+[[A:111/22 ม.บ.เมืองเอก ซ.18]] [[S:ต.หลักหค]] [[D:อ.เมืองปทุมทานี]] [[Z:12000]]
+[[N:เบนซ์]] [[P:0612203348]]
+===
+loc: มะขามล้ม | บางปลาม้า | สุพรรณบุรี | 72150
+tags: typo-district, typo-province, doubled-char, r-l-swap, no-phone, name-last
+---
+[[A:18 ม.3]] [[S:ต.มะขามล้ม]] [[D:อ.บางปลาม้าา]] [[V:สุพรรณบุลี]] [[Z:72150]] [[N:ยายเพ็ญ]]
+===
+loc: บางปอ | เมืองนราธิวาส | นราธิวาส | 96000
+tags: typo-subdistrict, typo-province, spurious-karan, extra-vowel, phone-before-address
+---
+[[N:นายอับดุลเลาะ สาและ]] [[P:0629917704]] [[A:23 ม.4]] [[S:ต.บางปอร์]] [[D:อ.เมือง]] [[V:นาราธิวาส]] [[Z:96000]]
+===
+loc: ลำไทร | ลำลูกกา | ปทุมธานี | 12150
+tags: government, organisation, department, typo-subdistrict, typo-district, sound-spelling, dropped-char
+---
+[[N:อบต.ลำไทร (กองช่าง)]]
+[[S:ต.ลำไซ]] [[D:อ.ลำลูกา]] [[V:ปทุมธานี]] [[Z:12150]]
+[[P:02-563-9081]]
+===
+loc: สว่าง | โพนทอง | ร้อยเอ็ด | 45110
+tags: typo-subdistrict, typo-district, typo-province, dropped-char, extra-tone, wrong-tone
+---
+[[N:ทองใบ ศรีหาวงษ์]] [[A:7 ม.11]] [[S:ต.สว่า]] [[D:อ.โพนท่อง]] [[V:ร้อยเอ้ด]] [[Z:45110]] [[P:0897120335]]
+===
+loc: บางกระบือ | สามโคก | ปทุมธานี | 12160
+tags: typo-subdistrict, dropped-char, recipient-label
+---
+[[A:41 ม.2]] [[S:ต.บางกะบือ]] [[D:อ.สามโคก]] [[V:ปทุมธานี]] [[Z:12160]] ผู้รับ [[N:สมใจ]] [[P:0819930478]]
+===
+loc: ขามเฒ่า | โนนสูง | นครราชสีมา | 30160
+tags: typo-subdistrict, typo-district, typo-province, tho-swap, vowel-slip, alias
+---
+[[N:นายสมาน แก้วกลาง]] [[A:66 ม.5]] [[S:ต.ขามเถ่า]] [[D:อ.โนนสุง]] [[V:โคราด]] [[Z:30160]] [[P:0846610239]]
+===
+loc: หนองเม็ก | นาเชือก | มหาสารคาม | 44170
+tags: typo-subdistrict, typo-district, typo-province, wrong-tone, vowel-slip, r-l-swap
+---
+[[N:คุณครูพรทิพย์ บุญศรี]]
+[[A:12 ม.8]] [[S:ต.หนองเม๊ก]] [[D:อ.นาเชีอก]]
+[[V:มหาสาลคาม]] [[Z:44170]]
+[[P:0867721930]]
+===
+loc: แม่ดง | แว้ง | นราธิวาส | 96160
+tags: typo-district, missing-tone, name-after-address
+---
+[[A:5 ม.3]] [[S:ต.แม่ดง]] [[D:อ.แวง]] [[V:นราธิวาส]] [[Z:96160]] [[N:มะยูโซ๊ะ]] [[P:0610023746]]
+===
+loc: เกาะแก้ว | เมืองภูเก็ต | ภูเก็ต | 83000
+tags: shop, organisation, typo-subdistrict, typo-district, wrong-tone
+---
+[[N:ร้านกาแฟบ้านสวนเกาะแก้ว]] [[A:8/12 ถ.เทพกระษัตรี]] [[S:ต.เกาะแก่ว]] [[D:อ.เมืองภูเก้ต]] [[V:ภูเก็ต]] [[Z:83000]] [[P:076-238-117]]
+===
+loc: วังทอง | ภักดีชุมพล | ชัยภูมิ | 36260
+tags: typo-district, typo-province, l-n-swap, chai-spelling
+---
+[[N:นายอุดม จันทร์หอม]]
+[[A:17 ม.2]] [[S:ต.วังทอง]] [[D:อ.ภักดีชุมพน]] [[V:ไชยภูมิ]]
+[[P:0828834019]]
+===
+loc: วังทอง | วังเหนือ | ลำปาง | 52140
+tags: typo-subdistrict, typo-province, extra-tone, spurious-karan, particle
+---
+ส่ง [[A:100 ม.6]] [[S:ต.วังท้อง]] [[D:อ.วังเหนือ]] [[V:จ.ลำปางค์]] [[Z:52140]] [[N:คุณศรีนวล]] [[P:0937721154]] นะคะ
+===
+loc: แม่กา | เมืองพะเยา | พะเยา | 56000
+tags: dormitory, typo-subdistrict, typo-province, extra-tone, spurious-karan, name-after-address
+---
+[[A:หอพักบ้านสวนแม่กา ห้อง 214]] [[S:ต.แม่ก่า]] [[D:อ.เมือง]] [[V:พะเยาว์]] [[Z:56000]] [[N:ณัฐวุฒิ ใจดี]] [[P:0954417730]]
+===
+loc: จอมพระ | จอมพระ | สุรินทร์ | 32180
+tags: thai-digits, typo-subdistrict, typo-province, r-l-swap, missing-carrier, same-name-twice
+---
+[[N:นางสมจิต บุญมาก]]
+[[A:๑๒ ม.๓]] [[S:ต.จอมพละ]] [[D:อ.จอมพระ]] [[V:จ.สุรินท]] [[Z:๓๒๑๘๐]]
+โทร [[P:๐๘๑-๕๕๓-๒๗๔๐]]
+===
+loc: คลองอุดมชลจร | เมืองฉะเชิงเทรา | ฉะเชิงเทรา | 24000
+tags: glued, typo-subdistrict, typo-province, l-n-swap, r-l-swap, amphoe-mueang
+---
+[[A:77/3 ม.2]][[S:ต.คลองอุดมชนจร]][[D:อ.เมือง]][[V:ฉะเชิงเทลา]][[Z:24000]] [[N:คุณยุพา]] [[P:0816627703]]
+===
+loc: ลำสมพุง | มวกเหล็ก | สระบุรี | 30130
+tags: typo-subdistrict, typo-district, extra-tone, dropped-char
+---
+[[N:นายเสถียร มีสุข]] [[A:45 ม.7 บ้านลำสมพุง]] [[S:ต.ลำสมพุ่ง]] [[D:อ.มวกเล็ก]] [[V:สระบุรี]] [[Z:30130]] [[P:0899012237]]
+===
+loc: บ้านพานถม | พระนคร | กรุงเทพมหานคร | 10200
+tags: shop, organisation, bangkok, typo-subdistrict, typo-district, doubled-char, dropped-char
+---
+[[N:ร้านเฮียเส็งวัสดุ]]
+[[A:221 ถ.ประชาธิปไตย]] [[S:แขวงบ้านพานถถม]] [[D:เขตพระนค]] [[V:กรุงเทพ]] [[Z:10200]]
+[[P:02-281-4470]]
+===
+loc: เนินมะปราง | เนินมะปราง | พิษณุโลก | 65190
+tags: typo-subdistrict, typo-province, dropped-char, so-swap, nun, name-after-address
+---
+[[A:9 ม.1]] [[S:ต.เนินมะปาง]] [[D:อ.เนินมะปราง]] [[V:พิศณุโลก]] [[Z:65190]] [[N:แม่ชีวันเพ็ญ]] [[P:0857730126]]
+===
+loc: บ้านสหกรณ์ | แม่ออน | เชียงใหม่ | 50130
+tags: typo-subdistrict, typo-district, typo-province, missing-karan, extra-tone, missing-tone, no-phone
+---
+[[N:ปู่คำ ใจปัญญา]] [[A:33 ม.4]] [[S:ต.บ้านสหกร]] [[D:อ.แม่อ่อน]] [[V:เชียงใหม]] [[Z:50130]]
+===
+loc: จันจว้า | แม่จัน | เชียงราย | 57270
+tags: typo-labels, typo-subdistrict, typo-district, typo-province, adjacent-key, missing-tone, spurious-karan, phone-before-address
+---
+ชือ [[N:อาภรณ์ แซ่ลี]]
+เบอโท [[P:0623319085]]
+ที่อยุ [[A:55 ม.8]] [[S:ต.จันจวา]] [[D:อ.แม่จันท์]] [[V:จ.เชียงรเาย]] [[Z:57270]]
+===
+loc: ยางขาว | พยุหะคีรี | นครสวรรค์ | 60130
+tags: typo-subdistrict, typo-district, typo-province, dropped-char, sound-spelling
+---
+[[N:นายบุญส่ง พรมมา]] [[A:14 ม.2]] [[S:ต.ยางขา]] [[D:อ.พยุหคีรี]] [[V:นครสวัน]] [[Z:60130]] [[P:0812274406]]
+===
+loc: ประจัน | ยะรัง | ปัตตานี | 94160
+tags: typo-subdistrict, typo-district, no-yo-swap, r-l-swap, name-after-address
+---
+[[A:7 ม.5]] [[S:ต.ประจัญ]] [[D:อ.ยะลัง]] [[V:ปัตตานี]] [[Z:94160]] [[N:นางสาวนูรีซัน ดือราแม]] [[P:0886614072]]
+===
+loc: สำราญราษฎร์ | พระนคร | กรุงเทพมหานคร | 10200
+tags: company, organisation, bangkok, typo-subdistrict, dropped-letters, alias
+---
+[[N:สำนักงานบัญชีพรเพ็ญ]] [[A:45 ถ.มหาไชย]] [[S:แขวงสำราญราษ]] [[D:เขตพระนคร]] [[V:กทม]] [[Z:10200]] [[P:02-221-7365]]
+===
+loc: เสนานิคม | จตุจักร | กรุงเทพมหานคร | 10900
+tags: bangkok, typo-subdistrict, n-m-swap, variant-spelling, no-province
+---
+[[N:K.โอ๊ต]]
+[[A:88/19 ซ.พหลโยธิน 32]]
+[[S:แขวงเสนานิคน]] [[D:เขตจัตุจักร]] [[Z:10900]]
+[[P:0814490237]]
+===
+loc: วังกะพี้ | เมืองอุตรดิตถ์ | อุตรดิตถ์ | 53170
+tags: typo-subdistrict, typo-province, extra-letter, so-swap, missing-carrier
+---
+[[N:นายจรัญ ทองคำ]] [[A:120 ม.6]] [[S:ต.วังกระพี้]] [[D:อ.เมือง]] [[V:อุตรดิษ]] [[Z:53170]] [[P:0859901228]]
+===
+loc: ทุ่งปรัง | สิชล | นครศรีธรรมราช | 80120
+tags: typo-subdistrict, typo-district, extra-tone, l-n-swap, alias, name-after-address
+---
+[[A:3 ม.9]] [[S:ต.ทุ่งปรั่ง]] [[D:อ.สิชน]] [[V:นครศรีฯ]] [[Z:80120]] [[N:บังหมาน]] [[P:0612247789]]
+===
+loc: จอมบึง | จอมบึง | ราชบุรี | 70150
+tags: typo-district, typo-province, vowel-slip, r-l-swap, same-name-once, no-prefix
+---
+[[N:ครูสมพร แก้วงาม]] [[A:62 ม.1]] [[D:จอมบืง]] [[V:ราชบุลี]] [[Z:70150]] [[P:0897713320]]
+===
+loc: บ้านธาตุ | แก่งคอย | สระบุรี | 18110
+tags: typo-subdistrict, typo-district, sound-spelling, extra-tone
+---
+[[N:คุณจันทร์เพ็ญ]]
+[[A:15/1 ม.3]] [[S:ต.บ้านทาด]] [[D:อ.แก่งค่อย]] [[V:สระบุรี]] [[Z:18110]]
+[[P:0631128890]]
+===
+loc: ยางฮอม | ขุนตาล | เชียงราย | 57340
+tags: club, organisation, typo-subdistrict, typo-district, extra-tone, l-n-swap
+---
+[[N:ชมรมผู้สูงอายุบ้านยางฮอม]] [[A:ศาลาเอนกประสงค์ ม.4]] [[S:ต.ยางฮ่อม]] [[D:อ.ขุนตาน]] [[V:เชียงราย]] [[Z:57340]] [[P:0937720458]]
+===
+loc: คลองเกลือ | ปากเกร็ด | นนทบุรี | 11120
+tags: condo, typo-subdistrict, typo-district, dropped-char, do-to-to-swap
+---
+[[N:ปิยะนุช ศรีอ่อน]]
+[[A:99/123 คอนโดเดอะคิวบ์ ห้อง 512]]
+[[S:ต.คลองเกือ]] [[D:อ.ปากเกร็ต]] [[V:นนทบุรี]] [[Z:11120]]
+[[P:0991156038]]
+===
+loc: บางขุนกอง | บางกรวย | นนทบุรี | 11130
+tags: typo-subdistrict, typo-district, extra-tone, dropped-char, alias, name-after-address
+---
+[[A:12 ม.3]] [[S:ต.บางขุนก่อง]] [[D:อ.บางกวย]] [[V:นนท]] [[Z:11130]] [[N:ลุงชาญ]] [[P:0816623094]]
+===
+loc: สำเหร่ | ธนบุรี | กรุงเทพมหานคร | 10600
+tags: bangkok, typo-subdistrict, typo-district, dropped-char, tho-swap, oneline
+---
+[[N:นายกฤษดา วงศ์ใหญ่]] [[A:45/7 ถ.ตากสิน ซ.19]] [[S:แขวงสำเร่]] [[D:เขตทนบุรี]] [[V:กรุงเทพฯ]] [[Z:10600]] [[P:0897760214]]
+===
+loc: วัดชลอ | บางกรวย | นนทบุรี | 11130
+tags: typo-subdistrict, typo-province, sound-spelling, r-l-swap, two-lines
+---
+ส่งที่ [[A:88 ม.1]] [[S:ต.วัดชะลอ]] [[D:อ.บางกรวย]] [[V:นนทบุลี]] [[Z:11130]]
+[[N:คุณแอน]] [[P:0861127745]]
+===
+loc: บ้านเหล่า | สูงเม่น | แพร่ | 54130
+tags: typo-subdistrict, typo-district, typo-province, dropped-char, missing-tone, three-typos
+---
+[[N:นางคำปุ่น ใจมา]] [[A:55 ม.2]] [[S:ต.บ้านเล่า]] [[D:อ.สูงเมน]] [[V:แพ่]] [[Z:54130]] [[P:0843301276]]
+===
+loc: ป่าอ้อ | ลานสัก | อุทัยธานี | 61160
+tags: typo-subdistrict, typo-district, typo-province, wrong-tone, kho-swap, tho-swap, no-prefix
+---
+[[A:9 ม.10]] [[S:ป่าอ่อ]] [[D:ลานสัค]] [[V:อุทัยทานี]] [[Z:61160]] [[N:ยายบัว]] [[P:0896625508]]
+===
+loc: ห้วยยางขาม | จุน | พะเยา | 56150
+tags: health-centre, organisation, typo-subdistrict, typo-district, n-m-swap, n-l-swap, landline
+---
+[[N:รพ.สต.ห้วยยางขาม]] [[S:ต.ห้วยยางขาน]] [[D:อ.จุล]] [[V:พะเยา]] [[Z:56150]] [[P:054-419-226]]
+===
+loc: หนองฝ้าย | เลาขวัญ | กาญจนบุรี | 71210
+tags: typo-subdistrict, typo-district, missing-tone, no-yo-swap, alias
+---
+[[N:สมหวัง ทองนาค]] [[A:44 ม.6]] [[S:ต.หนองฝาย]] [[D:อ.เลาขวัน]] [[V:กาญ]] [[Z:71210]] [[P:0627718843]]
+===
+loc: ไทรม้า | เมืองนนทบุรี | นนทบุรี | 11000
+tags: typo-subdistrict, missing-tone, alias, no-province, name-after-address
+---
+[[A:59/88 ม.4 ซ.ไทรม้า 7]] [[S:ต.ไทรมา]] [[D:อ.เมืองนนท์]] [[Z:11000]] [[N:น้องพลอย]] [[P:0954431179]]
+===
+loc: น้ำเต้า | บางบาล | พระนครศรีอยุธยา | 13250
+tags: typo-subdistrict, typo-province, wrong-tone, doubled-char, alias
+---
+[[N:นายวิเชียร ปานทอง]]
+[[A:31 ม.5]] [[S:ต.น้ำเต่า]] [[D:อ.บางบาล]] [[V:อยุธยาา]] [[Z:13250]]
+[[P:0817720946]]
+===
+loc: คลองสอง | คลองหลวง | ปทุมธานี | 12120
+tags: company, contact-person, typo-subdistrict, typo-district, extra-tone, dropped-char
+---
+[[N:บจก.รุ่งทวีอินเตอร์ (คุณศศิธร)]]
+[[A:99/9 ม.1 ถ.พหลโยธิน]]
+[[S:ต.คลองส่อง]] [[D:อ.คลองลวง]] [[V:ปทุมธานี]] [[Z:12120]]
+[[P:02-516-3307]]
+===
+loc: ตลาด | พระประแดง | สมุทรปราการ | 10130
+tags: typo-subdistrict, typo-district, dropped-char
+---
+[[A:12/3 ถ.ทรงธรรม]] [[S:ต.ตาด]] [[D:อ.พระปะแดง]] [[V:สมุทรปราการ]] [[Z:10130]] [[P:0897721105]]
+===
+loc: ดงหลวง | ดงหลวง | มุกดาหาร | 49140
+tags: typo-district, typo-province, dropped-char, n-r-swap, same-name-twice, name-after-address
+---
+[[A:55 ม.3]] [[S:ต.ดงหลวง]] [[D:อ.ดงลวง]] [[V:มุกดาหาน]] [[Z:49140]] [[N:นางสาวพิมพ์ใจ ไชยบุตร]] [[P:0645512037]]
+===
+loc: บางขุนพรหม | พระนคร | กรุงเทพมหานคร | 10200
+tags: bangkok, typo-subdistrict, dropped-char, clean-layout
+---
+[[N:คุณเจษฎา]]
+[[A:150 ถ.สามเสน]]
+[[S:แขวงบางขุนพรม]] [[D:เขตพระนคร]] [[V:กรุงเทพมหานคร]] [[Z:10200]]
+[[P:0812235560]]
+===
+loc: คลองสามประเวศ | ลาดกระบัง | กรุงเทพมหานคร | 10520
+tags: chat-noise, bangkok, typo-subdistrict, typo-district, so-swap, no-ngo-swap, alias, payment-note
+---
+สวัสดีค่ะแอด ขอสั่งกระถางดินเผา 3 ใบนะคะ
+ส่งที่ [[A:45/2 ซ.ร่มเกล้า 14]] [[S:แขวงคลองสามประเวด]] [[D:เขตลาดกระบัญ]] [[V:กทม]] [[Z:10520]]
+[[N:คุณวรรณา]] [[P:089-664-1027]]
+โอนแล้วค่ะ สลิปตามรูป
+===
+loc: บ้านโฮ่ง | บ้านโฮ่ง | ลำพูน | 51130
+tags: form, typo-labels, typo-subdistrict, missing-tone, same-name-twice, full-prefixes
+---
+ผู้รับ [[N:นายอินสม ปัญญาวงค์]]
+ที่อยู่ [[A:บ้านเลขที่ 77 ม.3]]
+[[S:ตำบลบ้านโฮง]] [[D:อำเภ บ้านโฮ่ง]] [[V:จังหวัด ลำพูน]]
+รหัสไปรษณี [[Z:51130]]
+มือถือ [[P:0819036672]]
+===
+loc: ปากโทก | เมืองพิษณุโลก | พิษณุโลก | 65000
+tags: shop, organisation, typo-subdistrict, typo-district, kho-swap, so-swap, courier-note
+---
+[[N:ร้านซ่อมมือถือเจ๋งโฟน]] [[A:55/9 ม.4]] [[S:ต.ปากโทค]] [[D:อ.เมืองพิศณุโลก]] [[V:พิษณุโลก]] [[Z:65000]] โทร [[P:0886620193]] ส่ง Kerry นะคะ
+===
+loc: หนองโพรง | ศรีมหาโพธิ | ปราจีนบุรี | 25140
+tags: proxy, typo-subdistrict, typo-district, typo-province, r-l-swap, spurious-karan, no-nor-swap
+---
+ส่งให้แม่ค่ะ
+[[N:นางสมพิศ แก้วกล้า]]
+[[A:99 ม.6]] [[S:ต.หนองโพลง]] [[D:อ.ศรีมหาโพธิ์]]
+[[V:ปราจีณบุรี]] [[Z:25140]]
+เบอร์แม่ [[P:0846639027]] ค่ะ
+===
+loc: โนนสง่า | ปทุมรัตต์ | ร้อยเอ็ด | 45190
+tags: typo-label, typo-subdistrict, typo-district, typo-province, missing-tone, dropped-char, do-to-swap
+---
+ทีอยู่ [[A:12 ม.2 บ้านโนนสง่า]] [[S:ต.โนนสงา]] [[D:อ.ปทุมรัต]] [[V:ร้อยเอ็ต]] [[Z:45190]] โทร [[P:0613322704]]
+===
+loc: นาโยงเหนือ | นาโยง | ตรัง | 92170
+tags: typo-subdistrict, typo-district, vowel-slip, ng-n-swap, no-phone
+---
+[[N:นางกัลยา ชูทอง]]
+[[A:7/1 ม.3]] [[S:ต.นาโยงเหนีอ]] [[D:อ.นาโยน]] [[V:จ.ตรัง]] [[Z:92170]]
+===
+loc: ปทุม | เมืองอุบลราชธานี | อุบลราชธานี | 34000
+tags: typo-subdistrict, typo-province, m-n-swap, tho-swap, name-after-address
+---
+[[A:222 ถ.ชยางกูร]] [[S:ต.ปทุน]] [[D:อ.เมือง]] [[V:อุบลราชทานี]] [[Z:34000]] [[N:คุณพิชิต]] [[P:0853317726]]
+===
+loc: หนองปรือ | บางพลี | สมุทรปราการ | 10540
+tags: company, tax-invoice, typo-subdistrict, typo-district, r-l-swap, doubled-vowel
+---
+[[N:บริษัท เอเชียแพ็คกิ้ง จำกัด]]
+ขอใบกำกับภาษีด้วยค่ะ เลขผู้เสียภาษี 0115558012347
+[[A:88/8 ม.15 ถ.บางนา-ตราด กม.18]] [[S:ต.หนองปลือ]] [[D:อ.บางพลีี]] [[V:สมุทรปราการ]] [[Z:10540]]
+[[P:02-312-9960]]
+===
+loc: งิ้วงาม | เมืองอุตรดิตถ์ | อุตรดิตถ์ | 53000
+tags: typo-subdistrict, typo-district, m-n-swap, sound-spelling, no-province
+---
+[[N:ลุงเปลี่ยน]] [[A:4 ม.7]] [[S:ต.งิ้วงาน]] [[D:อ.เมืองอุตรดิด]] [[Z:53000]] [[P:0629914458]]
+===
+loc: ศรีโคตร | จตุรพักตรพิมาน | ร้อยเอ็ด | 45180
+tags: typo-subdistrict, typo-district, sound-spelling, dropped-char
+---
+[[N:นายบุญถม ศรีโคตร]]
+[[A:65 ม.8]]
+[[S:ต.สีโคต]] [[D:อ.จตุรพักพิมาน]] [[V:ร้อยเอ็ด]] [[Z:45180]]
+[[P:0810064472]]
+===
+loc: เมืองเปลือย | ศรีสมเด็จ | ร้อยเอ็ด | 45000
+tags: typo-subdistrict, typo-district, vowel-slip, wrong-tone, nickname
+---
+[[A:3 ม.1]] [[S:ต.เมืองเปลีอย]] [[D:อ.ศรีสมเด้จ]] [[V:ร้อยเอ็ด]] [[Z:45000]] [[N:น้องต่าย]] [[P:0927716043]]
+===
+loc: ภูเหล็ก | บ้านไผ่ | ขอนแก่น | 40110
+tags: typo-subdistrict, typo-district, typo-province, dropped-char, missing-tone, no-nor-swap
+---
+[[N:นายสมคิด หอมจันทร์]] [[A:120 ม.11]] [[S:ต.ภูเล็ก]] [[D:อ.บ้านไผ]] [[V:ขอนแก่ณ]] [[Z:40110]] [[P:0937729910]]
+===
+loc: พะโต๊ะ | พะโต๊ะ | ชุมพร | 86180
+tags: farm-business, organisation, typo-subdistrict, typo-province, missing-tone, r-l-swap, same-name-twice
+---
+[[N:สวนทุเรียนลุงแดง]] [[A:44 ม.2]] [[S:ต.พะโตะ]] [[D:อ.พะโต๊ะ]] [[V:ชุมพล]] [[Z:86180]] [[P:0819971106]]
+===
+loc: ชะแล้ | สิงหนคร | สงขลา | 90330
+tags: typo-subdistrict, typo-district, typo-province, missing-tone, dropped-char, doubled-char
+---
+[[A:9/2 ม.4]] [[S:ต.ชะแล]] [[D:อ.สิงนคร]] [[V:สงขลาา]] [[Z:90330]]
+[[N:ก๊ะเยาะ]] [[P:0896652208]]
+===
+loc: บางกระสอ | เมืองนนทบุรี | นนทบุรี | 11000
+tags: workplace, department, office-building, typo-subdistrict, dropped-char
+---
+ส่งที่ทำงานนะคะ
+[[N:คุณศิริลักษณ์ (ฝ่ายบุคคล)]]
+[[A:อาคารสิริภัทร ชั้น 6 เลขที่ 39/1 ถ.รัตนาธิเบศร์]]
+[[S:ต.บางกะสอ]] [[D:อ.เมือง]] [[V:นนทบุรี]] [[Z:11000]]
+[[P:0814427709]]
+===
+loc: หินลาด | วัดโบสถ์ | พิษณุโลก | 65160
+tags: typo-subdistrict, typo-district, typo-province, l-r-swap, dropped-char, so-no-swap
+---
+[[N:นายเกษม ศรีทอง]] [[A:18 ม.5]] [[S:ต.หินราด]] [[D:อ.วัดโบส]] [[V:พิษนุโลก]] [[Z:65160]] [[P:0631129987]]
+===
+loc: ห้วยพุก | ดงเจริญ | พิจิตร | 66210
+tags: typo-subdistrict, typo-district, typo-province, wrong-final, dropped-char, sound-spelling
+---
+[[A:11 ม.9]] [[S:ต.ห้วยพุด]] [[D:อ.ดงเจิญ]] [[V:พิจิด]] [[Z:66210]] [[N:ยายสำลี]] [[P:0899063314]]
+===
+loc: นครปฐม | เมืองนครปฐม | นครปฐม | 73000
+tags: shop, organisation, typo-subdistrict, typo-district, tho-swap, adjacent-key
+---
+[[N:ร้านถ่ายเอกสารพี่บอย]] [[A:98 ถ.ราชดำเนิน]] [[S:ต.นครปธม]] [[D:อ.เมืองนครปถม]] [[V:นครปฐม]] [[Z:73000]] [[P:034-251-779]]
+===
+loc: นายาว | พระพุทธบาท | สระบุรี | 18120
+tags: typo-district, dropped-char, no-postcode
+---
+[[N:นางเรณู ทองอ่อน]]
+[[A:66 ม.3]] [[S:ต.นายาว]] [[D:อ.พระพุธบาท]] [[V:สระบุรี]]
+[[P:0846617703]]
+===
+loc: นาเวียง | เสนางคนิคม | อำนาจเจริญ | 37290
+tags: typo-subdistrict, typo-district, typo-province, extra-tone, dropped-char, three-typos
+---
+[[A:23 ม.6]] [[S:ต.นาเวี่ยง]] [[D:อ.เสนางนิคม]] [[V:อำนาจเจิญ]] [[Z:37290]] [[N:นายทองสุข]] [[P:0612290036]]
+===
+loc: วังใหม่ | ป่าบอน | พัทลุง | 93170
+tags: typo-subdistrict, typo-district, typo-province, mai-malai-swap, extra-tone
+---
+[[N:นางสาวอัญชลี แก้วมี]] [[A:9 ม.2]] [[S:ต.วังไหม่]] [[D:อ.ป่าบ่อน]] [[V:พัทลุ่ง]] [[Z:93170]] [[P:0928806645]]
+===
+loc: โนนปูน | ไพรบึง | ศรีสะเกษ | 33180
+tags: typo-subdistrict, typo-district, typo-province, n-r-swap, r-l-swap, so-swap, no-phone
+---
+[[A:8 ม.4]] [[S:ต.โนนปูร]] [[D:อ.ไพลบึง]] [[V:ศรีสะเกส]] [[Z:33180]] [[N:พ่อใหญ่สอน]]
+===
+loc: ท่าโพธิ์ | สะเดา | สงขลา | 90170
+tags: typo-subdistrict, typo-district, sound-spelling, spurious-karan, phone-before-address
+---
+[[N:นายอนันต์ ยีหวังกอ]] [[P:0817742219]] [[A:55 ม.1]] [[S:ต.ท่าโพ]] [[D:อ.สะเดาว์]] [[V:สงขลา]] [[Z:90170]]
+===
+loc: เขาพระ | รัตภูมิ | สงขลา | 90180
+tags: school, organisation, department, typo-subdistrict, typo-district, vowel-slip, spurious-karan
+---
+[[N:โรงเรียนเขาพระวิทยา (ฝ่ายพัสดุ)]] [[S:ต.เขาพรา]] [[D:อ.รัตภูมิ์]] [[V:สงขลา]] [[Z:90180]] [[P:074-389-215]]
+===
+loc: ท่าทราย | เมืองสมุทรสาคร | สมุทรสาคร | 74000
+tags: typo-subdistrict, typo-province, sound-spelling, doubled-char
+---
+[[A:39/8 ถ.เศรษฐกิจ 1]] [[S:ต.ท่าซาย]] [[D:อ.เมือง]] [[V:สมุทรสาครร]] [[Z:74000]] [[N:คุณวีณา]] [[P:0866619027]]
+===
+loc: ท่าช้าง | วิเศษชัยชาญ | อ่างทอง | 14110
+tags: typo-subdistrict, typo-district, typo-province, wrong-tone, chai-spelling, missing-tone, three-typos
+---
+[[N:นายประจวบ ทองมี]]
+[[A:21 ม.5]] [[S:ต.ท่าช่าง]] [[D:อ.วิเศษไชยชาญ]] [[V:อางทอง]] [[Z:14110]]
+[[P:0811156640]]
+===
+loc: ท่าอิบุญ | หล่มสัก | เพชรบูรณ์ | 67110
+tags: typo-subdistrict, typo-district, typo-province, vowel-length, so-swap, dropped-char
+---
+[[A:12 ม.7]] [[S:ต.ท่าอิบูญ]] [[D:อ.หล่มศัก]] [[V:เพชบูรณ์]] [[Z:67110]] [[N:นางลำดวน]] [[P:0857736601]]
+===
+loc: สระเยาว์ | ศรีรัตนะ | ศรีสะเกษ | 33240
+tags: government, organisation, typo-subdistrict, typo-district, missing-carrier, vowel-slip
+---
+[[N:อบต.สระเยาว์]] [[S:ต.สระเยา]] [[D:อ.ศรีรัตนา]] [[V:ศรีสะเกษ]] [[Z:33240]] [[P:045-826-301]]
+===
+loc: ศรีมหาโพธิ | ศรีมหาโพธิ | ปราจีนบุรี | 25140
+tags: typo-district, typo-province, dropped-vowel, r-l-swap, same-name-once, no-prefix
+---
+[[N:คุณอรทัย]] [[A:88 ม.1]] [[D:ศรีมหาโพธ]] [[V:ปราจีนบุลี]] [[Z:25140]] [[P:0832276605]]
+===
+loc: แม่พริก | แม่พริก | ลำปาง | 52180
+tags: typo-subdistrict, dropped-char, same-name-twice, name-after-address
+---
+[[A:5 ม.2]] [[S:ต.แม่พิก]] [[D:อ.แม่พริก]] [[V:ลำปาง]] [[Z:52180]] [[N:นายจันทร์ วงศ์ใหญ่]] [[P:0839901723]]
+===
+loc: บางแม่นาง | บางใหญ่ | นนทบุรี | 11140
+tags: chat-noise, emoji, cod, typo-subdistrict, typo-district, adjacent-key, mai-malai-swap, name-last
+---
+แอดค้าบ CF เสื้อดำ XL 1 ตัว
+📍 [[A:99/45 หมู่บ้านบางใหญ่ซิตี้ ซ.7]]
+[[S:ต.บางแม่นาว]] [[D:อ.บางไหญ่]] [[V:นนทบุรี]] [[Z:11140]]
+📞 [[P:0918824471]]
+[[N:ภาคิน]] ครับ เก็บปลายทางนะครับ
+===
+loc: หลักเมือง | กมลาไสย | กาฬสินธุ์ | 46130
+tags: typo-subdistrict, typo-district, typo-province, vowel-slip, dropped-char, lo-chula-swap, three-typos
+---
+[[N:นางสาวสุนิสา ภูผาใจ]] [[A:41 ม.3]] [[S:ต.หลักเมีอง]] [[D:อ.กมลาไส]] [[V:กาลสิน]] [[Z:46130]] [[P:0864420197]]
+===
+loc: นาบัว | เพ็ญ | อุดรธานี | 41150
+tags: typo-subdistrict, typo-district, typo-province, doubled-char, wrong-tone, vowel-slip, name-after-address
+---
+[[A:7 ม.12 บ้านนาบัว]] [[S:ต.นาบัวว]] [[D:อ.เพ้ญ]] [[V:อุดรธานิ]] [[Z:41150]] [[N:แม่ใหญ่ทองม้วน]] [[P:0937714068]]
+===
+loc: ศรีกะอาง | บ้านนา | นครนายก | 26110
+tags: resort, organisation, typo-subdistrict, typo-province, extra-tone, adjacent-key, landline
+---
+[[N:รีสอร์ทบ้านสวนศรีกะอาง]] [[A:55 ม.4]] [[S:ต.ศรีกะอ่าง]] [[D:อ.บ้านนา]] [[V:นครนายด]] [[Z:26110]] [[P:037-381-224]]
+===
+loc: ลำพญากลาง | มวกเหล็ก | สระบุรี | 30130
+tags: rural, chat-noise, courier-note, typo-subdistrict, typo-district, yo-swap, wrong-tone
+---
+ส่งไปที่นี่นะคะ ป้าอยู่ไร่
+[[N:ป้าบุญมี]] [[A:ม.9 บ้านซับน้อย]] [[S:ต.ลำพยากลาง]] [[D:อ.มวกเหล้ก]] [[V:จ.สระบุรี]] [[Z:30130]]
+ถึงแล้วโทร [[P:0896637218]] นะคะ
+===
+loc: ก้ามปู | พยัคฆภูมิพิสัย | มหาสารคาม | 44110
+tags: typo-subdistrict, typo-district, vowel-slip, dropped-char, sound-spelling
+---
+[[N:นายบุญเลิศ ผาสุข]] [[A:12 ม.5]] [[S:ต.ก้ามปุ]] [[D:อ.พยัคภูมิพิไสย]] [[V:มหาสารคาม]] [[Z:44110]] [[P:0612249937]]
+===
+loc: หนองพอก | ธวัชบุรี | ร้อยเอ็ด | 45170
+tags: typo-subdistrict, typo-district, kho-swap, tho-swap, name-after-address
+---
+[[A:4 ม.10]] [[S:ต.หนองพอค]] [[D:อ.ทวัชบุรี]] [[V:ร้อยเอ็ด]] [[N:คุณสมบูรณ์]] [[P:0833398012]]
+===
+loc: ท้ายบ้าน | เมืองสมุทรปราการ | สมุทรปราการ | 10280
+tags: shop, organisation, typo-subdistrict, typo-district, missing-tone, dropped-char, alias
+---
+[[N:ร้านข้าวมันไก่เจ๊หน่อย]]
+[[A:88/1 ถ.สุขุมวิท]] [[S:ต.ท้ายบาน]] [[D:อ.เมืองสมุทรปาการ]] [[V:ปากน้ำ]] [[Z:10280]]
+[[P:0816620934]]
+===
+loc: บ้านกาด | แม่วาง | เชียงใหม่ | 50360
+tags: typo-subdistrict, typo-district, kho-swap, adjacent-key, elder
+---
+[[N:อุ๊ยคำปัน ใจยะ]] [[A:23 ม.1]] [[S:ต.บ้านกาค]] [[D:อ.แม่วาว]] [[V:เชียงใหม่]] [[Z:50360]] [[P:0857741109]]
+===
+loc: น้ำเที่ยง | คำชะอี | มุกดาหาร | 49110
+tags: typo-subdistrict, typo-district, missing-tone, doubled-vowel, recipient-label, name-last
+---
+[[A:56 ม.2]] [[S:ต.น้ำเทียง]] [[D:อ.คำชะอีี]] [[V:มุกดาหาร]] [[Z:49110]] ผู้รับ [[N:นางสาวจันทร์เพ็ญ วงศ์ษา]] [[P:0843317726]]
+===
+loc: ชายนา | เสนา | พระนครศรีอยุธยา | 13110
+tags: typo-subdistrict, typo-province, extra-letter, dropped-char
+---
+[[N:นายทวีศักดิ์ แจ่มใส]] [[A:9 ม.4]] [[S:ต.ชายหนา]] [[D:อ.เสนา]] [[V:พระนครศรีอยุยา]] [[Z:13110]] [[P:0819920043]]
+===
+loc: ไม้ยา | พญาเม็งราย | เชียงราย | 57290
+tags: typo-subdistrict, typo-district, typo-province, yo-swap, r-l-swap, three-typos
+---
+[[A:120 ม.8]] [[S:ต.ไม้ญา]] [[D:อ.พญาเม็งลาย]] [[V:เชียงลาย]] [[Z:57290]] [[N:อาจารย์ปรีชา]] [[P:0897736601]]
+===
+loc: ทุ่งวัดดอน | สาทร | กรุงเทพมหานคร | 10120
+tags: office-tower, company-in-address, bangkok, typo-subdistrict, typo-district, n-r-swap, tho-swap, spaced-ฯ
+---
+ส่ง [[N:คุณมณีรัตน์]] นะคะ
+[[A:บริษัท ลีกัลพลัส คอนซัลแตนท์ จำกัด ชั้น 18 อาคารวีพีทาวเวอร์ ถ.สาทรใต้]]
+[[S:แขวงทุ่งวัดดอร]] [[D:เขตสาธร]] [[V:กรุงเทพ ฯ]] [[Z:10120]]
+[[P:02-679-1182]]
+===
+loc: ตาก้อง | เมืองนครปฐม | นครปฐม | 73000
+tags: typo-subdistrict, typo-province, wrong-tone, m-n-swap, no-phone
+---
+[[N:ลุงพิน]] [[A:33 ม.3]] [[S:ต.ตาก๊อง]] [[D:อ.เมือง]] [[V:นครปฐน]] [[Z:73000]]
+===
+loc: สะพานสูง | สะพานสูง | กรุงเทพมหานคร | 10240
+tags: bangkok, typo-subdistrict, typo-district, dropped-vowel, vowel-slip, same-name-twice, alias
+---
+[[A:12/77 ซ.รามคำแหง 164]] [[S:แขวงสพานสูง]] [[D:เขตสะพานสุง]] [[V:กทม]] [[Z:10240]] [[N:คุณกนกพร]] [[P:0818876601]]
+===
+loc: หนองเทพ | โนนนารายณ์ | สุรินทร์ | 32130
+tags: typo-subdistrict, typo-district, typo-province, final-consonant, missing-karan, r-l-swap, three-typos
+---
+[[N:นางมะลิ บุญยืน]]
+[[A:7 ม.6]] [[S:ต.หนองเทบ]] [[D:อ.โนนนาราย]] [[V:สุลินทร์]] [[Z:32130]]
+[[P:0629903317]]
+===
+loc: บางแขม | เมืองนครปฐม | นครปฐม | 73000
+tags: typo-subdistrict, m-n-swap, name-after-address
+---
+[[A:45 ม.1]] [[S:ต.บางแขน]] [[D:อ.เมืองนครปฐม]] [[V:จ.นครปฐม]] [[Z:73000]] [[N:นายสุเมธ]] [[P:0869912275]]
+===
+loc: แพรกษาใหม่ | เมืองสมุทรปราการ | สมุทรปราการ | 10280
+tags: housing-estate, typo-subdistrict, typo-province, mai-malai-swap, dropped-char, n-r-swap
+---
+[[N:นางสาวณัฐธิดา ทองคำ]] [[A:99/12 ม.5 หมู่บ้านพฤกษาวิลล์ 22]] [[S:ต.แพรกษาไหม่]] [[D:อ.เมือง]] [[V:สมุทปรากาน]] [[Z:10280]] [[P:0954417732]]
+===
+loc: ดอนทราย | ไม้แก่น | ปัตตานี | 94220
+tags: typo-subdistrict, typo-district, sound-spelling, missing-tone, no-phone
+---
+[[A:4 ม.2]] [[S:ต.ดอนซาย]] [[D:อ.ไม้แกน]] [[V:ปัตตานี]] [[Z:94220]] [[N:นายมะรอนิง]]
+===
+loc: จรเข้บัว | ลาดพร้าว | กรุงเทพมหานคร | 10230
+tags: bangkok, typo-subdistrict, typo-district, sound-spelling, r-l-swap, alias, emoji
+---
+ที่อยู่นะครับ 👇
+[[N:ธนวัฒน์ แก้วกล้า]]
+[[A:45 ซ.ลาดพล้าว 101 แยก 3]]
+[[S:แขวงจระเข้บัว]] [[D:เขตลาดพล้าว]] [[V:กทม]] [[Z:10230]]
+[[P:0816203348]]
+===
+loc: อิปุ่ม | ด่านซ้าย | เลย | 42120
+tags: typo-subdistrict, typo-district, missing-tone
+---
+[[N:นายคำพอง ไชยมาตร]] [[A:5 ม.3]] [[S:ต.อิปุม]] [[D:อ.ด่านซาย]] [[V:เลย]] [[P:0857713306]]
+===
+loc: บางมด | จอมทอง | กรุงเทพมหานคร | 10150
+tags: dormitory, bangkok, typo-subdistrict, typo-district, doubled-char, extra-tone, nickname
+---
+[[A:หอพักบ้านเพื่อน ห้อง 314 ซ.ประชาอุทิศ 45]] [[S:แขวงบางมดด]] [[D:เขตจอมท่อง]] [[V:กรุงเทพฯ]] [[Z:10150]] [[N:พีรพัฒน์ (ภูมิ)]] [[P:0993318840]]
+===
+loc: เว่อ | ยางตลาด | กาฬสินธุ์ | 46120
+tags: typo-subdistrict, typo-district, typo-province, missing-tone, dropped-char, wrong-vowel-mark
+---
+[[A:12 ม.4]] [[S:ต.เวอ]] [[D:อ.ยางตาด]] [[V:กาฬสินธ์]] [[Z:46120]] [[N:แม่ใหญ่สาย]] [[P:0861124478]]
+===
+loc: ห้วยกระเจา | ห้วยกระเจา | กาญจนบุรี | 71170
+tags: police, organisation, department, typo-subdistrict, dropped-char, same-name-twice
+---
+[[N:สภ.ห้วยกระเจา (งานธุรการ)]] [[S:ต.ห้วยกะเจา]] [[D:อ.ห้วยกระเจา]] [[V:กาญจนบุรี]] [[Z:71170]] [[P:0816604412]]
+===
+loc: บ้านโภชน์ | หนองไผ่ | เพชรบูรณ์ | 67140
+tags: typo-subdistrict, typo-district, typo-province, pho-swap, missing-tone, dropped-char, missing-karan
+---
+[[N:นายสมควร มั่นคง]] [[A:66 ม.7]] [[S:ต.บ้านโพชน์]] [[D:อ.หนองไผ]] [[V:เพชบูรณ]] [[Z:67140]] [[P:0894420038]]
+===
+loc: ตลาดพลู | ธนบุรี | กรุงเทพมหานคร | 10600
+tags: bangkok, typo-subdistrict, typo-district, transposed-letters, r-l-swap, alias, recipient-label
+---
+ส่งของที่ [[A:1/22 ซ.เทอดไท 25]]
+[[S:แขวงตลาดพูล]] [[D:เขตธนบุลี]] [[V:กทม.]] [[Z:10600]]
+คนรับ [[N:เจ๊หมวย]] [[P:0897762210]]
+===
+loc: ท่าช้าง | สว่างวีระวงศ์ | อุบลราชธานี | 34190
+tags: typo-district, dropped-vowel, alias
+---
+[[N:นางสาวพรรณี ทองคำ]] [[A:21 ม.8]] [[S:ต.ท่าช้าง]] [[D:อ.สว่างวีรวงศ์]] [[V:อุบล]] [[Z:34190]] [[P:0612243367]]
+===
+loc: ท่าทอง | สวรรคโลก | สุโขทัย | 64110
+tags: typo-district, typo-province, kho-swap, sound-spelling, name-after-address
+---
+[[A:9 ม.3]] [[S:ต.ท่าทอง]] [[D:อ.สวรรคโลค]] [[V:สุโขไท]] [[N:ครูวาสนา แสนคำ]] [[P:0847719902]]
+===
+loc: ห้วยแก้ว | แม่ออน | เชียงใหม่ | 50130
+tags: shop, organisation, typo-subdistrict, typo-district, typo-province, wrong-tone, n-r-swap, mai-malai-swap
+---
+[[N:ร้านกาแฟดอยห้วยแก้ว]] [[A:88 ม.2]] [[S:ต.ห้วยแก่ว]] [[D:อ.แม่ออร]] [[V:เชียงไหม]] [[Z:50130]] [[P:0839016627]]
+===
+loc: ลำต้อยติ่ง | หนองจอก | กรุงเทพมหานคร | 10530
+tags: bangkok, english-layer, typo-subdistrict, typo-district, missing-tone, adjacent-key, alias
+---
+[[A:55/1 ถ.เลียบวารี]] [[S:แขวงลำต้อยติง]] [[D:เขตหนองจอด]] [[V:dm,]] [[Z:10530]] [[P:0814466029]]
+===
+loc: สวนกล้วย | บ้านโป่ง | ราชบุรี | 70110
+tags: correction-note, typo-subdistrict, typo-district, dropped-char, missing-tone
+---
+ขอโทษค่ะ เมื่อกี้พิมพ์ผิด ส่งที่นี่นะคะ
+[[N:นางสาวกมลวรรณ ศรีสุข]]
+[[A:77/4 ม.6]] [[S:ต.สวนกล้ว]] [[D:อ.บ้านโปง]] [[V:ราชบุรี]] [[Z:70110]]
+[[P:0628841175]]
+===
+loc: สนามบิน | ดอนเมือง | กรุงเทพมหานคร | 10210
+tags: rank-title, bangkok, typo-subdistrict, typo-district, n-l-swap, vowel-slip, alias
+---
+[[N:จ.ส.อ.วิรัช ทองแท้]] [[A:99/8 ถ.วิภาวดีรังสิต]] [[S:แขวงสนามบิล]] [[D:เขตดอนเมีอง]] [[V:กทม]] [[Z:10210]] [[P:0816607723]]

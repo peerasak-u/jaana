@@ -1,0 +1,358 @@
+===
+loc: กุดเรือ | ทุ่งศรีอุดม | อุบลราชธานี | 34160
+tags: no-dot-prefix, glued, postcode-glued-province, alias, one-line
+---
+[[N:นางสมหมาย บุญล้อม]] [[A:45ม7บ้านโนนแดง]][[S:ตกุดเรือ]][[D:อทุ่งศรีอุดม]][[V:อุบล]][[Z:34160]] [[P:0857731942]]
+===
+loc: บ้านมะเกลือ | เมืองนครสวรรค์ | นครสวรรค์ | 60000
+tags: no-dot-prefix, spaced-prefix, postcode-glued-province, multiline, amphoe-mueang
+---
+ส่งที่นี่ค่ะ
+[[N:ปวีณา แสงจันทร์]]
+[[A:112/4 ม2]] [[S:ต บ้านมะเกลือ]] [[D:อ เมือง]]
+[[V:นครสวรรค์]][[Z:60000]]
+โทร[[P:0619924570]]
+===
+loc: เทพารักษ์ | เมืองสมุทรปราการ | สมุทรปราการ | 10270
+tags: company, no-dot-prefix, alias, amphoe-mueang
+---
+[[N:บจก.ไทยวัฒน์ออโต้พาร์ท]] [[A:88/19 ม5 ถ.ศรีนครินทร์]] [[S:ตเทพารักษ์]] [[D:อเมือง]] [[V:ปากน้ำ]] [[Z:10270]] โทร [[P:0823316049]] ขอใบเสร็จด้วยนะคะ
+===
+loc: หนองสองห้อง | หนองสองห้อง | ขอนแก่น | 40190
+tags: same-name-once, no-subdistrict, plate-code, alias, postcode-glued-province, phone-first-line
+---
+[[N:ทองใบ ศรีวงศ์]] [[P:0937745210]]
+[[A:9 ม.11 บ.หนองแวง]] [[D:หนองสองห้อง]] [[V:ขก]][[Z:40190]]
+===
+loc: คูบางหลวง | ลาดหลุมแก้ว | ปทุมธานี | 12140
+tags: glued, full-prefix-glued, alias, name-last
+---
+ที่อยู่ [[A:59/3หมู่4]][[S:ตำบลคูบางหลวง]][[D:อำเภอลาดหลุมแก้ว]][[V:ปทุม]] [[Z:12140]]
+[[N:ณัฐพล]] [[P:095-118-4072]]
+===
+loc: เบตง | เบตง | ยะลา | 95110
+tags: shop, no-dot-prefix, same-name-twice, glued, landline
+---
+[[N:ร้านอาหมวยผ้าไหม]] [[A:21 ถสุขยางค์]] [[S:ตเบตง]][[D:อเบตง]] [[V:จยะลา]] [[Z:95110]] [[P:073230418]]
+===
+loc: ย่านยาว | คีรีรัฐนิคม | สุราษฎร์ธานี | 84180
+tags: proxy, alias, short-district, particle-glued, postcode-glued-province, no-prefix, label-typo
+---
+แอดคะ ส่งให้แม่นะคะ [[N:นางจันทร์เพ็ญ ทองคำ]] [[A:7/1ม3]] [[S:ย่านยาว]] [[D:คีรีรัฐ]] [[V:สุราษ]][[Z:84180]]ค่ะ 🙏 เบอแม่[[P:0898123076]]
+===
+loc: คลองข่อย | ปากเกร็ด | นนทบุรี | 11120
+tags: no-dot-prefix, glued, alias, village-abbrev, name-last
+---
+[[A:99/27 มบ.ชัยพฤกษ์ ซ.3]] [[S:ตคลองข่อย]][[D:อปากเกร็ด]][[V:นนท]][[Z:11120]]
+[[N:คุณภัทรา]] [[P:0864420913]]
+===
+loc: ควนโพธิ์ | เมืองสตูล | สตูล | 91140
+tags: clean, multiline
+---
+[[N:นายอับดุลเลาะ หมัดสะอิ]]
+[[A:56 ม.4]] [[S:ต.ควนโพธิ์]] [[D:อ.เมืองสตูล]] [[V:จ.สตูล]] [[Z:91140]]
+[[P:0812290547]]
+===
+loc: แม่คือ | ดอยสะเก็ด | เชียงใหม่ | 50220
+tags: no-prefix, plate-code, alias, phone-before-address, glued-moo, courier-note
+---
+[[N:พี่ต้อม]] [[P:0954417728]] [[A:188ม1]] [[S:แม่คือ]] [[D:ดอยสะเก็ด]] [[V:ชม]] [[Z:50220]] ส่งkerryนะคับ
+===
+loc: บางลูกเสือ | องครักษ์ | นครนายก | 26120
+tags: school, no-dot-abbrev, department, plate-code, alias, postcode-glued-province
+---
+ส่ง [[N:รรวัดบางลูกเสือ ห้องธุรการ]] [[A:ม.6]] [[S:ตบางลูกเสือ]] [[D:อองครักษ์]] [[V:นย]][[Z:26120]] โทร [[P:0897751304]] ค่ะ
+===
+loc: ลาดยาว | ลาดยาว | นครสวรรค์ | 60150
+tags: same-name-once, no-subdistrict, glued-moo, plate-code, alias, no-prefix
+---
+[[N:สมจิตร ปั้นทอง]] [[A:3/2หมู่9]] [[D:ลาดยาว]] [[V:นว]] [[Z:60150]] [[P:0629917354]]
+===
+loc: บ่อทอง | กบินทร์บุรี | ปราจีนบุรี | 25110
+tags: form-labels, colon-glued, short-district, short-province, alias, postcode-glued-province, label-typo
+---
+ชื่อ:[[N:น.ส.อรอุมา จิตรดี]]
+ที่อยู่:[[A:144ม.10]] [[S:ต.บ่อทอง]] [[D:อ.กบินทร์]] [[V:ปราจีน]][[Z:25110]]
+เบอ:[[P:0981137605]]
+===
+loc: ปุโละปุโย | หนองจิก | ปัตตานี | 94170
+tags: no-prefix, postcode-glued-phone, postcode-glued-province
+---
+[[N:มะรอนิง สาและ]] [[A:12 ม.2]] [[S:ปุโละปุโย]] [[D:หนองจิก]] [[V:ปัตตานี]][[Z:94170]][[P:0873356120]]
+===
+loc: คลองขวาง | ภาษีเจริญ | กรุงเทพมหานคร | 10160
+tags: bangkok, kho-prefix-no-dot, alias, postcode-glued-province, glued-soi-number, name-after-address
+---
+[[A:25/8 ซ.เพชรเกษม48]] [[S:ขคลองขวาง]] [[D:ขภาษีเจริญ]] [[V:กทม]][[Z:10160]] [[N:คุณอาร์ม]] [[P:0652207719]]
+===
+loc: กำพี้ | บรบือ | มหาสารคาม | 44130
+tags: temple, no-dot-prefix, plate-code, alias, order-note
+---
+ของถวายวัดค่ะ
+[[N:วัดป่ากำพี้]] [[A:ม.5]] [[S:ตกำพี้]] [[D:อบรบือ]] [[V:มค]] [[Z:44130]]
+โทร [[P:0817726405]]
+===
+loc: วัดโบสถ์ | เมืองปราจีนบุรี | ปราจีนบุรี | 25000
+tags: glued, dotted-prefix, amphoe-mueang, emoji-phone
+---
+[[N:นายธีรพงษ์ คงสวัสดิ์]]
+[[A:77/12ถ.ราษฎร์ดำริ]][[S:ต.วัดโบสถ์]][[D:อ.เมือง]][[V:จ.ปราจีนบุรี]][[Z:25000]]
+☎️[[P:0837704592]]
+===
+loc: สักหลง | หล่มสัก | เพชรบูรณ์ | 67110
+tags: fully-glued, no-prefix, glued-moo, address-first
+---
+[[A:88ม3]][[S:สักหลง]][[D:หล่มสัก]][[V:เพชรบูรณ์]][[Z:67110]]
+ส่ง[[N:คุณกาญจนา]] [[P:0896645123]]
+===
+loc: ละลม | ภูสิงห์ | ศรีสะเกษ | 33140
+tags: spaced-prefix, no-dot-prefix, plate-code, alias, no-phone, village
+---
+[[N:ชัยวัฒน์ บุญมา]] [[A:4 หมู่ 12 บ้านละลม]] [[S:ต ละลม]] [[D:อ ภูสิงห์]] [[V:จ ศก]] [[Z:33140]]
+===
+loc: โนนสว่าง | เมืองบึงกาฬ | บึงกาฬ | 38000
+tags: no-dot-prefix, postcode-glued-province, place-in-road
+---
+[[N:นายสุริยา พลราช]] [[A:199 ม.1 ถ.บึงกาฬ-หนองคาย]] [[S:ตโนนสว่าง]] [[D:อเมืองบึงกาฬ]] [[V:บึงกาฬ]][[Z:38000]] [[P:0642490115]]
+===
+loc: เสื่องข้าว | ศรีรัตนะ | ศรีสะเกษ | 33240
+tags: no-prefix, one-field-per-line, glued-moo, nickname
+---
+ที่อยู่จ้า
+[[N:ปู]]
+[[A:65ม6]]
+[[S:เสื่องข้าว]]
+[[D:ศรีรัตนะ]]
+[[V:ศรีสะเกษ]]
+[[Z:33240]]
+[[P:0992814476]]
+===
+loc: สีลม | บางรัก | กรุงเทพมหานคร | 10500
+tags: bangkok, office-tower, no-prefix, alias, postcode-glued-province, glued-floor, department-bracket
+---
+[[N:คุณศิริลักษณ์ (บัญชี)]] [[A:อาคารบุญมีทาวเวอร์ ชั้น18]] [[S:สีลม]] [[D:บางรัก]] [[V:กทม.]][[Z:10500]] [[P:0864479201]]
+===
+loc: ยางหวาย | คอนสวรรค์ | ชัยภูมิ | 36140
+tags: glued, plate-code, alias, no-postcode, name-after-address
+---
+[[A:120/1ม.8]][[S:ต.ยางหวาย]][[D:อ.คอนสวรรค์]][[V:ชย]]
+ชื่อ [[N:นางสาวสุนิสา โพธิ์ศรี]]
+[[P:0610083927]]
+===
+loc: ยางเปียง | อมก๋อย | เชียงใหม่ | 50310
+tags: school, person-and-org, no-dot-prefix, school-abbrev, plate-code, alias
+---
+[[N:ครูสุพัตรา อินต๊ะ รร.บ้านยางเปียง]] [[A:ม.3]] [[S:ตยางเปียง]] [[D:ออมก๋อย]] [[V:ชม.]] [[Z:50310]] [[P:0935580412]]
+===
+loc: บางพรม | ตลิ่งชัน | กรุงเทพมหานคร | 10170
+tags: bangkok, full-prefix-glued, alias, place-in-soi, glued-soi-number, phone-before-address
+---
+[[N:นายวีระ ช่างทอง]] [[P:081-664-2093]] [[A:45/2 ซ.บางพรม15]] [[S:แขวงบางพรม]][[D:เขตตลิ่งชัน]][[V:กทม]][[Z:10170]]
+===
+loc: วัดโสมนัส | ป้อมปราบศัตรูพ่าย | กรุงเทพมหานคร | 10100
+tags: bangkok, kho-prefix-no-dot, short-district, alias, name-last, particle
+---
+ส่งที่ [[A:12 ถ.กรุงเกษม]] [[S:ขวัดโสมนัส]] [[D:ขป้อมปราบ]] [[V:กทม]] [[Z:10100]] นะครับ [[N:พี่เบียร์]] [[P:0852216608]]
+===
+loc: โคกล่าม | ลำปลายมาศ | บุรีรัมย์ | 31130
+tags: government, no-dot-abbrev, department-bracket, no-subdistrict, postcode-glued-province, landline
+---
+[[N:อบตโคกล่าม (กองช่าง)]] [[D:อลำปลายมาศ]] [[V:บุรีรัมย์]][[Z:31130]] [[P:044666182]]
+===
+loc: หัวง้ม | พาน | เชียงราย | 57120
+tags: no-dot-prefix, plate-code, alias, glued-moo, typo-closing, name-last, multiline
+---
+[[A:9/9ม.15]] [[S:ตหัวง้ม]] [[D:อพาน]]
+[[V:ชร]] [[Z:57120]]
+[[N:กมล]] [[P:0897410065]] ขอบคุนครับ
+===
+loc: จะกง | ขุขันธ์ | ศรีสะเกษ | 33140
+tags: glued, dotted-prefix, phone-first, village
+---
+[[P:0812043387]]
+[[N:นางบัวผัน ดีพร้อม]]
+[[A:31ม.2บ้านจะกง]][[S:ต.จะกง]][[D:อ.ขุขันธ์]][[V:จ.ศรีสะเกษ]][[Z:33140]]
+===
+loc: ทุ่งหลวง | ปากท่อ | ราชบุรี | 70140
+tags: chat-noise, order-abbrev, no-prefix, plate-code, alias, postcode-glued-province, cod
+---
+CF ครีมขมิ้น 2 กป ค่ะ
+ส่ง [[N:ลำดวน]] [[A:5ม.4]] [[S:ทุ่งหลวง]] [[D:ปากท่อ]] [[V:รบ]][[Z:70140]]
+[[P:0614427793]] ปลายทางค่ะ
+===
+loc: ดุมใหญ่ | ม่วงสามสิบ | อุบลราชธานี | 34140
+tags: no-name, no-dot-prefix, plate-code, alias, glued-label, delivery-note
+---
+[[A:111ม.6]] [[S:ตดุมใหญ่]] [[D:อม่วงสามสิบ]] [[V:อบ.]] [[Z:34140]]
+โทร[[P:0806613254]] ถึงแล้วโทรหาก่อนนะ
+===
+loc: บ้านใหม่ | บางใหญ่ | นนทบุรี | 11140
+tags: no-dot-prefix, village-abbrev, place-in-village, postcode-glued-province, name-after-address
+---
+[[A:89/45 มบ.บางใหญ่ซิตี้ ซ7]] [[S:ตบ้านใหม่]] [[D:อบางใหญ่]] [[V:นนทบุรี]][[Z:11140]] [[N:คุณจิ๊บ]] [[P:0918845102]]
+===
+loc: บึงบา | หนองเสือ | ปทุมธานี | 12170
+tags: kinship, no-prefix, alias, landmark
+---
+ส่งให้ [[N:ลุงชิต]] นะครับ
+[[A:22/1 ม.3 คลอง9 (ตรงข้ามศาลาริมคลอง)]] [[S:บึงบา]] [[D:หนองเสือ]] [[V:ปทุม]] [[Z:12170]]
+[[P:0897014452]]
+===
+loc: คลองขวาง | ไทรน้อย | นนทบุรี | 11150
+tags: proxy, no-dot-prefix, glued, label-glued, buyer-phone
+---
+ส่งให้ยายนะคะ ชื่อ[[N:นางเหลือ มากมี]] [[A:14ม.7]][[S:ตคลองขวาง]][[D:อไทรน้อย]][[V:จนนทบุรี]][[Z:11150]] เบอร์หนู[[P:0956632041]]
+===
+loc: ชัยบุรี | เมืองพัทลุง | พัทลุง | 93000
+tags: clean, one-line, amphoe-mueang
+---
+[[N:นายสมพร แก้วมณี]] [[A:2/14 ม.5]] [[S:ต.ชัยบุรี]] [[D:อ.เมือง]] [[V:พัทลุง]] [[Z:93000]] [[P:0830917726]]
+===
+loc: หนองโพ | โพธาราม | ราชบุรี | 70120
+tags: no-dot-prefix, postcode-glued-province, landline, label-dot, kinship
+---
+[[N:เจ๊ติ๋ม]]
+[[A:55/1 หมู่ 2]] [[S:ตหนองโพ]] [[D:อโพธาราม]] [[V:ราชบุรี]][[Z:70120]]
+โทร.[[P:032355190]]
+===
+loc: เกาะพีพี | เมืองกระบี่ | กระบี่ | 81210
+tags: club, no-dot-prefix, plate-code, alias, landmark, amphoe-mueang
+---
+[[N:ชมรมดำน้ำอันดามันบลู]] [[A:125 ม.7 อ่าวต้นไทร]] [[S:ตเกาะพีพี]] [[D:อเมือง]] [[V:กบ]] [[Z:81210]] [[P:0899720518]]
+===
+loc: ท่าข้าม | บางขุนเทียน | กรุงเทพมหานคร | 10150
+tags: company, bangkok, kho-prefix, alias, postcode-glued-province, no-phone, glued-road-number
+---
+ใบกำกับภาษีออกในชื่อนี้ได้เลยค่ะ
+[[N:บจก.รุ่งโรจน์แพ็คเกจจิ้ง]]
+[[A:99/9 ถ.พระราม2 ซ.69]] [[S:ข.ท่าข้าม]] [[D:ข.บางขุนเทียน]] [[V:กทม]][[Z:10150]]
+===
+loc: วังสมบูรณ์ | วังสมบูรณ์ | สระแก้ว | 27250
+tags: no-dot-prefix, same-name-twice, phone-before-address, nickname, no-province
+---
+[[N:เอก]] [[P:0801235546]] [[A:63ม.1]] [[S:ตวังสมบูรณ์]] [[D:อวังสมบูรณ์]] [[Z:27250]]
+===
+loc: คลองสองต้นนุ่น | ลาดกระบัง | กรุงเทพมหานคร | 10520
+tags: bangkok, kho-prefix-no-dot, alias, label-glued, postcode-glued-province, glued-soi-number
+---
+ชื่อ[[N:นายณรงค์ฤทธิ์]]โทร[[P:0632284901]]
+[[A:39/112 ซ.ฉลองกรุง31]] [[S:ขคลองสองต้นนุ่น]] [[D:ขลาดกระบัง]] [[V:กทม]][[Z:10520]]
+===
+loc: คลองพระอุดม | ลาดหลุมแก้ว | ปทุมธานี | 12140
+tags: no-prefix, split-bubbles, postcode-later, label-typo
+---
+[[N:วาสนา ปิ่นทอง]]
+[[A:11/5 ม.2]] [[S:คลองพระอุดม]] [[D:ลาดหลุมแก้ว]] [[V:ปทุมธานี]]
+อ้อ รหัส [[Z:12140]] ค่ะ
+เบอ [[P:0988150327]]
+===
+loc: สะเอะ | กรงปินัง | ยะลา | 95000
+tags: no-dot-prefix, glued-moo, plate-code, alias, postcode-glued-province, no-phone
+---
+ส่งที่อยู่นี้ครับ [[N:มูฮัมหมัด ยูโซะ]] [[A:44ม5]] [[S:ตสะเอะ]] [[D:อกรงปินัง]] [[V:ยล]][[Z:95000]]
+===
+loc: สำราญใต้ | สามชัย | กาฬสินธุ์ | 46180
+tags: plate-code, alias, no-postcode, name-after-address
+---
+[[A:90ม.9]] [[S:ต.สำราญใต้]] [[D:อ.สามชัย]] [[V:กส]] [[N:นางสาวกัญญารัตน์]] [[P:0881923046]]
+===
+loc: หิรัญรูจี | ธนบุรี | กรุงเทพมหานคร | 10600
+tags: clinic, bangkok, kho-prefix, alias, landline
+---
+[[N:คลินิกทันตกรรมฟันสวยสุขใจ]] [[A:412 ถ.ประชาธิปก]] [[S:ข.หิรัญรูจี]] [[D:ข.ธนบุรี]] [[V:กทม.]] [[Z:10600]] [[P:024665021]]
+===
+loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
+tags: bangkok, condo, same-name-once, alias, postcode-glued-province, glued-building, phone-before-address
+---
+[[N:พิมพ์ชนก]] [[P:0927735518]]
+[[A:ห้อง 1204 ตึกB คอนโดเดอะซีเนียร์ ซ.สุขุมวิท 22]] [[D:คลองเตย]] [[V:กทม]][[Z:10110]]
+===
+loc: บางบำหรุ | บางพลัด | กรุงเทพมหานคร | 10700
+tags: bangkok, kho-prefix-no-dot, fully-glued, postcode-glued-phone, alias, short-soi
+---
+[[N:นายธนา สุขเกษม]] [[A:58/3ซ.จรัญ79]][[S:ขบางบำหรุ]][[D:ขบางพลัด]][[V:กทม]][[Z:10700]][[P:0861037724]]
+===
+loc: ปากพนัง | ปากพนัง | นครศรีธรรมราช | 80140
+tags: no-dot-prefix, same-name-twice, alias, particle-glued, postcode-glued-province
+---
+[[N:สุดา]] [[A:17 ถ.ชายน้ำ]] [[S:ตปากพนัง]] [[D:อปากพนัง]] [[V:นครศรี]][[Z:80140]]ค่ะ [[P:0819932468]]
+===
+loc: แม่ใจ | แม่ใจ | พะเยา | 56130
+tags: same-name-once, no-subdistrict, plate-code, alias, kinship, phone-first
+---
+[[P:091-447-2385]] [[N:ลุงหนานคำ]]
+[[A:25 ม.4]] [[D:แม่ใจ]] [[V:พย]] [[Z:56130]]
+===
+loc: หาดคำ | เมืองหนองคาย | หนองคาย | 43000
+tags: rank, no-dot-prefix, plate-code, alias, postcode-glued-province
+---
+📞[[P:0850047213]]
+[[N:พ.จ.อ.สุรเชษฐ์ บุญเรือง]]
+[[A:111ม.2]] [[S:ตหาดคำ]] [[D:อเมืองหนองคาย]] [[V:นค]][[Z:43000]]
+===
+loc: แก้งกอก | ศรีเมืองใหม่ | อุบลราชธานี | 34250
+tags: health-center, no-dot-abbrev, no-dot-prefix, plate-code, alias, no-phone
+---
+พัสดุส่ง [[N:รพสต.แก้งกอก]] [[A:ม.3]] [[S:ตแก้งกอก]] [[D:อศรีเมืองใหม่]] [[V:อบ]] [[Z:34250]] นะคะ
+===
+loc: บ่อพุ | ท่าใหม่ | จันทบุรี | 22120
+tags: no-prefix, alias, short-province, kinship, glued-moo, comma-separated
+---
+[[N:ป้าสมนึก]],[[A:8/1ม.6]],[[S:บ่อพุ]],[[D:ท่าใหม่]],[[V:จันท์]],[[Z:22120]],[[P:0890275638]]
+===
+loc: วังจุฬา | วังน้อย | พระนครศรีอยุธยา | 13170
+tags: company, department-bracket, alias, postcode-glued-province, name-after-address, landline
+---
+[[A:9/88 ม.4 ถ.พหลโยธิน]] [[S:ต.วังจุฬา]] [[D:อ.วังน้อย]] [[V:อยุธยา]][[Z:13170]]
+[[N:บจก.เอเชียเมทัลพาร์ท (แผนกคลังสินค้า)]]
+[[P:035-258-114]]
+===
+loc: อ่างทอง | เมืองกำแพงเพชร | กำแพงเพชร | 62000
+tags: no-dot-prefix, amphoe-mueang, subdistrict-looks-like-province, no-phone
+---
+[[N:นายวิชัย ใจกล้า]] [[A:66ม.8]] [[S:ตอ่างทอง]] [[D:อเมือง]] [[V:กำแพงเพชร]] [[Z:62000]]
+===
+loc: วังไก่เถื่อน | หันคา | ชัยนาท | 17130
+tags: no-dot-prefix, fully-glued, kinship, line-id-not-phone, no-postcode
+---
+[[N:เจ๊แดง]]
+[[A:3ม.1]][[S:ตวังไก่เถื่อน]][[D:อหันคา]][[V:ชัยนาท]]
+ไลน์ deang_17 เบอร์[[P:0812763390]]
+===
+loc: โคกตะบอง | ท่ามะกา | กาญจนบุรี | 71120
+tags: no-prefix, alias, short-province, postcode-glued-province, no-name
+---
+ที่อยู่ค้าบ [[A:45/1 ม.7]] [[S:โคกตะบอง]] [[D:ท่ามะกา]] [[V:กาญ]][[Z:71120]] โทร [[P:0626678120]]
+===
+loc: อ่างศิลา | เมืองชลบุรี | ชลบุรี | 20000
+tags: partnership, no-dot-prefix, plate-code, alias, postcode-before-province, glued, landline
+---
+[[N:หจก.ทะเลทองแปรรูป]]
+[[A:18/5 ม.3]] [[S:ตอ่างศิลา]] [[D:อเมืองชลบุรี]] [[Z:20000]][[V:ชบ]]
+โทร [[P:038398410]]
+===
+loc: มีนบุรี | มีนบุรี | กรุงเทพมหานคร | 10510
+tags: bangkok, same-name-twice, no-prefix, alias, no-phone
+---
+[[N:น.ส.ศศิธร]]
+[[A:77/7 ซ.รามคำแหง 174]] [[S:มีนบุรี]] [[D:มีนบุรี]] [[V:กทม]] [[Z:10510]]
+===
+loc: กระจิว | ภาชี | พระนครศรีอยุธยา | 13140
+tags: no-dot-prefix, alias, multiline, glued-moo, no-phone
+---
+[[N:นายประยูร มีสุข]]
+[[A:4/2หมู่3]]
+[[S:ตกระจิว]] [[D:อภาชี]]
+[[V:จอยุธยา]] [[Z:13140]]
+===
+loc: สำโรงกลาง | พระประแดง | สมุทรปราการ | 10130
+tags: no-prefix, no-dot-prefix, plate-code, alias, soi, slash-separated, phone-before-address
+---
+รบกวนส่ง [[N:คุณมาลี]] / [[P:0947716203]] / [[A:199/45 ซ.ปู่เจ้าสมิงพราย 12]] [[S:สำโรงกลาง]] [[D:อพระประแดง]] [[V:สป]] [[Z:10130]]
+===
+loc: บ้านโป่ง | เวียงป่าเป้า | เชียงราย | 57170
+tags: temple, monk, person-and-org-apart, no-dot-prefix, plate-code, alias
+---
+ถวาย [[N:พระอาจารย์สุนทร]]
+[[A:วัดป่าดอยงาม ม.6]] [[S:ตบ้านโป่ง]] [[D:อเวียงป่าเป้า]] [[V:ชร]] [[Z:57170]]
+[[P:0869923158]]

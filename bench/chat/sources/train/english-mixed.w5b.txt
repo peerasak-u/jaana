@@ -1,0 +1,540 @@
+===
+loc: บางรัก | บางรัก | กรุงเทพมหานคร | 10500
+tags: alias, romanized-admin, foreign-buyer, office-tower, multiline, plus66
+---
+Hi, please ship to my office:
+[[N:Mr. Daniel Hartwell]]
+[[A:Unit 1704, 17th Floor, Silom Pinnacle Tower, 88 Silom Road]]
+[[S:Khwaeng Bang Rak]], [[D:Khet Bang Rak]], [[V:Bangkok]] [[Z:10500]]
+Mobile: [[P:+66 89 412 7735]]
+Thanks!
+===
+loc: หัวหมาก | บางกะปิ | กรุงเทพมหานคร | 10240
+tags: oneline, condo, english-detail, romanized-name, name-after-address
+---
+ส่ง [[A:condo The Nest Ramkhamhaeng 24 ตึก B ห้อง 1512]] [[S:แขวงหัวหมาก]] [[D:เขตบางกะปิ]] [[Z:10240]] นะคะ ชื่อ [[N:Pimchanok R.]] [[P:0918820347]]
+===
+loc: โยนก | เชียงแสน | เชียงราย | 57150
+tags: foreign-buyer, proxy, relation-in-brackets, english-detail, village, delivery-note
+---
+Hello, I order for my wife family. Address is:
+[[N:Khun Sompong Kaewmala (my father in law)]]
+[[A:99 Moo 3 Ban Sop Kham]]
+[[S:ต.โยนก]] [[D:อ.เชียงแสน]] [[V:จ.เชียงราย]] [[Z:57150]]
+phone [[P:081 773 0294]] he not speak english, please call in Thai
+===
+loc: รังสิต | ธัญบุรี | ปทุมธานี | 12110
+tags: oneline, dorm, english-labels, nickname, place-in-road
+---
+ส่งที่หอค่ะ [[A:U-Place Dorm room 305 ซ.รังสิต-นครนายก 46]] [[S:ต.รังสิต]] [[D:อ.ธัญบุรี]] [[V:ปทุมธานี]] [[Z:12110]] receiver [[N:Nong Mild]] tel [[P:095-118-4420]] ขอบคุณค่า
+===
+loc: วังใหม่ | ปทุมวัน | กรุงเทพมหานคร | 10330
+tags: foreign-buyer, english-labels, condo, plus66-dashes, delivery-note, multiline
+---
+Shipping address
+Name: [[N:Ms. Yuki Tanaka]]
+Address: [[A:Room 2208, Chamchuri Park Residence, Soi Chula 42, Banthat Thong Rd.]]
+[[S:แขวงวังใหม่]] [[D:เขตปทุมวัน]] [[V:กรุงเทพฯ]] [[Z:10330]]
+Tel: [[P:+66-92-551-0386]]
+Please deliver after 6 pm. I am working.
+===
+loc: ทับมา | เมืองระยอง | ระยอง | 21000
+tags: company, contact-in-brackets, alias, romanized-admin, landline, extension
+---
+Please send invoice + goods to
+[[N:Eastern Polymer Solutions Co., Ltd. (Attn: Khun Waraporn, Purchasing)]]
+[[A:55/12 Moo 7, Sukhumvit Road]], [[S:Tambon Thap Ma]], [[D:Amphoe Mueang Rayong]], [[V:Rayong]] [[Z:21000]]
+Tel. [[P:038-614-552]] ext. 204
+===
+loc: บางพลัด | บางพลัด | กรุงเทพมหานคร | 10700
+tags: oneline, code-switch, same-name-twice, no-province, label-typo, emoji
+---
+hi ka ส่ง [[A:55/9 ซ.จรัญ 79]] [[S:บางพลัด]] [[D:เขตบางพลัด]] [[Z:10700]] นะคะ name [[N:Ploy Siriwan]] เบอ [[P:0632291804]] ty ka 💕
+===
+loc: บางเขน | เมืองนนทบุรี | นนทบุรี | 11000
+tags: foreign-buyer, chinese-label, bilingual-name, housing-estate, no-phone-label, multiline
+---
+您好 hello
+收件人 [[N:Li Wei / หลี่ เว่ย]]
+[[A:88/120 หมู่บ้านพฤกษาวิลล์ 22 ถ.รัตนาธิเบศร์]]
+[[S:ต.บางเขน]] [[D:อ.เมืองนนทบุรี]] [[V:นนทบุรี]] [[Z:11000]]
+[[P:0846630127]]
+===
+loc: คลองเกลือ | ปากเกร็ด | นนทบุรี | 11120
+tags: oneline, condo, english-detail, k-honorific, alias, no-prefix, no-labels
+---
+Pls send to [[N:K.Benz]] [[A:Sky Park Condo T5 fl.12 rm 1209 Muang Thong Thani]] [[S:คลองเกลือ]] [[D:ปากเกร็ด]] [[V:นนท]] [[Z:11120]] [[P:0897713340]] thx
+===
+loc: บางระมาด | ตลิ่งชัน | กรุงเทพมหานคร | 10170
+tags: foreign-buyer, alias, romanized-admin, two-phones, foreign-number, housing-estate, multiline
+---
+Dear seller,
+please ship to:
+[[N:Mr. Jürgen Weiss]]
+[[A:41/7 Moo Baan Chaiyaphruek, Soi Bang Ramat 18]]
+[[S:Khwaeng Bang Ramat]], [[D:Khet Taling Chan]]
+[[V:Bangkok]] [[Z:10170]]
+Phone [[P:+66 81 902 4417]] or +49 171 5522 903 (WhatsApp)
+===
+loc: บางรัก | เมืองตรัง | ตรัง | 92000
+tags: code-switch, nickname-in-brackets, amphoe-mueang, courier-request, emoji, multiline
+---
+ขอ confirm address นะคะ
+[[N:คุณ Jenny (เจนนี่) ทองมา]]
+[[A:12/5 ถ.ห้วยยอด ซอย 3]] [[S:ต.บางรัก]] [[D:อ.เมือง]] [[V:ตรัง]] [[Z:92000]]
+[[P:089 551 2063]]
+ส่ง J&T ได้มั้ยคะ fast หน่อย 🙏
+===
+loc: อรุณอมรินทร์ | บางกอกน้อย | กรุงเทพมหานคร | 10700
+tags: romanized-name, apartment, alias, place-in-soi, multiline
+---
+ที่อยู่ค่ะ
+[[N:Nattaya Phromsri]]
+[[A:Arun Place Apartment ห้อง 4/12 ซ.อรุณอมรินทร์ 39]]
+[[S:แขวงอรุณอมรินทร์]]
+[[D:เขตบางกอกน้อย]] [[V:กทม]] [[Z:10700]]
+[[P:086-552-1093]]
+===
+loc: ท่าผา | แม่แจ่ม | เชียงใหม่ | 50270
+tags: school, org-with-contact, foreign-buyer, alias, romanized-admin, rural
+---
+Hello! Can you send to the school where I teach?
+[[N:Ban Mae Na Chon School (Teacher Emma)]]
+[[A:Moo 6]] [[S:Tha Pha]], [[D:Mae Chaem]], [[V:Chiang Mai]] [[Z:50270]]
+Call me [[P:093 441 2085]] if any problem
+===
+loc: บางเดื่อ | เมืองปทุมธานี | ปทุมธานี | 12000
+tags: oneline, phone-before-address, english-detail, housing-estate, place-in-road
+---
+[[N:Thanakorn Srisuk]] [[P:0812240719]] [[A:19/88 Pruksa Ville 48, Soi Bang Duea 5, Pathum Thani-Bang Len Rd]] [[S:ต.บางเดื่อ]] [[D:อ.เมืองปทุมธานี]] [[V:จ.ปทุมธานี]] [[Z:12000]]
+===
+loc: หนองสังข์ | นาแก | นครพนม | 48130
+tags: foreign-buyer, proxy, broken-english, lowercase, alias, romanized-admin, village, buyer-phone
+---
+hello i am john husband of Noi. send to her mother pls
+name [[N:Mrs Bualai Sriwong]]
+[[A:house 47 moo 9 ban nong sang]]
+[[S:t.nong sang]] [[D:a.na kae]] [[V:nakhon phanom]] [[Z:48130]]
+phone noi [[P:0887134502]]
+thank you very much sir
+===
+loc: ถนนนครไชยศรี | ดุสิต | กรุงเทพมหานคร | 10300
+tags: shop, oneline, landmark, landline, delivery-note, english-shop-name
+---
+ส่งร้านนะคะ [[N:Little Owl Café]] [[A:221 ถ.สามเสน ซอย 15 (ตรงข้าม 7-11)]] [[S:แขวงถนนนครไชยศรี]] [[D:เขตดุสิต]] [[V:กรุงเทพ]] [[Z:10300]] [[P:02-241-6680]] ถึงแล้วโทรหาน้องหน้าร้านได้เลย
+===
+loc: บางคอแหลม | บางคอแหลม | กรุงเทพมหานคร | 10120
+tags: english-labels, alias, romanized-admin, same-name-twice, bkk, multiline
+---
+Name: [[N:Supawadee Chaiyasit]]
+Addr: [[A:1199/45 Charoen Krung Rd, Soi Charoen Krung 107]]
+[[S:Bang Kho Laem]] [[D:Bang Kho Laem]] [[V:BKK]] [[Z:10120]]
+Tel: [[P:0956604481]]
+===
+loc: กาลูปัง | รามัน | ยะลา | 95140
+tags: oneline, romanized-name, malay-name, greeting, cod, village
+---
+assalamualaikum ka ส่ง [[N:Nurhayati Ma-ae]] [[A:45 ม.2 บ้านกาลูปัง]] [[S:ต.กาลูปัง]] [[D:อ.รามัน]] [[V:จ.ยะลา]] [[Z:95140]] [[P:0937720156]] เก็บปลายทางค่ะ
+===
+loc: แพรกษา | เมืองสมุทรปราการ | สมุทรปราการ | 10280
+tags: company-apart-from-person, industrial-estate, english-detail, contact-last, department-in-brackets, multiline
+---
+Deliver to:
+[[A:Thai Precision Die-Cast Co., Ltd.]]
+[[A:Bangpoo Industrial Estate, 88/3 Moo 4, Soi 6C]]
+[[S:ต.แพรกษา]] [[D:อ.เมืองสมุทรปราการ]] [[V:สมุทรปราการ]] [[Z:10280]]
+Contact: [[N:Mr. Ekkachai (Logistics)]] [[P:081-640-2271]]
+===
+loc: หนองเหียง | พนัสนิคม | ชลบุรี | 20140
+tags: oneline, foreign-buyer, apartment, english-detail, payment-question
+---
+Hi this is Rahul, pls ship to my room. [[N:Rahul Sharma]], [[A:Baan Suk Apartment room 208, 15/3 Moo 1]], [[S:ต.หนองเหียง]] [[D:อ.พนัสนิคม]] [[V:จ.ชลบุรี]] [[Z:20140]]. Mob [[P:0614428830]]. COD ok?
+===
+loc: ม่วงตึ๊ด | ภูเพียง | น่าน | 55000
+tags: shop, contact-in-brackets, english-shop-name, slash-separators, invoice-note
+---
+[[N:Nan Slow Bar Coffee Roaster (คุณต้น)]] [[A:77 หมู่ 4]] [[S:ต.ม่วงตึ๊ด]] [[D:อ.ภูเพียง]] [[V:น่าน]] [[Z:55000]] / [[P:0817640293]] / ขอ invoice ด้วยครับ
+===
+loc: โคกโพธิ์ | โคกโพธิ์ | ปัตตานี | 94120
+tags: english-labels, form, same-name-twice, moo-english, odd-phone-grouping
+---
+Receiver : [[N:Mr.Arif Samae]]
+Address : [[A:9/1 Moo 1]] [[S:ต.โคกโพธิ์]] [[D:อ.โคกโพธิ์]] [[V:จ.ปัตตานี]]
+Postcode : [[Z:94120]]
+Phone : [[P:089-6631-702]]
+===
+loc: หนองแขม | หนองแขม | กรุงเทพมหานคร | 10160
+tags: oneline, foreign-buyer, apartment, english-detail, no-subdistrict
+---
+Good day! Kindly send to [[N:Ms. Maricel Dela Cruz]] [[A:Room 3B, Baan Pakdee Apartment, Soi Phetkasem 81]] [[D:เขตหนองแขม]] [[V:กรุงเทพฯ]] [[Z:10160]] contact [[P:0962274518]] God bless
+===
+loc: รัตนวาปี | รัตนวาปี | หนองคาย | 43120
+tags: karaoke-thai, alias, romanized-admin, kinship-name, name-after-address, oneline
+---
+sawasdee ka, song tee [[A:baan lek tee 56 moo 8]] [[S:tambon rattanawapi]] [[D:amphoe rattanawapi]] [[V:nong khai]] [[Z:43120]] chue [[N:mae Lamduan]] ber [[P:0857736109]] na ka
+===
+loc: อีปาด | กันทรารมย์ | ศรีสะเกษ | 33130
+tags: foreign-buyer, typo-province, village, multiline, chat-after
+---
+G'day mate, pls post to
+[[N:Steve O'Brien]]
+[[A:112 ม.6 บ้านอีปาด]]
+[[S:ต.อีปาด]] [[D:อ.กันทรารมย์]]
+[[V:ศรีษะเกษ]] [[Z:33130]]
+ph [[P:0828843016]]
+wife wrote the thai bit lol
+===
+loc: กุดผึ้ง | สุวรรณคูหา | หนองบัวลำภู | 39270
+tags: oneline, moo-english, typo-province, english-label, glued-label
+---
+[[N:น.ส.อรอุมา ศรีคำ]] [[A:34 M.11]] [[S:ต.กุดผึ้ง]] [[D:อ.สุวรรณคูหา]] [[V:จ.หนองบัวลำพู]] [[Z:39270]] Tel.[[P:0641183305]]
+===
+loc: ลำปาว | เมืองกาฬสินธุ์ | กาฬสินธุ์ | 46000
+tags: resort-apart-from-person, english-detail, amphoe-mueang, title-in-brackets, name-last, multiline
+---
+ส่งที่ resort นะครับ
+[[A:Lampao Lakeside Resort 199 ม.10 ถ.เลี่ยงเมือง]]
+[[S:ต.ลำปาว]] [[D:อ.เมือง]] [[V:กาฬสินธุ์]] [[Z:46000]]
+ผู้รับ [[N:Mr. Kevin (manager)]] [[P:0931150288]]
+===
+loc: ร่อนทอง | บางสะพาน | ประจวบคีรีขันธ์ | 77230
+tags: oneline, no-labels, romanized-name, english-detail, alias, phone-before-address
+---
+[[N:Chayanin Kongkaew]] [[P:0897741062]] [[A:house 8/2 moo 3]] [[S:ต.ร่อนทอง]] [[D:อ.บางสะพาน]] [[V:ประจวบฯ]] [[Z:77230]]
+===
+loc: บ่อเกลือเหนือ | บ่อเกลือ | น่าน | 55220
+tags: institution, health-center, contact-in-brackets, foreign-buyer, phone-note, lowercase, multiline
+---
+hi!! im volunteer at the clinic in bo kluea. can u send the solar lamps here?
+[[N:รพ.สต.บ่อเกลือเหนือ (attn. Hannah - volunteer)]]
+[[A:ม.1]] [[S:ต.บ่อเกลือเหนือ]] [[D:อ.บ่อเกลือ]] [[V:จ.น่าน]] [[Z:55220]]
+my thai number [[P:0659013374]] (no signal in day time, sms better)
+===
+loc: พระงาม | พรหมบุรี | สิงห์บุรี | 16120
+tags: oneline, phone-first, no-postcode, courier-request, english-honorific
+---
+[[P:086-117-3390]] [[N:Mr.Somchai Boonmee]] [[A:59 หมู่ 2]] [[S:ต.พระงาม]] [[D:อ.พรหมบุรี]] [[V:สิงห์บุรี]] ครับ ship by EMS please
+===
+loc: บ้านต้าย | สว่างแดนดิน | สกลนคร | 47110
+tags: marketplace-copy, bilingual-admin, alias, large-to-small, plus66-spaces, pipe-separator
+---
+[[N:Wanida Phonsri]] | [[P:(+66) 92 774 1538]]
+[[A:21 Moo 5, Ban Tai Village]], [[V:Sakon Nakhon/ สกลนคร]], [[D:Sawang Daen Din/ สว่างแดนดิน]], [[S:Ban Tai/ บ้านต้าย]], [[Z:47110]]
+===
+loc: บางเสาธง | บางเสาธง | สมุทรปราการ | 10540
+tags: company, tax-invoice, tax-id, head-office, landline, place-in-road, same-name-twice
+---
+ขอใบกำกับภาษีด้วยครับ
+[[N:บริษัท Smart Pack Logistics จำกัด (สำนักงานใหญ่)]]
+เลขผู้เสียภาษี 0115560031428
+[[A:99/9 ม.12 ถ.บางนา-ตราด กม.23]] [[S:ต.บางเสาธง]] [[D:อ.บางเสาธง]] [[V:สมุทรปราการ]] [[Z:10540]]
+Tel [[P:02-130-4478]]
+===
+loc: บางหลวง | เมืองปทุมธานี | ปทุมธานี | 12000
+tags: chat-bubbles, lowercase, alias, no-province, no-postcode, nickname, housing-estate
+---
+hiii
+can i get it by friday?
+anyway my addr 👇
+[[A:7/41 the connect ปทุม-บางกะดี ซ.5]] [[S:ต.บางหลวง]] [[D:อ.เมืองปทุม]]
+[[N:Mook]] [[P:0909843127]]
+===
+loc: ก้ามปู | พยัคฆภูมิพิสัย | มหาสารคาม | 44110
+tags: oneline, foreign-recipient, buyer-phone, typo-district, village
+---
+ส่งชื่อแฟนนะคะ [[N:Mr. Peter Lindqvist]] [[A:บ้านเลขที่ 88 ม.4 บ้านก้ามปู]] [[S:ต.ก้ามปู]] [[D:อ.พยัคฆ์ภูมิพิสัย]] [[V:มหาสารคาม]] [[Z:44110]] เบอร์เมีย [[P:0872253194]] ค่ะ
+===
+loc: แคราย | กระทุ่มแบน | สมุทรสาคร | 74110
+tags: oneline, foreign-buyer, broken-english, burmese-honorific, factory-dorm, typo-district, typo-province
+---
+hello sister. me Myanmar worker. send to [[N:Ko Aung Myint]] phone [[P:0963318420]] [[A:factory dorm room 12, 99/1 moo 8]] [[S:ต.แคราย]] [[D:อ.กระทุมแบน]] [[V:สมุทสาคร]] [[Z:74110]] thank you
+===
+loc: บ้านป้อม | พระนครศรีอยุธยา | พระนครศรีอยุธยา | 13000
+tags: foreign-buyer, care-of, guesthouse-apart-from-person, landline, chat-before, multiline
+---
+Hi, I'm staying at a guesthouse in Ayutthaya until 20th, can you deliver there?
+[[N:Lucas Moreau]] c/o [[A:Baan Pom Riverside Guesthouse, 33/2 Moo 3]]
+[[S:ต.บ้านป้อม]] [[D:อ.พระนครศรีอยุธยา]] [[V:จ.พระนครศรีอยุธยา]] [[Z:13000]]
+Guesthouse phone [[P:035-241-998]]
+===
+loc: ตะแพน | ศรีบรรพต | พัทลุง | 93190
+tags: clean, romanized-name, postcode-before-province, multiline
+---
+[[N:Kanokwan T.]]
+[[A:15 ม.7]] [[S:ต.ตะแพน]] [[D:อ.ศรีบรรพต]]
+[[Z:93190]] [[V:พัทลุง]]
+[[P:0813326641]]
+===
+loc: ชนบท | ชนบท | ขอนแก่น | 40180
+tags: shop-apart-from-person, english-shop-name, same-name-twice, place-in-road, courier-request, multiline
+---
+[[A:Chonnabot Silk Studio]]
+[[A:211 ม.1 ถ.ศรีชนบท]] [[S:ต.ชนบท]] [[D:อ.ชนบท]] [[V:ขอนแก่น]] [[Z:40180]]
+[[N:คุณแหม่ม]] [[P:0849906612]] ส่ง flash ได้ค่ะ
+===
+loc: ชอนน้อย | พัฒนานิคม | ลพบุรี | 15140
+tags: foreign-buyer, english-detail, name-after-address, courier-note, multiline
+---
+Please send to my house:
+[[A:66/3 Moo 9, Soi Chon Noi 2]]
+[[S:ต.ชอนน้อย]] [[D:อ.พัฒนานิคม]] [[V:ลพบุรี]] [[Z:15140]]
+[[N:Mr. Graham Whitfield]] [[P:089-820-1146]]
+(dog is friendly, just open gate)
+===
+loc: ป่าสะแก | เดิมบางนางบวช | สุพรรณบุรี | 72120
+tags: glued, slang, alias, short-district, nickname, emoji, name-after-address
+---
+omg sis finally!! ส่งมา [[A:22/1ม.3]][[S:ต.ป่าสะแก]][[D:อ.เดิมบาง]][[V:สุพรรณ]] [[Z:72120]] [[N:Fernnie]] [[P:0626690451]] luv u 💖
+===
+loc: ดงดินแดง | หนองม่วง | ลพบุรี | 15170
+tags: marketplace-copy, comma-separated, plus66-spaces, full-prefixes, romanized-name, clean
+---
+[[N:Sirinapa Kamjai]], [[P:+66 81 557 3092]], [[A:45/1 Moo 6]], [[S:ตำบลดงดินแดง]], [[D:อำเภอหนองม่วง]], [[V:จังหวัดลพบุรี]], [[Z:15170]]
+===
+loc: ตลาดยอด | พระนคร | กรุงเทพมหานคร | 10200
+tags: foreign-buyer, hostel, alias, two-phones, foreign-number, detail-in-chat, multiline
+---
+yo! im at a hostel near khao san, [[A:room 4 bed B]]
+[[N:Matteo Rossi]]
+[[A:Happy Backpacker Hostel, 42 Tanao Rd]]
+[[S:แขวงตลาดยอด]] [[D:เขตพระนคร]] [[V:กทม]] [[Z:10200]]
+thai sim [[P:0951187726]] or whatsapp +39 347 118 2290
+===
+loc: ท้ายเกาะ | สามโคก | ปทุมธานี | 12160
+tags: oneline, church, org-no-person, english-org-name, place-in-road, t-label
+---
+Ship to: [[N:Grace Community Church Samkhok]] [[A:18/4 ม.2 ถ.ปทุมธานี-สามโคก]] [[S:ต.ท้ายเกาะ]] [[D:อ.สามโคก]] [[V:จ.ปทุมธานี]] [[Z:12160]] T.[[P:0899045318]]
+===
+loc: ชุมแสง | จอมพระ | สุรินทร์ | 32180
+tags: foreign-teacher, title, bilingual-name, school-apart-from-person, typo-province, multiline
+---
+To: [[N:Teacher Brian (ครูไบรอัน)]]
+[[A:Chumsaeng Wittaya School, 1 Moo 1]]
+[[S:ต.ชุมแสง]] [[D:อ.จอมพระ]] [[V:สุรินท]] [[Z:32180]]
+[[P:0946627013]]
+===
+loc: ท่ากระดาน | ศรีสวัสดิ์ | กาญจนบุรี | 71250
+tags: resort, org-no-person, alias, romanized-admin, oneline, courier-note
+---
+Order for our raft resort pls: [[N:Floating Bamboo Raft House]], [[A:Srinagarind Dam, Moo 4]], [[S:Tha Kradan]], [[D:Si Sawat]], [[V:Kanchanaburi]] [[Z:71250]]. call [[P:0814450637]] (boat pick up, tell us before)
+===
+loc: บางด้วน | ภาษีเจริญ | กรุงเทพมหานคร | 10160
+tags: oneline, condo, code-switch, typo-district, no-province, juristic-office-note
+---
+ส่ง [[N:คุณ Nan]] นะคะ [[A:Bliss Condo Phetkasem 32 ตึก C ชั้น 9 ห้อง 917]] [[S:แขวงบางด้วน]] [[D:เขตภาษีเจิญ]] [[Z:10160]] tel [[P:0659920184]] ฝากนิติได้ค่ะ
+===
+loc: โซ่ | โซ่พิสัย | บึงกาฬ | 38170
+tags: partnership, bilingual-org-name, two-phones, landline, place-in-road, multiline
+---
+[[N:So Phisai Rubber Trading Ltd., Part. (หจก.โซ่พิสัยรับเบอร์)]]
+[[A:155 ม.1 ถ.บึงกาฬ-โซ่พิสัย]] [[S:ต.โซ่]] [[D:อ.โซ่พิสัย]] [[V:บึงกาฬ]] [[Z:38170]]
+Tel. [[P:042-485-226]] / 081-903-7714
+===
+loc: หันตรา | พระนครศรีอยุธยา | พระนครศรีอยุธยา | 13000
+tags: foreign-buyer, apartment, english-detail, amphoe-mueang-exception, alias, name-after-address, multiline
+---
+Please send to apartment.
+[[A:Hantra Mansion Room 302, 9/9 Moo 4 Asian Highway]]
+[[S:ต.หันตรา]] [[D:อ.เมือง]] [[V:อยุธยา]] [[Z:13000]]
+[[N:Mr. Kenji Watanabe]]
+TEL [[P:080-445-2317]]
+===
+loc: ไผ่ | ทรายมูล | ยโสธร | 35170
+tags: karaoke-thai, oneline, romanized-detail, no-postcode, labels-romanized
+---
+sawaddee krub. chue [[N:Nattapong Saengsri]] [[A:ban lek ti 7 moo 2]] [[S:ต.ไผ่]] [[D:อ.ทรายมูล]] [[V:จ.ยโสธร]] ber [[P:0921173385]] krub
+===
+loc: บางไผ่ | บางแค | กรุงเทพมหานคร | 10160
+tags: oneline, coworking, org-with-contact, slash-in-name, k-honorific, delivery-hours
+---
+[[N:HUB Co-working Bang Khae / K.Mint]] [[A:59/12 ถ.เพชรเกษม ซ.เพชรเกษม 63]] [[S:แขวงบางไผ่]] [[D:เขตบางแค]] [[V:กรุงเทพฯ]] [[Z:10160]] [[P:0614450823]] (รับของได้ 9am-6pm)
+===
+loc: พนมรอก | ท่าตะโก | นครสวรรค์ | 60160
+tags: proxy, kinship-name, romanized-name, buyer-phone, english-detail, multiline
+---
+Order for my grandma
+[[N:Yai Thongbai Kaewsri]]
+[[A:28 Moo 5]] [[S:ต.พนมรอก]] [[D:อ.ท่าตะโก]] [[V:นครสวรรค์]] [[Z:60160]]
+my number [[P:0838826590]], she has no phone
+===
+loc: ไทรน้อย | ไทรน้อย | นนทบุรี | 11150
+tags: oneline, no-name, housing-estate, english-detail, district-once-no-prefix, place-in-road
+---
+ส่งบ้าน ok นะคะ [[A:Casa Ville Sai Noi 88/12 ถ.บางกรวย-ไทรน้อย]] [[D:ไทรน้อย]] [[V:นนทบุรี]] [[Z:11150]] [[P:095-226-3417]] (ชื่อตามเฟสเลยค่ะ)
+===
+loc: มาบกราด | พระทองคำ | นครราชสีมา | 30220
+tags: foreign-buyer, kinship-name, alias, house-no-english, remark-in-brackets, oneline
+---
+Hello, my wife family farm. [[N:Khun Mae Sombat]] [[A:house no. 63 moo 7]] [[S:ต.มาบกราด]] [[D:อ.พระทองคำ]] [[V:โคราช]] [[Z:30220]] tel [[P:0857240116]] (my wife Nok will receive if mom not home)
+===
+loc: มาบแก | ลาดยาว | นครสวรรค์ | 60150
+tags: one-field-per-line, moo-english, no-phone, clean
+---
+ชื่อ [[N:นางสาวพิมพ์ใจ อินทร์แก้ว]]
+[[A:9 Moo 10]]
+[[S:ต.มาบแก]]
+[[D:อ.ลาดยาว]]
+[[V:จ.นครสวรรค์]] [[Z:60150]]
+===
+loc: บางแวก | ภาษีเจริญ | กรุงเทพมหานคร | 10160
+tags: oneline, no-separators, alias, romanized-admin, autocorrect, phone-before-address
+---
+[[N:Kittipong S.]] [[P:0891123457]] [[A:15/3 Soi Bang Waek 46]] [[S:Bang Waek]] [[D:Kher Phasi Charoen]] [[V:Bangkok]] [[Z:10160]]
+===
+loc: เตย | ม่วงสามสิบ | อุบลราชธานี | 34140
+tags: thai-labels, english-nickname-in-brackets, full-prefixes, alias, village, multiline
+---
+ผู้รับ: [[N:นายอนุชา บุญเรือง (Tony)]]
+ที่อยู่: [[A:41 หมู่ 3 บ้านเตย]] [[S:ตำบลเตย]] [[D:อำเภอม่วงสามสิบ]] [[V:อุบลฯ]] [[Z:34140]]
+เบอร์: [[P:0812297705]]
+===
+loc: ตะกาดเง้า | ท่าใหม่ | จันทบุรี | 22120
+tags: company-apart-from-person, attn-label, department-in-brackets, english-detail, place-in-road, multiline
+---
+Hi, sample shipment for our packing house:
+[[A:Chanthaburi Fresh Fruit Export Co., Ltd.]]
+Attn: [[N:Ms. Lin Mei (QC Dept.)]]
+[[A:77/2 Moo 2, Tha Mai-Laem Sing Rd.]]
+[[S:ต.ตะกาดเง้า]] [[D:อ.ท่าใหม่]] [[V:จ.จันทบุรี]] [[Z:22120]]
+Mobile [[P:086-342-9017]]
+===
+loc: บางตาหงาย | บรรพตพิสัย | นครสวรรค์ | 60180
+tags: keyboard-layout, wrong-layer-label, oneline, name-after-address, apology
+---
+mujvp^j [[A:12 ม.4]] [[S:ต.บางตาหงาย]] [[D:อ.บรรพตพิสัย]] [[V:นครสวรรค์]] [[Z:60180]] ขอโทษค่ะลืมเปลี่ยนภาษา 😅 ชื่อ [[N:ปราณี ศรีทอง]] [[P:0874416623]]
+===
+loc: หนองหลวง | เฝ้าไร่ | หนองคาย | 43120
+tags: english-labels, uppercase-labels, title, no-prefix, village, foreign-buyer
+---
+NAME - [[N:Pastor Mark Ellison]]
+ADDRESS - [[A:102 Moo 1 Ban Nong Luang]], [[S:หนองหลวง]], [[D:เฝ้าไร่]], [[V:หนองคาย]]
+ZIP - [[Z:43120]]
+CELL - [[P:088-170-3364]]
+===
+loc: สามไถ | นครหลวง | พระนครศรีอยุธยา | 13260
+tags: order-details, payment-note, province-first, alias, code-switch, oneline
+---
+เอา size L สีดำ 2 ตัวค่ะ ส่ง [[A:55/1 ม.5]] [[V:จ.อยุธยา]] [[D:อ.นครหลวง]] [[S:ต.สามไถ]] [[Z:13260]] [[N:Fah Chanida]] [[P:0918865532]] โอนแล้วนะคะ slip ตามรูปเลย
+===
+loc: ราษฎร์นิยม | ไทรน้อย | นนทบุรี | 11150
+tags: clinic, org-no-person, english-org-name, landline, emoji-phone, delivery-hours, place-in-road
+---
+[[N:Happy Paws Animal Clinic]] [[A:39/7 ม.3 ถ.ราษฎร์นิยม-ไทรน้อย]] [[S:ต.ราษฎร์นิยม]] [[D:อ.ไทรน้อย]] [[V:นนทบุรี]] [[Z:11150]] ☎️ [[P:02-150-9274]] ส่งในเวลาทำการ 10:00-19:00 ค่ะ
+===
+loc: นาปู่ป้อม | ปางมะผ้า | แม่ฮ่องสอน | 58150
+tags: ngo, org-with-contact, foreign-buyer, english-detail, village, emoji, multiline
+---
+Hi from Pang Mapha! 🏔️
+for [[N:Highland Kids Learning Center (Sarah Kim)]]
+[[A:Ban Na Pu Pom, Moo 3]], [[S:ต.นาปู่ป้อม]] [[D:อ.ปางมะผ้า]] [[V:แม่ฮ่องสอน]] [[Z:58150]]
+[[P:0807732119]]
+===
+loc: หนองหัวโพ | หนองแซง | สระบุรี | 18170
+tags: oneline, lowercase, romanized-prefix, alias, romanized-province, dotted-phone, no-postcode
+---
+ship 2 [[N:Bank]] na krub [[A:44/2 m.6]] [[S:t.หนองหัวโพ]] [[D:a.หนองแซง]] [[V:saraburi]] tel [[P:081.556.2093]]
+===
+loc: หนองไฮ | เสนางคนิคม | อำนาจเจริญ | 37290
+tags: bilingual-name, village, cod, karaoke-particle, multiline
+---
+ส่งค่ะ
+[[N:Sunisa Srisuk (สุนิสา)]] โทร [[P:0897450331]]
+[[A:บ้านเลขที่ 19 ม.8 บ้านหนองไฮ]]
+[[S:ต.หนองไฮ]] [[D:อ.เสนางคนิคม]] [[V:อำนาจเจริญ]] [[Z:37290]]
+COD na ka
+===
+loc: ปากทะเล | บ้านแหลม | เพชรบุรี | 76110
+tags: restaurant, org-no-person, english-org-name, landmark-english, emoji, oneline
+---
+Pls deliver to our restaurant 🦐 [[N:Pak Thale Seafood & Bar]] [[A:12 Moo 1 (next to the pier)]] [[S:ต.ปากทะเล]] [[D:อ.บ้านแหลม]] [[V:เพชรบุรี]] [[Z:76110]] call [[P:0832269104]]
+===
+loc: หนองขยาด | พนัสนิคม | ชลบุรี | 20140
+tags: correction, two-phones, alias, short-district, chat-bubbles, romanized-name
+---
+[[N:Aom Supaporn]]
+[[A:101/5 ม.4]] [[S:ต.หนองขยาด]] [[D:อ.พนัส]] [[V:ชลบุรี]] [[Z:20140]]
+tel 0861174429
+sorry wrong number ka แก้เบอร์เป็น [[P:0861174492]] na
+===
+loc: หัวช้าง | จตุรพักตรพิมาน | ร้อยเอ็ด | 45180
+tags: foreign-buyer, alias, romanized-admin, plus66-spaces, village, oneline
+---
+Hi, pls ship to [[N:Mr. Thomas Harris]] - [[A:59 Moo 11, Ban Hua Chang]], [[S:Hua Chang]], [[D:Chaturaphak Phiman]], [[V:Roi Et]] [[Z:45180]]  Ph: [[P:+66 86 553 1902]]
+===
+loc: ห้วยทับมอญ | เขาชะเมา | ระยอง | 21110
+tags: farm-apart-from-person, english-farm-name, nickname, name-last, multiline
+---
+ที่อยู่สวนนะครับ
+[[A:สวนทุเรียน Uncle Chai Farm 88 ม.6]]
+[[S:ต.ห้วยทับมอญ]] [[D:อ.เขาชะเมา]] [[V:ระยอง]] [[Z:21110]]
+[[N:Chai]] [[P:089-334-7106]]
+===
+loc: ทุ่งปรัง | สิชล | นครศรีธรรมราช | 80120
+tags: multiline, courier-request, nickname-in-brackets, alias, place-in-road, khun-romanized, phone-with-name
+---
+ส่ง EMS นะคะ
+[[N:Khun Jintana (Jin)]] [[P:0816694420]]
+[[A:23/4 ม.2 ถ.ทุ่งปรัง-สิชล]]
+[[S:ต.ทุ่งปรัง]] [[D:อ.สิชล]] [[V:นครศรีฯ]] [[Z:80120]]
+===
+loc: ท่าแร้งออก | บ้านแหลม | เพชรบุรี | 76110
+tags: oneline, alias, romanized-admin, comma-separated, romanized-name, clean
+---
+Deliver to [[N:Somsak Panyadee]], [[A:7 Moo 3]], [[S:Tha Raeng Ok]], [[D:Ban Laem]], [[V:Phetchaburi]] [[Z:76110]]. Tel [[P:0819932204]]
+===
+loc: หลุมข้าว | โนนสูง | นครราชสีมา | 30160
+tags: english-labels, lowercase-labels, typo-province, no-postcode, apology, multiline
+---
+name: [[N:Wipawan Kongsri]]
+address: [[A:บ้านเลขที่ 3 หมู่ 12]] [[S:ต.หลุมข้าว]] [[D:อ.โนนสูง]] [[V:จ.นครราชศรีมา]]
+tel: [[P:0628804517]]
+ไม่รู้รหัสไปรษณีย์ค่ะ sorry
+===
+loc: หนองแจ้งใหญ่ | บัวใหญ่ | นครราชสีมา | 30120
+tags: school, org-with-contact, english-program, landline, oneline
+---
+[[N:โรงเรียนบัวใหญ่ English Program (ครู Jennifer)]] [[A:หมู่ 5]] [[S:ต.หนองแจ้งใหญ่]] [[D:อ.บัวใหญ่]] [[V:นครราชสีมา]] [[Z:30120]] [[P:044-461-275]]
+===
+loc: เบิด | รัตนบุรี | สุรินทร์ | 32130
+tags: proxy, kinship-name, glued, buyer-phone, payment-note, village, oneline
+---
+โอนแล้วครับ ship to my mom: [[N:แม่บุญมา สายทอง]] [[A:12หมู่7 บ้านเบิด]] [[S:ต.เบิด]] [[D:อ.รัตนบุรี]] [[V:สุรินทร์]][[Z:32130]] [[P:0849912037]] (my no.)
+===
+loc: ตลาดไทร | ประทาย | นครราชสีมา | 30180
+tags: oneline, full-prefixes, english-detail, name-after-address, no-phone, greeting
+---
+hello admin 👋 ช่วยส่ง [[A:56 Moo 1 Ban Talat Sai]] [[S:ตำบลตลาดไทร]] [[D:อำเภอประทาย]] [[V:จังหวัดนครราชสีมา]] [[Z:30180]] receiver [[N:Mr.Anan Phokham]] นะครับ ขอบคุณครับ
+===
+loc: ท่าชะมวง | รัตภูมิ | สงขลา | 90180
+tags: foreign-buyer, malay-honorific, proxy, english-detail, village, multiline, emoji, phone-first
+---
+Hi from Penang 🇲🇾 my cousin stay in Thailand, his number [[P:0862217345]]
+Send to [[N:Encik Hafiz bin Ismail]]
+[[A:23 Moo 4, Kampung Tha Chamuang]] [[S:ต.ท่าชะมวง]] [[D:อ.รัตภูมิ]] [[V:สงขลา]] [[Z:90180]]
+===
+loc: บางกร่าง | เมืองนนทบุรี | นนทบุรี | 11000
+tags: no-name, no-province, line-id, emoji-pin, emoji-phone, housing-estate, multiline
+---
+ที่อยู่ค่ะ 📍[[A:The Grand Village Rattanathibet 109/23 ซ.บางกร่าง 2]] [[S:ต.บางกร่าง]] [[D:อ.เมืองนนทบุรี]] [[Z:11000]]
+📞 [[P:0839015527]]
+Line ID: may_bkk99 นะคะ ทักได้ค่ะ
+===
+loc: สำเหร่ | ธนบุรี | กรุงเทพมหานคร | 10600
+tags: formal-email, foreign-buyer, order-number, no-phone, email, sign-off, multiline
+---
+Dear Sir/Madam,
+Kindly dispatch the order (#TH2411150876) to the following address:
+[[N:Dr. Arthur Pennington]]
+[[A:Flat 5C, Wongwian Yai Court, 312 Somdet Phra Chao Tak Sin Rd.]]
+[[S:แขวงสำเหร่]] [[D:เขตธนบุรี]] [[V:กรุงเทพฯ]] [[Z:10600]]
+Email: a.pennington@example.com
+Kind regards,
+Arthur
+===
+loc: บางชัน | คลองสามวา | กรุงเทพมหานคร | 10510
+tags: company, department-in-brackets, warehouse, landline, extension, delivery-note, multiline
+---
+[[N:Pacific Home Living Co., Ltd. (Receiving Dept.)]]
+[[A:Warehouse 3, 88/8 ถ.เสรีไทย]] [[S:แขวงบางชัน]] [[D:เขตคลองสามวา]] [[V:กรุงเทพมหานคร]] [[Z:10510]]
+Receiving hours Mon-Sat 8:30-16:30, please book Q before deliver
+Tel. [[P:02-917-4460]] ต่อ 15

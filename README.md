@@ -6,10 +6,11 @@ province, and postcode. It has no runtime dependencies and reads no files.
 
 Two parsers share one gazetteer:
 
-- **Tagger.** A character-level linear model with 32,768 hashed feature buckets
-  and int8 weights. It labels every character, then a deterministic resolver
-  maps the administrative spans to one gazetteer tuple. This is the learned
-  model.
+- **Tagger.** Two small character-level models scored together: a linear
+  model with 65,536 hashed feature buckets and int8 weights, and a BiGRU-CRF
+  with 104K int8 parameters. Their scores are summed, a constrained Viterbi
+  pass labels every character, then a deterministic resolver maps the
+  administrative spans to one gazetteer tuple. This is the learned model.
 - **Candidate Engine.** Hand-written evidence rules, a pruner, and a validator.
   It is the rule-based baseline and still wins on the hand-written messy
   fixture.
@@ -36,13 +37,60 @@ contain input text, so do not log them for private data.
 
 | File | Raw | Gzip |
 |---|---:|---:|
-| `resources/tagger-model.json` | 350 KB | 75 KB |
-| `resources/gazetteer.json` (7,431 tuples) | 345 KB | 61 KB |
-| `dist/index.js` (both parsers) | 60 KB | 14 KB |
+| `resources/tagger-model.json` (linear + neural) | 742 KB | 168 KB |
+| `resources/gazetteer.json` (7,431 tuples) | 345 KB | 59 KB |
+| `dist/index.js` (both parsers) | 107 KB | 27 KB |
 
-The model file holds a base64 Int8Array and an 8x8 transition table. Inference
-is integer addition over 58 hashed features per character, followed by a
-Viterbi pass. It needs `atob`, typed arrays, and nothing else.
+The model file is an ensemble: the linear half holds an Int8Array and a
+transition table, the neural half holds int8 tensors with one scale each.
+Inference is integer addition over hashed features per character (character
+n-grams, line classes, cue words, whitespace tokens, Anchor flags), plus one
+BiGRU forward pass in plain typed-array arithmetic (`src/tagger/neural.ts`),
+followed by a Viterbi pass that keeps run edges where the gold rules allow
+them. It needs `atob`, typed arrays, and nothing else. `createTaggerParser`
+also accepts the linear half alone (64 KB gzip, about 2 ms p95) when size
+matters more than the last few points of accuracy.
+
+## Chat benchmark
+
+`bench/chat/` holds chat-style shipping messages in 14 categories, written
+and reviewed by separate agents under `bench/chat/GUIDE.md`. A record counts
+only when all seven fields match exactly.
+
+Measured on 2026-11-15, one machine, shipped model:
+
+| Set | Tagger | Candidate Engine |
+|---|---:|---:|
+| Sealed holdout, exact records (860) | 823 (95.7%) | 72 (8.4%) |
+| Parse time, median / p95 | 8.4 ms / 14.6 ms | 3.4 ms / 6.5 ms |
+
+Holdout fields correct out of 860: name 839, phone 859, address 843,
+subdistrict 854, district 853, province 854, zipcode 860.
+
+Read it with these limits in mind:
+
+- Every message is synthetic: written by language-model agents to imitate
+  real shopper chat, then reviewed. No real customer message is in it.
+- The holdout messages were never trained on and their failures were never
+  inspected, but its total, with per-category and per-field counts, was
+  read about twenty times while choosing between builds, so 95.7% is mildly
+  optimistic. An independent audit put the unbiased figure near 94.5 to
+  95.5%, with about 1.4 points of sampling error on 860 records. A second neural seed on the same linear model scored 820.
+  Seven earlier builds without the fifth data wave scored 810 to 816.
+- The first bench batch (1,588 records, the old dev and test1 splits) is
+  folded into the shipped model's training, so its numbers no longer measure
+  anything.
+- Reviewers flagged about twenty holdout records that the guide does not
+  settle. The linear half alone scores 808.
+
+Rebuild the shipped model (needs Python with PyTorch only for training):
+
+```bash
+CHAT_BENCH_FOLD=all bash scripts/chat/retrain.sh resources/experiments/final-p2.json
+CHAT_BENCH_FOLD=all bash scripts/neural/build.sh <python> resources/experiments/final-p2.json 31
+cp resources/experiments/neural/ensemble-gru96crf-s31.json resources/tagger-model.json
+bun run bench/run-chat.ts
+```
 
 ## Commands
 
@@ -66,8 +114,14 @@ bun run train:tagger \
   --extra-dataset $D/address-detail-robust-v1-600-r1.jsonl
 ```
 
-Training takes about four seconds and is deterministic for a given `--seed`.
+Training takes about six seconds and is deterministic for a given `--seed`.
 `--dimension` and `--epochs` change the model size and the number of passes.
+`--margin` (default 200) is the training bonus on wrong tags; 0 is the plain
+perceptron. `--prune` (default 2) holds weights the first run left below that
+many int8 steps at zero and trains a second run around them, which cuts the
+gzipped model from about 145 KB to about 61 KB for about two dev records;
+`--prune 0` trains once. `scripts/chat/retrain.sh <model.json>` trains with
+the chat pool and runs the chat benchmark.
 
 Compare the tagger with the Candidate Engine on the held-out split and the
 messy fixture:
@@ -94,9 +148,10 @@ the shipped model, so run it after retraining.
 `bench:list` writes aggregate-only results for a private recipient list and
 exits non-zero below the threshold. `bench/private/` is gitignored.
 
-## Current benchmark verdict
+## Synthetic benchmark verdict (earlier model)
 
-Measured on 2026-11-14 with the shipped model, one run per system.
+Measured on 2026-11-14 with the earlier linear-only model, one run per
+system. These numbers were not re-measured for the shipped ensemble.
 
 | Set | Tagger | Candidate Engine |
 |---|---:|---:|

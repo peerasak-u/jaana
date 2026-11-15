@@ -3,9 +3,9 @@ import { loadParserResources } from "../bench/gazetteer";
 import { FIELD_NAMES } from "../bench/metrics";
 import { createAddressParser } from "../src";
 import { createAnchorer } from "../src/tagger/anchor";
-import { decodeTags, emissionScores } from "../src/tagger/decode";
+import { decodeTags, emissionScores, spanEdges } from "../src/tagger/decode";
 import { featurize } from "../src/tagger/features";
-import { compileTaggerModel, TAG_COUNT, type TaggerModel } from "../src/tagger/model";
+import { compileTaggerModel, TAG_COUNT, type EnsembleTaggerModel, type TaggerModel } from "../src/tagger/model";
 import { createTaggerParser } from "../src/tagger/parser";
 
 const RECORD_IDS = ["sakon-messy-001", "sakon-messy-017", "sakon-messy-010"];
@@ -14,10 +14,12 @@ const END = "/*snapshot:end*/";
 const PAGE = "explainer.html";
 
 const resources = await loadParserResources("resources/gazetteer.json");
-const model = (await Bun.file("resources/tagger-model.json").json()) as TaggerModel;
+const shipped = (await Bun.file("resources/tagger-model.json").json()) as TaggerModel | EnsembleTaggerModel;
+/** The page draws the linear half's free tags; the parse uses the whole shipped model. */
+const model: TaggerModel = "linear" in shipped ? shipped.linear : shipped;
 const compiled = compileTaggerModel(model);
 const anchor = createAnchorer(resources.locations);
-const tagger = createTaggerParser(model, resources.locations);
+const tagger = createTaggerParser(shipped, resources.locations);
 const engine = createAddressParser(resources);
 const fixture = await loadDataset("bench/fixtures/sakon-messy-v1.jsonl");
 
@@ -47,7 +49,7 @@ const records = RECORD_IDS.map((id) => {
 		anchorFlags: Array.from(anchored.flags, (flag) => (flag & 15).toString(16)).join(""),
 		featuresPerCharacter: features[0]?.length ?? 0,
 		freeTags,
-		tags: decodeTags(features, compiled).join(""),
+		tags: decodeTags(features, compiled, spanEdges(record.raw)).join(""),
 		fields,
 		taggerCorrect: correct(fields),
 		engineCorrect: correct(engineFields),

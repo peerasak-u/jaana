@@ -25,6 +25,86 @@ function bucket(key: string, dimension: number): number {
 	return (hash >>> 0) % dimension;
 }
 
+const PHONE_LIKE = /(?:\+?66|0)[0-9](?:[\s.-]?[0-9]){7,8}(?![0-9])/u;
+const POSTCODE_LIKE = /(?<![0-9])[0-9]{5}(?![0-9])/u;
+
+/**
+ * One coarse class per line: anchored, holds a phone, holds a postcode,
+ * digit-run count and length. Order and chat lines differ from address
+ * lines in these, beyond the reach of the character window.
+ */
+function lineSummaries(raw: string, anchorFlags: Uint8Array): string[] {
+	const summaries: string[] = [];
+	let start = 0;
+	for (const text of raw.split("\n")) {
+		const digits = text.replace(/[๐-๙]/gu, (digit) => String(digit.charCodeAt(0) - 0x0e50));
+		let anchored = 0;
+		for (let index = start; index < start + text.length; index += 1) {
+			if ((anchorFlags[index] ?? 0) & 15) anchored = 1;
+		}
+		const runs = Math.min(digits.match(/[0-9]+/gu)?.length ?? 0, 3);
+		const length = text.length < 15 ? 0 : text.length < 40 ? 1 : text.length < 80 ? 2 : 3;
+		summaries.push(
+			`${anchored}${PHONE_LIKE.test(digits) ? 1 : 0}${POSTCODE_LIKE.test(digits) ? 1 : 0}${runs}${length}`,
+		);
+		start += text.length + 1;
+	}
+	return summaries;
+}
+
+/** Cue words by category. A category's bit is its index. */
+const CUES: readonly (readonly string[])[] = [
+	["คุณ", "นาย", "นาง", "นางสาว", "น.ส.", "นส.", "ด.ช.", "ด.ญ.", "ดร.", "ครู", "พระ", "พี่", "น้อง",
+		"ป้า", "ลุง", "น้า", "แม่", "พ่อ", "ยาย", "อาจารย์", "ผอ.", "พว.", "ภก.", "ผญบ.", "k.", "khun",
+		"mr.", "mrs.", "ms.", "miss"],
+	["บริษัท", "บจก", "บมจ", "หจก", "ร้าน", "โรงเรียน", "รร.", "วัด", "รพ.", "โรงพยาบาล", "อบต",
+		"เทศบาล", "คลินิก", "โรงงาน", "สำนักงาน", "กลุ่ม", "ฟาร์ม", "มูลนิธิ", "สหกรณ์", "จำกัด",
+		"shop", "cafe", "café", "hotel", "resort", "รีสอร์ท", "co.,", "ltd"],
+	["ชื่อ", "ผู้รับ", "ส่งให้", "ส่งถึง", "ส่ง", "ถึง", "ที่อยู่", "โทร", "เบอร์", "เบอ", "tel", "mobile",
+		"attn", "ติดต่อ", "name", "addr", "call", "ฝากให้", "to:", "ship to"],
+	["บ้านเลขที่", "เลขที่", "ม.", "หมู่", "ซ.", "ซอย", "ถ.", "ถนน", "หมู่บ้าน", "มบ.", "คอนโด", "ชั้น",
+		"ห้อง", "อาคาร", "ตึก", "หอพัก", "อพาร์ท", "soi", "rd.", "road", "room", "fl."],
+	["ค่ะ", "คะ", "ครับ", "นะคะ", "นะครับ", "จ้า", "จ้ะ", "นะ", "ka", "krub", "ขอบคุณ", "สวัสดี"],
+	["สั่ง", "เอา", "ตัว", "ชิ้น", "ขวด", "กล่อง", "ถุง", "หลอด", "โอน", "สลิป", "บาท", "size", "สี",
+		"แพ็ค", "ปลายทาง", "cod", "ด้วย", "ไม่อยู่", "ก่อนส่ง"],
+];
+
+export interface CueMarks {
+	readonly inside: Uint8Array;
+	readonly starts: Uint8Array;
+	/** Cue categories that end right before this position, past spaces and colons. */
+	readonly follows: Uint8Array;
+}
+
+function cueMarks(lower: string): CueMarks {
+	const n = lower.length;
+	const inside = new Uint8Array(n);
+	const starts = new Uint8Array(n);
+	const follows = new Uint8Array(n);
+	CUES.forEach((words, category) => {
+		const bit = 1 << category;
+		for (const word of words) {
+			for (let at = lower.indexOf(word); at >= 0; at = lower.indexOf(word, at + 1)) {
+				starts[at]! |= bit;
+				for (let index = at; index < at + word.length; index += 1) inside[index]! |= bit;
+				let next = at + word.length;
+				while (next < n && /[ \t:：]/u.test(lower[next]!)) next += 1;
+				if (next < n) follows[next]! |= bit;
+			}
+		}
+	});
+	return { inside, starts, follows };
+}
+
+function cueMarksOf(folded: readonly string[]): CueMarks {
+	return cueMarks(folded.map((value) => (value.length === 1 ? value : "?")).join(""));
+}
+
+/** Cue-word marks per UTF-16 unit of `raw`, one bit per cue category, as the features see them. */
+export function cueMarksOfRaw(raw: string): CueMarks {
+	return cueMarksOf(Array.from({ length: raw.length }, (_, index) => fold(raw[index]!)));
+}
+
 /**
  * Hashed feature buckets for every UTF-16 unit of `raw`. Changing any key
  * below changes the meaning of trained weights, so retrain the model.
@@ -53,6 +133,25 @@ export function featurize(
 		runEnd[i] = i < n - 1 && classes[i] === classes[i + 1] ? runEnd[i + 1]! : i;
 	}
 	const digitCount = classes.filter((value) => value === "D").length;
+	const lines = lineSummaries(raw, anchorFlags);
+	const cues = cueMarksOf(folded);
+	const nextCue = new Uint8Array(n + 1);
+	for (let i = n - 1; i >= 0; i -= 1) {
+		nextCue[i] = raw[i] === "\n" ? 0 : cues.starts[i + 1] || nextCue[i + 1]!;
+	}
+	let lastCue = 0;
+	const tokenOf = new Int32Array(n).fill(-1);
+	const tokens: string[] = [];
+	for (let i = 0; i < n; i += 1) {
+		if (/\s/u.test(raw[i]!)) continue;
+		if (i === 0 || /\s/u.test(raw[i - 1]!)) tokens.push("");
+		tokens[tokens.length - 1] += folded[i]!;
+		tokenOf[i] = tokens.length - 1;
+	}
+	const token = (index: number): string => {
+		const text = tokens[index];
+		return text === undefined ? "^" : text.length > 10 ? "#" : text;
+	};
 	const rows: Int32Array[] = [];
 	let line = 0;
 	let lineStart = 0;
@@ -88,8 +187,40 @@ export function featurize(
 		add(`a+:${a(i)}:${a(i + 1)}`);
 		add(`a2:${a(i - 2)}:${a(i)}:${a(i + 2)}`);
 		add(`ac:${a(i)}:${c(i - 1)}${c(i - 2)}`);
+		if (a(i)) {
+			let start = i;
+			while (start > 0 && a(start - 1) === a(i)) start -= 1;
+			let end = i;
+			while (end < n - 1 && a(end + 1) === a(i)) end += 1;
+			const opensToken = start === 0 || k(start - 1) === "S" || k(start - 1) === "N";
+			const closesToken = end === n - 1 || k(end + 1) === "S" || k(end + 1) === "N";
+			const fit = `${opensToken ? 1 : 0}${closesToken ? 1 : 0}`;
+			add(`ar:${a(i)}:${fit}`);
+			add(`arp:${a(i)}:${fit}:${c(start - 1)}${c(start - 2)}${c(start - 3)}`);
+			add(`arn:${a(i)}:${fit}:${c(end + 1)}${c(end + 2)}${c(end + 3)}`);
+			add(`arc:${a(i)}:${fit}:${cues.follows[start]}:${lastCue}`);
+		}
+		const here = lines[line]!;
+		add(`lc:${here}`);
+		add(`lc-:${lines[line - 1] ?? "^"}:${here}`);
+		add(`lc+:${here}:${lines[line + 1] ?? "^"}`);
+		add(`lf:${line === 0 ? 1 : 0}${line === lines.length - 1 ? 1 : 0}`);
+		add(`lk:${here}:${classes[i]}`);
+		add(`ci:${cues.inside[i]}`);
+		add(`cs:${cues.starts[i]}`);
+		add(`cf:${cues.follows[i]}`);
+		add(`cl:${lastCue}:${cues.inside[i]}`);
+		add(`cn:${cues.inside[i]}:${nextCue[i]}`);
+		if (cues.starts[i]) lastCue = cues.starts[i]!;
+		const t = tokenOf[i]!;
+		if (t >= 0) {
+			add(`w0:${token(t)}`);
+			add(`w-:${token(t - 1)}`);
+			add(`w+:${token(t + 1)}`);
+		}
 		rows.push(Int32Array.from(row));
 		if (raw[i] === "\n") {
+			lastCue = 0;
 			line += 1;
 			lineStart = i + 1;
 		}
