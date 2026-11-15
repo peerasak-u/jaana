@@ -18,9 +18,11 @@ const PREFIX: Record<AdministrativeField, RegExp> = {
 	province: /(จังหวัด|จ\.?)\s*$/u,
 };
 const FOLLOWER = /^(ตำบล|แขวง|อำเภอ|เขต|จังหวัด|[ตอจ]\.?|ค่ะ|คะ|ครับ|นะ|จ้า)/u;
-const PLACE_WORD = "(บ้าน|หมู่บ้าน|มบ\\.|ถ\\.|ถนน|ซ\\.|ซอย|รพ\\.|โรงพยาบาล|รร\\.|โรงเรียน|สนง\\.|วัด|อุทยานฯ?|-)";
-const PLACE_BEFORE_NAME = new RegExp(`${PLACE_WORD} ?$`, "u");
-const PLACE_BEFORE_PREFIX = new RegExp(`${PLACE_WORD}$`, "u");
+const PLACE_WORD = "(บ้าน|หมู่บ้าน|มบ\\.|ถ\\.|ถนน|ซ\\.|ซอย|รพ\\.|โรงพยาบาล|รร\\.|โรงเรียน|สนง\\.|วัด|อุทยานฯ?|(?<=[ก-๎])-)";
+/** Place words that name a place only when glued to the name, as `สภ.บางบ่อ`. */
+const GLUED_PLACE_WORD = "(?<![ก-๎])(บ\\.|รพ\\.สต\\.|สภ\\.|สน\\.|สถานีตำรวจ|ไปรษณีย์|ปณ\\.|ตลาด|อบต\\.|ทต\\.|เทศบาลตำบล)";
+const PLACE_BEFORE_NAME = new RegExp(`(?:${PLACE_WORD} ?|${GLUED_PLACE_WORD})$`, "u");
+const PLACE_BEFORE_PREFIX = new RegExp(`(?:${PLACE_WORD}|${GLUED_PLACE_WORD})$`, "u");
 
 function overlaps(start: number, end: number, ranges: readonly Range[]): boolean {
 	return ranges.some((range) => start < range.end && range.start < end);
