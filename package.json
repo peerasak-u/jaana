@@ -13,6 +13,7 @@
     "typecheck": "bunx tsc --noEmit",
     "build": "bun build ./src/index.ts --outdir ./dist --target browser --format esm",
     "build:demo": "vite build",
+    "site:examples": "bun run scripts/site-examples.ts",
     "build:gazetteer": "bun run scripts/build-gazetteer.ts",
     "train:tagger": "bun run scripts/train-tagger.ts",
     "explainer:snapshot": "bun run scripts/explainer-snapshot.ts",
