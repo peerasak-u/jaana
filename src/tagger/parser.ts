@@ -7,7 +7,16 @@ import { featurize } from "./features";
 import { recutPhone } from "./phone";
 import { latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
-import { compileTaggerModel, TAGS, type Tag, type TaggerModel } from "./model";
+import {
+	compileTaggerModel,
+	TAG_COUNT,
+	TAGS,
+	type AnyTaggerModel,
+	type EnsembleTaggerModel,
+	type Tag,
+	type TaggerModel,
+} from "./model";
+import { createNeuralEmitter, type NeuralTaggerModel } from "./neural";
 import {
 	findMisspelt,
 	findStandalone,
@@ -369,11 +378,43 @@ export function linearScorer(model: TaggerModel): TagScorer {
 	};
 }
 
+function neuralScorer(model: NeuralTaggerModel): TagScorer {
+	return { score: createNeuralEmitter(model), transitions: new Int32Array(TAG_COUNT * TAG_COUNT) };
+}
+
+/** Linear scores plus `neuralWeight` times the neural ones, under the linear transitions. */
+function ensembleScorer(model: EnsembleTaggerModel): TagScorer {
+	const linear = linearScorer(model.linear);
+	const neural = createNeuralEmitter(model.neural);
+	return {
+		score(raw, anchorFlags) {
+			const scores = linear.score(raw, anchorFlags);
+			const extra = neural(raw, anchorFlags);
+			for (let index = 0; index < scores.length; index += 1) {
+				scores[index] = Math.round(scores[index]! + model.neuralWeight * extra[index]!);
+			}
+			return scores;
+		},
+		transitions: linear.transitions,
+	};
+}
+
+function scorerOf(model: AnyTaggerModel): TagScorer {
+	switch (model.kind) {
+		case undefined:
+			return linearScorer(model);
+		case "neural-bigru":
+			return neuralScorer(model);
+		case "ensemble":
+			return ensembleScorer(model);
+	}
+}
+
 export function createTaggerParser(
-	model: TaggerModel,
+	model: AnyTaggerModel,
 	locations: readonly LocationTuple[],
 ): TaggerParser {
-	return createScoredParser(linearScorer(model), locations);
+	return createScoredParser(scorerOf(model), locations);
 }
 
 export function createScoredParser(

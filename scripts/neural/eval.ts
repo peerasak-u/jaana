@@ -1,13 +1,13 @@
 import type { ChatRecord } from "../../bench/chat/markup";
 import { loadParserResources } from "../../bench/gazetteer";
 import { addResult, createMetrics, FIELD_NAMES } from "../../bench/metrics";
-import { TAG_COUNT, type TaggerModel } from "../../src/tagger/model";
-import { createScoredParser, linearScorer, type TagScorer } from "../../src/tagger/parser";
+import { TAG_COUNT, type AnyTaggerModel } from "../../src/tagger/model";
+import { createScoredParser, createTaggerParser, type TagScorer } from "../../src/tagger/parser";
 import { loadFirstBatch } from "./first-batch";
 
 /**
  * Exact-record accuracy on dev and test1, as `bench/run-chat.ts` counts it,
- * for the linear model (`--model`) or for emission scores supplied per record
+ * for any tagger model file (`--model`) or for emission scores supplied per record
  * (`--scores`, JSON `{ transitions, scores: { [id]: number[] } }`).
  */
 function option(name: string): string | undefined {
@@ -35,10 +35,9 @@ function suppliedScorer(supplied: { transitions: number[]; scores: Record<string
 	};
 }
 
-const scorer = scoresPath
-	? suppliedScorer(await Bun.file(scoresPath).json())
-	: linearScorer((await Bun.file(modelPath).json()) as TaggerModel);
-const parser = createScoredParser(scorer, locations);
+const parser = scoresPath
+	? createScoredParser(suppliedScorer(await Bun.file(scoresPath).json()), locations)
+	: createTaggerParser((await Bun.file(modelPath).json()) as AnyTaggerModel, locations);
 const failures: string[] = [];
 
 function evaluate(name: string, set: readonly ChatRecord[]) {

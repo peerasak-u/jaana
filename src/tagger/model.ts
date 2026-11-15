@@ -1,3 +1,5 @@
+import type { NeuralTaggerModel } from "./neural";
+
 export const TAGS = [
 	"OTHER",
 	"NAME",
@@ -21,6 +23,7 @@ export const TAG_COUNT = TAGS.length;
  * interpreted, so no scale is stored.
  */
 export interface TaggerModel {
+	readonly kind?: undefined;
 	readonly version: string;
 	readonly dimension: number;
 	readonly encoding?: "ascii";
@@ -70,6 +73,20 @@ function decodeWeights(model: TaggerModel): Int8Array {
 	}
 	return weights.subarray(0, count);
 }
+
+/**
+ * The linear tagger with a neural one beside it: the decoder sees the linear
+ * scores plus `neuralWeight` times the neural scores.
+ */
+export interface EnsembleTaggerModel {
+	readonly kind: "ensemble";
+	readonly version: string;
+	readonly linear: TaggerModel;
+	readonly neural: NeuralTaggerModel;
+	readonly neuralWeight: number;
+}
+
+export type AnyTaggerModel = TaggerModel | NeuralTaggerModel | EnsembleTaggerModel;
 
 export interface CompiledTaggerModel {
 	readonly version: string;
