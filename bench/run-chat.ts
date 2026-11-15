@@ -119,8 +119,8 @@ function time(set: readonly ChatRecord[]) {
 /**
  * The first benchmark batch is split in two by hash: dev, and test1, which was
  * sealed until 2026-11-15 and is now a second development set. Files written
- * later as `<category>.v2.txt` are the sealed holdout. Only its totals are
- * ever printed.
+ * later as `<category>.v2.txt` are the sealed holdout. Its totals and its
+ * per-category and per-field counts are printed; its failures never are.
  */
 const isHoldout = (record: ChatRecord): boolean => /\.v2-\d+$/u.test(record.id);
 const first = records.filter((record) => !isHoldout(record));

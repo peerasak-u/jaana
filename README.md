@@ -72,8 +72,10 @@ Read it with these limits in mind:
 - Every message is synthetic: written by language-model agents to imitate
   real shopper chat, then reviewed. No real customer message is in it.
 - The holdout messages were never trained on and their failures were never
-  inspected, but its total was read about fifteen times while choosing
-  between builds. A second neural seed on the same linear model scored 820.
+  inspected, but its total, with per-category and per-field counts, was
+  read about twenty times while choosing between builds, so 95.7% is mildly
+  optimistic. An independent audit put the unbiased figure near 94.5 to
+  95.5%, with about 1.4 points of sampling error on 860 records. A second neural seed on the same linear model scored 820.
   Seven earlier builds without the fifth data wave scored 810 to 816.
 - The first bench batch (1,588 records, the old dev and test1 splits) is
   folded into the shipped model's training, so its numbers no longer measure
