@@ -4,7 +4,7 @@ import type { FieldName } from "../types";
 export const PLACEHOLDER = false;
 
 /** Public repository URL. The page hides every repository link while this is empty. */
-export const REPO_URL = "https://github.com/peerasak-u/th-address-latent";
+export const REPO_URL = "https://github.com/peerasak-u/jaana";
 
 export interface CategoryRow {
 	readonly category: string;

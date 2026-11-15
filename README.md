@@ -1,4 +1,7 @@
-# th-address-latent
+# Jaana · จ่าหน้า
+
+`จ่าหน้า` (jaa-naa) is the Thai word for writing the recipient and address on
+a parcel. Jaana does that from a chat message.
 
 Thai address extraction that runs anywhere JavaScript runs. The library takes
 one raw message and returns name, phone, address detail, subdistrict, district,
