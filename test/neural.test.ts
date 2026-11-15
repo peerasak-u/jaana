@@ -5,8 +5,9 @@ import type { NeuralTaggerModel } from "../src/tagger/neural";
 import { createTaggerParser } from "../src/tagger/parser";
 
 const { locations } = await loadParserResources("resources/gazetteer.json");
-const linear = (await Bun.file("resources/tagger-model.json").json()) as TaggerModel;
-const neural = (await Bun.file("resources/tagger-neural-model.json").json()) as NeuralTaggerModel;
+const shipped = (await Bun.file("resources/tagger-model.json").json()) as EnsembleTaggerModel;
+const linear: TaggerModel = shipped.linear;
+const neural: NeuralTaggerModel = shipped.neural;
 
 const MESSAGES = [
 	"คุณสมชาย ใจดี\nโทร 089-123-4567\n99/1 หมู่ 2 ถ.นิตโย ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร 47000",
