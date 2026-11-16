@@ -55,6 +55,55 @@ describe("several deliveries in one message (issue #6 G1)", () => {
 	});
 });
 
+describe("how the splitter counts and cuts deliveries", () => {
+	const split = createSplitter(locations);
+	const blocks = (raw: string) => split(raw).map((block) => raw.slice(block.start, block.end).trim());
+
+	test("two deliveries that share a postcode but write different subdistricts are two", () => {
+		const raw = "จุดส่ง 1 คุณเอ แขวงสามเสนใน เขตพญาไท 10400 0811112233\nคุณบี แขวงมักกะสัน เขตราชเทวี 10400 0822223344";
+		expect(parser.parse(raw).recipients).toHaveLength(2);
+	});
+
+	test("one delivery that writes its subdistrict and postcode twice stays one", () => {
+		const raw = "คุณเอ 12 ม.3 ต.สุเทพ อ.เมืองเชียงใหม่ 50200 0811112233\nย้ำนะคะ ต.สุเทพ อ.เมืองเชียงใหม่ 50200";
+		expect(split(raw)).toHaveLength(1);
+	});
+
+	test("a delivery written with dotless prefixes counts when the gazetteer knows the pair", () => {
+		const raw = "ร้านเอ 9 ต.สุเทพ อ.เมืองเชียงใหม่ 50200 0811112233\nคุณบี 4 ม.8 ตหาดแพง อศรีสงคาม นครพนม 0822223344";
+		expect(blocks(raw)).toEqual(["ร้านเอ 9 ต.สุเทพ อ.เมืองเชียงใหม่ 50200 0811112233", "คุณบี 4 ม.8 ตหาดแพง อศรีสงคาม นครพนม 0822223344"]);
+	});
+
+	test("dotless words that are no gazetteer pair add no delivery", () => {
+		const raw = "ร้านเอ 9 ต.สุเทพ อ.เมืองเชียงใหม่ 50200 0811112233\nตลาดนัด อยู่ตรงข้ามวัด นครพนม";
+		expect(split(raw)).toHaveLength(1);
+	});
+
+	test("list items that each write a phone and a place are deliveries, even with only a province", () => {
+		const raw = "🔸 คุณยายผ่องศรี 14 ม.2 ต.บางปลากด อ.ป่าโมก อ่างทอง 14130 035-662-109\n🔸 ตาจันทร์ บ้านนากั้ง ม.4 บึงกาฬ 0846632210";
+		expect(blocks(raw)).toEqual(["คุณยายผ่องศรี 14 ม.2 ต.บางปลากด อ.ป่าโมก อ่างทอง 14130 035-662-109", "ตาจันทร์ บ้านนากั้ง ม.4 บึงกาฬ 0846632210"]);
+	});
+
+	test("a form whose list items hold one delivery's phone and place stays one", () => {
+		const raw = "- ชื่อ: คุณยายผ่องศรี 0846632210\n- ที่อยู่: 14 ม.2 ต.บางปลากด อ.ป่าโมก อ่างทอง 14130\n- เบอร์สำรอง: 035-662-109";
+		expect(split(raw)).toHaveLength(1);
+	});
+
+	test("ordinal openers such as จุดส่ง 2, คนกลาง, and B) belong to no delivery", () => {
+		expect(blocks("จุดส่ง 1 คุณเอ ต.สุเทพ อ.เมืองเชียงใหม่ 50200\nจุดส่ง 2 คุณบี ต.ในเมือง อ.เมืองขอนแก่น 40000")).toEqual([
+			"คุณเอ ต.สุเทพ อ.เมืองเชียงใหม่ 50200",
+			"คุณบี ต.ในเมือง อ.เมืองขอนแก่น 40000",
+		]);
+		expect(blocks("คนโต คุณเอ ต.สุเทพ อ.เมืองเชียงใหม่ 50200\nคนกลาง คุณบี ต.ในเมือง อ.เมืองขอนแก่น 40000")[1]).toBe("คุณบี ต.ในเมือง อ.เมืองขอนแก่น 40000");
+		expect(blocks("A) ร้านเอ ต.สุเทพ อ.เมืองเชียงใหม่ 50200\nB) ร้านบี ต.ในเมือง อ.เมืองขอนแก่น 40000")[1]).toBe("ร้านบี ต.ในเมือง อ.เมืองขอนแก่น 40000");
+	});
+
+	test("a branch or drop-off number written mid-line inside one delivery does not split it", () => {
+		expect(split("บจก.เอ ต.สุเทพ อ.เมืองเชียงใหม่ ห้างเอ สาขา 2 จ.เชียงใหม่ 50200 0811112233")).toHaveLength(1);
+		expect(split("คุณเอ ต.สุเทพ อ.เมืองเชียงใหม่ ใกล้จุด 3 จ.เชียงใหม่ 50200")).toHaveLength(1);
+	});
+});
+
 describe("one delivery stays one recipient", () => {
 	test.each([
 		["two phones", "คุณกอล์ฟ 0812345678 หรือ 0898765432 44/1 ต.สุเทพ อ.เมืองเชียงใหม่ จ.เชียงใหม่ 50200"],
