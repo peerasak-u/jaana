@@ -90,7 +90,7 @@ number: `[[N2:...]]`, `[[P2:...]]`, `[[A2:...]]`.
   - A remark to the seller in brackets is unmarked.
   - A contact handle in brackets is unmarked and not part of `N`. A contact
     bracket is one whose text starts with `LINE`, `Line`, `ไลน์`, `IG`,
-    `ID ไลน์`, `ID LINE`, or `@`: `[[N:คุณบีม]] (LINE: beam_shop)`,
+    `FB`, `Facebook`, `เฟส`, `ID ไลน์`, `ID LINE`, or `@`: `[[N:คุณบีม]] (LINE: beam_shop)`,
     `[[N:น้องมายด์]] (@mind.mind)`. A word that only contains `ไลน์`, as in
     `(หัวหน้าไลน์ 3)`, is a department and stays in `N`.
   - A place name in brackets is not part of `N`. A place bracket holds only a
@@ -279,7 +279,7 @@ the rest of the message stays as varied as above.
 
 | Category | What every record holds |
 |---|---|
-| `contact-handle` | A contact handle next to the name: `(LINE: …)`, `(ไลน์ …)`, `(IG: …)`, `ID ไลน์ …`, `(@handle)`, bracketed or not, before or after the name. The handle is never part of `N`. |
+| `contact-handle` | A contact handle next to the name: `(LINE: …)`, `(ไลน์ …)`, `(IG: …)`, `(FB: …)`, `เฟส …`, `ID ไลน์ …`, `(@handle)`, bracketed or not, before or after the name. The handle is never part of `N`. |
 | `name-labels` | One of: a name led by `ชื่อเล่น`, `ชื่อเล่น:`, or `ชื่อเล่นคือ`; a place-name bracket after the name (`(กทม.)`, `(บางกอก)`, `(เชียงใหม่)`); a company name written before the house number. |
 | `partial-admin` | Only part of the administrative chain is written: subdistrict and postcode, district and postcode, or subdistrict and district, plus subdistrict names shared by several provinces. Some resolve to one tuple and some need `ambiguous-location`; `check.ts` says which. |
 | `bangkok-shared-postcode` | A Bangkok address whose postcode is shared by several เขต, in Thai or romanized (`Bangna`, `Bang Na`, `Khlong Toei`). The เขต or แขวง is written, so the postcode alone does not decide it. |

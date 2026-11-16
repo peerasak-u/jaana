@@ -511,7 +511,7 @@ tags: postcode-before-province, typo-province, landmark, proxy-family
 loc: โคกไม้ลาย | เมืองปราจีนบุรี | ปราจีนบุรี | 25230
 tags: friend, fb-name-bracket, label-in-bracket
 ---
-ส่งให้เพื่อนค่ะ ชื่อจริง [[N:ศศิธร มาลัย (เฟส: Sasi Malai)]]
+ส่งให้เพื่อนค่ะ ชื่อจริง [[N:ศศิธร มาลัย]] (เฟส: Sasi Malai)
 [[A:27/4 ม.3]] [[S:ต.โคกไม้ลาย]] [[D:อ.เมือง]] [[V:ปราจีนบุรี]] [[Z:25230]]
 [[P:0640183392]]
 ===

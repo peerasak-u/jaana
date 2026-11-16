@@ -43,6 +43,24 @@ const TRAILING_PARTICLE = /\s+(?:นะ|ค่ะ|คะ|ครับ|จ้า|
 /** The rest of `ชื่อเล่น` when the tagger starts the name after `ชื่อ`. */
 const NICKNAME_REST = /^เล่น[\s:：]*(?:คือ[\s:：]*)?/u;
 
+/** A nickname after its label, as `ชื่อเล่นคือต้อมครับ`, without the particle glued to it. */
+const LABELLED_NICKNAME = /ชื่อเล่น[ \t]*(?:คือ)?[ \t:：]*([ก-๎A-Za-z]+?)(?:นะคะ|นะครับ|ครับ|ค่ะ|คะ|จ้า|นะ)?(?![ก-๎A-Za-z])/du;
+
+/** Where the nickname after the label `ชื่อเล่น` is written, if anywhere. */
+export function labelledNickname(raw: string): Range | null {
+	const group = LABELLED_NICKNAME.exec(raw)?.indices?.[1];
+	return group ? { start: group[0], end: group[1] } : null;
+}
+
+/** A person written with an honorific, then a department with no organisation, as `คุณกฤษดา ฝ่ายไอที`. */
+const PERSON_DEPARTMENT = /^((?:คุณ|นาย|นางสาว|นาง|น\.ส\.|ดร\.)[^\s()]+(?:[ \t]+[^\s()]+)?)[ \t]+(?:ฝ่าย|แผนก)[^\s()]*$/u;
+
+/** The GUIDE keeps a department written next to a person, with no organisation, out of the name. */
+function withoutDepartment(raw: string, range: Range): Range {
+	const person = PERSON_DEPARTMENT.exec(raw.slice(range.start, range.end))?.[1];
+	return person ? { start: range.start, end: range.start + person.length } : range;
+}
+
 function trimLabels(raw: string, range: Range): Range {
 	const text = raw.slice(range.start, range.end);
 	const nickname = raw.slice(0, range.start).endsWith("ชื่อ") ? NICKNAME_REST.exec(text)?.[0].length : undefined;
@@ -79,5 +97,6 @@ export function composeRecipient(raw: string, person: Range | null, orgs: readon
 			break;
 		}
 	}
+	if (person && name === person) name = withoutDepartment(raw, name);
 	return { name: closeBracket(raw, trimLabels(raw, name)), address: pending };
 }

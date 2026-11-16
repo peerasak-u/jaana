@@ -3,6 +3,7 @@ import { TAGS } from "./model";
 
 const PHONE = TAGS.indexOf("PHONE");
 const OTHER = TAGS.indexOf("OTHER");
+const ADDRESS = TAGS.indexOf("ADDRESS_DETAIL");
 const DIGIT = /[0-9๐-๙]/u;
 const NUMBER_CHARACTER = /[0-9๐-๙+()\-. ]/u;
 const SEPARATOR = /[()\-. ]/u;
@@ -99,6 +100,28 @@ function takesFieldAcrossSpace(raw: string, tags: Uint8Array, end: number, to: n
 	return false;
 }
 
+/** What opens a house number or `หมู่` glued after a number, as `9ม.7` in `08744120939ม.7`. */
+const ADDRESS_NEXT = /^(?:[0-9๐-๙/]|ม\.|ม\s|หมู่|ซ\.|ถ\.)/u;
+
+/**
+ * Keeps the PHONE run when it already holds a whole number as typed, of a
+ * length `typedPhone` accepts, and what follows it on its line does not
+ * open address detail. Digits before its 0, as `6` in `47ม.6061904337`,
+ * cannot open a Thai number, so they go back to the address run they touch.
+ */
+function keepsTyped(raw: string, tags: Uint8Array, start: number, end: number): boolean {
+	let from = start;
+	if (typedPhone(raw.slice(start, end)) === null) {
+		while (from < end && /[1-9๑-๙]/u.test(raw[from]!)) from += 1;
+		if (from === start || from - start > 2 || DIGIT.test(raw[start - 1] ?? "")) return false;
+	}
+	if (typedPhone(raw.slice(from, end)) === null) return false;
+	const after = raw.slice(end);
+	if (!/^\s*\n/u.test(after) && ADDRESS_NEXT.test(after.replace(/^[ \t]+/u, ""))) return false;
+	tags.fill(tags[start - 1] === ADDRESS ? ADDRESS : OTHER, start, from);
+	return true;
+}
+
 /**
  * Re-cuts the PHONE run to the first well-formed Thai number in the stretch
  * of number characters around it, as in `ส่งทองใบ0874412093|9ม.7` or
@@ -113,6 +136,7 @@ export function recutPhone(raw: string, tags: Uint8Array): void {
 	if (start < 0) return;
 	let end = start;
 	while (end < raw.length && tags[end] === PHONE) end += 1;
+	if (keepsTyped(raw, tags, start, end)) return;
 	let low = start;
 	while (low > 0 && NUMBER_CHARACTER.test(raw[low - 1]!)) low -= 1;
 	let high = end;

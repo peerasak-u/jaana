@@ -51,8 +51,8 @@ export function thaiSkeleton(name: string): string {
 	return dropGlides([...name].map((letter) => THAI_CLASS.get(letter) ?? "").join(""));
 }
 
-/** Romanized subdistrict prefixes, which the Thai name never carries. */
-const LATIN_PREFIX = /^(?:tambon|t\.|khwaeng|kwaeng|sub-?district)\s*/iu;
+/** Romanized subdistrict and district prefixes, which the Thai name never carries. */
+const LATIN_PREFIX = /^(?:(?:tambon|t\.|khwaeng|kwaeng|sub-?district)\s*|(?:kwang|khet|amphoe)\s+)/iu;
 
 export function latinSkeleton(text: string): string {
 	const letters = text.trim().replace(LATIN_PREFIX, "").toLowerCase().replace(/ng/gu, "G").replace(/[^a-zG]/gu, "");

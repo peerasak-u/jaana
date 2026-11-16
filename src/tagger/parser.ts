@@ -6,7 +6,9 @@ import { decodeEmissions, emissionScores, spanEdges } from "./decode";
 import { featurize } from "./features";
 import { hasThaiLength, recutPhone } from "./phone";
 import { fromKedmanee, latinSkeleton, thaiSkeleton } from "./romanize";
-import { composeRecipient } from "./compose";
+import { composeRecipient, labelledNickname } from "./compose";
+import { createAdministrativeResegmenter } from "./resegment";
+import { clearContactHandles, opensWithContact } from "./contact";
 import { createSplitter, parseDeliveries } from "./split";
 import {
 	compileTaggerModel,
@@ -106,30 +108,29 @@ function closeBrackets(raw: string, tags: Uint8Array): void {
 }
 
 const NAMED = new Set([TAGS.indexOf("NAME"), TAGS.indexOf("ORG")]);
-const BRACKET_AFTER = /^[ \t]*\([^()\n\d+]*\)/u;
+const BRACKET_AFTER = /^[ \t]*\([^()\n+]*\)/u;
+/** A number in brackets after a name is address detail or a phone, unless it is a short one after a word, as `(หัวหน้าไลน์ 2)`. */
+const BRACKET_NUMBER = /\d{3}|(?:ม\.|หมู่|ซ\.|ซอย|ถ\.|ชั้น|ห้อง|เลขที่|\/|^[ \t]*\([ \t]*\d)/u;
 /** A sentence-final particle: the bracket is a remark to the seller, which the GUIDE leaves unmarked. */
 const REMARK_END = /(?:ค่ะ|คะ|ครับ|นะ|จ้า|จ้ะ|จ๊ะ)\s*\)$/u;
-/** A contact handle such as `(LINE: beam_shop)`, which is no part of the name. */
-const CONTACT_START = /^[ \t]*\([ \t]*(?:(?:line|ig|id)(?![a-z])|ไลน์|@)/iu;
-const CITY_NAMES = ["บางกอก", "กรุงเทพ", "bangkok", "bkk"];
 
 function placeKey(text: string): string {
-	return text.toLowerCase().replace(/^(?:จังหวัด|จ\.)/u, "").replace(/[\s.ฯ]/gu, "");
+	return text.toLowerCase().replace(/^(?:จังหวัด|อำเภอ|เขต|จ\.|อ\.)/u, "").replace(/[\s.ฯ]/gu, "");
 }
 
-/** Province names and their aliases, as `placeKey` writes them. */
+/** Province and district names and the province aliases, as `placeKey` writes them. */
 function placeKeys(locations: readonly LocationTuple[]): ReadonlySet<string> {
 	const names = [
-		...locations.map((location) => location.province),
+		...locations.flatMap((location) => [location.province, location.district]),
 		...[...PROVINCE_ALIASES.values()].flat(),
-		...CITY_NAMES,
 	];
 	return new Set(names.map(placeKey));
 }
 
-/** A bracket group holding a contact handle or only a province or city, which the GUIDE keeps out of the name. */
+/** A bracket group holding a contact handle or only a province, district or city, which the GUIDE keeps out of the name. */
 function outsideName(group: string, places: ReadonlySet<string>): boolean {
-	return CONTACT_START.test(group) || places.has(placeKey(group.slice(group.indexOf("(") + 1, -1)));
+	const inner = group.slice(group.indexOf("(") + 1, -1);
+	return opensWithContact(inner) || places.has(placeKey(inner));
 }
 
 const LAST_BRACKET = /[ \t]*\([^()\n]*\)$/u;
@@ -144,7 +145,7 @@ function withoutTrailingBracket(raw: string, name: Range, places: ReadonlySet<st
 /**
  * The GUIDE keeps brackets written right after a name in the name, as in
  * `ลุงจันทร์ (ผู้รับ)`, unless they hold a remark to the seller, a number,
- * a contact handle, or only a province or city. Extends a name or
+ * a contact handle, or only a province, district or city. Extends a name or
  * organisation run over such a bracket group when the tagger left all of
  * it untagged.
  */
@@ -153,9 +154,34 @@ function attachBracketAfterName(raw: string, tags: Uint8Array, places: ReadonlyS
 		const tag = tags[end - 1]!;
 		if (!NAMED.has(tag) || tags[end] === tag) continue;
 		const group = BRACKET_AFTER.exec(raw.slice(end))?.[0];
-		if (!group || REMARK_END.test(group) || outsideName(group, places)) continue;
+		if (!group || REMARK_END.test(group) || outsideName(group, places) || (/\d/u.test(group) && BRACKET_NUMBER.test(group))) continue;
 		if (!tags.subarray(end, end + group.length).every((other) => other === OTHER)) continue;
 		tags.fill(tag, end, end + group.length);
+	}
+}
+
+/**
+ * The tagger leaves a name written only after the label `ชื่อเล่น` untagged.
+ * With no name or organisation run, that nickname is the name.
+ */
+function tagLabelledNickname(raw: string, tags: Uint8Array): void {
+	if (tags.some((tag) => NAMED.has(tag))) return;
+	const nickname = labelledNickname(raw);
+	if (nickname) tags.fill(TAGS.indexOf("NAME"), nickname.start, nickname.end);
+}
+
+const LEGAL_SUFFIX = /^,?[ \t]*(?:Ltd\.?|Limited|Inc\.?)(?![A-Za-z])/iu;
+
+/**
+ * A company name keeps its legal form, but the tagger often ends the name
+ * at `Co.` and starts the address with `, Ltd.`. The suffix joins the name.
+ */
+function joinLegalSuffix(raw: string, tags: Uint8Array): void {
+	for (let end = 1; end < raw.length; end += 1) {
+		const tag = tags[end - 1]!;
+		if (!NAMED.has(tag) || tags[end] === tag || !/co\.$/iu.test(raw.slice(0, end))) continue;
+		const suffix = LEGAL_SUFFIX.exec(raw.slice(end))?.[0];
+		if (suffix) tags.fill(tag, end, end + suffix.length);
 	}
 }
 
@@ -372,10 +398,11 @@ function untaggedMentions(
 const PUNCTUATION_GAP = /^[ \t]*,[ \t,]*$/u;
 
 /**
- * A branch designation written outside brackets is a tax-invoice note, not
- * address detail. In brackets after a company it belongs to the name.
+ * A branch designation written outside brackets, or a tax ID label, is a
+ * tax-invoice note, not address detail. In brackets after a company a
+ * branch belongs to the name.
  */
-const BRANCH_NOTE = /(?<!\([ \t]*)(?:สาขาที่[ \t]*[0-9๐-๙]+|สนญ\.|สำนักงานใหญ่)/gu;
+const BRANCH_NOTE = /(?<!\([ \t]*)(?:สาขาที่[ \t]*[0-9๐-๙]+|สนญ\.|สำนักงานใหญ่)|เลข(?:ที่|ประจำตัว)?(?:ผู้เสีย)?ภาษี|ภพ\.?[ \t]*20/gu;
 
 /** A form's own field labels with nothing filled in, as `(บ้านเลขที่ หมู่ ตำบล ...)` in a question line. */
 const FORM_LABELS = /^(?:(?:บ้านเลขที่|เลขที่|หมู่ที่|หมู่|ตำบล|อำเภอ|จังหวัด|ที่อยู่)[\s/:,()]*)+$/u;
@@ -481,6 +508,7 @@ export function createScoredParser(
 	const anchor = createAnchorer(locations);
 	const resolve = createTupleResolver(locations);
 	const fillLocation = createLocationFiller(locations);
+	const resegment = createAdministrativeResegmenter(locations);
 	const places = placeKeys(locations);
 	const siblingTuples = new Map<string, LocationTuple[]>();
 	for (const location of locations) {
@@ -608,11 +636,14 @@ export function createScoredParser(
 			const tags = decodeEmissions(scorer.score(raw, anchored.flags), scorer.transitions, spanEdges(raw));
 			closeBrackets(raw, tags);
 			attachBracketAfterName(raw, tags, places);
+			clearContactHandles(raw, tags);
+			tagLabelledNickname(raw, tags);
+			joinLegalSuffix(raw, tags);
 			recutPhone(raw, tags);
 			completePostcode(raw, tags);
 			finishLine(raw, tags);
 			joinPrefixWords(raw, tags);
-			const spans = spansOf(raw, runsOf(raw, tags), places);
+			const spans = resegment(raw, spansOf(raw, runsOf(raw, tags), places));
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
 			const subdistrict = text("SUBDISTRICT");
