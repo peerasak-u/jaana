@@ -2,7 +2,7 @@ import { mkdir } from "node:fs/promises";
 import { createAddressParser } from "../src";
 import { createTaggerParser, type ParseWarning } from "../src/tagger/parser";
 import type { AnyTaggerModel } from "../src/tagger/model";
-import { loadChatPool } from "./chat/load";
+import { loadChatPool, loadSourceFile, locationMap } from "./chat/load";
 import { holdoutOf, isHoldout, splitOf, type ChatRecord } from "./chat/markup";
 import type { ExpectedAddress } from "./dataset";
 import { loadParserResources } from "./gazetteer";
@@ -17,6 +17,10 @@ const modelPath = option("--model") ?? "resources/tagger-model.json";
 const outputPath = option("--output") ?? ".bench-results/chat.json";
 const failuresPath = option("--failures") ?? ".bench-results/chat-dev-failures.jsonl";
 const test1FailuresPath = ".bench-results/chat-test1-failures.jsonl";
+const extraFailuresPath = ".bench-results/chat-extra-failures.jsonl";
+/** Train-pool files to score as a separate development set, comma separated. */
+const extraPaths = (option("--extra") ?? "").split(",").filter(Boolean);
+if (extraPaths.some((path) => !path.includes("/sources/train/"))) throw new Error("--extra takes train-pool source files only");
 const minimum = option("--min-test-exact");
 const rounds = Number(option("--timing-rounds") ?? "3");
 const readHoldout = Bun.argv.includes("--read-holdout");
@@ -155,6 +159,11 @@ function time(set: readonly ChatRecord[]) {
 const first = records.filter((record) => !isHoldout(record));
 const dev = evaluate(first.filter((record) => splitOf(record.raw) === "dev"), true);
 const test1 = evaluate(first.filter((record) => splitOf(record.raw) === "test"), true);
+const extraRecords = (await Promise.all(extraPaths.map((path) => loadSourceFile(path, "train", locationMap(locations))))).flatMap(({ records, issues }) => {
+	if (issues.length > 0) throw new Error(`${issues.length} source issues in --extra. Run scripts/chat/check.ts`);
+	return records;
+});
+const extra = evaluate(extraRecords, true);
 const holdoutNames = [...new Set(records.map((record) => holdoutOf(record.id)).filter((name) => name !== null))].sort();
 const holdouts = readHoldout
 	? Object.fromEntries(holdoutNames.map((name) => [name, evaluate(records.filter((record) => holdoutOf(record.id) === name), false)]))
@@ -191,7 +200,8 @@ await mkdir(".bench-results", { recursive: true });
 await Bun.write(outputPath, `${JSON.stringify(report, null, 2)}\n`);
 await Bun.write(failuresPath, dev.failures.map((failure) => JSON.stringify(failure)).join("\n") + "\n");
 await Bun.write(test1FailuresPath, test1.failures.map((failure) => JSON.stringify(failure)).join("\n") + "\n");
-console.log(JSON.stringify({ model: report.model, dev: line(dev), test1: line(test1), holdouts: readHoldout ? Object.fromEntries(Object.entries(holdouts).map(([name, set]) => [name, line(set)])) : report.holdouts, timing: report.timing, outputPath, failuresPath, test1FailuresPath }, null, 2));
+if (extraPaths.length > 0) await Bun.write(extraFailuresPath, extra.failures.map((failure) => JSON.stringify(failure)).join("\n") + "\n");
+console.log(JSON.stringify({ model: report.model, dev: line(dev), test1: line(test1), ...(extraPaths.length > 0 ? { extra: line(extra), extraFailuresPath } : {}), holdouts: readHoldout ? Object.fromEntries(Object.entries(holdouts).map(([name, set]) => [name, line(set)])) : report.holdouts, timing: report.timing, outputPath, failuresPath, test1FailuresPath }, null, 2));
 
 if (readHoldout) {
 	const log = ".audit/holdout-reads.tsv";
