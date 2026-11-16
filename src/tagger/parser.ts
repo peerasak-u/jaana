@@ -7,6 +7,7 @@ import { featurize } from "./features";
 import { hasThaiLength, recutPhone } from "./phone";
 import { fromKedmanee, latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
+import { createSplitter, parseDeliveries } from "./split";
 import {
 	compileTaggerModel,
 	TAG_COUNT,
@@ -600,7 +601,8 @@ export function createScoredParser(
 		return closestTuple(pool, texts);
 	}
 
-	return {
+	const split = createSplitter(locations);
+	const delivery: TaggerParser = {
 		parse(raw) {
 			const anchored = anchor(raw);
 			const tags = decodeEmissions(scorer.score(raw, anchored.flags), scorer.transitions, spanEdges(raw));
@@ -704,4 +706,5 @@ export function createScoredParser(
 			return { raw, ...recipient, spans, warnings, recipients: [recipient] };
 		},
 	};
+	return { parse: (raw) => parseDeliveries(raw, split(raw), delivery.parse) };
 }
