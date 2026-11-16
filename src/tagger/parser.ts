@@ -52,10 +52,18 @@ export interface TaggedSpan {
 	readonly end: number;
 }
 
+/** A condition the caller should check by hand; the fields are still returned. */
+export type ParseWarning = "ambiguous-location" | "phone-length" | "multiple-recipients";
+
+export type InferredField = "subdistrict" | "district" | "province" | "zipcode";
+
 export interface TaggedAddress {
 	readonly raw: string;
 	readonly fields: ParsedFields;
 	readonly spans: readonly TaggedSpan[];
+	readonly warnings: readonly ParseWarning[];
+	/** Administrative fields the message did not write, filled from the gazetteer. */
+	readonly inferred: readonly InferredField[];
 }
 
 export interface TaggerParser {
@@ -642,6 +650,8 @@ export function createScoredParser(
 					...administrative,
 				},
 				spans,
+				warnings: [],
+				inferred: [],
 			};
 		},
 	};
