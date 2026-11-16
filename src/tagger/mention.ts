@@ -202,13 +202,15 @@ export function insidePlaceName(
 	raw: string,
 	span: Range,
 	field: AdministrativeField,
-	name: string,
+	tuple: LocationNames,
 ): Range | null {
-	const written = occurrences(raw, name);
+	const written = occurrences(raw, tuple[field]);
 	if (written.length !== 1) return null;
 	const range = written[0]!;
 	const marker = placeWordBefore(raw, prefixStart(raw, field, range.start), range.start);
-	return marker !== null && span.start >= marker && span.end <= range.end
-		? { start: marker, end: range.end }
-		: null;
+	if (marker === null || span.start < marker || span.end > range.end) return null;
+	// A place word that ends another field's name, as `ถนน` in the subdistrict `หัวถนน`, names no place.
+	const endsOtherName = ADMINISTRATIVE_FIELDS.some((other) => other !== field &&
+		occurrences(raw, tuple[other]).some((outer) => outer.start < marker && marker < outer.end));
+	return endsOtherName ? null : { start: marker, end: range.end };
 }

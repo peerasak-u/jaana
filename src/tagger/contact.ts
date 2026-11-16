@@ -63,6 +63,8 @@ export function clearContactHandles(raw: string, tags: Uint8Array): void {
 		while (from > 0 && /[ \t]/u.test(raw[from - 1]!)) from -= 1;
 		for (let index = from; index < to; index += 1) if (CLEARED.has(tags[index]!)) tags[index] = OTHER;
 	};
+	let leading: number | null = null;
+	const opensLine = (from: number) => /(?:^|\n)[ \t]*$/u.test(raw.slice(0, from));
 	for (const match of raw.matchAll(CUE)) {
 		const start = match.index;
 		const open = /\([ \t]*$/u.exec(raw.slice(0, start));
@@ -71,11 +73,13 @@ export function clearContactHandles(raw: string, tags: Uint8Array): void {
 			const lineEnd = raw.indexOf("\n", start);
 			if (close >= 0 && (lineEnd < 0 || close < lineEnd) && opensWithContact(raw.slice(start, close))) {
 				clear(open.index, close + 1);
+				if (opensLine(open.index)) leading ??= close + 1;
 				continue;
 			}
 		}
 		const end = handleEnd(raw, start, start + match[0].length);
 		if (end === null) continue;
+		if (opensLine(start)) leading ??= end;
 		const tag = tags[start - 1];
 		if (tag !== undefined && NAMED.has(tag) && tags[start] === tag) {
 			let from = start;
@@ -87,4 +91,27 @@ export function clearContactHandles(raw: string, tags: Uint8Array): void {
 		}
 		clear(start, end);
 	}
+	if (leading !== null) nameAfterHandle(raw, tags, leading);
+}
+
+const NAME_TAG = TAGS.indexOf("NAME");
+const ADDRESS = TAGS.indexOf("ADDRESS_DETAIL");
+const FIRST_WORD = /^[ \t]*([ก-๎A-Za-z]+)(?=[ \t])/u;
+const PLACE_WORD = /^(?:บ้าน|หมู่|มบ|ม\.|ซ\.|ซอย|ถ\.|ถนน|อาคาร|คอนโด|ตึก|หอ|เลขที่|ห้อง|ชั้น|โครงการ|ตลาด|วัด|โรงเรียน|ที่อยู่|ส่ง|soi|moo|condo|room|floor|building)/iu;
+
+/**
+ * A shopper who opens a line with a handle writes who they are next, as
+ * `(ไลน์ @suanlungpan) สวนทุเรียนลุงพันธ์ 77 ม.8`, but the tagger reads that
+ * word as the start of the address. With no name anywhere, a plain word
+ * right after such a handle that the address run starts with is the name.
+ */
+function nameAfterHandle(raw: string, tags: Uint8Array, end: number): void {
+	if (tags.some((tag) => NAMED.has(tag))) return;
+	const word = FIRST_WORD.exec(raw.slice(end));
+	if (!word || PLACE_WORD.test(word[1]!)) return;
+	const from = end + word[0].length - word[1]!.length;
+	const to = end + word[0].length;
+	if (!tags.subarray(from, to).every((tag) => tag === ADDRESS)) return;
+	tags.fill(NAME_TAG, from, to);
+	for (let index = to; index < raw.length && /[ \t]/u.test(raw[index]!) && tags[index] === ADDRESS; index += 1) tags[index] = OTHER;
 }
