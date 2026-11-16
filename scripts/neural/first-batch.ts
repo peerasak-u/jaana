@@ -1,11 +1,9 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { CHAT_ROOT, loadSourceFile, locationMap } from "../../bench/chat/load";
-import { splitOf, type ChatRecord } from "../../bench/chat/markup";
+import { HOLDOUT_FILE, isHoldout, splitOf, type ChatRecord } from "../../bench/chat/markup";
 import type { LocationTuple } from "../../src/types";
 
-const HOLDOUT_FILE = /\.v2\.txt$/u;
-const HOLDOUT_ID = /\.v2-\d+$/u;
 
 /**
  * The first benchmark batch, split into dev and test1 as `bench/run-chat.ts`
@@ -23,7 +21,7 @@ export async function loadFirstBatch(
 		const loaded = await loadSourceFile(join(directory, file), "bench", map);
 		if (loaded.issues.length > 0) throw new Error(`${loaded.issues.length} source issues in ${file}`);
 		for (const record of loaded.records) {
-			if (HOLDOUT_ID.test(record.id) || seen.has(record.raw)) continue;
+			if (isHoldout(record) || seen.has(record.raw)) continue;
 			seen.add(record.raw);
 			records.push(record);
 		}

@@ -45,6 +45,20 @@ export function poolOf(location: LocationTuple): Pool {
 	return fnv1a(locationKey(location)) % 4 === 0 ? "bench" : "train";
 }
 
+/**
+ * Bench files written later as `<category>.v<N>.txt` are sealed holdouts, one
+ * set per N. They are never trained on, and their failures are never written.
+ */
+export const HOLDOUT_FILE = /\.v\d+\.txt$/u;
+
+export function holdoutOf(id: string): string | null {
+	return /\.(v\d+)-\d+$/u.exec(id)?.[1] ?? null;
+}
+
+export function isHoldout(record: { readonly id: string }): boolean {
+	return holdoutOf(record.id) !== null;
+}
+
 export function splitOf(raw: string): "dev" | "test" {
 	return fnv1a(`split:${raw}`) % 2 === 0 ? "dev" : "test";
 }
