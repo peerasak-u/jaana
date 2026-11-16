@@ -132,6 +132,53 @@ function keepsTyped(raw: string, tags: Uint8Array, start: number, end: number): 
  */
 export function recutPhone(raw: string, tags: Uint8Array): void {
 	correctPhone(raw, tags);
+	if (!tags.includes(PHONE)) tagUntaggedPhone(raw, tags);
+	recut(raw, tags);
+	joinTrailingGroup(raw, tags);
+}
+
+/**
+ * The GUIDE marks the only number a message gives, but the tagger sometimes
+ * leaves a well-formed one untagged, as after a tax ID or under a label it
+ * has not seen. With no PHONE run, the first whole Thai number in untagged
+ * text is the phone. A number glued to a longer digit run, such as a
+ * 13-digit tax ID, or to a Latin word or code, is not one.
+ */
+function tagUntaggedPhone(raw: string, tags: Uint8Array): void {
+	for (let from = 0; from < raw.length; from += 1) {
+		const before = raw[from - 1] ?? " ";
+		if (!/[0+(]/u.test(raw[from]!) || (/[\p{L}\p{N}_@#/.\-]/u.test(before) && !/[ก-๎]/u.test(before))) continue;
+		let limit = from;
+		while (limit < raw.length && NUMBER_CHARACTER.test(raw[limit]!)) limit += 1;
+		const to = numberEnd(raw, from, limit);
+		if (to === null || /[0-9๐-๙\p{L}]/u.test(raw[to] ?? "")) continue;
+		if (!tags.subarray(from, to).every((tag) => tag === OTHER)) continue;
+		tags.fill(PHONE, from, to);
+		return;
+	}
+}
+
+/**
+ * One or two more digits typed past a space after a whole number, as
+ * `0818883240 2` at the end of a line, are part of the number as typed. A
+ * group that starts with 0 cannot be a house number, so it joins wherever
+ * it stands; any other group joins only when nothing follows it on its line.
+ */
+function joinTrailingGroup(raw: string, tags: Uint8Array): void {
+	const start = tags.indexOf(PHONE);
+	if (start < 0) return;
+	let end = start;
+	while (end < raw.length && tags[end] === PHONE) end += 1;
+	const group = /^[ \t]+([0-9๐-๙]{1,2})(?![0-9๐-๙])/u.exec(raw.slice(end));
+	if (!group || typedPhone(raw.slice(start, end)) === null) return;
+	const to = end + group[0].length;
+	const rest = raw.slice(to);
+	const joins = /^[0๐]/u.test(group[1]!) ? /^(?:\s|$)/u.test(rest) : /^[ \t]*(?:\n|$)/u.test(rest);
+	if (!joins || typedPhone(raw.slice(start, to)) === null) return;
+	tags.fill(PHONE, end, to);
+}
+
+function recut(raw: string, tags: Uint8Array): void {
 	const start = tags.indexOf(PHONE);
 	if (start < 0) return;
 	let end = start;

@@ -162,12 +162,30 @@ function attachBracketAfterName(raw: string, tags: Uint8Array, places: ReadonlyS
 
 /**
  * The tagger leaves a name written only after the label `ชื่อเล่น` untagged.
- * With no name or organisation run, that nickname is the name.
+ * With no name or organisation run, that nickname is the name, and so is
+ * a name after an English `send to`, which the tagger leaves untagged or
+ * reads as the start of the address.
  */
 function tagLabelledNickname(raw: string, tags: Uint8Array): void {
 	if (tags.some((tag) => NAMED.has(tag))) return;
 	const nickname = labelledNickname(raw);
 	if (nickname) tags.fill(TAGS.indexOf("NAME"), nickname.start, nickname.end);
+	const sent = nickname ? null : sentName(raw);
+	if (!sent || !tags.subarray(sent.start, sent.end).every((tag) => tag === OTHER || tag === ADDRESS)) return;
+	tags.fill(TAGS.indexOf("NAME"), sent.start, sent.end);
+	for (let index = sent.end; /[ \t,]/u.test(raw[index] ?? "") && tags[index] === ADDRESS; index += 1) tags[index] = OTHER;
+}
+
+const ADDRESS = TAGS.indexOf("ADDRESS_DETAIL");
+const SEND_TO =/(?<![A-Za-z])(?:send|ship|deliver)(?:[ \t]+to)?[ \t]+((?:[A-Z][a-z]+)(?:[ \t]+[A-Z][a-z]*\.?)?)(?=[ \t,]+[0-9๐-๙])/u;
+const COURIER = /^(?:Kerry|Flash|Thai|Post|Ems|Grab|Lalamove|Cod|Line|Express)$/iu;
+
+/** The capitalized words after an English `send to`, right before the house number or phone, as `pls send Mook 12/88`. */
+function sentName(raw: string): Range | null {
+	const match = SEND_TO.exec(raw);
+	if (!match || match[1]!.split(/[ \t]+/u).some((word) => COURIER.test(word))) return null;
+	const end = match.index + match[0].length;
+	return { start: end - match[1]!.length, end };
 }
 
 const LEGAL_SUFFIX = /^,?[ \t]*(?:Ltd\.?|Limited|Inc\.?)(?![A-Za-z])/iu;
@@ -666,7 +684,7 @@ export function createScoredParser(
 				if (writesOtherField(span.text, field, tuple)) mislabeled.push(span);
 				else if (insideOtherName(raw, span, field, tuple)) misplaced.push(span);
 				else {
-					const place = insidePlaceName(raw, span, field, tuple[field]);
+					const place = insidePlaceName(raw, span, field, tuple);
 					if (!place) continue;
 					misplaced.push(span);
 					placeNames.push(place);

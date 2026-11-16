@@ -47,15 +47,26 @@ function dropGlides(sounds: string): string {
 	return sounds.slice(0, 1) + sounds.slice(1).replace(/[WY]/gu, "");
 }
 
+/**
+ * Spelling that romanization writes by sound: a letter under the silencer
+ * `์` is not said, `รร` is said `an`, and a final `ร` or `ล` is said `n`
+ * (`สวรรค์` Sawan, `สาทร` Sathon).
+ */
+function spoken(name: string): string {
+	return name.replace(/[ก-ฮ][ิุ]?์/gu, "").replace(/รร/gu, "น").replace(/[รล]$/u, "น");
+}
+
 export function thaiSkeleton(name: string): string {
-	return dropGlides([...name].map((letter) => THAI_CLASS.get(letter) ?? "").join(""));
+	return dropGlides([...spoken(name)].map((letter) => THAI_CLASS.get(letter) ?? "").join(""));
 }
 
 /** Romanized subdistrict and district prefixes, which the Thai name never carries. */
 const LATIN_PREFIX = /^(?:(?:tambon|t\.|khwaeng|kwaeng|sub-?district)\s*|(?:kwang|khet|amphoe)\s+)/iu;
 
 export function latinSkeleton(text: string): string {
-	const letters = text.trim().replace(LATIN_PREFIX, "").toLowerCase().replace(/ng/gu, "G").replace(/[^a-zG]/gu, "");
+	// An `r` after a vowel and before no vowel only lengthens it (`Sathorn`, `ngern`).
+	const letters = text.trim().replace(LATIN_PREFIX, "").toLowerCase().replace(/(?<=[aeiou])r(?![aeiou])/gu, "")
+		.replace(/ng/gu, "G").replace(/[^a-zG]/gu, "");
 	return dropGlides([...letters].map((letter) => (letter === "G" ? "G" : LATIN_CLASS.get(letter) ?? "")).join(""));
 }
 
