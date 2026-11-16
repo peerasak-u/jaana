@@ -136,7 +136,6 @@ tags: typo-province, postcode-before-province, landmark, honorific-space
 ===
 loc: หนองบัว | ท่าตูม | สุรินทร์ | 32120
 tags: no-subdistrict, no-postcode, bubble-split
-warn: ambiguous-location
 ---
 ชื่อ [[N:สุริยา ทองสุข]]
 [[A:67 ม.8 บ้านโคกกลาง]]
@@ -211,7 +210,6 @@ tags: dash-list, phone-before-address
 ===
 loc: ไทยเจริญ | ไทยเจริญ | ยโสธร | 35120
 tags: same-name-written-once, no-prefix, phone-after-name
-warn: ambiguous-location
 ---
 [[N:นางคำปุ่น แสนสุข]] [[P:088-192-3304]]
 [[A:บ้านเลขที่ 7 ม.4 บ้านคำผักกูด]]
@@ -429,7 +427,6 @@ tags: clinic, organisation, landline, extension
 ===
 loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: same-name-written-once, no-subdistrict, no-name
-warn: ambiguous-location
 ---
 ส่งตามนี้ได้เลยครับ
 [[A:333/12 ซ.ประชาราษฎร์ 14]]

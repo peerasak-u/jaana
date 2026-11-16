@@ -1,7 +1,6 @@
 ===
 loc: สระใคร | สระใคร | หนองคาย | 43100
 tags: no-prefix, same-name-once, no-subdistrict, multiline
-warn: ambiguous-location
 ---
 [[N:ปราณี ศรีบุญเรือง]]
 [[A:112 ม.6 บ้านโนนสว่าง]]
@@ -21,7 +20,6 @@ tags: alias, no-name, no-prefix
 ===
 loc: หนองยาว | พนมสารคาม | ฉะเชิงเทรา | 24120
 tags: alias, shop, no-subdistrict, no-prefix, landline
-warn: ambiguous-location
 ---
 [[N:ร้านจันทร์เจริญการค้า]]
 [[A:19 ม.2]] [[D:พนมสารคาม]] [[V:แปดริ้ว]] [[Z:24120]]
@@ -29,7 +27,6 @@ warn: ambiguous-location
 ===
 loc: บางรัก | บางรัก | กรุงเทพมหานคร | 10500
 tags: name-last, no-province, no-subdistrict, same-name-once, office
-warn: ambiguous-location
 ---
 [[A:ห้อง 1203 อาคารบุญมีเพลส ถ.สีลม]] [[D:บางรัก]] [[Z:10500]] ผู้รับ [[N:คุณกิตติยา]] [[P:0816627730]]
 ===
@@ -83,7 +80,6 @@ tags: name-last, no-postcode, no-prefix, kinship
 ===
 loc: อนุสาวรีย์ | บางเขน | กรุงเทพมหานคร | 10220
 tags: alias, phone-first, no-subdistrict, multiline
-warn: ambiguous-location
 ---
 [[P:0628841907]]
 [[N:ธีรเดช ม่วงงาม]]
@@ -121,7 +117,6 @@ tags: no-name, no-phone, no-province
 ===
 loc: ป่าอ้อ | ลานสัก | อุทัยธานี | 61160
 tags: government, no-person, no-subdistrict, landline
-warn: ambiguous-location
 ---
 [[N:อบต.ป่าอ้อ (กองช่าง)]]
 [[A:ม.4]] [[D:ลานสัก]] [[V:อุทัยธานี]] [[Z:61160]]
@@ -141,7 +136,6 @@ tags: alias, province-first, particle-glued, no-prefix
 ===
 loc: ตานิม | บางปะหัน | พระนครศรีอยุธยา | 13220
 tags: alias, no-subdistrict, no-postcode
-warn: ambiguous-location
 ---
 [[N:นายเฉลิม บุญมา]] [[A:21/3 ม.1]] [[D:อ.บางปะหัน]] [[V:อยุธยา]] [[P:0899012347]]
 ===
@@ -159,7 +153,6 @@ tags: no-phone, kinship, courier-note
 ===
 loc: โพนทอง | บ้านหมี่ | ลพบุรี | 15110
 tags: temple, no-person, no-subdistrict, no-prefix
-warn: ambiguous-location
 ---
 ถวาย[[N:วัดโพนทองวนาราม]] ค่ะ
 [[A:ม.6]] [[D:บ้านหมี่]] [[V:ลพบุรี]] [[Z:15110]]
@@ -207,7 +200,6 @@ tags: alias, lead-in, multiline
 ===
 loc: ด่านแม่ละเมา | แม่สอด | ตาก | 63110
 tags: shop, contact-person, no-subdistrict, no-province, no-prefix
-warn: ambiguous-location
 ---
 ส่ง [[N:K.โอ๊ต ร้านโอ๊ตยางยนต์]] [[A:99 ม.6 ถ.สายเอเชีย]] [[D:แม่สอด]] [[Z:63110]] เบอร์ [[P:095-882-1340]]
 ===
@@ -241,7 +233,6 @@ tags: alias, amphoe-mueang, name-last
 ===
 loc: เบิด | รัตนบุรี | สุรินทร์ | 32130
 tags: school-as-place, person-separate, no-subdistrict, no-province, multiline
-warn: ambiguous-location
 ---
 [[N:คุณครูสมศักดิ์ ทองปาน]]
 [[A:โรงเรียนบ้านเบิดพัฒนา ม.1]]
@@ -267,7 +258,6 @@ tags: large-to-small, no-postcode, no-prefix
 ===
 loc: หลักสาม | บ้านแพ้ว | สมุทรสาคร | 74120
 tags: alias, shop, market-stall, no-subdistrict, no-postcode
-warn: ambiguous-location
 ---
 [[N:ร้านป้าแต๋วผลไม้]] [[A:ตลาดหลักสาม แผง 14]] [[D:บ้านแพ้ว]] [[V:มหาชัย]] [[P:0814429301]]
 ===
@@ -292,7 +282,6 @@ tags: form-template, empty-field, no-district, no-postcode
 ===
 loc: ทับสะแก | ทับสะแก | ประจวบคีรีขันธ์ | 77130
 tags: alias, clinic, no-person, same-name-once, no-subdistrict, landline
-warn: ambiguous-location
 ---
 [[N:คลินิกหมอวิชัยการแพทย์]] [[A:59 ถ.เพชรเกษม]] [[D:อ.ทับสะแก]] [[V:ประจวบ]] [[Z:77130]] [[P:032-671-445]]
 ===
@@ -322,7 +311,6 @@ tags: no-province, housing-estate, multiline
 ===
 loc: หนองแวงโสกพระ | พล | ขอนแก่น | 40120
 tags: no-subdistrict, name-last
-warn: ambiguous-location
 ---
 [[A:19 ม.15]] [[D:อ.พล]] [[V:จ.ขอนแก่น]] [[Z:40120]] [[N:นางคำปุ่น]] [[P:0937745012]]
 ===
@@ -344,7 +332,6 @@ tags: postcode-first, no-prefix
 ===
 loc: สีกัน | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: no-subdistrict, no-prefix, condo, multiline
-warn: ambiguous-location
 ---
 [[A:ห้อง 508 อาคารริมคลองเพลส 91 ถ.เชิดวุฒากาศ]] [[D:ดอนเมือง]] [[V:กรุงเทพฯ]] [[Z:10210]]
 [[N:คุณภูริ]] [[P:0614427702]]
@@ -362,13 +349,11 @@ tags: alias, name-phone-first, no-prefix
 ===
 loc: หนองฮาง | เบญจลักษ์ | ศรีสะเกษ | 33110
 tags: no-subdistrict, no-postcode, no-prefix, first-name-only
-warn: ambiguous-location
 ---
 [[N:ทองดี]] [[A:30 ม.7]] [[D:เบญจลักษ์]] [[V:ศรีสะเกษ]] [[P:0626638014]]
 ===
 loc: องครักษ์ | องครักษ์ | นครนายก | 26120
 tags: partnership, no-person, same-name-once, no-prefix, landline
-warn: ambiguous-location
 ---
 [[N:หจก.เกษตรรุ่งโรจน์]] [[A:101 ม.1]] [[D:องครักษ์]] [[V:นครนายก]] [[Z:26120]] โทร [[P:037-391-226]]
 ===
@@ -385,7 +370,6 @@ tags: alias, condo, romanized-name, name-last
 ===
 loc: ศาลาธรรมสพน์ | ทวีวัฒนา | กรุงเทพมหานคร | 10170
 tags: no-subdistrict, no-province, kinship, name-after-address
-warn: ambiguous-location
 ---
 [[A:39 ถ.พุทธมณฑลสาย 2 ซอย 7]] [[D:เขตทวีวัฒนา]] [[Z:10170]] [[N:ป้าสมจิตร]] [[P:0827736109]] ฝากไว้ที่ป้อมยามได้เลยค่ะ
 ===
@@ -403,7 +387,6 @@ tags: same-name-once-prefixed, no-district, multiline
 ===
 loc: ดอนมูล | สูงเม่น | แพร่ | 54130
 tags: phone-first, no-subdistrict, no-prefix, multiline
-warn: ambiguous-location
 ---
 [[P:096-221-8834]]
 [[N:คุณศิริ]]
@@ -465,7 +448,6 @@ tags: no-name, no-province, no-prefix
 ===
 loc: วัดสุวรรณ | บ่อทอง | ชลบุรี | 20270
 tags: no-subdistrict, labels, multiline
-warn: ambiguous-location
 ---
 ผู้รับ : [[N:ศักดิ์ชัย มณีวงศ์]]
 โทร : [[P:0928840631]]
@@ -525,7 +507,6 @@ tags: mueang-glued, no-province, phone-first
 ===
 loc: เสนานิคม | จตุจักร | กรุงเทพมหานคร | 10900
 tags: no-subdistrict, no-province, no-prefix, chat-noise
-warn: ambiguous-location
 ---
 CF 2 ชิ้นค่ะ 🙏
 ส่ง [[A:88/14 ซ.พหลโยธิน 32 แยก 4]] [[D:จตุจักร]] [[Z:10900]]
@@ -545,7 +526,6 @@ tags: amphoe-mueang, name-last, no-subdistrict-prefix
 ===
 loc: ตาเกา | น้ำขุ่น | อุบลราชธานี | 34260
 tags: alias, no-subdistrict, no-postcode, no-prefix
-warn: ambiguous-location
 ---
 [[N:ไพรวัลย์ บุญมา]] [[A:52 ม.4]] [[D:น้ำขุ่น]] [[V:อุบล]] [[P:0807753328]]
 ===
@@ -575,7 +555,6 @@ tags: no-province, no-name, postcode-first
 ===
 loc: คูขวาง | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: alias, factory, contact-person, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:บจก.ไทยรุ่งฟู้ดแพค (คุณวิไล คลังสินค้า)]]
 [[A:9/9 ม.3 ถ.ลาดหลุมแก้ว-บางภาษี]] [[D:อ.ลาดหลุมแก้ว]] [[V:ปทุม]] [[Z:12140]]
@@ -601,7 +580,6 @@ tags: no-province, housing-estate, multiline, labels
 ===
 loc: แหลมฟ้าผ่า | พระสมุทรเจดีย์ | สมุทรปราการ | 10290
 tags: no-subdistrict, no-phone, no-prefix
-warn: ambiguous-location
 ---
 [[N:คุณสุรเชษฐ์ ทองสวัสดิ์]] [[A:3/18 ม.7 ถ.สุขสวัสดิ์]] [[D:พระสมุทรเจดีย์]] [[V:สมุทรปราการ]] [[Z:10290]]
 ===
@@ -638,7 +616,6 @@ tags: shop, no-province, no-prefix, landline
 ===
 loc: หนองค้างพลู | หนองแขม | กรุงเทพมหานคร | 10160
 tags: no-subdistrict, no-province, postcode-first
-warn: ambiguous-location
 ---
 [[Z:10160]] [[D:หนองแขม]] [[A:77/23 ซ.เพชรเกษม 81]] [[N:คุณธนวัฒน์]] โทร [[P:0846613072]]
 ===
@@ -672,7 +649,6 @@ tags: alias, no-prefix
 ===
 loc: หนองจอก | หนองจอก | กรุงเทพมหานคร | 10530
 tags: same-name-once, no-province, no-subdistrict, name-last
-warn: ambiguous-location
 ---
 [[A:41 ซ.เลียบวารี 55]] [[D:หนองจอก]] [[Z:10530]] ผู้รับ [[N:นางสาวรัชนี วงศ์ใหญ่]] [[P:0629940218]]
 ===
@@ -696,7 +672,6 @@ tags: no-province, no-name, no-prefix
 ===
 loc: ควนศรี | บ้านนาสาร | สุราษฎร์ธานี | 84270
 tags: no-subdistrict, no-phone
-warn: ambiguous-location
 ---
 [[N:นายสมโชค แก้วประดิษฐ์]] [[A:98 ม.2]] [[D:อ.บ้านนาสาร]] [[V:จ.สุราษฎร์ธานี]] [[Z:84270]]
 ===
@@ -730,7 +705,6 @@ tags: no-district, no-prefix
 ===
 loc: บ้านใหม่ | ปากเกร็ด | นนทบุรี | 11120
 tags: no-subdistrict, office, no-person, landline
-warn: ambiguous-location
 ---
 [[N:สำนักงานบัญชีพรรณี]] [[A:28/9 ถ.แจ้งวัฒนะ]] [[D:ปากเกร็ด]] [[V:นนทบุรี]] [[Z:11120]] โทร [[P:02-583-1146]]
 ===
@@ -747,7 +721,6 @@ tags: no-name, postcode-before-province, no-prefix
 ===
 loc: กระเบื้องใหญ่ | พิมาย | นครราชสีมา | 30110
 tags: alias, no-subdistrict, name-last, chat-noise
-warn: ambiguous-location
 ---
 ปลายทางค่ะ 790
 [[A:8 ม.4]] [[D:อ.พิมาย]] [[V:นครราชสีมาฯ]] [[Z:30110]]
@@ -778,7 +751,6 @@ tags: no-district, no-phone, no-prefix
 ===
 loc: ลาดกระบัง | ลาดกระบัง | กรุงเทพมหานคร | 10520
 tags: alias, same-name-once, university, dormitory, no-subdistrict
-warn: ambiguous-location
 ---
 [[A:หอพักนักศึกษา ห้อง 612 ซ.ฉลองกรุง 1]] [[D:ลาดกระบัง]] [[V:กทม]] [[Z:10520]] [[N:น้องไอซ์]] [[P:0611128834]]
 ===
@@ -795,7 +767,6 @@ tags: alias, no-postcode, temple, contact-person-apart
 ===
 loc: หนองปรือ | บางพลี | สมุทรปราการ | 10540
 tags: no-subdistrict, no-province, warehouse, company
-warn: ambiguous-location
 ---
 [[N:บริษัท เอ็นทีพีโลจิสติกส์ จำกัด]]
 [[A:โกดัง B2 99/5 ม.6 ถ.กิ่งแก้ว]]
@@ -824,7 +795,6 @@ tags: alias, amphoe-mueang, no-phone, name-last
 ===
 loc: จอมทอง | จอมทอง | กรุงเทพมหานคร | 10150
 tags: alias, same-name-once, no-subdistrict, name-last, chat-noise
-warn: ambiguous-location
 ---
 แอดครับ ของถึงเมื่อไหร่ครับ ส่งที่ใหม่นะ
 [[A:57 ซ.เอกชัย 18]] [[D:จอมทอง]] [[V:กท.]] [[Z:10150]]
@@ -860,7 +830,6 @@ tags: no-district, no-name
 ===
 loc: กระแชง | กันทรลักษ์ | ศรีสะเกษ | 33110
 tags: short-district, alias, no-subdistrict, no-postcode
-warn: ambiguous-location
 ---
 [[N:นายพิทักษ์ ศรีจันทร์]] [[A:120 ม.15]] [[D:อ.กันทร]] [[V:ศรีสะเกษ]] [[P:0897781036]]
 ===
@@ -886,7 +855,6 @@ tags: no-postcode, no-prefix, name-last
 ===
 loc: วงศ์สว่าง | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: alias, no-subdistrict, condo, name-first
-warn: ambiguous-location
 ---
 [[N:ศุภชัย แก้วมณี]] [[A:คอนโดริเวอร์ไลน์ ตึก A ห้อง 1508 ถ.ประชาราษฎร์สาย 2]] [[D:บางซื่อ]] [[V:bkk]] [[Z:10800]] [[P:0928843317]]
 ===
@@ -912,7 +880,6 @@ tags: alias, no-postcode, oneline
 ===
 loc: ตลาดจินดา | สามพราน | นครปฐม | 73110
 tags: no-subdistrict, no-name, order-note
-warn: ambiguous-location
 ---
 เสื้อลายดอก M 2 ตัวค่ะ
 [[A:51 ม.5]] [[D:อ.สามพราน]] [[V:นครปฐม]] [[Z:73110]]

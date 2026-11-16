@@ -420,7 +420,6 @@ tags: shop, no-person, glued, order-before
 ===
 loc: เขาโร | ทุ่งสง | นครศรีธรรมราช | 80110
 tags: no-subdistrict, alias, order-before, same-line
-warn: ambiguous-location
 ---
 เอาผ้าบาติก 3 ผืนกับกะปิ 2 กระปุกจ้า [[A:71 ม.4 บ้านเขาโร]] [[D:อ.ทุ่งสง]] [[V:นครศรีฯ]] [[Z:80110]] [[N:นางสาวอารีย์ ชูแก้ว]] [[P:0896673301]]
 ===

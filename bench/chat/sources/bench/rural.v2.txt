@@ -115,7 +115,6 @@ tags: typo-district, alias, moo-glued
 ===
 loc: ทรายมูล | ทรายมูล | ยโสธร | 35170
 tags: same-name-once, no-prefix, phone-before-address, oneline
-warn: ambiguous-location
 ---
 [[N:น.ส.พิมพ์ชนก บุญล้อม]] [[P:098-104-6672]] [[A:76 ม.1 บ้านดู่]] [[D:ทรายมูล]] [[V:ยโสธร]] [[Z:35170]]
 ===
@@ -379,7 +378,6 @@ tags: particle-glued, no-postcode, amphoe-mueang, multi-bubble, unlabelled
 ===
 loc: บางแพ | บางแพ | ราชบุรี | 70160
 tags: shop, organisation, same-name-once, name-last, landline
-warn: ambiguous-location
 ---
 [[A:บ้านเลขที่ 19 หมู่ 4 บ้านดอนพุทรา]] [[D:บางแพ]] [[V:ราชบุรี]] [[Z:70160]] ส่ง [[N:ร้านป้าจุกของชำ]] นะคะ [[P:032-381-449]]
 ===

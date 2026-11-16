@@ -259,7 +259,6 @@ tags: phone-label-emoji, chat-noise, delivery-instruction
 ===
 loc: บางใหญ่ | บางใหญ่ | นนทบุรี | 11140
 tags: kerry-tracking, multi-bubble, phone-afterthought, alias
-warn: ambiguous-location
 ---
 [[N:ชลธิชา บุญมาก]]
 [[A:59/77 หมู่บ้านบางใหญ่ซิตี้ ซ.7]] [[D:บางใหญ่]] [[V:นนท์]] [[Z:11140]]

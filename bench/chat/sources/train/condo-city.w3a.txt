@@ -163,7 +163,6 @@ tags: condo, detail-after-admin, landmark-bracket, no-province, split-detail
 ===
 loc: ไทรน้อย | ไทรน้อย | นนทบุรี | 11150
 tags: same-name-once, housing-estate, no-prefix, one-line
-warn: ambiguous-location
 ---
 [[A:111/23 หมู่บ้านไทรน้อยการ์เด้นโฮม ม.3]] [[D:ไทรน้อย]] [[V:นนทบุรี]] [[Z:11150]] [[N:ประยุทธ ศรีทอง]] [[P:0867715203]]
 ===
@@ -294,7 +293,6 @@ tags: form-template, labels-per-field, housing-estate, clean
 ===
 loc: บางปะหัน | บางปะหัน | พระนครศรีอยุธยา | 13220
 tags: same-name-once, rental-room, alias, no-subdistrict
-warn: ambiguous-location
 ---
 [[A:ห้องเช่าเจ๊หน่อย ห้อง 4 ใกล้ที่ว่าการอำเภอ]] [[D:บางปะหัน]] [[V:อยุธยา]] [[Z:13220]] [[N:อุไร]] [[P:0814490276]]
 ===
@@ -575,7 +573,6 @@ tags: partnership, person-and-org-apart, split-detail, no-phone
 ===
 loc: บางพลัด | บางพลัด | กรุงเทพมหานคร | 10700
 tags: same-name-once, condo, district-in-condo-name, no-province
-warn: ambiguous-location
 ---
 [[N:K.Pond]] [[A:ห้อง 8/221 ริเวอร์เพลส บางพลัด ซ.จรัญสนิทวงศ์ 77]] [[D:เขตบางพลัด]] [[Z:10700]] [[P:0866602319]]
 ===
@@ -730,7 +727,6 @@ tags: admin-first, detail-after-admin, typo-district, no-phone, alias
 ===
 loc: ลำลูกกา | ลำลูกกา | ปทุมธานี | 12150
 tags: company, org-no-person, same-name-once, district-in-road-name, landline
-warn: ambiguous-location
 ---
 [[N:บจก.ลำลูกกาสตีล]] [[A:เลขที่ 5/5 ม.8 ถ.ลำลูกกา คลอง 10]] [[D:อ.ลำลูกกา]] [[V:จ.ปทุมธานี]] [[Z:12150]] [[P:02-152-7720]]
 ===
@@ -799,7 +795,6 @@ tags: housing-estate, explanatory-bracket, new-project, name-after-admin
 ===
 loc: บางบัวทอง | บางบัวทอง | นนทบุรี | 11110
 tags: shop, org-no-person, market-stall, same-name-once, district-in-market-name
-warn: ambiguous-location
 ---
 [[N:ร้านน้องหมีเบเกอรี่]]
 [[A:ตลาดบางบัวทอง ล็อค 22]]
@@ -872,7 +867,6 @@ tags: juristic-office, contact-person-bracket, explanatory-bracket, no-phone, al
 ===
 loc: จตุจักร | จตุจักร | กรุงเทพมหานคร | 10900
 tags: shop, market-stall, same-name-once, district-in-market-name, no-postcode, alias
-warn: ambiguous-location
 ---
 [[N:ร้าน Vintage by Nook]] [[A:ตลาดนัดจตุจักร โครงการ 2 ซอย 3 ห้อง 112]] [[D:จตุจักร]] [[V:กทม]] [[P:0897781120]]
 ===

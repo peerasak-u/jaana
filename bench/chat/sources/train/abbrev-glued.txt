@@ -84,7 +84,6 @@ tags: partnership, multiline, alias, landline, owner-note
 ===
 loc: คลองหาด | คลองหาด | สระแก้ว | 27260
 tags: same-name-once, no-prefixes, child-recipient, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:ด.ช.ภูมิ ใจกล้า]]
 [[A:156 ม.7]] [[D:คลองหาด]] [[V:สระแก้ว]] [[Z:27260]]
@@ -405,7 +404,6 @@ tags: label-typo, all-glued, village-abbrev, short-province, alias, very-messy
 ===
 loc: เมืองยาง | เมืองยาง | นครราชสีมา | 30270
 tags: same-name-once, no-subdistrict, nickname-province, alias, no-prefixes
-warn: ambiguous-location
 ---
 [[N:อรทัย]] [[P:0954417730]]
 [[A:15 ม.1]] [[D:เมืองยาง]] [[V:โคราช]] [[Z:30270]]
@@ -515,7 +513,6 @@ tags: company, factory, place-in-road, admin-glued, postcode-glued
 ===
 loc: ทุ่งครุ | ทุ่งครุ | กรุงเทพมหานคร | 10140
 tags: bangkok, same-name-once, no-subdistrict, กทม, alias, nickname-only
-warn: ambiguous-location
 ---
 [[N:พี่จอย]] [[A:61/4 ซ.ประชาอุทิศ 79]] [[D:ทุ่งครุ]] [[V:กทม]] [[Z:10140]] [[P:0896671209]]
 ===

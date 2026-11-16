@@ -153,7 +153,6 @@ tags: alias, district-short, kinship-name
 ===
 loc: ไร่ขิง | สามพราน | นครปฐม | 73210
 tags: no-subdistrict, no-dot-prefix, mb-abbrev, glued-postcode, chat-noise
-warn: ambiguous-location
 ---
 สวัสดีค่ะแอด ส่งตามนี้นะคะ
 [[N:นส.ชลธิชา รุ่งโรจน์]]
@@ -202,7 +201,6 @@ tags: company, department, glued-postcode, landline
 ===
 loc: พรหมพิราม | พรหมพิราม | พิษณุโลก | 65150
 tags: same-name-once, no-prefix, no-subdistrict, glued-postcode
-warn: ambiguous-location
 ---
 ส่ง [[N:คุณมาลัย]] [[A:7/7 ม.2]] [[D:พรหมพิราม]] [[V:พิษณุโลก]][[Z:65150]] [[P:0810027465]] ค่ะ
 ===
@@ -338,7 +336,6 @@ tags: thai-digits, amphoe-mueang, glued-postcode, landline
 ===
 loc: สองห้อง | ฟากท่า | อุตรดิตถ์ | 53160
 tags: no-name, no-subdistrict, village-abbrev, courier-note, rural
-warn: ambiguous-location
 ---
 [[A:บ.สองห้อง ม.1]] [[D:อฟากท่า]] [[V:อุตรดิตถ์]] [[Z:53160]] ฝากผู้ใหญ่บ้านไว้ได้ค่ะ [[P:0806617735]]
 ===
@@ -390,7 +387,6 @@ tags: no-spaces, full-prefix-glued, glued-all
 ===
 loc: นาคำ | บ้านดุง | อุดรธานี | 41190
 tags: no-subdistrict, province-prefix-jw, phone-before-address
-warn: ambiguous-location
 ---
 [[N:คุณทองสุข]] โทร.[[P:0844476601]] [[A:15 ม.3 บ้านนาคำ]] [[D:อ.บ้านดุง]] [[V:จว.อุดรธานี]] [[Z:41190]]
 ===
@@ -435,7 +431,6 @@ tags: partnership-as-place, person-apart, department, split-address
 ===
 loc: บ้านค่าย | บ้านค่าย | ระยอง | 21120
 tags: same-name-once, no-subdistrict, glued-admin
-warn: ambiguous-location
 ---
 [[N:คุณปราณี]] [[A:20/1ม.3]][[D:อ.บ้านค่าย]][[V:ระยอง]][[Z:21120]] [[P:0839905521]]
 ===

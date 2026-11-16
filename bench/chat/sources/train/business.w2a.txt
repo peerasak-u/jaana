@@ -36,7 +36,6 @@ tags: market, no-dot-prefix, glued-postcode, label-typo, very-messy
 ===
 loc: บางแค | บางแค | กรุงเทพมหานคร | 10160
 tags: market-stall, nickname-shop, alias, same-name-once, multiline
-warn: ambiguous-location
 ---
 [[N:เจ๊หน่อย ส้มตำ]]
 [[A:ตลาดบางแค แผง 27]]
@@ -67,7 +66,6 @@ tags: hardware, clean, same-name-twice, landline
 ===
 loc: มหาราช | มหาราช | พระนครศรีอยุธยา | 13150
 tags: cafe, landmark, no-house-number, alias, no-postcode, same-name-once
-warn: ambiguous-location
 ---
 [[N:ร้านกาแฟโบราณลุงชิต]]
 [[A:ข้างที่ว่าการอำเภอมหาราช]]
@@ -154,7 +152,6 @@ tags: food-shop, amphoe-mueang, landline, courier-note
 ===
 loc: บางใหญ่ | บางใหญ่ | นนทบุรี | 11140
 tags: market-lock, space-after-ran, same-name-once
-warn: ambiguous-location
 ---
 [[N:ร้าน เพชรมณีโทรศัพท์]] [[A:ตลาดบางใหญ่ 2 ล็อค 58]] [[D:บางใหญ่]] [[V:นนทบุรี]] [[Z:11140]] [[P:0957732218]]
 ===
@@ -279,7 +276,6 @@ tags: hardware, alias, postcode-before-phone
 ===
 loc: บ้านเอื้อง | ศรีสงคราม | นครพนม | 48150
 tags: shop-name-has-place, missing-subdistrict, no-postcode, multiline
-warn: ambiguous-location
 ---
 [[N:บ้านเอื้องพาณิชย์]]
 [[A:ม.2]] [[D:ศรีสงคราม]] [[V:นครพนม]]
@@ -299,7 +295,6 @@ tags: food-shop, alias, postcode-first
 ===
 loc: จอมทอง | จอมทอง | กรุงเทพมหานคร | 10150
 tags: repair-shop, soi-road-same-name, same-name-once, alias, landline, no-postcode
-warn: ambiguous-location
 ---
 [[N:ร้านช่างวิทย์ซ่อมพัดลม]]
 [[A:ซ.จอมทอง 13 ถ.จอมทอง]]
@@ -330,7 +325,6 @@ tags: phone-before-address, typo-province, no-postcode, no-prefix
 ===
 loc: มายอ | มายอ | ปัตตานี | 94140
 tags: roti-shop, landmark, same-name-once, multiline
-warn: ambiguous-location
 ---
 [[N:ร้านโรตีบังมะ]]
 [[A:ตรงข้ามมัสยิดกลางมายอ]]
@@ -344,7 +338,6 @@ tags: wholesale, landline, label-dot, full-province
 ===
 loc: ท่าสองยาง | ท่าสองยาง | ตาก | 63150
 tags: minimart, same-name-once, landline, no-house-number
-warn: ambiguous-location
 ---
 [[N:ร้านท่าสองยางมินิมาร์ท]] [[A:ม.1]] [[D:ท่าสองยาง]] [[V:ตาก]] [[Z:63150]] [[P:055-899-021]]
 ===
@@ -426,7 +419,6 @@ tags: building-supply, multiline, landline, clean
 ===
 loc: วัฒนานคร | วัฒนานคร | สระแก้ว | 27160
 tags: market-lock, same-name-once, silk-shop
-warn: ambiguous-location
 ---
 [[N:ร้านเจ๊หงส์ผ้าไหม]] [[A:ตลาดวัฒนานคร ล็อค 21]] [[D:อ.วัฒนานคร]] [[V:สระแก้ว]] [[Z:27160]] [[P:0855519042]]
 ===
@@ -744,7 +736,6 @@ tags: no-prefix, roti-shop, typo-subdistrict
 ===
 loc: นาทวี | นาทวี | สงขลา | 90160
 tags: same-name-once, landline, market-stall
-warn: ambiguous-location
 ---
 [[N:แผงเจ๊ฮะ]] [[A:ตลาดนัดนาทวี]] [[D:อ.นาทวี]] [[V:สงขลา]] [[Z:90160]] [[P:074-371-205]]
 ===

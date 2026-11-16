@@ -128,7 +128,6 @@ tags: no-dot-prefix, postcode-glued-province, glued
 ===
 loc: บางคนที | บางคนที | สมุทรสงคราม | 75120
 tags: alias, district-once, no-prefix
-warn: ambiguous-location
 ---
 ส่ง [[A:39 ม.4]] [[D:บางคนที]] [[V:แม่กลอง]] [[Z:75120]] นะคะ
 ชื่อ [[N:ลำดวน สีนวล]] [[P:095 551 2047]]
@@ -327,7 +326,6 @@ tags: alias, no-dot-prefix, postcode-glued-province
 ===
 loc: เขาพนม | เขาพนม | กระบี่ | 81140
 tags: district-once, no-prefix, no-subdistrict, oneline
-warn: ambiguous-location
 ---
 ส่ง[[N:ครูอำไพ รร.เขาพนมพิทยา]] [[D:เขาพนม]] [[V:กระบี่]] [[Z:81140]] โทร [[P:0827154038]]
 ===
@@ -564,7 +562,6 @@ tags: no-dot-prefix, oneline
 ===
 loc: ห้วยราช | ห้วยราช | บุรีรัมย์ | 31000
 tags: district-once, no-prefix, typo-province
-warn: ambiguous-location
 ---
 [[A:3/1 ม.10]] [[D:ห้วยราช]] [[V:บุรีรัม]] [[Z:31000]]
 ผู้รับ [[N:ประยงค์ สีดา]]
@@ -638,7 +635,6 @@ tags: alias, condo, glued, no-subdistrict-prefix
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: alias, bangkok, district-once, company, postcode-glued-province
-warn: ambiguous-location
 ---
 [[A:บริษัท ไทยเฟรชมาร์ท จำกัด
 388 อาคารเอ็กซ์เชนจ์ ชั้น 21 ถ.สุขุมวิท]] [[D:คลองเตย]] [[V:กทม]][[Z:10110]]

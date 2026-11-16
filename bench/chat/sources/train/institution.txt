@@ -9,7 +9,6 @@ tags: school, teacher, multiline, clean
 ===
 loc: ท่าหาดยาว | โพนทราย | ร้อยเอ็ด | 45240
 tags: local-admin, no-person, department, landline, admin-in-org-name, no-subdistrict
-warn: ambiguous-location
 ---
 ส่ง [[N:อบต.ท่าหาดยาว (กองคลัง)]] [[A:ม.5]] [[D:อ.โพนทราย]] [[V:ร้อยเอ็ด]] [[Z:45240]] โทร [[P:043-591-228]] ส่งในเวลาราชการนะครับ
 ===
@@ -41,7 +40,6 @@ tags: health-center, nickname, no-postcode, abbrev-no-dot, oneline
 ===
 loc: ดอนคลัง | ดำเนินสะดวก | ราชบุรี | 70130
 tags: local-admin, contact-in-brackets, landline, extension, no-subdistrict, multiline
-warn: ambiguous-location
 ---
 [[N:เทศบาลตำบลดอนคลัง (คุณสุนันทา งานพัสดุ)]]
 [[A:88 ม.1 ถ.ดำเนินสะดวก-บางแพ]]
@@ -133,7 +131,6 @@ Tel [[P:+66 81 902 4471]]
 ===
 loc: บางม่วง | บางใหญ่ | นนทบุรี | 11140
 tags: childcare-center, teacher-nickname, person-apart, alias, bare-district, name-after-address
-warn: ambiguous-location
 ---
 ส่งที่ [[A:ศูนย์พัฒนาเด็กเล็ก อบต.บางม่วง ม.4 ซ.วัดบางม่วง]] [[D:บางใหญ่]] [[V:นนท์]] [[Z:11140]] [[N:ครูแนน]] [[P:0659912083]] ค่ะ
 ===
@@ -205,7 +202,6 @@ tags: temple, monk, bangkok, abbrev-district, alias, phone-owner-note
 ===
 loc: ดงเจริญ | คำเขื่อนแก้ว | ยโสธร | 35110
 tags: local-admin, no-person, split-bubbles, admin-after-phone, no-subdistrict, landline
-warn: ambiguous-location
 ---
 แอดครับ ส่งที่ อบต.นะครับ
 [[N:อบต.ดงเจริญ]] [[A:ม.6]]
@@ -241,7 +237,6 @@ tags: school, teacher, numbered-list, labels
 ===
 loc: นาโพธิ์ | นาโพธิ์ | บุรีรัมย์ | 31230
 tags: district-office, same-name-once, typo-province, name-last, title-ปลัด
-warn: ambiguous-location
 ---
 [[A:ที่ว่าการอำเภอนาโพธิ์ งานทะเบียน]] [[D:นาโพธิ์]] [[V:บุรีรัม]] [[Z:31230]] ส่งถึง [[N:ปลัดวีระพงษ์]] [[P:0880014526]]
 ===
@@ -455,7 +450,6 @@ tags: welfare-school, no-person, same-name-twice, no-prefixes, alias, donation
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: army-camp, rank, phone-first-after-name, guardhouse-note, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:ส.อ.ธนากร ดีเลิศ]] [[P:0628821047]] [[A:ช.52 พัน.2 ร้อย.3]] [[D:อ.ลาดหลุมแก้ว]] [[V:จ.ปทุมธานี]] [[Z:12140]] ฝากไว้ที่ป้อมยามหน้าค่ายได้ครับ
 ===
@@ -506,7 +500,6 @@ tags: government-office, no-person, department, road-with-province-name, landlin
 ===
 loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: university-faculty, ambiguous-อ-title, same-name-once, alias, landline
-warn: ambiguous-location
 ---
 ส่ง [[N:อ.วิชัย]] นะคะ
 [[A:คณะครุศาสตร์อุตสาหกรรม มจพ. 1518 ถ.ประชาราษฎร์1]]
@@ -529,7 +522,6 @@ tags: school, no-person, no-phone, buyer-note, clean
 ===
 loc: ธงธานี | ธวัชบุรี | ร้อยเอ็ด | 45170
 tags: police-station, female-rank, marketplace-copy, plus66-no-space, no-subdistrict, district-in-org-name
-warn: ambiguous-location
 ---
 [[N:ร.ต.ท.หญิง กัญญารัตน์ บุญชู]] | [[P:(+66)891140528]]
 [[A:สภ.ธวัชบุรี งานอำนวยการ]], [[D:ธวัชบุรี]], [[V:ร้อยเอ็ด]], [[Z:45170]]
@@ -593,7 +585,6 @@ tags: temple, northern-monk, phone-first, multiline-address
 ===
 loc: เวียงห้าว | พาน | เชียงราย | 57120
 tags: school, no-person, minimal, no-subdistrict, landline
-warn: ambiguous-location
 ---
 [[N:รร.บ้านเวียงห้าว]] [[D:อ.พาน]] [[V:เชียงราย]] [[Z:57120]] [[P:053-721-604]]
 ===
@@ -629,7 +620,6 @@ tags: hospital, role-in-brackets, same-name-twice, oneline
 ===
 loc: ไผ่จำศิล | วิเศษชัยชาญ | อ่างทอง | 14110
 tags: learning-center, org-and-person-adjacent, admin-in-org-name, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:กศน.ตำบลไผ่จำศิล ครูปราณี]] [[A:ม.3]] [[D:อ.วิเศษชัยชาญ]] [[V:อ่างทอง]] [[Z:14110]] [[P:0614428830]]
 ===
@@ -743,7 +733,6 @@ tags: temple, monk-degree, no-phone, bare-district, alias
 ===
 loc: มายอ | มายอ | ปัตตานี | 94140
 tags: district-office, title-ปลัด, same-name-once, envelope, landline
-warn: ambiguous-location
 ---
 [[N:ปลัดอับดุลเลาะ เจ๊ะมะ]]
 [[A:ที่ว่าการอำเภอมายอ (ฝ่ายปกครอง)]]
@@ -963,7 +952,6 @@ tags: school, order-items, sizes, payment-note, amount
 ===
 loc: ท่าดินดำ | ชัยบาดาล | ลพบุรี | 15130
 tags: health-center, admin-in-org-name, no-subdistrict, proxy-note-in-brackets
-warn: ambiguous-location
 ---
 [[A:โรงพยาบาลส่งเสริมสุขภาพตำบลท่าดินดำ ม.5]] [[D:อ.ชัยบาดาล]] [[V:ลพบุรี]] [[Z:15130]] ถึง[[N:คุณหมอนิด]] (อสม.รับแทนได้) [[P:0817726603]]
 ===

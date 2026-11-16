@@ -14,7 +14,6 @@ tags: romanized, alias, no-commas, oneline
 ===
 loc: ปากเกร็ด | ปากเกร็ด | นนทบุรี | 11120
 tags: juristic-office, organisation, no-subdistrict, landline, invoice-note
-warn: ambiguous-location
 ---
 [[N:นิติบุคคลอาคารชุดริมน้ำ ปากเกร็ด คอนโดมิเนียม]]
 [[A:เลขที่ 9/9 ซ.แจ้งวัฒนะ-ปากเกร็ด 39]] [[D:อ.ปากเกร็ด]] [[V:นนทบุรี]] [[Z:11120]]
@@ -279,7 +278,6 @@ tags: juristic-office, organisation, contact-person, project-name
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: apartment, deep-soi, one-mention-district, particle-glued
-warn: ambiguous-location
 ---
 [[A:อพาร์ตเมนต์ร่มรื่นเพลส ห้อง 415 ซ.เดชะตุงคะ 1 แยก 7]] [[D:ดอนเมือง]] [[Z:10210]] [[N:ปอนด์]] [[P:0638819027]]นะครับ
 ===
@@ -404,7 +402,6 @@ tags: deep-soi, condo, two-phones, multiline
 ===
 loc: บึงกาสาม | หนองเสือ | ปทุมธานี | 12170
 tags: housing-estate, village-ordinary-words, no-subdistrict, no-name
-warn: ambiguous-location
 ---
 ส่งของที่ [[A:56/3 หมู่บ้านสวนผักบุ้ง คลอง 10]] [[D:อ.หนองเสือ]] [[V:ปทุมธานี]] [[Z:12170]] ค่ะ เบอร์ [[P:0869914237]]
 ===
@@ -593,7 +590,6 @@ tags: housing-estate, deep-soi, multiline, no-province
 ===
 loc: สำโรง | พระประแดง | สมุทรปราการ | 10130
 tags: condo, no-subdistrict, alias
-warn: ambiguous-location
 ---
 [[A:คอนโดสำโรงพลัส ห้อง 509 ถ.ปู่เจ้าสมิงพราย]] [[D:อ.พระประแดง]] [[V:ปากน้ำ]] [[Z:10130]]
 ชื่อ [[N:K.ตาล]] [[P:0646630915]]

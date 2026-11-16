@@ -122,7 +122,6 @@ tags: farm, org-name, alias, road-with-place-names, landline
 ===
 loc: แม่สอด | แม่สอด | ตาก | 63110
 tags: same-name-once, landmark, soi, name-after-address
-warn: ambiguous-location
 ---
 ที่อยู่จ้า [[A:9/2 ม.2 บ้านแม่ตาวกลาง ซอยข้างวัดไทยวัฒนาราม]] [[D:แม่สอด]] [[V:ตาก]] [[Z:63110]] [[N:มะลิ]] [[P:0626158840]]
 ===
@@ -171,7 +170,6 @@ tags: formal, desktop, full-prefix, landline, multiline
 ===
 loc: ทุ่งใส | สิชล | นครศรีธรรมราช | 80120
 tags: no-subdistrict, alias, landmark, oneline
-warn: ambiguous-location
 ---
 ส่งตามนี้เลยค่ะ [[N:กาญจนา ด้วงทอง]] [[A:5 ม.6 บ.ทุ่งใส ใกล้ อบต.]] [[D:สิชล]] [[V:นครศรีฯ]] [[Z:80120]] [[P:0827316650]]
 ===
@@ -192,7 +190,6 @@ tags: landmark, courier-request, nickname, multiline, no-postcode
 ===
 loc: หนองโน | เมืองมหาสารคาม | มหาสารคาม | 44000
 tags: health-center, org-name, no-subdistrict, muang, landline
-warn: ambiguous-location
 ---
 [[N:รพ.สต.บ้านหนองโน]] [[A:ม.7]] [[D:อ.เมือง]] [[V:มหาสารคาม]] [[Z:44000]] โทร [[P:043-777-215]]
 ===
@@ -226,7 +223,6 @@ tags: no-name, landmark, call-first, multiline, no-postcode
 ===
 loc: ปากแตระ | ระโนด | สงขลา | 90140
 tags: two-phones, southern-dialect, multiline, no-subdistrict
-warn: ambiguous-location
 ---
 ส่งให้แหน่ [[N:นายเอียด ชูแก้ว]]
 [[A:4 ม.6 บ้านบ่อตรุ]] [[D:อ.ระโนด]] [[V:จ.สงขลา]] [[Z:90140]]
@@ -281,7 +277,6 @@ tags: no-district, landmark, southern-title, oneline
 ===
 loc: รำแดง | สิงหนคร | สงขลา | 90330
 tags: local-government, org-contact, no-subdistrict, landline
-warn: ambiguous-location
 ---
 [[N:องค์การบริหารส่วนตำบลรำแดง (งานพัสดุ)]]
 [[A:ม.2]] [[D:อ.สิงหนคร]] [[V:จ.สงขลา]] [[Z:90330]]
@@ -356,7 +351,6 @@ tags: form-template, labels, order-note
 ===
 loc: ดอนแก้ว | สารภี | เชียงใหม่ | 50140
 tags: northern-dialect, elder-title, no-subdistrict, no-prefix
-warn: ambiguous-location
 ---
 ส่งหื้อ [[N:แม่อุ๊ยจันทร์ติ๊บ]] เจ้า [[A:34 ม.6 บ้านดอนแก้ว]] [[D:สารภี]] [[V:เชียงใหม่]] [[Z:50140]] [[P:0935519076]] ขอบคุณเจ้า
 ===
@@ -399,7 +393,6 @@ tags: typo-province, emoji-phone, oneline
 ===
 loc: ปลายนา | ศรีประจันต์ | สุพรรณบุรี | 72140
 tags: no-subdistrict, no-province, district-postcode-only, landmark, multiline
-warn: ambiguous-location
 ---
 [[N:คุณมานพ ศรีทอง]]
 [[A:5/2 หมู่ 3 บ้านปลายนา หน้าวัด]]
@@ -431,7 +424,6 @@ tags: postcode-glued-province, particle-glued, oneline
 ===
 loc: แม่เมาะ | แม่เมาะ | ลำปาง | 52220
 tags: shop, org-name, same-name-once, road-with-place-names, landline
-warn: ambiguous-location
 ---
 [[N:ร้านแม่เมาะรุ่งเรืองวัสดุ]] [[A:199 ม.1 ถ.ลำปาง-แม่เมาะ]] [[D:แม่เมาะ]] [[V:ลำปาง]] [[Z:52220]] โทร [[P:054-266-310]]
 ===
@@ -507,7 +499,6 @@ tags: cooperative, org-name, legal-form, landline
 ===
 loc: รอบเมือง | หนองพอก | ร้อยเอ็ด | 45210
 tags: slash-separator, khum-neighbourhood, name-after-address, oneline, no-subdistrict
-warn: ambiguous-location
 ---
 [[A:19 ม.2 คุ้มหนองบัว]] [[D:อ.หนองพอก]] [[V:ร้อยเอ็ด]] [[Z:45210]] / [[N:กิตติพงษ์ ศรีภูมิ]] / [[P:091-224-0368]]
 ===
@@ -682,7 +673,6 @@ Tel. [[P:042-713-569]]
 ===
 loc: หนองหาน | หนองหาน | อุดรธานี | 41130
 tags: same-name-once, alias, oneline
-warn: ambiguous-location
 ---
 ส่ง [[N:นายบุญส่ง ภูมิพันธ์]] [[A:5 ม.7 บ้านโนนหวาย]] [[D:หนองหาน]] [[V:อุดร]] [[Z:41130]] [[P:0881032254]]
 ===

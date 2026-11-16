@@ -65,8 +65,12 @@ const ADMINISTRATIVE = {
 type AdministrativeField = (typeof ADMINISTRATIVE)[keyof typeof ADMINISTRATIVE];
 
 interface Gazetteer {
-	/** Tuples per projection onto a set of fields, keyed by field list then values. */
-	readonly tuplesPer: Map<string, number>;
+	/**
+	 * Distinct district, province and postcode routes per projection onto a set
+	 * of fields, keyed by field list then values. An open subdistrict alone is
+	 * not ambiguous, because the route still delivers.
+	 */
+	readonly routesPer: Map<string, Set<string>>;
 	readonly placeNames: ReadonlySet<string>;
 }
 
@@ -82,17 +86,19 @@ function projection(location: LocationTuple, fields: readonly AdministrativeFiel
 function gazetteerOf(locations: ReadonlyMap<string, LocationTuple>): Gazetteer {
 	const cached = gazetteers.get(locations);
 	if (cached) return cached;
-	const tuplesPer = new Map<string, number>();
+	const routesPer = new Map<string, Set<string>>();
 	const placeNames = new Set(["กทม", "บางกอก", "bkk", "bangkok", "โคราช"]);
 	for (const location of locations.values()) {
 		for (const fields of FIELD_SETS) {
 			const key = projection(location, fields);
-			tuplesPer.set(key, (tuplesPer.get(key) ?? 0) + 1);
+			const routes = routesPer.get(key) ?? new Set<string>();
+			routes.add(`${location.district}|${location.province}|${location.zipcode}`);
+			routesPer.set(key, routes);
 		}
 		placeNames.add(location.province);
 		placeNames.add(location.district);
 	}
-	const gazetteer = { tuplesPer, placeNames };
+	const gazetteer = { routesPer, placeNames };
 	gazetteers.set(locations, gazetteer);
 	return gazetteer;
 }
@@ -112,7 +118,8 @@ const EXPECTED_WARNINGS: Record<ParseWarning, (recipients: readonly RecipientGol
 			const written = Object.entries(ADMINISTRATIVE)
 				.filter(([label]) => spans.some((span) => span.label === label))
 				.map(([, field]) => field);
-			return written.length > 0 && gazetteer.tuplesPer.get(projection(location, written))! > 1;
+			// Matches the parser: a postcode alone fills and flags nothing.
+			return written.some((field) => field !== "zipcode") && gazetteer.routesPer.get(projection(location, written))!.size > 1;
 		}),
 	"phone-length": (recipients) =>
 		recipients.some(({ spans }) => spans.some((span) => span.label === "PHONE" && !hasThaiPhoneLength(span.canonical!))),

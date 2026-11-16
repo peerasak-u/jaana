@@ -569,7 +569,6 @@ tags: typo-province, oneline, sticker, cod
 ===
 loc: บ่อภาค | ชาติตระการ | พิษณุโลก | 65170
 tags: no-subdistrict, cod, order-item
-warn: ambiguous-location
 ---
 ปุ๋ย 2 กระสอบ ส่งได้มั้ยครับ หนักนะ
 [[N:นายจรัญ แก้วมณี]] [[A:56 ม.3 บ้านบ่อภาค]] [[D:อ.ชาติตระการ]] [[V:พิษณุโลก]] [[Z:65170]] [[P:0851123497]]
@@ -885,7 +884,6 @@ tags: school, contact-person, payment-note
 ===
 loc: ดอนตาล | ดอนตาล | มุกดาหาร | 49120
 tags: same-name-once, no-prefix-district, bracket-note
-warn: ambiguous-location
 ---
 [[N:นายวิษณุ จันทร์หอม]] [[A:44 ม.3]] [[D:ดอนตาล]] [[V:มุกดาหาร]] [[Z:49120]] [[P:0827793015]] (ช่วงสงกรานต์อาจไม่อยู่ ส่งก่อนนะครับ)
 ===
@@ -959,7 +957,6 @@ tags: subdistrict-looks-like-province, cod, note
 ===
 loc: หนองช้างแล่น | ห้วยยอด | ตรัง | 92130
 tags: no-subdistrict, oneline, order-item
-warn: ambiguous-location
 ---
 ขนมเค้กลูกเต๋า 3 กล่อง ส่ง [[N:คุณนิภาพร]] [[A:70 ม.5 บ้านหนองช้างแล่น]] [[D:อ.ห้วยยอด]] [[V:ตรัง]] [[Z:92130]] [[P:0827756603]] ขอบคุณค่ะ
 ===

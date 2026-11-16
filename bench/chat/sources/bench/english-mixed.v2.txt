@@ -29,7 +29,6 @@ Please send to [[N:Khun Somchai Rattanakul]], [[A:45/1 Moo 4]], [[S:Tambon Bang 
 ===
 loc: นาหว้า | นาหว้า | นครพนม | 48180
 tags: thai-honorific-english-name, same-name-once, village
-warn: ambiguous-location
 ---
 ที่อยู่ค่ะ 👇
 [[N:น.ส.Jiraporn Saengsri]]
@@ -344,7 +343,6 @@ hi! can u ship to [[N:Lucas]]? [[A:123 Moo 4]], [[S:San Sai]], [[D:Phrao]], [[V:
 ===
 loc: บ้านใหม่ | ครบุรี | นครราชสีมา | 30250
 tags: government, department-in-brackets, no-subdistrict, english-chat, landline
-warn: ambiguous-location
 ---
 Hi, ordering for the อบต. project.
 [[N:องค์การบริหารส่วนตำบลบ้านใหม่ (กองช่าง)]]
@@ -404,7 +402,6 @@ Tel/Line: [[P:0899315562]]
 ===
 loc: วังทอง | วังทอง | พิษณุโลก | 65130
 tags: same-name-once, display-name, payment-note, no-newline
-warn: ambiguous-location
 ---
 [[N:Mook Mookky]] [[A:62 ม.1]] [[D:วังทอง]] [[V:พิษณุโลก]] [[Z:65130]] [[P:0632271840]] โอนแล้วนะคะ slip ตามรูป
 ===

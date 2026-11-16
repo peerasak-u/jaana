@@ -201,7 +201,6 @@ tags: company, office-tower, contact-person, department, extension
 ===
 loc: ประเวศ | ประเวศ | กรุงเทพมหานคร | 10250
 tags: no-newline, same-name-once, estate, deep-soi, alias
-warn: ambiguous-location
 ---
 ส่งด่วนค่ะ [[N:ภัทรา]] [[P:0890034471]] / [[A:9/402 มบ.ฟ้าลดาวิลล์ ซ.อ่อนนุช 65 แยก 8-2]] [[D:ประเวศ]] [[V:กทม]] [[Z:10250]]
 ===
@@ -261,7 +260,6 @@ tags: apartment, upcountry, teacher, no-province, no-newline
 ===
 loc: ลาดกระบัง | ลาดกระบัง | กรุงเทพมหานคร | 10520
 tags: dormitory, typo-district, same-name-once, alias, sub-soi, kinship
-warn: ambiguous-location
 ---
 [[A:หอพัก เดอะพาวิล เลี่ยน ห้อง 418
 เลขที่ 15 ซ.ฉลองกรุง 1 แยก 5 ถ.ฉลองกรุง]]
@@ -348,7 +346,6 @@ tags: typo-district, deep-soi, multiline, name-last
 ===
 loc: หนองแค | หนองแค | สระบุรี | 18140
 tags: townhouse, landmark, same-name-once, upcountry, no-newline
-warn: ambiguous-location
 ---
 [[N:คุณสุนันทา]] [[A:ทาวน์เฮ้าส์หลังตลาดสดเทศบาล 12/31 ถ.พหลโยธิน]] [[D:หนองแค]] [[V:สระบุรี]] [[Z:18140]] [[P:0838892014]]
 ===
@@ -606,7 +603,6 @@ tags: company, warehouse, subdistrict-contains-district-name, typo-road
 ===
 loc: สารภี | สารภี | เชียงใหม่ | 50140
 tags: townhouse, same-name-once, upcountry, no-newline
-warn: ambiguous-location
 ---
 ส่ง [[N:ภูวดล]] [[A:ทาวน์โฮม มบ.ลานนาวิลล์ 33/5 ม.4]] [[D:สารภี]] [[V:เชียงใหม่]] [[Z:50140]] [[P:0937781120]] ครับ
 ===
@@ -811,7 +807,6 @@ tags: condo, deep-soi, road-with-district-name, alias
 ===
 loc: ลาดพร้าว | ลาดพร้าว | กรุงเทพมหานคร | 10230
 tags: same-name-once, road-same-as-district, deep-soi, no-prefixes
-warn: ambiguous-location
 ---
 [[N:วาสนา]] [[P:0899071284]] [[A:58/4 ซ.ลาดพร้าว 101 แยก 42 ถ.ลาดพร้าว]] [[D:ลาดพร้าว]] [[V:กรุงเทพ]] [[Z:10230]]
 ===
@@ -919,7 +914,6 @@ tags: condo, mrt, sub-soi, bubbles
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: same-name-once, office, airport, no-person
-warn: ambiguous-location
 ---
 [[N:บจก.สกายไลน์ เอวิเอชั่น ซัพพอร์ต]]
 [[A:อาคารคลังสินค้า 3 ห้อง 214 เลขที่ 222 ถ.วิภาวดีรังสิต]] [[D:ดอนเมือง]] [[V:กรุงเทพมหานคร]] [[Z:10210]]
@@ -1006,7 +1000,6 @@ tags: upcountry, townhouse, typo-subdistrict, khlong-numbering
 ===
 loc: บางคอแหลม | บางคอแหลม | กรุงเทพมหานคร | 10120
 tags: condo, riverside, same-name-once, alias, deep-soi
-warn: ambiguous-location
 ---
 [[N:K.Tarn]]
 [[A:ริเวอร์ไซด์ เรสซิเดนซ์ ชั้น 31 ห้อง 3109 ซ.เจริญกรุง 107 แยก 3 ถ.เจริญกรุง]] [[D:บางคอแหลม]] [[V:Bangkok]] [[Z:10120]]

@@ -23,7 +23,6 @@ tags: district-first-bare, alias, landmark, name-last
 ===
 loc: เนินมะปราง | เนินมะปราง | พิษณุโลก | 65190
 tags: same-name-once, no-subdistrict, multiline, nickname-only, name-last
-warn: ambiguous-location
 ---
 [[D:เนินมะปราง]] [[V:พิษณุโลก]] [[Z:65190]]
 [[A:45 หมู่ 1 ถ.พิษณุโลก-หล่มสัก]]
@@ -32,7 +31,6 @@ warn: ambiguous-location
 ===
 loc: หนองโดน | หนองโดน | สระบุรี | 18190
 tags: institution, dash-separator, no-subdistrict, landline, name-last
-warn: ambiguous-location
 ---
 [[D:อ.หนองโดน]] [[V:จ.สระบุรี]] [[Z:18190]] - [[A:โรงเรียนหนองโดนวิทยา ม.3]] - [[P:036-379-215]] - [[N:ครูอัญชลี]]
 ===
@@ -93,7 +91,6 @@ tags: temple, admin-first, landmark, name-after-place
 ===
 loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: same-name-once, alias, dash-lines, name-last, multiline
-warn: ambiguous-location
 ---
 [[D:บางซื่อ]] [[Z:10800]] [[V:กทม]]
 —
@@ -104,7 +101,6 @@ warn: ambiguous-location
 ===
 loc: ยางสีสุราช | ยางสีสุราช | มหาสารคาม | 44210
 tags: district-first-bare, same-name-once, no-subdistrict, name-last
-warn: ambiguous-location
 ---
 ส่ง[[D:ยางสีสุราช]]ค่ะ [[V:มหาสารคาม]] [[Z:44210]] [[A:บ้านเลขที่ 140 ม.7 บ้านหนองแวง]] ชื่อ [[N:น้องฝ้าย]] [[P:0629901437]]
 ===
@@ -122,7 +118,6 @@ tags: postcode-first, no-prefix, nickname-only, multiline
 ===
 loc: บึงนาราง | บึงนาราง | พิจิตร | 66130
 tags: pipe-separator, no-subdistrict, landmark, name-before-phone
-warn: ambiguous-location
 ---
 [[D:อ.บึงนาราง]] [[V:พิจิตร]] [[Z:66130]] | [[A:9/9 ม.1 หน้าตลาดบึงนาราง]] | [[N:สมชาย ใจกล้า]] | [[P:0843390271]]
 ===
@@ -324,7 +319,6 @@ tags: shop, no-person, pipe-separator, province-first
 ===
 loc: พนัสนิคม | พนัสนิคม | ชลบุรี | 20140
 tags: same-name-once, no-phone, courier-note, postcode-before-province
-warn: ambiguous-location
 ---
 [[D:พนัสนิคม]] [[Z:20140]] [[V:ชลบุรี]] [[A:บ้านเลขที่ 4/18 ถ.สุขประยูร]] วางหน้าบ้านได้เลยค่ะ ชื่อ [[N:คุณดวงใจ]]
 ===
@@ -402,7 +396,6 @@ tags: phone-first, no-postcode, no-house-number, nickname-only
 ===
 loc: สามพราน | สามพราน | นครปฐม | 73110
 tags: clinic, same-name-once, no-person, dash-separator
-warn: ambiguous-location
 ---
 [[D:สามพราน]] [[V:นครปฐม]] [[Z:73110]] - [[N:คลินิกทันตกรรมยิ้มใสสามพราน]] - [[A:88/14 ถ.เพชรเกษม กม.32]] - [[P:034-311-206]]
 ===
@@ -426,7 +419,6 @@ tags: company, resort, province-first, multiline, contact-person
 ===
 loc: บ้านลาด | บ้านลาด | เพชรบุรี | 76150
 tags: same-name-once, no-postcode, chat-noise, nickname-only
-warn: ambiguous-location
 ---
 ขอเปลี่ยนที่อยู่นะคะ ส่ง[[D:บ้านลาด]] [[V:เพชรบุรี]] [[A:ม.4 บ้านเลขที่ 3/2 ตรงข้ามร้านขนมหม้อแกง]] [[N:ฝน]] [[P:0629917735]] ค่าา
 ===
@@ -677,7 +669,6 @@ tags: district-first-bare, no-phone, no-house-number, name-last
 ===
 loc: ห้วยแถลง | ห้วยแถลง | นครราชสีมา | 30240
 tags: same-name-once, alias, postcode-first, nickname-only
-warn: ambiguous-location
 ---
 [[Z:30240]] [[D:ห้วยแถลง]] [[V:โคราช]] [[A:166 ถ.มิตรภาพ ร้านข้าวมันไก่ข้างธนาคาร]] [[P:0893370246]] [[N:เจ๊แมว]]
 ===
@@ -795,7 +786,6 @@ tags: postcode-first, en-dash-separator, no-province, name-last
 ===
 loc: นครไทย | นครไทย | พิษณุโลก | 65120
 tags: same-name-once, school, contact-person, admin-first
-warn: ambiguous-location
 ---
 [[D:นครไทย]] [[V:พิษณุโลก]] [[Z:65120]] [[N:โรงเรียนนครไทยพัฒนา ครูวิไลวรรณ]] [[A:ถ.ศรีอินทราทิตย์]] [[P:0614427738]]
 ===

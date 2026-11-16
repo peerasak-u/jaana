@@ -149,7 +149,6 @@ tags: neighbour-shop, nickname-only, landmark, no-prefix
 ===
 loc: ดุสิต | ดุสิต | กรุงเทพมหานคร | 10300
 tags: colleague, rank, no-subdistrict, alias, army
-warn: ambiguous-location
 ---
 ฝากส่งให้เพื่อนร่วมงานค่ะ ชื่อ [[N:จ.ส.อ.ประเสริฐ ใจมั่น]]
 [[A:กองพันทหารสื่อสาร ถ.ทหาร]] [[D:ดุสิต]] [[V:กทม.]] [[Z:10300]]
@@ -264,7 +263,6 @@ tags: homestay-owner, sentence-name, no-postcode, no-prefix
 ===
 loc: สารภี | สารภี | เชียงใหม่ | 50140
 tags: neighbour-shop, northern-dialect, no-phone, single-name-as-district
-warn: ambiguous-location
 ---
 ฝากไว้ร้านตัดผมอ้ายแสงเน้อเจ้า บ้านบ่มีคน
 ผู้รับ [[N:อ้ายแสง]]
@@ -401,7 +399,6 @@ tags: office, housekeeping-proxy, alias, building
 ===
 loc: เปือยน้อย | เปือยน้อย | ขอนแก่น | 40340
 tags: org-and-person-joined, dialect, single-name-as-district, no-newline
-warn: ambiguous-location
 ---
 ส่งให้[[N:หมอแอ๋ว อนามัยเปือยน้อย]]เด้อ หมอรับแทนให้ได้ [[A:ม.1]] [[D:เปือยน้อย]] [[V:ขอนแก่น]] [[Z:40340]] [[P:0897350216]]
 ===
@@ -594,7 +591,6 @@ tags: colleague, rank, navy-base, same-name-sub-district
 ===
 loc: ยะรัง | ยะรัง | ปัตตานี | 94160
 tags: neighbour-shop, single-name-as-district, landmark
-warn: ambiguous-location
 ---
 ผู้รับแทน [[N:แบเลาะ]]
 [[A:ร้านน้ำชาแบเลาะ 12 ม.3 ใกล้มัสยิดกลาง]] [[D:ยะรัง]] [[V:ปัตตานี]] [[Z:94160]]
@@ -704,7 +700,6 @@ tags: government-office, formal, alias, landline
 ===
 loc: ทวีวัฒนา | ทวีวัฒนา | กรุงเทพมหานคร | 10170
 tags: facebook-name, shop-display-name, single-name-as-district, alias, road-with-place
-warn: ambiguous-location
 ---
 ส่งตามนี้เลยค่ะ ชื่อเฟสก็ได้ [[N:Nam Wan Shop'z]]
 [[A:55/88 มบ.พฤกษา 11 ถ.ทวีวัฒนา]] [[D:ทวีวัฒนา]] [[V:กทม]] [[Z:10170]] [[P:0952278841]]
@@ -928,7 +923,6 @@ tags: hospital, colleague, name-after-address, one-line, amphoe-mueang
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: org-with-contact, slash-joined, rice-mill, single-name-as-district, one-line
-warn: ambiguous-location
 ---
 [[N:โรงสีไฟสหกิจ / เฮียหมง]] [[A:23 ม.1]] [[D:ลาดหลุมแก้ว]] [[V:ปทุมธานี]] [[Z:12140]] [[P:0816608723]]
 ===

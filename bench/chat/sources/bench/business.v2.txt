@@ -263,7 +263,6 @@ tags: tailor-shop, numbered-list, nickname-in-brackets, postcode-label
 ===
 loc: รัตนบุรี | รัตนบุรี | สุรินทร์ | 32130
 tags: gold-shop, one-line, person-apart, name-last, same-name-once, no-subdistrict
-warn: ambiguous-location
 ---
 ส่ง [[A:ห้างทองแม่ทองสุก 27 ถ.ศรีรัตน์]] [[D:รัตนบุรี]] [[V:สุรินทร์]] [[Z:32130]] [[N:เฮียหมง]] [[P:044-599-108]]
 ===
@@ -301,7 +300,6 @@ tags: furniture-shop, payment-note, typo-subdistrict, typo-province, typo-label,
 ===
 loc: หนองบ่มกล้วย | บ้านไร่ | อุทัยธานี | 61180
 tags: partnership, slash-separated, no-subdistrict, landline, no-person
-warn: ambiguous-location
 ---
 [[N:หจก.รวมโชคเกษตรภัณฑ์]] / [[A:66 ม.3]] / [[D:อ.บ้านไร่]] / [[V:อุทัยธานี]] [[Z:61180]] / [[P:056-539-247]]
 ===

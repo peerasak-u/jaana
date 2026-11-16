@@ -256,7 +256,6 @@ tags: army, conscript, proxy-buyer, buyer-phone, unit, muang
 ===
 loc: บางปะกอก | ราษฎร์บูรณะ | กรุงเทพมหานคร | 10140
 tags: school, teacher, class-in-brackets, typo-district, no-subdistrict, alias
-warn: ambiguous-location
 ---
 ส่งที่โรงเรียนลูกค่ะ ฝากครูประจำชั้น
 [[N:ครูมาลี (ป.4/2)]]
@@ -286,7 +285,6 @@ tags: hospital, patient, kinship, typo-province, no-postcode, proxy-phone
 ===
 loc: สองพี่น้อง | สองพี่น้อง | สุพรรณบุรี | 72110
 tags: district-office, org-only, same-name-once, no-phone, oneline
-warn: ambiguous-location
 ---
 [[N:ที่ว่าการอำเภอสองพี่น้อง งานทะเบียน]] [[A:ถ.มาลัยแมน]] [[D:สองพี่น้อง]] [[V:สุพรรณบุรี]] [[Z:72110]]
 ===

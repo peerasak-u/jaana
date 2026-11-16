@@ -51,7 +51,6 @@ tags: thai-digits-phone, amphoe-mueang, village-abbrev
 ===
 loc: อุทัย | อุทัย | พระนครศรีอยุธยา | 13210
 tags: same-name-once, no-subdistrict, alias, road
-warn: ambiguous-location
 ---
 [[N:คุณมาลัย ทองเหลือง]] [[P:089-201-7765]] [[A:12/7 ม.3 ถ.โรจนะ]] [[D:อุทัย]] [[V:อยุธยา]] [[Z:13210]]
 ===
@@ -97,7 +96,6 @@ tags: typo-province, name-last
 ===
 loc: ท่าคล้อ | เบญจลักษ์ | ศรีสะเกษ | 33110
 tags: government, department, no-subdistrict, landline
-warn: ambiguous-location
 ---
 [[N:องค์การบริหารส่วนตำบลท่าคล้อ (กองคลัง)]] [[D:อ.เบญจลักษ์]] [[V:จ.ศรีสะเกษ]] [[Z:33110]] โทร [[P:045-826-117]]
 ===
@@ -118,7 +116,6 @@ tags: phone-first, full-prefix-words, moo-thi
 ===
 loc: หนองข่า | เกษตรสมบูรณ์ | ชัยภูมิ | 36120
 tags: typo-province, no-subdistrict, emoji, name-late
-warn: ambiguous-location
 ---
 ที่อยู่นะคะ👇 [[A:47 ม.5 บ้านหนองข่า]] [[D:เกษตรสมบูรณ์]] [[V:ไชยภูมิ]] [[Z:36120]] [[N:ป้าบัวผัน]] [[P:0631187429]]
 ===
@@ -279,7 +276,6 @@ tags: proxy, landline, two-phones, lead-in
 ===
 loc: วังหิน | วังหิน | ศรีสะเกษ | 33270
 tags: same-name-once, no-subdistrict, payment-note
-warn: ambiguous-location
 ---
 [[A:61 ม.2]] [[D:วังหิน]] [[V:ศรีสะเกษ]] [[Z:33270]] [[N:สมพร]] [[P:0880214976]] ปลายทางค่ะ
 ===
@@ -340,7 +336,6 @@ tags: typo-province, no-postcode, no-prefix
 ===
 loc: ประทาย | ประทาย | นครราชสีมา | 30180
 tags: same-name-once, alias, road
-warn: ambiguous-location
 ---
 [[N:ชัยวัฒน์]] [[P:0869914028]] [[A:142 ม.1 ถ.ประทาย-พุทไธสง]] [[D:ประทาย]] [[V:โคราช]] [[Z:30180]]
 ===
@@ -476,7 +471,6 @@ tags: name-split-by-phone, edit, no-prefix
 ===
 loc: โพธิ์ตาก | โพธิ์ตาก | หนองคาย | 43130
 tags: same-name-once, no-subdistrict, thai-digits-postcode
-warn: ambiguous-location
 ---
 [[N:นางสมหวัง โคตรมี]] [[A:24 ม.7]] [[D:อ.โพธิ์ตาก]] [[V:จ.หนองคาย]] [[Z:๔๓๑๓๐]] [[P:0807721946]]
 ===
@@ -522,7 +516,6 @@ tags: factory, no-person, road-km, subdistrict-equals-road-name
 ===
 loc: สามเงา | สามเงา | ตาก | 63130
 tags: same-name-once, no-name, very-short
-warn: ambiguous-location
 ---
 [[A:42 ม.3]] [[D:สามเงา]] [[V:ตาก]] [[Z:63130]] [[P:0853317729]]
 ===

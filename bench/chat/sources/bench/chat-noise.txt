@@ -21,7 +21,6 @@ CF 3 ชิ้นค่ะ เบอร์ 12 เบอร์ 15 เบอร์
 ===
 loc: นบพิตำ | นบพิตำ | นครศรีธรรมราช | 80160
 tags: alias, no-subdistrict, order-items, cod, no-prefix
-warn: ambiguous-location
 ---
 แอดครับ ผมเอารองเท้าเบอร์ 42 สีดำ 1 คู่ครับ
 ส่ง [[N:นายอดิศักดิ์ ชูแก้ว]] [[A:88 ม.5]] [[D:นบพิตำ]] [[V:นครศรีฯ]] [[Z:80160]] [[P:0816630452]]
@@ -363,7 +362,6 @@ tags: alias, phone-before-address, cod
 ===
 loc: มะเฟือง | พุทไธสง | บุรีรัมย์ | 31120
 tags: no-subdistrict, live-selling, title-name, village
-warn: ambiguous-location
 ---
 แม่ค้าคะ ชุดผ้าไทยที่ไลฟ์เมื่อคืน ตัวที่ 7 กับ 12 ค่ะ
 ส่ง [[N:ครูจิราภรณ์]] [[A:62 ม.9 บ้านมะเฟือง]] [[D:อ.พุทไธสง]] [[V:บุรีรัมย์]] [[Z:31120]]
@@ -486,7 +484,6 @@ tags: sticker-placeholder, alias, short-district, older-buyer
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: company, contact-person, alias, same-name-once, urgent, landline
-warn: ambiguous-location
 ---
 พรุ่งนี้ส่งทันไหมคะ ต้องใช้งานวันศุกร์ 🙏🙏
 ป้ายไวนิล 2x1 เมตร 3 แผ่น ตามไฟล์ค่ะ
@@ -519,7 +516,6 @@ tags: comma-separated, no-newline, order-after-address
 ===
 loc: เขาพนม | เขาพนม | กระบี่ | 81140
 tags: same-name-once, no-subdistrict, delivery-instruction, clean
-warn: ambiguous-location
 ---
 เอาเมล็ดกาแฟโรบัสต้าคั่วเข้ม 2 ถุงครับ
 [[N:อนุชา หมัดหลี]] [[A:9/5 ม.1]] [[D:เขาพนม]] [[V:กระบี่]] [[Z:81140]] [[P:0927418806]]
@@ -646,7 +642,6 @@ tags: glued, no-spaces, same-name-sub-district, cod, very-messy
 ===
 loc: หนองหญ้าปล้อง | หนองหญ้าปล้อง | เพชรบุรี | 76160
 tags: same-name-once, no-prefix, older-buyer, cod
-warn: ambiguous-location
 ---
 น้องคะ เอาพัดลมตั้งพื้น 16 นิ้ว 2 ตัว ป้าไม่มีที่โอนนะ ปลายทาง
 [[N:ป้าละเอียด]] [[A:21 ม.3]] [[D:หนองหญ้าปล้อง]] [[V:เพชรบุรี]] [[Z:76160]]
@@ -706,7 +701,6 @@ CF ค่ะ เซ็ตหม้อสแตนเลส 5 ใบ 1 เซ็�
 ===
 loc: บ้านสร้าง | บ้านสร้าง | ปราจีนบุรี | 25150
 tags: alias, same-name-once, no-newline, phone-before-address
-warn: ambiguous-location
 ---
 เอาเสื้อกั๊กสะท้อนแสง 10 ตัวค่ะ [[N:ศิริพร]] [[P:0861174520]] [[A:22/1 ม.9]] [[D:บ้านสร้าง]] [[V:ปราจีน]] [[Z:25150]] โอนแล้วนะคะ
 ===
@@ -836,7 +830,6 @@ tags: alias, instruction-inside-address, village, security-gate
 ===
 loc: ลานสกา | ลานสกา | นครศรีธรรมราช | 80230
 tags: post-office-pickup, place-name-in-detail, no-subdistrict, phone-before-address
-warn: ambiguous-location
 ---
 ขอส่งแบบไปรับที่ไปรษณีย์ได้มั้ยคะ บ้านอยู่ในสวนลึก
 [[N:อรอุมา ปานแก้ว]] [[P:0612204458]]

@@ -219,7 +219,6 @@ tags: temple, monk-title, organisation-with-person, phone-owner-note, no-house-n
 ===
 loc: หน้าถ้ำ | เมืองยะลา | ยะลา | 95000
 tags: numbered, no-labels, no-subdistrict, place-in-road, comma-separated, muang-short
-warn: ambiguous-location
 ---
 1. [[N:นูรีซัน สาและ]]
 2. [[P:089 465 2017]]

@@ -9,7 +9,6 @@ tags: school, org-with-contact-same-line, multiline
 ===
 loc: ปากพะยูน | ปากพะยูน | พัทลุง | 93120
 tags: hospital, department, landline, no-subdistrict, org-name-contains-district
-warn: ambiguous-location
 ---
 ขอใบเสนอราคาก่อนได้มั้ยคะ ถ้าโอเคส่งตามนี้เลย
 [[N:โรงพยาบาลปากพะยูน งานพัสดุ]]
@@ -68,7 +67,6 @@ tags: hospital, ward, person-separate-from-org, bracket-job, emoji
 ===
 loc: พรานกระต่าย | พรานกระต่าย | กำแพงเพชร | 62110
 tags: government, form-labels, org-name-contains-district, same-name-once, no-subdistrict
-warn: ambiguous-location
 ---
 ชื่อผู้รับ: [[N:สำนักงานสาธารณสุขอำเภอพรานกระต่าย]]
 ที่อยู่: [[A:ถ.พหลโยธิน]] [[D:พรานกระต่าย]] [[V:กำแพงเพชร]] [[Z:62110]]
@@ -294,7 +292,6 @@ tags: government, org-name-contains-district, no-district, oneline
 ===
 loc: ไทรงาม | ไทรงาม | กำแพงเพชร | 62150
 tags: school, name-phone-first-line, same-name-once, no-prefixes, teacher-nickname
-warn: ambiguous-location
 ---
 [[N:ครูวันเพ็ญ]] [[P:0857742091]]
 [[A:รร.ไทรงามพิทยาคม 123 ม.1]] [[D:ไทรงาม]] [[V:กำแพงเพชร]] [[Z:62150]]
@@ -409,7 +406,6 @@ tags: dormitory, spaced-prefix, alias, delivery-instruction, name-after-address,
 ===
 loc: สระสี่มุม | กำแพงแสน | นครปฐม | 73140
 tags: university, title-academic, district-only-in-campus-name, no-subdistrict, no-district, landline
-warn: ambiguous-location
 ---
 [[N:ผศ.ดร.วรเชษฐ์ อินทร์แก้ว]]
 [[A:ภาควิชาพืชไร่ คณะเกษตร

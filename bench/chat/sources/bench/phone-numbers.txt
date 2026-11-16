@@ -66,7 +66,6 @@ tags: school, contact-person, landline, two-phones
 ===
 loc: ไชโย | ไชโย | อ่างทอง | 14140
 tags: marketplace-copy, plus66-paren, comma-separated, district-only
-warn: ambiguous-location
 ---
 [[N:พรทิพย์ คงสมบูรณ์]] | [[P:(+66) 92 447 3018]]
 [[A:33/1 หมู่ 1 ถนนสายเอเชีย]], [[D:ไชโย]], [[V:อ่างทอง]], [[Z:14140]]
@@ -192,7 +191,6 @@ tags: clinic, no-person, landline, two-phones
 ===
 loc: โพธิ์ตาก | โพธิ์ตาก | หนองคาย | 43130
 tags: no-name, no-subdistrict, short, phone-last
-warn: ambiguous-location
 ---
 [[A:7 ม.2]] [[D:โพธิ์ตาก]] [[V:หนองคาย]] [[Z:43130]] [[P:0882541170]]
 ===
@@ -276,7 +274,6 @@ tags: alias, plus66-dashed, title
 ===
 loc: สองแพรก | เมืองพังงา | พังงา | 82000
 tags: government, contact-person, landline, extension, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:อบต.สองแพรก (กองคลัง คุณสุภาพร)]]
 [[A:ม.3]] [[D:อ.เมือง]] [[V:จ.พังงา]] [[Z:82000]]
@@ -508,7 +505,6 @@ tags: phone-correction, asterisk-correction
 ===
 loc: โนนสูง | โนนสูง | นครราชสีมา | 30160
 tags: alias, plus66-glued, district-only
-warn: ambiguous-location
 ---
 [[N:สุริยา ทองนาค]] [[P:+66928801346]] [[A:180 ม.1 ถ.มิตรภาพ]] [[D:โนนสูง]] [[V:โคราช]] [[Z:30160]]
 ===
@@ -716,7 +712,6 @@ tags: bank-account, payment-note, deep-soi
 ===
 loc: บางแพ | บางแพ | ราชบุรี | 70160
 tags: plus66-dashed, district-only, market
-warn: ambiguous-location
 ---
 [[N:ทวีศักดิ์ ฉิมพลี]] [[A:7/7 ม.2 ตลาดบางแพ]] [[D:บางแพ]] [[V:ราชบุรี]] [[Z:70160]] [[P:+66 8-9021-4476]]
 ===

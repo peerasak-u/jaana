@@ -192,7 +192,6 @@ tags: oneline, kinship-name, label-glued, landmark, no-province
 ===
 loc: สามโคก | สามโคก | ปทุมธานี | 12160
 tags: same-name-once, no-prefix, name-after-address, housing-estate, oneline
-warn: ambiguous-location
 ---
 [[A:22/7 ม.3 หมู่บ้านริมน้ำ]] [[D:สามโคก]] [[V:ปทุมธานี]][[Z:12160]] [[N:อรวรรณ]] [[P:0632209418]]
 ===
@@ -212,7 +211,6 @@ tags: shop, no-person, shophouse, glued-postcode, alias, oneline
 ===
 loc: บางพรม | ตลิ่งชัน | กรุงเทพมหานคร | 10170
 tags: lead-in, no-subdistrict, housing-estate, alias, multiline
-warn: ambiguous-location
 ---
 ที่อยู่ค่า
 [[N:มยุรี สายสุวรรณ]]
@@ -280,7 +278,6 @@ tags: chat-bubbles, condo, glued-floor, late-phone, amphoe-mueang
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: oneline, condo, same-name-once, english-building, alias
-warn: ambiguous-location
 ---
 ส่ง [[N:คุณธนกร ศรีเมือง]] [[A:The Verge Sukhumvit 4 ห้อง 1203 ซ.สุขุมวิท 4]] [[D:คลองเตย]] [[V:กทม]][[Z:10110]]ครับ [[P:0952278841]]
 ===

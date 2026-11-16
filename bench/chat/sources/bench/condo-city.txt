@@ -105,7 +105,6 @@ tags: dormitory, name-last, multiline
 ===
 loc: ไทรใหญ่ | ไทรน้อย | นนทบุรี | 11150
 tags: housing-estate, no-subdistrict, alias, name-last, oneline
-warn: ambiguous-location
 ---
 [[A:บ้านเลขที่ 77/301 หมู่บ้านพฤกษ์ลดา ซ.12 ถ.ไทรน้อย-ราษฎร์นิยม]] [[D:อ.ไทรน้อย]] [[V:นนท์]] [[Z:11150]] [[N:พี่กุ้ง]] เบอร์ [[P:0813308842]]
 ===
@@ -216,7 +215,6 @@ Thanks!
 ===
 loc: บางกรวย | บางกรวย | นนทบุรี | 11130
 tags: condo, no-name, same-name-once, oneline
-warn: ambiguous-location
 ---
 ส่ง [[A:45/12 ม.6 ซ.วัดชลอ คอนโดพลัมวิลล์ ตึก3 ห้อง 309]] [[D:บางกรวย]] [[V:นนทบุรี]] [[Z:11130]] โทร [[P:0614458832]]
 ===
@@ -384,7 +382,6 @@ Tel.[[P:0623349018]]
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: company, organisation, office-building, same-name-once, alias, oneline
-warn: ambiguous-location
 ---
 ส่ง [[N:บริษัท ซีวิค ลิงก์ จำกัด]] [[A:อาคารริมคลองเพลส ชั้น 5 ห้อง 502 ถ.พระราม 4]] [[D:คลองเตย]] [[V:กรุงเทพฯ]] [[Z:10110]] เบอร์ออฟฟิศ [[P:02-012-6630]]
 ===
@@ -608,7 +605,6 @@ tags: condo, space-inside-name, no-province, multiline
 ===
 loc: มีนบุรี | มีนบุรี | กรุงเทพมหานคร | 10510
 tags: market-stall, shop, organisation, same-name-once, courier-note, alias
-warn: ambiguous-location
 ---
 [[N:ร้านเจ๊ใหญ่ผ้าม่าน]] [[A:แผง C-23 ตลาดสุวินทวงศ์ซิตี้ ถ.สุวินทวงศ์]] [[D:มีนบุรี]] [[V:กทม]] [[Z:10510]] โทร [[P:086-339-1172]] ส่งช่วงเช้านะร้านเปิด 8 โมง
 ===
@@ -707,7 +703,6 @@ tags: house, typo-province, no-district, family, short
 ===
 loc: สามง่าม | สามง่าม | พิจิตร | 66140
 tags: house, same-name-once, road-with-place-names, short
-warn: ambiguous-location
 ---
 ส่ง [[N:คุณจารุวรรณ]] [[A:43/2 ม.1 ถ.สามง่าม-พิจิตร]] [[D:สามง่าม]] [[V:พิจิตร]] [[Z:66140]] [[P:0611128893]]
 ===

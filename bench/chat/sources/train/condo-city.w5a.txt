@@ -11,7 +11,6 @@ tags: multiline, condo, building-first, a-linebreak
 ===
 loc: ตลาดพลู | ธนบุรี | กรุงเทพมหานคร | 10600
 tags: oneline, apartment, deep-soi, no-subdistrict, no-prefix, alias, particle
-warn: ambiguous-location
 ---
 [[N:ธีรวัฒน์]] [[P:0926671804]] [[A:อพาร์ทเม้นท์ศรีสุขเพลส ห้อง 305 เลขที่ 19/7 ซ.เทอดไท 33 แยก 4]] [[D:ธนบุรี]] [[V:กทม]] [[Z:10600]] ครับ
 ===
@@ -47,7 +46,6 @@ tags: thai-digits, multiline, older-buyer, housing-estate, road-no-prefix
 ===
 loc: คันนายาว | คันนายาว | กรุงเทพมหานคร | 10230
 tags: oneline, housing-estate, same-name-once, alias, kinship-name, address-first, road-km
-warn: ambiguous-location
 ---
 [[A:89/14 ม.สิรินเฮ้าส์ รามอินทรา กม.8]] [[D:คันนายาว]] [[V:กทม.]] [[Z:10230]] ส่งให้[[N:พี่หนึ่ง]]นะครับ [[P:095-118-2347]]
 ===
@@ -66,7 +64,6 @@ tags: oneline, nickname-bracket, condo, place-name-in-building, deep-soi, no-pro
 ===
 loc: ลาดพร้าว | ลาดพร้าว | กรุงเทพมหานคร | 10230
 tags: multiline, dorm, lead-in, emoji, same-name-once, no-postcode, phone-spaces, sub-soi
-warn: ambiguous-location
 ---
 ที่อยู่จ้า 👇
 [[N:ศุภชัย ทองประเสริฐ]]
@@ -194,7 +191,6 @@ tags: rank-title, wrong-prefix-bkk, same-name-twice, alias, oneline, housing-est
 ===
 loc: หนองจอก | หนองจอก | กรุงเทพมหานคร | 10530
 tags: short, flat, place-name-in-building, same-name-once, no-province, nickname-only
-warn: ambiguous-location
 ---
 ส่ง [[A:แฟลตเคหะหนองจอก อาคาร 7 ห้อง 305]] [[D:หนองจอก]] [[Z:10530]] [[N:อ้อย]] [[P:0952047713]]
 ===
@@ -309,7 +305,6 @@ tags: condo, nickname-bracket, no-prefix, no-province, courier-preference, multi
 ===
 loc: ลำลูกกา | ลำลูกกา | ปทุมธานี | 12150
 tags: oneline, same-name-once, place-name-in-road, housing-estate, miss-title
-warn: ambiguous-location
 ---
 [[N:น.ส.เบญจวรรณ แสงสุข]] [[A:79/310 หมู่บ้านชลลดา คลอง 6 ถ.ลำลูกกา]] [[D:ลำลูกกา]] [[V:ปทุมธานี]] [[Z:12150]] [[P:0852216340]]
 ===
@@ -386,7 +381,6 @@ tel [[P:0937701652]]
 ===
 loc: บ่อทอง | บ่อทอง | ชลบุรี | 20270
 tags: apartment, same-name-once, place-name-in-building, phone-first-line, upcountry-town
-warn: ambiguous-location
 ---
 [[N:นายวีระ แก้วกล้า]] โทร.[[P:0831126670]]
 อยู่ [[A:อพาร์ทเม้นท์บ่อทองเพลส ห้อง 12 เลขที่ 9/4 ม.1]] [[D:บ่อทอง]] [[V:ชลบุรี]] [[Z:20270]]

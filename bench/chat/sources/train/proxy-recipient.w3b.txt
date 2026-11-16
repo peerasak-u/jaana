@@ -129,7 +129,6 @@ tags: proxy-neighbour, two-phones, buyer-phone-after, kinship-name
 ===
 loc: กะเปอร์ | กะเปอร์ | ระนอง | 85120
 tags: glued, kinship-name, same-name-once, postcode-glued, proxy-uncle
-warn: ambiguous-location
 ---
 ส่งให้ลุงครับ [[N:ลุงจ่อย]][[P:0857126638]] [[A:ม.2]] [[D:กะเปอร์]] [[V:ระนอง]][[Z:85120]]
 ===
@@ -424,7 +423,6 @@ tags: shop, organisation, no-person, landmark, alias, neighbour-shop
 ===
 loc: หนองไผ่ | หนองไผ่ | เพชรบูรณ์ | 67140
 tags: glued, no-space, kinship-name, same-name-once, particle-glued
-warn: ambiguous-location
 ---
 ส่ง[[N:น้องแบงค์]][[P:0618829047]][[A:บ้านเลขที่55ม.1]][[D:หนองไผ่]][[V:เพชรบูรณ์]][[Z:67140]]ครับ
 ===

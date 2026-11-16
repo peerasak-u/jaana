@@ -211,7 +211,6 @@ tags: farm, no-cue-org, rural
 ===
 loc: สามขา | กุฉินารายณ์ | กาฬสินธุ์ | 46110
 tags: shop, no-person, no-subdistrict, typo-province
-warn: ambiguous-location
 ---
 ส่ง [[N:ร้านกุฉินารายณ์ไอที]] ครับ [[A:72 ถ.ถีนานนท์]] [[D:อ.กุฉินารายณ์]] [[V:กาฬสินธ์]] [[Z:46110]]
 ===
@@ -300,7 +299,6 @@ tags: shop, no-person, rural, no-postcode
 ===
 loc: บ้านเดื่อ | เกษตรสมบูรณ์ | ชัยภูมิ | 36120
 tags: no-cue-org, mushroom-farm, chat-noise
-warn: ambiguous-location
 ---
 ก้อนเชื้อเห็ด 500 ก้อน ส่งที่
 [[N:เห็ดบ้านเดื่อ ฟาร์มสุข]]
@@ -405,7 +403,6 @@ tags: no-cue-org, tailor, typo-province
 ===
 loc: คลองเตยเหนือ | วัฒนา | กรุงเทพมหานคร | 10110
 tags: english-brand, no-cue-org, condo-city, no-subdistrict, alias
-warn: ambiguous-location
 ---
 [[N:Nails by Ploy]] [[A:Room 204 อาคารไทม์สแควร์ ซ.สุขุมวิท 12]] [[D:เขตวัฒนา]] [[V:กทม.]] [[Z:10110]] [[P:0831129940]]
 ===
@@ -477,7 +474,6 @@ tags: shop, no-person, oneline, courier-note
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: shop, market-stall, bangkok, no-person, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:ร้านเจ๊ติ๋มผลไม้]]
 [[A:ตลาดสีกัน แผง 47 ถ.เทิดราชัน]]
@@ -599,7 +595,6 @@ tags: farm, no-cue-org, rural
 ===
 loc: แม่อาย | แม่อาย | เชียงใหม่ | 50280
 tags: shop, same-name-once, no-person, no-postcode
-warn: ambiguous-location
 ---
 [[N:ร้านส้มสายน้ำผึ้งเจ๊หงษ์]] [[A:120 ม.1 ถ.ฝาง-ท่าตอน]] [[D:แม่อาย]] [[V:เชียงใหม่]] [[P:0899976015]]
 ===
@@ -670,7 +665,6 @@ tags: no-cue-org, coffee-roaster, admin-split-lines
 ===
 loc: โคกศิลา | เจริญศิลป์ | สกลนคร | 47290
 tags: shop, no-person, no-subdistrict, no-phone
-warn: ambiguous-location
 ---
 [[N:ร้านเจริญศิลป์พันธุ์ข้าว]]
 [[A:85 ม.9]]

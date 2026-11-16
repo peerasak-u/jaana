@@ -65,7 +65,6 @@ tags: temple, organisation, prefix-no-dot
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: alias, same-name-once, name-glued-phone, no-subdistrict
-warn: ambiguous-location
 ---
 [[A:14/7ม.2]] [[D:ลาดหลุมแก้ว]] [[V:ปทุม]][[Z:12140]] [[N:มุกดา]][[P:0640218895]]
 ===
@@ -196,7 +195,6 @@ tags: no-province, glued-admin, nickname, name-glued-phone
 ===
 loc: พบพระ | พบพระ | ตาก | 63160
 tags: school, organisation, same-name-once, no-space
-warn: ambiguous-location
 ---
 [[N:รรพบพระวิทยาคม]][[A:ม.1]][[D:พบพระ]][[V:ตาก]][[Z:63160]] [[P:055-508-213]]
 ===
@@ -273,7 +271,6 @@ tags: alias, bangkok, no-space, glued-prefix
 ===
 loc: บางขัน | บางขัน | นครศรีธรรมราช | 80360
 tags: alias, same-name-once, no-subdistrict, name-between-admin-and-phone
-warn: ambiguous-location
 ---
 [[A:76ม.6]] [[D:บางขัน]] [[V:นครศรีฯ]] [[Z:80360]] [[N:สุไลพร]] [[P:0629904516]]
 ===
@@ -583,7 +580,6 @@ tags: school, organisation, no-space, no-phone
 ===
 loc: วัดสิงห์ | วัดสิงห์ | ชัยนาท | 17120
 tags: same-name-once, no-subdistrict, name-between-admin-and-phone
-warn: ambiguous-location
 ---
 [[A:44/2 ม.1]] [[D:วัดสิงห์]] [[V:ชัยนาท]] [[Z:17120]] [[N:สมศรี]] [[P:0849910327]]
 ===
@@ -827,7 +823,6 @@ tags: bangkok, clinic, organisation, no-province
 ===
 loc: บ้านเหลื่อม | บ้านเหลื่อม | นครราชสีมา | 30350
 tags: same-name-once, rural, no-subdistrict, glued-prefix
-warn: ambiguous-location
 ---
 [[N:นายบุญส่ง ทองนอก]] [[A:27ม.4]] [[D:อบ้านเหลื่อม]][[V:จนครราชสีมา]][[Z:30350]] [[P:0849901175]]
 ===

@@ -87,7 +87,6 @@ tags: oneline, phone-first, romanized-moo, courier-note, english-particle
 ===
 loc: ลาดกระบัง | ลาดกระบัง | กรุงเทพมหานคร | 10520
 tags: alias, romanized-admin, dorm, nickname, no-subdistrict
-warn: ambiguous-location
 ---
 hello admin
 pls send to my dorm na
@@ -162,7 +161,6 @@ pls send before 5pm, shop closes 6pm
 ===
 loc: เนินมะปราง | เนินมะปราง | พิษณุโลก | 65190
 tags: oneline, romanized-detail, district-only, no-prefix
-warn: ambiguous-location
 ---
 Hello ka [[N:Ning Kanyarat]] [[A:65 m.9 ban sai yoi]] [[D:เนินมะปราง]] [[V:พิษณุโลก]] [[Z:65190]] tel [[P:0623379014]]
 ===
@@ -252,7 +250,6 @@ tel [[P:083-226-9014]]
 ===
 loc: เคียนซา | เคียนซา | สุราษฎร์ธานี | 84260
 tags: oneline, mixed-script-name, district-only, no-prefix
-warn: ambiguous-location
 ---
 [[N:นาย Somsak Thongkham]] [[A:5 ม.1]] [[D:เคียนซา]] [[V:สุราษฎร์ธานี]] [[Z:84260]] [[P:0897412036]]
 ===
@@ -299,7 +296,6 @@ Contact [[N:Khun Wichai]] [[P:02-312-7745]]
 ===
 loc: ทุ่งครุ | ทุ่งครุ | กรุงเทพมหานคร | 10140
 tags: alias, dorm, english-dorm-name, district-only, oneline
-warn: ambiguous-location
 ---
 ส่ง [[N:Bam]] ค่ะ [[A:หอ U-Place ห้อง 305 ซ.ประชาอุทิศ 45]] [[D:ทุ่งครุ]] [[V:กทม]] [[Z:10140]] tel [[P:0622718845]] ✨
 ===
@@ -482,7 +478,6 @@ Hello!! [[N:Ms. Priya Sharma]] [[A:Golden Town Bangyai, 222/18 Soi 3]] [[S:ต.�
 ===
 loc: บางบัวทอง | บางบัวทอง | นนทบุรี | 11110
 tags: correction, display-name, district-only, abbrev-village
-warn: ambiguous-location
 ---
 แอดคะ ขอเปลี่ยนที่อยู่นะคะ (change address)
 [[N:Nampueng Shop'z]]
@@ -829,7 +824,6 @@ tags: alias, glued, k-honorific, english-village, phone-first
 ===
 loc: ราษฎร์บูรณะ | ราษฎร์บูรณะ | กรุงเทพมหานคร | 10140
 tags: alias, romanized-admin, foreigner, district-only, name-late, plus66
-warn: ambiguous-location
 ---
 Hiii 👋
 [[A:88/77 ซ.สุขสวัสดิ์ 30]]

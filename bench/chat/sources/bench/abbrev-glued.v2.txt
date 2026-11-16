@@ -20,7 +20,6 @@ tags: company, no-dot-prefix, alias, amphoe-mueang
 ===
 loc: หนองสองห้อง | หนองสองห้อง | ขอนแก่น | 40190
 tags: same-name-once, no-subdistrict, plate-code, alias, postcode-glued-province, phone-first-line
-warn: ambiguous-location
 ---
 [[N:ทองใบ ศรีวงศ์]] [[P:0937745210]]
 [[A:9 ม.11 บ.หนองแวง]] [[D:หนองสองห้อง]] [[V:ขก]][[Z:40190]]
@@ -66,7 +65,6 @@ tags: school, no-dot-abbrev, department, plate-code, alias, postcode-glued-provi
 ===
 loc: ลาดยาว | ลาดยาว | นครสวรรค์ | 60150
 tags: same-name-once, no-subdistrict, glued-moo, plate-code, alias, no-prefix
-warn: ambiguous-location
 ---
 [[N:สมจิตร ปั้นทอง]] [[A:3/2หมู่9]] [[D:ลาดยาว]] [[V:นว]] [[Z:60150]] [[P:0629917354]]
 ===
@@ -158,7 +156,6 @@ tags: bangkok, kho-prefix-no-dot, short-district, alias, name-last, particle
 ===
 loc: โคกล่าม | ลำปลายมาศ | บุรีรัมย์ | 31130
 tags: government, no-dot-abbrev, department-bracket, no-subdistrict, postcode-glued-province, landline
-warn: ambiguous-location
 ---
 [[N:อบตโคกล่าม (กองช่าง)]] [[D:อลำปลายมาศ]] [[V:บุรีรัมย์]][[Z:31130]] [[P:044666182]]
 ===
@@ -266,7 +263,6 @@ tags: clinic, bangkok, kho-prefix, alias, landline
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: bangkok, condo, same-name-once, alias, postcode-glued-province, glued-building, phone-before-address
-warn: ambiguous-location
 ---
 [[N:พิมพ์ชนก]] [[P:0927735518]]
 [[A:ห้อง 1204 ตึกB คอนโดเดอะซีเนียร์ ซ.สุขุมวิท 22]] [[D:คลองเตย]] [[V:กทม]][[Z:10110]]
@@ -283,7 +279,6 @@ tags: no-dot-prefix, same-name-twice, alias, particle-glued, postcode-glued-prov
 ===
 loc: แม่ใจ | แม่ใจ | พะเยา | 56130
 tags: same-name-once, no-subdistrict, plate-code, alias, kinship, phone-first
-warn: ambiguous-location
 ---
 [[P:091-447-2385]] [[N:ลุงหนานคำ]]
 [[A:25 ม.4]] [[D:แม่ใจ]] [[V:พย]] [[Z:56130]]

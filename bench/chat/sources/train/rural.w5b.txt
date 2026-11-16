@@ -196,7 +196,6 @@ tags: keyboard-slip, phinthu-prefix, amphoe-mueang, multiline
 ===
 loc: วังเหนือ | วังเหนือ | ลำปาง | 52140
 tags: same-name-once, no-prefix, kinship, northern-dialect
-warn: ambiguous-location
 ---
 [[N:อุ๊ย คำปัน]] [[A:31 หมู่ 1 บ้านทุ่งฮี]] [[D:วังเหนือ]] [[V:ลำปาง]] [[Z:52140]] โทร [[P:0849903315]] ลูกหลานรับแทนได้เจ้า
 ===

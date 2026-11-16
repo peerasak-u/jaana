@@ -100,7 +100,6 @@ tags: proxy-mother, bangkok, alias, condo, relation-in-brackets
 ===
 loc: นายูง | ศรีธาตุ | อุดรธานี | 41230
 tags: proxy-father, call-name, no-subdistrict, alias, buyer-phone-only
-warn: ambiguous-location
 ---
 ส่งพ่อหนูค่ะ [[N:พ่อใหญ่สอน บุญเลิศ]] [[A:56 ม.8 บ้านนายูง]] [[D:อ.ศรีธาตุ]] [[V:อุดร]] [[Z:41230]] พ่อบ่มีเบอร์ ใช้เบอร์หนูเด้อ [[P:0645129908]]
 ===
@@ -529,7 +528,6 @@ tags: proxy-grandmother, northern, kinship-joined, no-phone
 ===
 loc: พลับพลา | โชคชัย | นครราชสีมา | 30190
 tags: proxy-father-in-law, buyer-named-first, alias, no-subdistrict
-warn: ambiguous-location
 ---
 หนูชื่อแนน สั่งให้พ่อสามีค่ะ 0634478201
 ผู้รับ [[N:นายสมควร ปลั่งกลาง]] [[P:0846615537]]
@@ -636,7 +634,6 @@ tags: proxy-grandfather, organisation, mosque, contact-person
 ===
 loc: หนองบัวระเหว | หนองบัวระเหว | ชัยภูมิ | 36250
 tags: proxy-mother, typo-province, same-name-once-district, oneline
-warn: ambiguous-location
 ---
 ส่งให้แม่ [[N:นางบัวลา ชาญกล้า]] [[A:51 ม.1]] [[D:หนองบัวระเหว]] [[V:ไชยภูมิ]] [[Z:36250]] [[P:0846623019]] ขอบคุณจ้า
 ===
@@ -793,7 +790,6 @@ tags: proxy-father, organisation, family-farm, contact-person
 ===
 loc: เม็งราย | พญาเม็งราย | เชียงราย | 57290
 tags: proxy-grandmother, northern, no-subdistrict, two-phones, labelled
-warn: ambiguous-location
 ---
 ผู้รับ: [[N:อุ๊ยจันทร์ดี ทาสม]]
 ที่อยู่: [[A:14 ม.9]] [[D:อ.พญาเม็งราย]] [[V:เชียงราย]] [[Z:57290]]
@@ -889,7 +885,6 @@ tags: proxy-mother, relation-in-brackets, two-phones, labelled, alias
 ===
 loc: เกาะคา | เกาะคา | ลำปาง | 52130
 tags: proxy-grandmother, northern, kinship-joined, same-name-once-district, oneline
-warn: ambiguous-location
 ---
 ส่งให้[[N:แม่อุ๊ยสม]]เจ้า [[A:44 ม.2]] [[D:เกาะคา]] [[V:ลำปาง]] [[Z:52130]] [[P:054-281-660]]
 ===

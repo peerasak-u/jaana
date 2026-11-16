@@ -189,7 +189,6 @@ tags: multiline, foreign-recipient, spouse, alias, phone-owner-note
 ===
 loc: หนองจอก | หนองจอก | กรุงเทพมหานคร | 10530
 tags: oneline, relation-bracket, no-subdistrict, no-province, informal
-warn: ambiguous-location
 ---
 ส่งชื่อ [[N:นายมานพ ดีเลิศ (ผัว)]] นะ [[A:5/18 ม.7 ซ.เลียบวารี 41]] [[D:เขตหนองจอก]] [[Z:10530]] [[P:0876543120]]
 ===
@@ -344,7 +343,6 @@ tags: multiline, in-law, malay-kin-term, relation-bracket, landline, village-fir
 ===
 loc: เชียงม่วน | เชียงม่วน | พะเยา | 56160
 tags: oneline, northern-dialect, grandparent, kin-title, no-subdistrict, no-postcode
-warn: ambiguous-location
 ---
 ส่งหื้อแม่อุ๊ยเจ้า [[N:แม่อุ๊ยคำ ใจปิน]] [[A:บ้านเลขที่ 3 ม.1]] [[D:อ.เชียงม่วน]] [[V:พะเยา]] [[P:0937001284]]
 ===
@@ -406,7 +404,6 @@ tags: oneline, glued, no-spaces, typo-province, alias, in-law
 ===
 loc: เชียงกลาง | เชียงกลาง | น่าน | 55160
 tags: multiline, friend-parent, no-phone, no-subdistrict, buyer-for-friend
-warn: ambiguous-location
 ---
 ส่งให้แม่เพื่อนค่ะ เพื่อนฝากซื้อ
 แม่เพื่อนชื่อ [[N:นางจันทร์ฟอง อินต๊ะ]]
@@ -805,7 +802,6 @@ Send to my sister: [[N:Nong Fah]] [[A:23 Moo 4]] [[S:T.Nam Phon]] [[D:A.Nong Wua
 ===
 loc: ระโนด | ระโนด | สงขลา | 90140
 tags: oneline, shop, relative-shop, org-no-person, no-subdistrict, landline, extension
-warn: ambiguous-location
 ---
 ส่งร้านอาค่ะ [[N:ร้านอาโกวัสดุก่อสร้าง]] [[A:12 ถ.ระโนด-สงขลา]] [[D:อ.ระโนด]] [[V:สงขลา]] [[Z:90140]] [[P:074-391-205]] ต่อ 2
 ===
@@ -992,7 +988,6 @@ tags: oneline, coworker, k-honorific, masked-phone, no-phone, housing-estate
 ===
 loc: ทุ่งกระบือ | ย่านตาขาว | ตรัง | 92140
 tags: multiline, cousin, no-subdistrict, landline, one-field-per-line
-warn: ambiguous-location
 ---
 ส่งให้ลูกพี่ลูกน้องค่ะ
 [[N:นายสุทธิพงษ์ ขาวสะอาด]]

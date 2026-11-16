@@ -129,7 +129,6 @@ tags: org, community-group, moo-only, payment-note, receipt-note
 ===
 loc: สามโคก | สามโคก | ปทุมธานี | 12160
 tags: housing-estate, no-subdistrict, no-prefix, alias, kinship-name, guardhouse, emoji
-warn: ambiguous-location
 ---
 เอาตัวนี้ค่ะ 👉 กางเกงยีนส์ขาม้า เอว 28
 ส่งมาที่ [[A:42/7 หมู่บ้านพรสวรรค์ ซ.3]] [[D:สามโคก]] [[V:ปทุม]] [[Z:12160]]
@@ -241,7 +240,6 @@ tags: payment-note, romanized-name, typo-province, gift-note, emoji, same-name-s
 ===
 loc: บางกรวย | บางกรวย | นนทบุรี | 11130
 tags: order-items, delivery-date, no-subdistrict, no-postcode, delivery-instruction, emoji
-warn: ambiguous-location
 ---
 ขอสั่งเค้กส้ม 2 ปอนด์ค่ะ รับวันเสาร์นะคะ วันเกิดลูกสาว 🎂
 ส่ง [[A:59/31 ถ.บางกรวย-จงถนอม]] [[D:อ.บางกรวย]] [[V:นนทบุรี]]
@@ -426,7 +424,6 @@ tags: no-newline, northern-dialect, kinship-name, village, phone-owner-note
 ===
 loc: บ้านแฮด | บ้านแฮด | ขอนแก่น | 40110
 tags: postcode-first, reordered, no-subdistrict, no-prefix, landmark, nickname, payment-note
-warn: ambiguous-location
 ---
 [[Z:40110]] [[D:บ้านแฮด]] [[V:ขอนแก่น]] นะคะ
 [[A:17/3 ม.1 ใกล้ตลาดนัดวันพุธ]]

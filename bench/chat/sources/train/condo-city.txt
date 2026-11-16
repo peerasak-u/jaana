@@ -159,7 +159,6 @@ tags: housing-estate, road-with-placename, alias, oneline
 ===
 loc: ห้วยสามพาด | ประจักษ์ศิลปาคม | อุดรธานี | 41110
 tags: government, no-subdistrict, alias, office-building, landline
-warn: ambiguous-location
 ---
 [[N:อบต.ห้วยสามพาด (กองคลัง)]]
 [[A:อาคารสำนักงานหลังใหม่ ชั้น 2]]
@@ -249,7 +248,6 @@ tags: housing-estate, typo-province, no-subdistrict-prefix, upcountry
 ===
 loc: หนองจอก | หนองจอก | กรุงเทพมหานคร | 10530
 tags: townhome, same-name-once, bangkok-omitted, no-name
-warn: ambiguous-location
 ---
 ส่งตามนี้ครับ
 [[A:ทาวน์โฮมเลิศนคร 4 เลขที่ 61/44 ถ.เลียบวารี ซ.10]]
@@ -292,7 +290,6 @@ tags: government, contact-person, alias, office-building
 ===
 loc: ดุสิต | ดุสิต | กรุงเทพมหานคร | 10300
 tags: apartment, same-name-once, no-prefix, phone-first, no-province
-warn: ambiguous-location
 ---
 [[P:095-662-1840]]
 [[N:วรเชษฐ์]]
@@ -435,7 +432,6 @@ tags: shop, no-person, no-subdistrict-prefix, no-postcode, oneline, alias
 ===
 loc: ลาดพร้าว | ลาดพร้าว | กรุงเทพมหานคร | 10230
 tags: deep-soi, same-name-once, condo, alias, particle-glued
-warn: ambiguous-location
 ---
 [[N:มายด์]] [[A:ลาดพร้าว วิลล์ คอนโด ห้อง 418 ซ.ลาดพร้าว 71 แยก 9]] [[D:ลาดพร้าว]] [[V:กทม]][[Z:10230]]ค่า [[P:0956628841]]
 ===
@@ -570,7 +566,6 @@ tags: condo, typo-district, deep-soi, alias
 ===
 loc: บ่อเงิน | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: factory-dorm, upcountry-apartment, no-subdistrict, alias
-warn: ambiguous-location
 ---
 ส่ง [[N:นายสมบัติ ไชยวงค์]] [[A:หอพักพนักงาน โรงงานไทยแพ็คกิ้ง ห้อง 2-17]] [[D:ลาดหลุมแก้ว]] [[V:ปทุม]] [[Z:12140]] [[P:0827793304]]
 ===
@@ -627,7 +622,6 @@ tags: housing-estate, same-name-twice, glued-prefix, no-dot-prefix, alias
 ===
 loc: บางเสาธง | บางเสาธง | สมุทรปราการ | 10540
 tags: housing-estate, same-name-once, no-prefix, chat-noise, cod
-warn: ambiguous-location
 ---
 ปลายทางนะคะ 2 ชิ้น
 [[N:วาสนา ปิ่นทอง]]
@@ -766,7 +760,6 @@ tags: townhome, deep-soi, rural-prefix-in-bangkok, alias, particle-glued
 ===
 loc: คลองสวน | บางบ่อ | สมุทรปราการ | 10560
 tags: housing-estate, phone-first, no-name, no-subdistrict
-warn: ambiguous-location
 ---
 [[P:0841269934]]
 [[A:มบ.คลองสวนวิลล่า 14/6 ถ.บางนา-ตราด กม.36]] [[D:อ.บางบ่อ]] [[V:สมุทรปราการ]] [[Z:10560]]
@@ -860,7 +853,6 @@ tags: condo, deep-soi, typo-subdistrict, alias
 ===
 loc: บางคล้า | บางคล้า | ฉะเชิงเทรา | 24110
 tags: upcountry, same-name-once, alias, typo-province-alt, apartment
-warn: ambiguous-location
 ---
 [[N:ปริญญา โชติช่วง]]
 [[A:บางคล้าแมนชั่น ห้อง 9 ถ.เทศบาล 2]]
@@ -882,7 +874,6 @@ tags: shophouse, old-town, shop, no-person, alias
 ===
 loc: ท่าหลวง | ท่าหลวง | ลพบุรี | 15230
 tags: upcountry, same-name-once, no-subdistrict, no-phone-label
-warn: ambiguous-location
 ---
 [[N:สายใจ เพชรดี]] [[A:9/2 ม.1 ตลาดท่าหลวง]] [[D:ท่าหลวง]] [[V:ลพบุรี]] [[Z:15230]] [[P:0807719260]]
 ===
@@ -1035,7 +1026,6 @@ tags: dorm, university-area, proxy, landmark, alias
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: housing-estate, same-name-once, no-prefix, phone-dots, no-name
-warn: ambiguous-location
 ---
 [[A:มบ.ลาดหลุมแก้วนิเวศน์ 12/30]] [[D:ลาดหลุมแก้ว]] [[V:ปทุมธานี]] [[Z:12140]]
 [[P:089.441.7726]]

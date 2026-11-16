@@ -215,7 +215,6 @@ tags: glued, no-spaces, colon-no-space
 ===
 loc: บ่อปลาทอง | ปักธงชัย | นครราชสีมา | 30150
 tags: alias, name-last, no-subdistrict
-warn: ambiguous-location
 ---
 ที่อยู่ : [[A:88 ม.12 บ้านบ่อปลาทอง]] [[D:อ.ปักธงชัย]] [[V:โคราช]] [[Z:30150]]
 เบอร์ : [[P:0885217740]]
@@ -450,7 +449,6 @@ Phone : [[P:+66 95 830 2214]]
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: same-name-once, no-subdistrict, admin-name-in-road
-warn: ambiguous-location
 ---
 ชื่อ: [[N:อรวรรณ เจริญผล]]
 ที่อยู่: [[A:11/4 ม.3 ถ.ลาดหลุมแก้ว-บางภาษี]] [[D:ลาดหลุมแก้ว]] [[V:ปทุมธานี]] [[Z:12140]]
@@ -616,7 +614,6 @@ tags: oneline, condo, same-name-twice, postcode-glued, alias
 ===
 loc: คันนายาว | คันนายาว | กรุงเทพมหานคร | 10230
 tags: no-subdistrict, same-name-once, alias, mobile-label
-warn: ambiguous-location
 ---
 ผู้รับ: [[N:นายภาคิน ศรีทอง]]
 ที่อยู่: [[A:66/9 ซ.รามอินทรา 109]] [[D:เขตคันนายาว]] [[V:กทม.]] [[Z:10230]]
@@ -773,7 +770,6 @@ tags: government, contact-person, landline, admin-name-in-org
 ===
 loc: กาบัง | กาบัง | ยะลา | 95120
 tags: same-name-once, no-prefix, no-subdistrict
-warn: ambiguous-location
 ---
 ชื่อ: [[N:นายมะรอนิง สาและ]]
 ที่อยู่: [[A:41 ม.1]] [[D:กาบัง]] [[V:ยะลา]] [[Z:95120]]

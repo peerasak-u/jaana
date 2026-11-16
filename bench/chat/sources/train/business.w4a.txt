@@ -37,7 +37,6 @@ Tel [[P:+66 89 612 4470]]
 ===
 loc: ระโนด | ระโนด | สงขลา | 90140
 tags: company, tax-id, oneline, same-name-once, landline
-warn: ambiguous-location
 ---
 ขอใบกำกับด้วยครับ [[N:บริษัท ระโนดฟาร์ม อาหารสัตว์ จำกัด]] เลขผู้เสียภาษี 0905558123406 [[A:212 ม.1 ถ.ระโนด-สทิงพระ]] [[D:ระโนด]] [[V:สงขลา]] [[Z:90140]] โทร [[P:074-391-258]]
 ===
@@ -187,7 +186,6 @@ tags: homestay, english-name, romanized-admin, alias
 ===
 loc: บ้านพี้ | บ้านหลวง | น่าน | 55190
 tags: community-enterprise, contact-in-brackets, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:วิสาหกิจชุมชนผ้าทอบ้านพี้ (ป้าบัว)]]
 [[A:31 ม.4]] [[D:อ.บ้านหลวง]] [[V:จ.น่าน]] [[Z:55190]]
@@ -326,7 +324,6 @@ tags: company, legal-form-spaced, department, office-tower, extension
 ===
 loc: นาทม | ทุ่งฝน | อุดรธานี | 41310
 tags: shop, minimal, no-subdistrict, no-postcode, alias, no-prefix
-warn: ambiguous-location
 ---
 [[N:ร้านนาทมการช่าง]] [[A:5 ม.1]] [[D:ทุ่งฝน]] [[V:อุดร]] [[P:0627719043]]
 ===
@@ -413,7 +410,6 @@ tags: shop, bangkok, alias, landmark-after-postcode, landline
 ===
 loc: เนินมะปราง | เนินมะปราง | พิษณุโลก | 65190
 tags: partnership, legal-form-spaced, typo-province, same-name-once, oneline
-warn: ambiguous-location
 ---
 [[N:หจก. เนินมะปราง มะม่วง ส่งออก]] [[A:15 ม.1]] [[D:อ.เนินมะปราง]] [[V:พิศณุโลก]] [[Z:65190]] [[P:0862215873]]
 ===
@@ -629,7 +625,6 @@ tags: partnership, legal-form-spaced, typo-district, bangkok, alias
 ===
 loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: public-company, legal-form-spaced, plant, site-detail-same-line, same-name-once, role-contact
-warn: ambiguous-location
 ---
 [[N:บมจ. บางซื่อ คอนกรีต ซัพพลาย]] [[A:แพลนท์ปูน 2 เลขที่ 1250 ถ.ประชาราษฎร์สาย 2]] [[D:บางซื่อ]] [[V:กรุงเทพฯ]] [[Z:10800]]
 ติดต่อโฟร์แมน [[P:0890047718]] (โทรก่อนเข้า)
@@ -685,7 +680,6 @@ tags: shop, no-prefix, envelope-layout, clean
 ===
 loc: แม่ลาน้อย | แม่ลาน้อย | แม่ฮ่องสอน | 58120
 tags: shop, same-name-once, no-prefix
-warn: ambiguous-location
 ---
 [[N:ร้านแม่ลาน้อยวิทยุ & มือถือ]] [[A:3 ถ.ขุนยวม-แม่สะเรียง]] [[D:แม่ลาน้อย]] [[V:แม่ฮ่องสอน]] [[Z:58120]] [[P:0612290351]]
 ===

@@ -1,7 +1,6 @@
 ===
 loc: ยาง | กันทรารมย์ | ศรีสะเกษ | 33130
 tags: phone-first, name-last, no-subdistrict, multiline
-warn: ambiguous-location
 ---
 [[P:0819274460]]
 [[A:112 ม.7 บ้านยาง]] [[D:อ.กันทรารมย์]] [[V:ศรีสะเกษ]] [[Z:33130]]
@@ -38,7 +37,6 @@ tags: phone-first, landline, shop, no-province, remark-after-phone
 ===
 loc: บางหลวง | เมืองปทุมธานี | ปทุมธานี | 12000
 tags: no-subdistrict, amphoe-mueang, alias, name-last, housing-estate
-warn: ambiguous-location
 ---
 [[A:55/218 หมู่บ้านพฤกษาวิลล์ 3 ซ.12]]
 [[D:อ.เมือง]] [[V:ปทุม]] [[Z:12000]]
@@ -46,7 +44,6 @@ warn: ambiguous-location
 ===
 loc: อินทร์บุรี | อินทร์บุรี | สิงห์บุรี | 16110
 tags: same-name-once, no-postcode, no-prefix, phone-before-address
-warn: ambiguous-location
 ---
 [[N:ลุงเฉลิม]] [[P:0857710348]] [[A:7 ม.1]] [[D:อินทร์บุรี]] [[V:สิงห์บุรี]] ครับ
 ===
@@ -63,7 +60,6 @@ tags: postcode-before-province, phone-last, road-with-place-name
 ===
 loc: บางกระบือ | สามโคก | ปทุมธานี | 12160
 tags: temple, organisation-no-person, no-subdistrict, no-postcode, no-house-number
-warn: ambiguous-location
 ---
 [[N:วัดบางกระบือ]]
 [[A:ม.4]] [[D:อ.สามโคก]] [[V:จ.ปทุมธานี]]
@@ -77,7 +73,6 @@ tags: phone-first, glued, no-space, no-postcode
 ===
 loc: โคกโพธิ์ | โคกโพธิ์ | ปัตตานี | 94120
 tags: district-first, postcode-early, no-province, same-name-once, name-last
-warn: ambiguous-location
 ---
 ส่ง [[D:โคกโพธิ์]] [[Z:94120]] นะคะ
 [[A:บ้านเลขที่ 14 ม.2]]
@@ -117,7 +112,6 @@ tags: phone-first, name-last, split-bubbles, no-prefix
 ===
 loc: บางขุนนนท์ | บางกอกน้อย | กรุงเทพมหานคร | 10700
 tags: company, contact-person, no-subdistrict, postcode-glued, alias, phone-last
-warn: ambiguous-location
 ---
 [[N:บริษัท ทรัพย์ทวีพริ้นติ้ง จำกัด (คุณอ้อม)]]
 [[A:66/9 ถ.จรัญสนิทวงศ์]] [[D:บางกอกน้อย]] [[V:กทม]][[Z:10700]]
@@ -130,7 +124,6 @@ tags: province-first, same-name-twice, slash-separators, address-after-admin
 ===
 loc: บ้านบุ่ง | เมืองพิจิตร | พิจิตร | 66000
 tags: no-subdistrict, no-district, phone-first, postcode-glued, emoji
-warn: ambiguous-location
 ---
 โทร.[[P:095-118-4426]] 👈
 [[N:น.ส.กาญจนา อินทร์แก้ว]]
@@ -163,7 +156,6 @@ tags: labels, address-first, name-last, clean
 ===
 loc: หน้าไม้ | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: partnership, organisation-no-person, no-subdistrict, no-province, extension, road-with-place-name
-warn: ambiguous-location
 ---
 [[N:หจก.ศรีเจริญพลาสติก]] [[A:49 ม.6 ถ.ลาดหลุมแก้ว-บางบัวทอง]] [[D:ลาดหลุมแก้ว]] [[Z:12140]]
 โทร [[P:02-977-1460]] ต่อ 15 แผนกรับของ
@@ -212,7 +204,6 @@ tags: large-to-small, no-prefix, no-postcode, name-last, stray-punctuation, emoj
 ===
 loc: โพนแพง | ม่วงสามสิบ | อุบลราชธานี | 34140
 tags: no-subdistrict, no-province, district-first, village-name, nickname
-warn: ambiguous-location
 ---
 ฝากส่ง [[D:ม่วงสามสิบ]] [[Z:34140]] ค่ะ
 [[A:บ้านโพนแพง ม.2 เลขที่ 61]]
@@ -226,7 +217,6 @@ tags: district-last, afterthought, name-phone-first
 ===
 loc: สนามบิน | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: phone-first, intl-phone, condo, no-subdistrict, no-province
-warn: ambiguous-location
 ---
 [[P:+66 89 774 1203]] [[N:K.แบงค์]] [[A:คอนโดบ้านวิภา ตึก B ห้อง 517 ถ.วิภาวดีรังสิต]] [[D:เขตดอนเมือง]] [[Z:10210]]
 ===
@@ -239,7 +229,6 @@ tags: no-phone, no-postcode, name-last, child-recipient
 ===
 loc: ผาเลือด | ท่าปลา | อุตรดิตถ์ | 53190
 tags: government, organisation-no-person, department-bracket, no-subdistrict, landline
-warn: ambiguous-location
 ---
 [[N:อบต.ผาเลือด (กองช่าง)]]
 [[A:ม.1]] [[D:อ.ท่าปลา]] [[V:อุตรดิตถ์]] [[Z:53190]]
@@ -247,7 +236,6 @@ warn: ambiguous-location
 ===
 loc: สมเด็จ | สมเด็จ | กาฬสินธุ์ | 46150
 tags: phone-first, slash-separators, same-name-once, no-subdistrict, kinship-name
-warn: ambiguous-location
 ---
 [[P:0897015542]] / [[N:ครูวิภาวดี]] / [[A:114 ม.10 ถ.ถีนานนท์]] [[D:อ.สมเด็จ]] [[V:กาฬสินธุ์]] [[Z:46150]]
 ===
@@ -268,7 +256,6 @@ tags: phone-first, company-apart, department-bracket, no-prefix, no-province
 ===
 loc: วัดท่าพระ | บางกอกใหญ่ | กรุงเทพมหานคร | 10600
 tags: no-name, no-subdistrict, alias, courier-note
-warn: ambiguous-location
 ---
 [[A:123/45 ซ.เพชรเกษม 7]] [[D:เขตบางกอกใหญ่]] [[V:กทม.]] [[Z:10600]] โทร [[P:0832245197]] ถึงแล้วโทรนะคะ
 ===
@@ -343,7 +330,6 @@ tags: no-phone, alias, no-prefix, name-last, road-with-place-name
 ===
 loc: บางครุ | พระประแดง | สมุทรปราการ | 10130
 tags: no-subdistrict, no-province, particle-glued, multiline
-warn: ambiguous-location
 ---
 [[N:มะลิ]]ค่ะ
 [[P:0897712034]]
@@ -357,7 +343,6 @@ tags: no-district, name-last, phone-before-name, double-space
 ===
 loc: คันนายาว | คันนายาว | กรุงเทพมหานคร | 10230
 tags: shop, organisation-no-person, phone-first, no-postcode, same-name-once, alias, landmark
-warn: ambiguous-location
 ---
 [[P:0814426690]]
 [[N:ร้านก๋วยเตี๋ยวเรือป้าศรี]] [[A:ปากซอยรามอินทรา 109 ข้างร้านยาง]] [[D:เขตคันนายาว]] [[V:กทม]]
@@ -371,7 +356,6 @@ tags: province-first, reversed-admin, postcode-last-after-detail
 ===
 loc: เวียงตาล | ห้างฉัตร | ลำปาง | 52190
 tags: rural, landmark, no-phone, no-subdistrict, no-postcode, kinship-name, name-last
-warn: ambiguous-location
 ---
 [[A:บ้านเวียงตาล ม.2 บ้านหลังที่ 3 ตรงข้ามโรงเรียน]]
 [[D:ห้างฉัตร]] [[V:ลำปาง]]
@@ -425,7 +409,6 @@ tags: phone-first, alias, no-prefix, no-postcode, oneline, typo-subdistrict, typ
 ===
 loc: คลองพระอุดม | ปากเกร็ด | นนทบุรี | 11120
 tags: district-first, postcode-early, no-subdistrict, no-province, typo-district, emoji
-warn: ambiguous-location
 ---
 ส่ง[[D:ปากเกล็ด]] [[Z:11120]] จ้า 😊
 [[A:47/3 ม.6 ซ.วัดกู้]]
@@ -433,7 +416,6 @@ warn: ambiguous-location
 ===
 loc: จันทรเกษม | จตุจักร | กรุงเทพมหานคร | 10900
 tags: company, contact-person, postcode-first, no-subdistrict, no-province, landline, oneline
-warn: ambiguous-location
 ---
 [[Z:10900]] [[D:จตุจักร]] [[A:1/88 ซ.ลาดพร้าว 26]] [[N:บจก.พีเอสมาร์เก็ตติ้ง (คุณนก)]] [[P:02-513-7740]]
 ===
@@ -444,7 +426,6 @@ tags: province-first, alias, particle-glued, no-postcode, chat-lead-in
 ===
 loc: ทรงธรรม | เมืองกำแพงเพชร | กำแพงเพชร | 62000
 tags: rank-title, no-subdistrict, no-province, full-mueang-district
-warn: ambiguous-location
 ---
 [[N:ร.ต.ท.อดิศักดิ์ มีสุข]]
 [[P:0812279305]]
@@ -452,7 +433,6 @@ warn: ambiguous-location
 ===
 loc: พิบูล | พิบูลมังสาหาร | อุบลราชธานี | 34110
 tags: postcode-first, no-phone, no-subdistrict, alias, religious-title, organisation-in-address
-warn: ambiguous-location
 ---
 [[Z:34110]]
 [[N:แม่ชีบุญมา]]

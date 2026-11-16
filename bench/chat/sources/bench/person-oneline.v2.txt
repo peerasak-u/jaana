@@ -11,7 +11,6 @@ tags: address-first, name-last, label-name, particle
 ===
 loc: ชุมตาบง | ชุมตาบง | นครสวรรค์ | 60150
 tags: same-name-once, no-subdistrict, phone-last, kinship-name
-warn: ambiguous-location
 ---
 [[N:ลุงประสิทธิ์ ทองคำ]] [[A:23 ม.4]] [[D:ชุมตาบง]] [[V:นครสวรรค์]] [[Z:60150]] [[P:0627718450]]
 ===
@@ -167,7 +166,6 @@ tags: typo-province, village, spaced-prefix-dot
 ===
 loc: แม่สอง | ท่าสองยาง | ตาก | 63150
 tags: nickname-bracket, no-subdistrict, courier-request
-warn: ambiguous-location
 ---
 [[N:พรทิพย์ วงค์ใหญ่ (หน่อย)]] [[P:063-991-7402]] [[A:3 ม.4 บ้านแม่สอง]] [[D:อ.ท่าสองยาง]] [[V:จ.ตาก]] [[Z:63150]] ส่งไปรษณีย์ EMS นะคะ
 ===
@@ -183,7 +181,6 @@ tags: typo-province, keyboard-slip, courier-request, stray-punctuation, extra-sp
 ===
 loc: หนองอิเฒ่า | ยางตลาด | กาฬสินธุ์ | 46120
 tags: typo-province, no-subdistrict, child-recipient, phone-owner-note
-warn: ambiguous-location
 ---
 [[A:41 ม.8 บ้านหนองอิเฒ่า]] [[D:อ.ยางตลาด]] [[V:กาฬสินธ์]] [[Z:46120]] [[N:ด.ญ.ปริยากร ภูผา]] [[P:0874451260]] (เบอร์แม่ค่ะ)
 ===

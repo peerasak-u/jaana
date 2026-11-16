@@ -577,7 +577,6 @@ tags: company, contact-apart, multiline, two-phones
 ===
 loc: นวมินทร์ | บึงกุ่ม | กรุงเทพมหานคร | 10240
 tags: company, contact-apart, extension, alias, no-subdistrict
-warn: ambiguous-location
 ---
 [[A:บริษัท นวมินทร์ เมดิคอล ซัพพลาย จำกัด 88/12 ถ.นวมินทร์]] [[D:เขตบึงกุ่ม]] [[V:กทม]] [[Z:10240]]
 แผนกจัดซื้อ (ติดต่อ [[N:คุณเพ็ญศรี]]) [[P:02-379-1180]] ต่อ 25

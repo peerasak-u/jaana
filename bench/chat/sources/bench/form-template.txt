@@ -246,7 +246,6 @@ Email: pimchanok.r@mail.com
 ===
 loc: ป่าชัน | พลับพลาชัย | บุรีรัมย์ | 31250
 tags: form, no-subdistrict, typo-province, no-postcode, glued-particle
-warn: ambiguous-location
 ---
 ชื่อ-สกุล: [[N:นางสาวกาญจนา บุญยืน]]
 ที่อยู่: [[A:66 หมู่ 7 บ้านป่าชัน]] [[D:อ.พลับพลาชัย]] [[V:บุรีรัม]]
@@ -254,7 +253,6 @@ warn: ambiguous-location
 ===
 loc: ละงู | ละงู | สตูล | 91110
 tags: oneline, labels, name-once-admin, no-prefix
-warn: ambiguous-location
 ---
 ชื่อ [[N:ฟาริดา หลีเคราะห์]] ที่อยู่ [[A:19/4 ถ.ละงูพัฒนา]] [[D:ละงู]] [[V:สตูล]] [[Z:91110]] โทร [[P:0629947215]]
 ===
@@ -411,7 +409,6 @@ tags: marketplace-copy, plus66, mall, shop, same-name-sd
 ===
 loc: เต่างอย | เต่างอย | สกลนคร | 47260
 tags: form, same-name-once, no-prefix, rural, typed-on-phone
-warn: ambiguous-location
 ---
 ชื่อ [[N:ป้าบัวลอย มูลสาร]]
 ที่อยู่ [[A:112 ม.8 บ้านนาอ่าง]] [[D:เต่างอย]] [[V:สกลนคร]] [[Z:47260]]
@@ -659,7 +656,6 @@ tags: answer-next-line, no-province, village, messy
 ===
 loc: ท่าหิน | สทิงพระ | สงขลา | 90190
 tags: form, dash-bullets, no-subdistrict, rural
-warn: ambiguous-location
 ---
 - ชื่อ [[N:นายหมัด ดอเลาะ]]
 - ที่อยู่ [[A:8 หมู่ 5 บ้านท่าหิน]] [[D:อ.สทิงพระ]] [[V:จ.สงขลา]] [[Z:90190]]
@@ -830,7 +826,6 @@ tags: form, emoji, no-province, landmark
 ===
 loc: บางคนที | บางคนที | สมุทรสงคราม | 75120
 tags: form, alias, same-name-once, no-prefix
-warn: ambiguous-location
 ---
 ชื่อ : [[N:คุณเพ็ญศรี อยู่เย็น]]
 ที่อยู่ : [[A:82 ม.4]] [[D:บางคนที]] [[V:แม่กลอง]] [[Z:75120]]

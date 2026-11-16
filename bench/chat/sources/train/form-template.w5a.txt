@@ -10,7 +10,6 @@ tags: colon-labels, order-item, clean
 ===
 loc: หนองแสง | หนองแสง | อุดรธานี | 41340
 tags: numbered, glued-moo, same-name-once, alias, order-item
-warn: ambiguous-location
 ---
 1.ชื่อ [[N:นายวีระพงษ์ ภูผาใจ]]
 2.ที่อยู่ [[A:56หมู่3]] [[D:หนองแสง]] [[V:อุดร]] [[Z:41340]]
@@ -239,7 +238,6 @@ tags: dotted-leaders, empty-field, sub-soi, alias
 ===
 loc: ส่องดาว | ส่องดาว | สกลนคร | 47190
 tags: bullets, no-subdistrict, phone-before-address, village-name
-warn: ambiguous-location
 ---
 • ผู้รับ: [[N:นางคำปุน แสนสุข]]
 • เบอร์: [[P:0990127743]]

@@ -119,7 +119,6 @@ tags: apartment, oneline, comma-separated, marketplace
 ===
 loc: บางใหญ่ | บางใหญ่ | นนทบุรี | 11140
 tags: condo, same-name-once, name-last, landmark
-warn: ambiguous-location
 ---
 [[A:พลัมคอนโด บางใหญ่ สเตชั่น ตึก B ชั้น 8 ห้อง 812 (ใกล้เซ็นทรัลเวสต์เกต)]]
 [[D:บางใหญ่]] [[V:นนทบุรี]] [[Z:11140]]
@@ -322,7 +321,6 @@ tags: dormitory, university, multiline, missing-district
 ===
 loc: บางแค | บางแค | กรุงเทพมหานคร | 10160
 tags: condo, very-messy, keyboard-slip, missing-subdistrict
-warn: ambiguous-location
 ---
 ทีอยู๋ [[A:ลุมพินี พาร์ค เพชรเกษม 98 ตึก A ชน 12 หอง 1219]] [[D:เขตบางแค]] [[V:กรุงเทพมหานคร]] [[Z:10160]] [[N:ผกามาศ]] [[P:089-7716-552]]
 ===
@@ -461,7 +459,6 @@ tags: housing-estate, deep-soi, phone-dashes-odd, multiline
 ===
 loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: condo, same-name-once, very-messy, glued
-warn: ambiguous-location
 ---
 [[N:ปลา]] [[P:0617780421]] [[A:รีเจ้นท์โฮมบางซ่อน28ตึกAชั้น6ห้อง611]] [[D:บางซื่อ]] [[V:กรุงเทพ]] [[Z:10800]]
 ===
@@ -840,7 +837,6 @@ tags: condo, juristic, deliver-to-juristic, chat-noise
 ===
 loc: มหาราช | มหาราช | พระนครศรีอยุธยา | 13150
 tags: apartment, upcountry, alias, same-name-once
-warn: ambiguous-location
 ---
 [[N:คุณสุนิสา แก้วประเสริฐ]] [[A:ห้องเช่าเรือนทอง ห้อง 4 เลขที่ 12 ม.1]] [[D:อ.มหาราช]] [[V:อยุธยา]] [[Z:13150]] [[P:0816602934]]
 ===

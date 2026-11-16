@@ -298,7 +298,6 @@ tags: border-police, pipe-separated, phone-first, no-prefix, app-copy-like
 ===
 loc: บึงสามพัน | บึงสามพัน | เพชรบูรณ์ | 67160
 tags: hospital, same-name-once, org-bracket-dept, no-person, urgent, no-subdistrict
-warn: ambiguous-location
 ---
 ส่งพัสดุด่วนค่ะ น้ำยาสำหรับห้องแลป
 [[N:โรงพยาบาลบึงสามพันราษฎร์ (กลุ่มงานเทคนิคการแพทย์)]] [[A:ชั้น 1]]
@@ -406,7 +405,6 @@ Tel [[P:0842273316]]
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: police-training, same-name-once, org-unit-person-adjacent, alias, oneline
-warn: ambiguous-location
 ---
 ส่ง [[N:ศูนย์ฝึกตำรวจลาดหลุมแก้ว กองร้อย 3 ส.ต.ต.อนุวัฒน์ สีทอง]] [[D:ลาดหลุมแก้ว]] [[V:ปทุม]] [[Z:12140]] โทร [[P:098-552-3110]]
 ===
@@ -508,7 +506,6 @@ tags: school, bulk-order, same-name-twice, two-phones, bracket-dept-in-A, multil
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: military-cadet, same-name-once, bracket-role, no-phone, gift
-warn: ambiguous-location
 ---
 ส่งของขวัญให้หลานค่ะ
 [[N:นจอ.ภูริ ทองแท้ (นักเรียนจ่าอากาศ ชั้นปีที่ 1)]]

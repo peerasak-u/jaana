@@ -66,13 +66,11 @@ tags: lead-in, nickname-bracket, emoji, road-with-place-name
 ===
 loc: คลองตันเหนือ | วัฒนา | กรุงเทพมหานคร | 10110
 tags: company, office-building, bangkok, landline, alias, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:บริษัท ไบรท์ลิงค์ มีเดีย จำกัด]] โทร [[P:02-714-3360]] ส่ง [[A:ชั้น 9 อาคารแสงทองทาวเวอร์ 25 ซ.สุขุมวิท 63]] [[D:เขตวัฒนา]] [[V:กรุงเทพฯ]] [[Z:10110]]
 ===
 loc: ปัว | ปัว | น่าน | 55120
 tags: no-subdistrict, same-name-once, no-prefix
-warn: ambiguous-location
 ---
 [[N:ทองใบ ปัญญาดี]] [[A:240 ม.3]] [[D:ปัว]] [[V:น่าน]] [[Z:55120]] [[P:0872290415]]
 ===
@@ -103,7 +101,6 @@ tags: no-phone, clean
 ===
 loc: บางปู | เมืองสมุทรปราการ | สมุทรปราการ | 10280
 tags: company, contact-person, industrial-estate, alias, amphoe-mueang, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:บจก.ไทยสตีลพาร์ท (คุณอ้อย ฝ่ายจัดซื้อ)]] [[P:02-709-4415]] [[A:599 ม.4 นิคมอุตสาหกรรมบางปู ซ.6]] [[D:อ.เมือง]] [[V:ปากน้ำ]] [[Z:10280]]
 ===
@@ -159,7 +156,6 @@ tags: order-detail, lead-in
 ===
 loc: โก่งธนู | เมืองลพบุรี | ลพบุรี | 15000
 tags: military-rank, rank-looks-like-province-prefix, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:จ.ส.อ.ไพโรจน์ มั่นคง]] [[A:156 ม.1]] [[D:อ.เมืองลพบุรี]] [[V:จ.ลพบุรี]] [[Z:15000]] [[P:081-779-2364]]
 ===
@@ -205,7 +201,6 @@ tags: plus66-phone, road, no-province
 ===
 loc: บ้านพานถม | พระนคร | กรุงเทพมหานคร | 10200
 tags: shop, organisation-no-person, alias, bangkok, no-subdistrict, no-postcode
-warn: ambiguous-location
 ---
 [[N:ร้านกาแฟบ้านพานถม]] [[A:213 ถ.ประชาธิปไตย]] [[D:เขตพระนคร]] [[V:กรุงเทพ]] [[P:089-201-7734]]
 ===
@@ -236,7 +231,6 @@ tags: temple, organisation-no-person, moo-only
 ===
 loc: สบแม่ข่า | หางดง | เชียงใหม่ | 50230
 tags: romanized-name, alias, romanized-province, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:Khun Nok]] tel. [[P:0937721845]] [[A:123/4 ม.3 ถ.เชียงใหม่-หางดง]] [[D:อ.หางดง]] [[V:Chiang Mai]] [[Z:50230]]
 ===
@@ -257,7 +251,6 @@ tags: amphoe-mueang, glued-postcode, particle-between
 ===
 loc: ป้อมปราบ | ป้อมปราบศัตรูพ่าย | กรุงเทพมหานคร | 10100
 tags: shop, organisation-no-person, bangkok, short-district, landline, alias, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:ร้านทองเยาวราชเจริญ]] [[P:02-221-5840]] [[A:405 ถ.เยาวราช]] [[D:เขตป้อมปราบฯ]] [[V:กรุงเทพมหานคร]] [[Z:10100]]
 ===
@@ -288,7 +281,6 @@ tags: bangkok, no-province, glued-particle, housing-estate
 ===
 loc: บางระจัน | ค่ายบางระจัน | สิงห์บุรี | 16150
 tags: payment-note, district-contains-subdistrict, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:สมบัติ อยู่เย็น]] [[P:0891147320]] [[A:29 ม.4]] [[D:อ.ค่ายบางระจัน]] [[V:สิงห์บุรี]] [[Z:16150]] โอนแล้วค่ะ
 ===
@@ -354,7 +346,6 @@ tags: typo-label, typo-subdistrict, typo-district, village-name
 ===
 loc: โนนหอม | เมืองสกลนคร | สกลนคร | 47000
 tags: partnership, organisation-no-person, landline, road-with-place-name, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:หจก.สกลรุ่งเรืองเกษตร]] [[A:201 ม.5 ถ.สกล-กาฬสินธุ์]] [[D:อ.เมืองสกลนคร]] [[V:สกลนคร]] [[Z:47000]] [[P:042-711-385]]
 ===
@@ -370,13 +361,11 @@ tags: address-first, name-label, bracketed-phone, no-prefix
 ===
 loc: ทุ่งครุ | ทุ่งครุ | กรุงเทพมหานคร | 10140
 tags: same-name-once, alias, glued-postcode, bangkok
-warn: ambiguous-location
 ---
 [[N:นายอนุชา แซ่ลิ้ม]] [[A:45 ซ.ประชาอุทิศ 79]] [[D:ทุ่งครุ]] [[V:กทม]][[Z:10140]] [[P:0896631024]]
 ===
 loc: บ้านแพ้ว | บ้านแพ้ว | สมุทรสาคร | 74120
 tags: shop, restaurant, alias, landline, market, phone-first, same-name-once
-warn: ambiguous-location
 ---
 โทร [[P:034-481-226]] [[N:ร้านอาหารครัวแม่ละม่อม]] [[A:88 ม.1 ตลาดน้ำบ้านแพ้ว]] [[D:บ้านแพ้ว]] [[V:มหาชัย]] [[Z:74120]]
 ===
@@ -437,7 +426,6 @@ tags: address-first, recipient-label, honorific-k, courier-note, amphoe-mueang
 ===
 loc: หันทราย | อรัญประเทศ | สระแก้ว | 27120
 tags: landmark, alias, short-district, no-subdistrict, no-postcode
-warn: ambiguous-location
 ---
 [[N:นางสาวสุดาพร ทองดี]] [[P:0887714035]] [[A:56 ม.10 (ทางเข้าตลาดโรงเกลือ)]] [[D:อ.อรัญ]] [[V:สระแก้ว]]
 ===
@@ -478,7 +466,6 @@ tags: landmark, dotted-phone, phone-label, no-postcode
 ===
 loc: กันตัง | กันตัง | ตรัง | 92110
 tags: facebook-name, same-name-subdistrict-district, road-with-place-name, no-subdistrict, name-last
-warn: ambiguous-location
 ---
 [[A:58 ถ.ตรัง-กันตัง]] [[D:อ.กันตัง]] [[V:ตรัง]] [[Z:92110]] [[N:Mai Shop'z]] [[P:0867742019]]
 ===
@@ -534,7 +521,6 @@ tags: typo-province, initial-surname, road-km, no-district
 ===
 loc: จองคำ | เมืองแม่ฮ่องสอน | แม่ฮ่องสอน | 58000
 tags: foreigner, alias, romanized-province, plus66-dashes, english-mixed, no-subdistrict
-warn: ambiguous-location
 ---
 [[N:Ms. Anna Becker]] [[P:+66-93-118-4027]] [[A:Guesthouse Fern 87 ถ.ขุนลุมประพาส]] [[D:อ.เมืองแม่ฮ่องสอน]] [[V:Mae Hong Son]] [[Z:58000]]
 ===
@@ -571,7 +557,6 @@ tags: glued-postcode, glued-particle, amphoe-mueang, nickname
 ===
 loc: โพธิ์ทอง | ท่าศาลา | นครศรีธรรมราช | 80160
 tags: thai-digits-phone, house-label, phone-first, no-subdistrict
-warn: ambiguous-location
 ---
 [[P:๐๘๖-๓๓๗-๔๑๒๐]] [[N:นายอภิชาติ ทองเนื้อแข็ง]] [[A:เลขที่ 66 ม.4]] [[D:อ.ท่าศาลา]] [[V:นครศรีธรรมราช]] [[Z:80160]]
 ===
@@ -597,7 +582,6 @@ tags: phone-first, postcode-label
 ===
 loc: อุ่มเม้า | ธวัชบุรี | ร้อยเอ็ด | 45170
 tags: no-house-number, village-name, rural, kinship-name, no-subdistrict, no-phone
-warn: ambiguous-location
 ---
 [[N:ลุงสมาน]] [[A:ม.6 บ้านอุ่มเม้า]] [[D:อ.ธวัชบุรี]] [[V:ร้อยเอ็ด]] [[Z:45170]]
 ===
@@ -618,7 +602,6 @@ tags: alias, courier-request, nickname-bracket
 ===
 loc: อมก๋อย | อมก๋อย | เชียงใหม่ | 50310
 tags: school, contact-person-apart, no-phone, no-subdistrict, name-last
-warn: ambiguous-location
 ---
 [[A:โรงเรียนอมก๋อยวิทยาคม]] [[D:อ.อมก๋อย]] [[V:เชียงใหม่]] [[Z:50310]] ถึง [[N:ครูดวงใจ]]
 ===

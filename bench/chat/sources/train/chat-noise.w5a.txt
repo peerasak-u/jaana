@@ -232,7 +232,6 @@ tags: add-to-order, order-number, amphoe-mueang, no-prefix-province
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: same-name-once, no-subdistrict, alias, courier-question, order-items
-warn: ambiguous-location
 ---
 ส่ง Flash ได้มั้ยคะ ถ้าได้ส่งตามนี้เลย
 [[N:อรอุมา]] [[P:0958207741]]
@@ -316,7 +315,6 @@ tags: elongated, photo-placeholder, item-correction, postcode-glued, particle-gl
 ===
 loc: หนองทอง | ไทรงาม | กำแพงเพชร | 62150
 tags: no-subdistrict, cod, village-name, no-newline
-warn: ambiguous-location
 ---
 ขอสั่งเมล็ดพันธุ์ข้าวโพด 3 ถุงครับ เก็บปลายทาง ส่ง [[N:นายประยูร ศรีทอง]] [[A:98 ม.10 บ้านหนองทอง]] [[D:อ.ไทรงาม]] [[V:จ.กำแพงเพชร]] [[Z:62150]] [[P:0818875230]] ครับ
 ===
@@ -465,7 +463,6 @@ tags: no-name, no-phone, village-name, address-only
 ===
 loc: ศรีสงคราม | ศรีสงคราม | นครพนม | 48150
 tags: rank-title, no-subdistrict, place-in-road, delivery-window
-warn: ambiguous-location
 ---
 สวัสดีครับ เอาไฟฉายคาดหัว 2 อัน แบตสำรอง 1 ครับ
 [[N:ส.อ.ธีรพงษ์ ศรีมาตย์]]
@@ -504,7 +501,6 @@ tags: line-id, postcode-glued, repeated-province, particle-glued, emoji, amphoe-
 ===
 loc: ศรีธาตุ | ศรีธาตุ | อุดรธานี | 41230
 tags: same-name-once, alias, payment-note, no-newline, village-name
-warn: ambiguous-location
 ---
 สวัสดีค่ะ สนใจเสื่อกก 6 ฟุต 3 ผืน โอนแล้วตามสลิป ส่ง [[N:คุณบัวผัน]] [[A:4 ม.7 บ้านโนนสูง]] [[D:ศรีธาตุ]] [[V:อุดร]] [[Z:41230]] [[P:0857439120]]
 ===

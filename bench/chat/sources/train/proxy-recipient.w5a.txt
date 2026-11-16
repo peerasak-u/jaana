@@ -44,7 +44,6 @@ tags: labels, buyer-and-recipient, grandma, line-name, phone-owner-note
 ===
 loc: บางขัน | บางขัน | นครศรีธรรมราช | 80360
 tags: brother, nickname-bracket, alias, no-subdistrict, courier-note
-warn: ambiguous-location
 ---
 ฝากส่งให้น้องชายครับ ชื่อ [[N:ธนากร ชูช่วย (บอล)]]
 [[A:56 ม.3]] [[D:บางขัน]] [[V:นครศรี]] [[Z:80360]]
@@ -122,7 +121,6 @@ c/o [[N:K.ต้น]] [[A:111/48 หมู่บ้านลัดดารม�
 ===
 loc: บ้านเขว้า | บ้านเขว้า | ชัยภูมิ | 36170
 tags: oneline, grandma, typo-province, buyer-phone, no-subdistrict, glued-particle
-warn: ambiguous-location
 ---
 แอดดด ส่งให้แม่เฒ่าหนูหน่อยนะคะ [[N:นางคำปุ่น ศรีบุญเรือง]] [[A:บ้านเลขที่ 15 ม.1]] [[D:อ.บ้านเขว้า]] [[V:จ.ไชยภูมิ]][[Z:36170]]ค่ะ โทรหาหนูก็ได้ [[P:0659903378]] หนูอยู่ใกล้ๆ
 ===
@@ -177,7 +175,6 @@ tags: oneline, uncle, two-phones-same, alias, courier-note
 ===
 loc: สารภี | สารภี | เชียงใหม่ | 50140
 tags: line-name, wife, landline, no-subdistrict, glued-label
-warn: ambiguous-location
 ---
 ชื่อไลน์ผม Big Saraphi นะครับ
 ของส่งให้แฟนผม ชื่อ [[N:อัมพร คำแสน]]
@@ -364,7 +361,6 @@ tags: sister, call-word-name, phone-correction, no-prefix
 ===
 loc: ไม้แก่น | ไม้แก่น | ปัตตานี | 94220
 tags: oneline, brother-in-law, greeting, no-subdistrict, district-written-once, no-phone
-warn: ambiguous-location
 ---
 อัสลามูอาลัยกุมครับ ฝากส่งให้พี่เขยครับ [[N:นายอับดุลเลาะ สาและ]] [[A:23 ม.2 บ้านตะโละ]] [[D:ไม้แก่น]] [[V:ปัตตานี]] [[Z:94220]] เดี๋ยวผมส่งเบอร์ตามมานะครับ
 ===

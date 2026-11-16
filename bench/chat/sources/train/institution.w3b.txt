@@ -22,7 +22,6 @@ tags: temple, monk-title, person-and-temple-apart, owner-note
 ===
 loc: หนองปรือ | บางพลี | สมุทรปราการ | 10540
 tags: abbrev-agency, no-person, org-name-has-subdistrict, no-subdistrict-field, oneline, landline
-warn: ambiguous-location
 ---
 [[N:อบต.หนองปรือ (กองช่าง)]] [[A:99 ม.5 ถ.บางนา-ตราด กม.23]] [[D:อ.บางพลี]] [[V:สมุทรปราการ]] [[Z:10540]] [[P:0-2312-7740]]
 ===
@@ -259,7 +258,6 @@ tags: school, no-person, bracket-address, typo-province, landline
 ===
 loc: หนองเพรางาย | ไทรน้อย | นนทบุรี | 11150
 tags: abbrev-agency, contact-in-brackets, org-name-has-subdistrict, road-has-district, no-subdistrict-field
-warn: ambiguous-location
 ---
 [[N:อบต.หนองเพรางาย (คุณสุนิสา กองคลัง)]]
 [[A:99/9 ม.5 ถ.ไทรน้อย-ลาดบัวหลวง]] [[D:อ.ไทรน้อย]] [[V:จ.นนทบุรี]] [[Z:11150]]
@@ -307,7 +305,6 @@ tags: temple, novice, person-and-temple-apart, temple-name-has-district, owner-n
 ===
 loc: ขยาย | บางปะหัน | พระนครศรีอยุธยา | 13220
 tags: abbrev-no-dots, no-person, no-subdistrict-field, alias, courier-request, oneline
-warn: ambiguous-location
 ---
 [[N:อบตขยาย]] [[D:อ.บางปะหัน]] [[V:อยุธยา]] [[Z:13220]] ติดต่อกองคลัง [[P:035-381-266]] ส่งเคอรี่นะ
 ===
@@ -398,7 +395,6 @@ tags: school-library, no-person, numbered-list, org-name-has-subdistrict
 ===
 loc: เลาขวัญ | เลาขวัญ | กาญจนบุรี | 71210
 tags: hospital, no-person, department, same-name-written-once, alias, oneline
-warn: ambiguous-location
 ---
 [[N:รพ.เลาขวัญ งานพัสดุ]] [[A:ม.1]] [[D:เลาขวัญ]] [[V:กาญ]] [[Z:71210]] [[P:034-576-150]]
 ===
@@ -614,7 +610,6 @@ tags: air-force, rank-title, person-and-unit-together, alias
 ===
 loc: ลาดพร้าว | ลาดพร้าว | กรุงเทพมหานคร | 10230
 tags: youth-centre, no-person, org-name-has-district, same-name-written-once, no-province
-warn: ambiguous-location
 ---
 ส่ง [[N:ศูนย์เยาวชนลาดพร้าว]] ค่ะ [[A:ถ.ลาดพร้าว]] [[D:เขตลาดพร้าว]] [[Z:10230]]
 [[P:02-513-2260]]
@@ -779,7 +774,6 @@ tags: museum, no-person, org-name-has-district, no-phone
 ===
 loc: บ้านลาด | บ้านลาด | เพชรบุรี | 76150
 tags: abbrev-agency, adult-education, org-name-has-district-prefix, same-name-written-once
-warn: ambiguous-location
 ---
 [[N:กศน.อำเภอบ้านลาด]] [[D:บ้านลาด]] [[V:เพชรบุรี]] [[Z:76150]]
 [[P:032-491-118]]
@@ -850,7 +844,6 @@ tags: school, no-person, alias, no-phone, org-name-has-subdistrict
 ===
 loc: เขาสมิง | เขาสมิง | ตราด | 23130
 tags: abbrev-agency, health-office, no-person, org-name-has-district, same-name-written-once
-warn: ambiguous-location
 ---
 [[N:สสอ.เขาสมิง]]
 [[D:เขาสมิง]] [[V:ตราด]] [[Z:23130]]
@@ -911,7 +904,6 @@ tags: pondok, religious-teacher-title, person-and-pondok-together, oneline
 ===
 loc: โนนทอง | เกษตรสมบูรณ์ | ชัยภูมิ | 36120
 tags: government, abbrev-agency, org-name-has-district-prefix, district-name-looks-like-agency-word, no-subdistrict-field
-warn: ambiguous-location
 ---
 [[N:สนง.เกษตรอำเภอเกษตรสมบูรณ์]]
 [[D:อ.เกษตรสมบูรณ์]] [[V:ชัยภูมิ]] [[Z:36120]] ([[A:ม.1 บ้านโนนทอง]])
