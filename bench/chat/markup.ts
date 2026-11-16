@@ -128,7 +128,7 @@ const EXPECTED_WARNINGS: Record<ParseWarning, (recipients: readonly RecipientGol
 
 export const WARNINGS = Object.keys(EXPECTED_WARNINGS) as ParseWarning[];
 
-const CONTACT_HANDLE = /^\s*(?:line\b|ไลน์|ig\b|id\s*(?:line|ไลน์)|@)/iu;
+const CONTACT_HANDLE = /^\s*(?:line\b|ไลน์|ig\b|fb\b|facebook\b|เฟส(?![\s\d]*\d)|id\s*(?:line|ไลน์)|@)/iu;
 
 /** The bare place name a bracket holds: no dots, spaces, or prefix. */
 export function bracketPlace(inner: string): string {
