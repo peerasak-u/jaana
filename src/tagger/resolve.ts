@@ -219,7 +219,9 @@ const LOCATION_FIELDS = [...ADMINISTRATIVE_FIELDS, "zipcode"] as const;
 /**
  * Fills the administrative fields a message left out when the ones it wrote
  * agree on them across every gazetteer tuple they match. A postcode alone
- * fills nothing, since shoppers write one for a whole district or more.
+ * fills nothing, since shoppers write one for a whole district or more. An
+ * open subdistrict is not flagged: the district and postcode still route the
+ * parcel, and most messages omit it.
  */
 export function createLocationFiller(
 	locations: readonly LocationTuple[],
@@ -255,7 +257,7 @@ export function createLocationFiller(
 			if (matches.every((location) => location[field] === value)) {
 				filled[field] = value;
 				inferred.push(field);
-			} else ambiguous = true;
+			} else if (field !== "subdistrict") ambiguous = true;
 		}
 		return { values: filled, inferred, ambiguous };
 	};
