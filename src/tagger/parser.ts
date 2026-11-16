@@ -221,7 +221,34 @@ export function finishLine(raw: string, tags: Uint8Array): void {
 	}
 }
 
+const ROAD_SUFFIX = /(?<![A-Za-z])(?:rd\.?|road)(?![A-Za-z])/giu;
+/** A romanized road name between the address and its suffix: Latin words and numbers, at most one comma. */
+const ROAD_NAME = /^[A-Za-z0-9 \t.'\-]*(?:,[A-Za-z0-9 \t.'\-]*)?$/u;
+const MAX_ROAD_WORDS = 5;
+
+/**
+ * A romanized `Rd` or `Road` ends a road name, so it and the words before it
+ * back to the address run on its line are address detail, though the tagger
+ * often drops the suffix or reads the road as the subdistrict, as in
+ * `41/7 Seehaburanukit| Rd Minburi` or `13, |Chom Thong Rd| Chom Thong`.
+ */
+export function keepRoadSuffix(raw: string, tags: Uint8Array): void {
+	for (const match of raw.matchAll(ROAD_SUFFIX)) {
+		const start = match.index;
+		const end = start + match[0].length;
+		if (tags.subarray(start, end).every((tag) => tag === ADDRESS)) continue;
+		let last = start - 1;
+		while (last >= 0 && tags[last] !== ADDRESS && raw[last] !== "\n") last -= 1;
+		if (last < 0 || tags[last] !== ADDRESS) continue;
+		const between = raw.slice(last + 1, start);
+		if (!ROAD_NAME.test(between) || between.trim().split(/[\s,]+/u).length > MAX_ROAD_WORDS) continue;
+		tags.fill(ADDRESS, last + 1, end);
+	}
+}
+
 const THAI_LETTER = /[ก-๎]/u;
+/** A bare word that ends an address piece right after the หมู่ number, as `ม.9 ห้วยสำราญ`. */
+const AFTER_MOO = /(?:ม\.|หมู่(?:ที่)?)[ \t]*[0-9๐-๙]+[ \t]+([ก-๎]+)$/u;
 /** District first: one bare mention of a name the subdistrict and district share is the district. */
 const LEAD_FIELDS: readonly AdministrativeField[] = ["district", "subdistrict", "province"];
 
@@ -376,7 +403,9 @@ function untaggedMentions(
 	spans: readonly TaggedSpan[],
 	misplaced: readonly TaggedSpan[],
 ): { values: Partial<AdministrativeValues>; claimed: Range[] } {
-	const text = raw.replace(/[๐-๙]/gu, (digit) => String(THAI_DIGITS.indexOf(digit)));
+	// Romanized aliases are kept in lower case, and shoppers write `BKK` or `Bangkok`.
+	const text = raw.replace(/[๐-๙]/gu, (digit) => String(THAI_DIGITS.indexOf(digit)))
+		.replace(/[A-Z]/gu, (letter) => letter.toLowerCase());
 	const namesOf = (field: AdministrativeField | "zipcode"): string[] => field === "province"
 		? [tuple.province, ...(PROVINCE_ALIASES.get(tuple.province) ?? [])]
 		: [tuple[field]];
@@ -612,11 +641,58 @@ export function createScoredParser(
 		return best ? { start: range.end - word.length, end: range.end, name: best } : null;
 	}
 
+	const subdistrictTuples = new Map<string, LocationTuple[]>();
+	for (const location of locations) {
+		const tuples = subdistrictTuples.get(location.subdistrict) ?? [];
+		tuples.push(location);
+		subdistrictTuples.set(location.subdistrict, tuples);
+	}
+
+	/**
+	 * Shoppers who leave out the field prefixes write the subdistrict right
+	 * after the หมู่ number, as `12 ม.9 ห้วยสำราญ`. When nothing else gives the
+	 * subdistrict, a bare word that ends an address run right after `ม.` or
+	 * `หมู่` and its number is the subdistrict if it is one, of the resolved
+	 * district when there is one, else of the written district or province.
+	 * A word with `บ้าน` names the village.
+	 */
+	function subdistrictAfterMoo(
+		raw: string,
+		address: readonly Range[],
+		tuple: LocationTuple | null,
+		texts: AdministrativeTexts,
+	): (Range & { name: string }) | null {
+		for (const range of address) {
+			const word = AFTER_MOO.exec(raw.slice(range.start, range.end))?.[1];
+			if (!word || word.startsWith("บ้าน")) continue;
+			const candidates = subdistrictTuples.get(word) ?? [];
+			const fits = candidates.some((candidate) => tuple
+				? candidate.district === tuple.district && candidate.province === tuple.province
+				: (["district", "province"] as const).every((field) =>
+					!texts[field] || formSimilarity(field, nameForms(field, texts[field]!), candidate[field]) >= MIN_WORD_RATIO));
+			if (fits) return { start: range.end - word.length, end: range.end, name: word };
+		}
+		return null;
+	}
+
 	const postcodeTuples = new Map<string, LocationTuple[]>();
 	for (const location of locations) {
 		const tuples = postcodeTuples.get(location.zipcode) ?? [];
 		tuples.push(location);
 		postcodeTuples.set(location.zipcode, tuples);
+	}
+
+	/**
+	 * The Anchor counts any exact name, so a village named after another
+	 * subdistrict, as `บ้านทุ่งขมิ้น นาหม่อม อ.นาหม่อม`, can win it the tuple.
+	 * A tagged subdistrict that spells exactly another subdistrict of the
+	 * anchored district, within the written postcode, names the tuple.
+	 */
+	function namedSibling(tuple: LocationTuple, text: string, written: string | null): LocationTuple | null {
+		const forms = nameForms("subdistrict", text);
+		if (forms.includes(tuple.subdistrict)) return null;
+		const siblings = siblingTuples.get(`${tuple.province}\u0000${tuple.district}`) ?? [];
+		return siblings.find((sibling) => forms.includes(sibling.subdistrict) && (!written || sibling.zipcode === written)) ?? null;
 	}
 
 	/**
@@ -632,6 +708,8 @@ export function createScoredParser(
 		const tuple = anchored.tuple;
 		const inPostcode = written ? postcodeTuples.get(written) : undefined;
 		if (inPostcode && tuple?.zipcode !== written) return closestTuple(inPostcode, texts);
+		const sibling = tuple && texts.subdistrict ? namedSibling(tuple, texts.subdistrict, written) : null;
+		if (sibling) return sibling;
 		if (!tuple || !texts.district) return tuple;
 		let confirmed = 0;
 		for (const flag of anchored.flags) confirmed |= flag;
@@ -660,6 +738,7 @@ export function createScoredParser(
 			recutPhone(raw, tags);
 			completePostcode(raw, tags);
 			finishLine(raw, tags);
+			keepRoadSuffix(raw, tags);
 			joinPrefixWords(raw, tags);
 			const spans = resegment(raw, spansOf(raw, runsOf(raw, tags), places));
 			const text = (label: OutputLabel): string | undefined =>
@@ -703,10 +782,15 @@ export function createScoredParser(
 				: null;
 			const debris = chatDebris(raw, tags, addressRanges);
 			const leads = tuple ? gluedFieldWords(raw, tags, addressRanges, tuple) : [];
+			const afterMoo = !spans.some((span) => span.label === "SUBDISTRICT") && !untagged.values.subdistrict && !before &&
+				!leads.some((lead) => lead.field === "subdistrict")
+				? subdistrictAfterMoo(raw, addressRanges, tuple, texts)
+				: null;
 			const address = addressOf(raw, addressRanges, [
 				...untagged.claimed,
 				...straddled,
 				...(before ? [before] : []),
+				...(afterMoo ? [afterMoo] : []),
 				...leads,
 				...debris,
 			]);
@@ -716,6 +800,7 @@ export function createScoredParser(
 					...Object.fromEntries(leads.map((lead) => [lead.field, tuple[lead.field]])),
 					...untagged.values,
 					...(before ? { subdistrict: before.name } : {}),
+					...(afterMoo ? { subdistrict: afterMoo.name } : {}),
 					...(subdistrict && kept("SUBDISTRICT")
 						? { subdistrict: anchoredSubdistrict(tuple, subdistrict, written) }
 						: {}),
@@ -723,7 +808,7 @@ export function createScoredParser(
 					...(kept("PROVINCE") ? { province: tuple.province } : {}),
 					...(zipcode ? { zipcode: tuple.zipcode } : {}),
 				}
-				: resolve({ ...texts, ...(zipcode ? { zipcode } : {}) });
+				: resolve({ ...texts, ...(afterMoo ? { subdistrict: afterMoo.name } : {}), ...(zipcode ? { zipcode } : {}) });
 			const bare = subdistrict?.trim();
 			if (
 				tuple && bare && tuple.subdistrict === tuple.district &&

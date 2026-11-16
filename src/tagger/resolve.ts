@@ -68,6 +68,18 @@ export function nameForms(field: AdministrativeField, text: string): string[] {
 	return [...forms].filter((form) => form.length > 0);
 }
 
+const MIN_ABBREVIATION_STEM = 3;
+
+/**
+ * The written start of a name a shopper cut short with the abbreviation
+ * mark `ฯ`, as `อุทัยฯ` for อุทัยธานี, or null when the form is not one.
+ */
+function abbreviationStem(form: string): string | null {
+	if (!form.endsWith("ฯ")) return null;
+	const stem = form.slice(0, -1);
+	return stem.length >= MIN_ABBREVIATION_STEM ? stem : null;
+}
+
 /** Similarity in [0, 1] of the best surface form of a tagged span to one gazetteer name. */
 export function formSimilarity(
 	field: AdministrativeField,
@@ -78,6 +90,11 @@ export function formSimilarity(
 	for (const form of forms) {
 		if (form === name) return 1;
 		if (field === "province" && ALIASED_PROVINCE.get(form.toLowerCase()) === name) return 1;
+		const stem = abbreviationStem(form);
+		if (stem && name.length > stem.length && name.startsWith(stem)) {
+			best = Math.max(best, FUZZY_DISCOUNT);
+			continue;
+		}
 		if (field === "district" && form === "เมือง" && name.startsWith("เมือง")) {
 			best = Math.max(best, BARE_CITY_SIMILARITY);
 			continue;
@@ -157,6 +174,11 @@ export function createTupleResolver(
 				for (const name of names.district) {
 					if (name.startsWith("เมือง")) raise(name, BARE_CITY_SIMILARITY);
 				}
+			}
+			const stem = abbreviationStem(form);
+			if (stem) {
+				const longer = names[field].filter((name) => name.length > stem.length && name.startsWith(stem));
+				if (longer.length === 1) raise(longer[0]!, 1);
 			}
 		}
 		if (result.size > 0) return result;
