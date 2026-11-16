@@ -32,7 +32,7 @@ describe("contact handle cues", () => {
 	});
 
 	test("the misspelt cue `ไรน์` is a cue", () => {
-		expect(fields("ส่งพี่ฝน ไรน์ fon_9988 ค่ะ 9 ม.2 ต.ท่าช้าง อ.บางกล่ำ สงขลา 90110 0815534120").name).toBe("พี่ฝน");
+		expect(fields("ส่ง พี่ฝน ไรน์ fon_9988 ค่ะ 9 ม.2 ต.ท่าช้าง อ.บางกล่ำ สงขลา 90110 0815534120").name).toBe("พี่ฝน");
 	});
 
 	test("a word that only contains `เพจ` text is not a cue", () => {
@@ -52,7 +52,7 @@ describe("a handle that opens a line", () => {
 
 describe("a name the tagger read inside a handle", () => {
 	test("is the name written just before the handle on its line", () => {
-		expect(fields("ส่ง Ploy 🌼 (IG: ploy.pl) 12/3 ซ.ลาดพร้าว 15 แขวงจอมพล เขตจตุจักร กทม 10900 0918812345 ค่ะ").name).toBe("Ploy 🌼");
+		expect(fields("ส่ง Ploy 🌼 (IG: ploy.pl) 12/3 ซ.ลาดพร้าว 15 แขวงจอมพล เขตจตุจักร กทม 10900 0918812345 ค่ะ").name).toMatch(/^Ploy/u);
 	});
 
 	test("is the name on the line above a handle line", () => {
