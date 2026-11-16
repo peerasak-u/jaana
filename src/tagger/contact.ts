@@ -1,0 +1,161 @@
+import { TAGS } from "./model";
+
+const OTHER = TAGS.indexOf("OTHER");
+const CLEARED = new Set(["NAME", "ORG", "ADDRESS_DETAIL"].map((tag) => TAGS.indexOf(tag as (typeof TAGS)[number])));
+const NAMED = new Set(["NAME", "ORG"].map((tag) => TAGS.indexOf(tag as (typeof TAGS)[number])));
+
+/**
+ * A contact channel cue: LINE, IG, FB and their Thai spellings, with an
+ * optional `ID` either side, or an `@` that opens a handle.
+ */
+const CUE = /(?:(?:id|ไอดี)[ \t]*)?(?:(?:line|ig|fb|facebook)(?![a-z])|ไ[ลร]น์|ไอจี|(?:เพจ)?เฟส(?:บุ๊[คก])?|เพจ)(?:[ \t]*(?:id(?![a-z])|ไอดี))?|@/giu;
+const LATIN_CUE = /^[a-z@ \t]+$/iu;
+/** What a cue's owner or a label puts before the handle: `ไลน์: `, `ไลน์ชื่อ `, or a word naming whose it is, as `ไลน์ลุงแดง: `. */
+const FILLER = /^[ \t]*(?:[ก-๎A-Za-z]{1,12}[ \t]*[:：][ \t]*|[:：]?[ \t]*(?:(?:ชื่อ|ส่วนตัว)[ \t]*[:：]?[ \t]*)?)/u;
+/** Where a handle that runs on to its line's end stops: a sentence particle, or a label that opens the name. */
+const HANDLE_STOP = /[ \t]+(?:(?:นะ)?(?:คะ|ค่ะ|ครับ|จ้า)|นะ|ชื่อจริง|ชื่อ|ผู้รับ)(?=[\s:：]|$)/u;
+const BRACKETED_CUE = /^(?:(?:id|ไอดี)[ \t]*)?(?:line|ig|fb|facebook|ไ[ลร]น์|ไอจี|เฟส|เพจ|@)/iu;
+
+/** Whether a bracket's text, from just inside `(`, opens with a contact cue. */
+export function opensWithContact(inner: string): boolean {
+	const text = inner.trimStart();
+	return BRACKETED_CUE.test(text) && !/^(?:line|ig|fb)[a-z]|^เฟส[\s\d]*\d/iu.test(text);
+}
+
+/**
+ * The end of the contact handle a cue at `start`..`end` introduces, or
+ * null when the cue is a plain word: `ไลน์` inside `ออนไลน์` or a
+ * department such as `หัวหน้าไลน์ 2`, or `Line` in a building name.
+ */
+function handleEnd(raw: string, start: number, end: number): number | null {
+	const cue = raw.slice(start, end);
+	const before = raw[start - 1] ?? " ";
+	const glued = /[ก-๎]/u.test(before);
+	if (/[\p{L}\p{N}_.]/u.test(before) && !glued) return null;
+	if (cue === "@") {
+		if (glued) return null;
+		const handle = /^[\w.\-]+/u.exec(raw.slice(end));
+		return handle ? end + handle[0].length : null;
+	}
+	const filler = FILLER.exec(raw.slice(end))![0];
+	const from = end + filler.length;
+	const handle = /^\S+/u.exec(raw.slice(from))?.[0];
+	if (!handle) return null;
+	const latinHandle = /^[@A-Za-z]/u.test(handle);
+	if (glued && !latinHandle) return null;
+	// `เฟส 2` is a housing estate phase.
+	if (cue.startsWith("เฟส") && /^[0-9๐-๙]/u.test(handle)) return null;
+	// `ชื่อเพจ Mali Bakery` gives the shop's own name.
+	if (cue.startsWith("เพจ") && glued) return null;
+	if (LATIN_CUE.test(cue) && !filler.includes(":") && !/id$/iu.test(cue) && !/[ก-๎]/u.test(handle[0]!) &&
+		!/[._@\d]/u.test(handle)) return null;
+	const lineEnd = raw.indexOf("\n", from);
+	const rest = raw.slice(from, lineEnd < 0 ? raw.length : lineEnd);
+	const lineStart = raw.lastIndexOf("\n", start - 1) + 1;
+	if (!/[\p{L}\p{N}]/u.test(raw.slice(lineStart, start)) && !/[0-9๐-๙]/u.test(rest)) {
+		const stop = HANDLE_STOP.exec(rest);
+		return from + (stop && stop.index > 0 ? stop.index : rest.trimEnd().length);
+	}
+	return from + handle.length;
+}
+
+/**
+ * The GUIDE keeps contact handles (`ไลน์ boonruan1965`, `(IG: pattra_closet)`,
+ * `@aom.phangnga`, a `FB: ...` line) out of the name and the address, but the
+ * tagger often runs a name or an address over them. Clears every handle
+ * from name, organisation and address runs, a bracketed one with its
+ * brackets, and cuts a name run at a handle written after the name.
+ */
+export function clearContactHandles(raw: string, tags: Uint8Array): void {
+	const clear = (from: number, to: number) => {
+		while (from > 0 && /[ \t]/u.test(raw[from - 1]!)) from -= 1;
+		for (let index = from; index < to; index += 1) if (CLEARED.has(tags[index]!)) tags[index] = OTHER;
+	};
+	let leading: number | null = null;
+	let first: number | null = null;
+	const opensLine = (from: number) => /(?:^|\n)[ \t]*$/u.test(raw.slice(0, from));
+	for (const match of raw.matchAll(CUE)) {
+		const start = match.index;
+		const open = /\([ \t]*$/u.exec(raw.slice(0, start));
+		if (open) {
+			const close = raw.indexOf(")", start);
+			const lineEnd = raw.indexOf("\n", start);
+			if (close >= 0 && (lineEnd < 0 || close < lineEnd) && opensWithContact(raw.slice(start, close))) {
+				clear(open.index, close + 1);
+				first ??= open.index;
+				if (opensLine(open.index)) leading ??= close + 1;
+				continue;
+			}
+		}
+		const end = handleEnd(raw, start, start + match[0].length);
+		if (end === null) continue;
+		first ??= start;
+		if (opensLine(start)) leading ??= end;
+		const tag = tags[start - 1];
+		if (tag !== undefined && NAMED.has(tag) && tags[start] === tag) {
+			let from = start;
+			while (from > 0 && /[ \t/,|\-]/u.test(raw[from - 1]!) && tags[from - 1] === tag) from -= 1;
+			let to = start;
+			while (to < raw.length && tags[to] === tag) to += 1;
+			clear(from, Math.max(to, end));
+			continue;
+		}
+		clear(start, end);
+	}
+	if (leading !== null) nameAfterHandle(raw, tags, leading);
+	if (first !== null) nameBeforeHandle(raw, tags, first);
+}
+
+/** Chat around a name written before a handle: `ส่ง` before it, `แอด` and a particle after it. */
+const SEND_BEFORE = /^[^\p{L}]*(?:ส่ง(?:ให้|ที่)?(?![ก-๎]))?[ \t]*/u;
+const AFTER_NAME = /(?:[ \t]*(?:แอด|add|ทัก)|(?:นะ)?(?:คะ|ค่ะ|ครับ|คับ|จ้า|จ้ะ)|[ \t]+นะ|[ \t]+)$/iu;
+const MAX_NAME_WORDS = 3;
+
+/**
+ * A shopper writes who they are just before their handle, on its line, as
+ * `ส่ง Kwan 🌸 (IG: kwan.kwn)` or `ฟ้า ค่ะ แอดไลน์ fah.chawang`, or on the
+ * line above a line the handle opens. The tagger often reads the handle's
+ * own words as the name instead, so clearing the handle leaves none. With
+ * no name anywhere, a short untagged stretch there, without its chat
+ * words, is the name.
+ */
+function nameBeforeHandle(raw: string, tags: Uint8Array, cue: number): void {
+	if (tags.some((tag) => NAMED.has(tag))) return;
+	const lineStart = raw.lastIndexOf("\n", cue - 1) + 1;
+	let from = lineStart;
+	let to = cue;
+	if (!/\p{L}/u.test(raw.slice(lineStart, cue))) {
+		if (lineStart === 0) return;
+		from = raw.lastIndexOf("\n", lineStart - 2) + 1;
+		to = lineStart - 1;
+	}
+	from += SEND_BEFORE.exec(raw.slice(from, to))![0].length;
+	for (let after = AFTER_NAME.exec(raw.slice(from, to)); after && after[0].length > 0 && to > from;
+		after = AFTER_NAME.exec(raw.slice(from, to))) to -= after[0].length;
+	const text = raw.slice(from, to);
+	if (!/^[ก-๎A-Za-z]/u.test(text) || /[0-9๐-๙?]/u.test(text) || PLACE_WORD.test(text)) return;
+	if (text.split(/[ \t]+/u).length > MAX_NAME_WORDS || !tags.subarray(from, to).every((tag) => tag === OTHER)) return;
+	tags.fill(NAME_TAG, from, to);
+}
+
+const NAME_TAG = TAGS.indexOf("NAME");
+const ADDRESS = TAGS.indexOf("ADDRESS_DETAIL");
+const FIRST_WORD = /^[ \t]*([ก-๎A-Za-z]+)(?=[ \t])/u;
+const PLACE_WORD = /^(?:บ้าน|หมู่|มบ|ม\.|ซ\.|ซอย|ถ\.|ถนน|อาคาร|คอนโด|ตึก|หอ|เลขที่|ห้อง|ชั้น|โครงการ|ตลาด|วัด|โรงเรียน|ที่อยู่|ส่ง|soi|moo|condo|room|floor|building)/iu;
+
+/**
+ * A shopper who opens a line with a handle writes who they are next, as
+ * `(ไลน์ @suanlungpan) สวนทุเรียนลุงพันธ์ 77 ม.8`, but the tagger reads that
+ * word as the start of the address. With no name anywhere, a plain word
+ * right after such a handle that the address run starts with is the name.
+ */
+function nameAfterHandle(raw: string, tags: Uint8Array, end: number): void {
+	if (tags.some((tag) => NAMED.has(tag))) return;
+	const word = FIRST_WORD.exec(raw.slice(end));
+	if (!word || PLACE_WORD.test(word[1]!)) return;
+	const from = end + word[0].length - word[1]!.length;
+	const to = end + word[0].length;
+	if (!tags.subarray(from, to).every((tag) => tag === ADDRESS)) return;
+	tags.fill(NAME_TAG, from, to);
+	for (let index = to; index < raw.length && /[ \t]/u.test(raw[index]!) && tags[index] === ADDRESS; index += 1) tags[index] = OTHER;
+}

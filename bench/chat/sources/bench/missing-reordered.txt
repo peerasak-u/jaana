@@ -65,6 +65,7 @@ tags: phone-middle, name-last, no-postcode, alias, no-newline
 ===
 loc: คลองหก | ธัญบุรี | ปทุมธานี | 12110
 tags: clinic, organisation, no-subdistrict, no-postcode, landline
+warn: ambiguous-location
 ---
 [[N:คลินิกทันตกรรมฟันใสรังสิต]]
 [[A:เลขที่ 39/7 ถ.รังสิต-นครนายก (คลอง 6)]]
@@ -277,6 +278,7 @@ tags: no-district, pipe-separators
 ===
 loc: โนนเมือง | นากลาง | หนองบัวลำภู | 39170
 tags: phone-first, glued, no-subdistrict, no-postcode, typo-province
+warn: ambiguous-location
 ---
 [[P:0956621870]][[N:ครูมาลี]] [[A:12 ม.4 บ้านโนนเมือง]] [[D:นากลาง]] [[V:หนองบัวลำพู]]
 ===
@@ -428,6 +430,7 @@ tags: postcode-before-province, nickname-in-name, no-newline
 ===
 loc: กระแชง | บางไทร | พระนครศรีอยุธยา | 13190
 tags: district-first, alias, no-subdistrict, no-postcode, landmark, multiline
+warn: ambiguous-location
 ---
 ส่ง[[D:บางไทร]]ค่ะ [[V:อยุธยา]]
 [[A:5/2 ม.1 ริมแม่น้ำเจ้าพระยา หลังวัด]]
@@ -590,6 +593,7 @@ tags: thai-digits, postcode-first, district-first, multiline
 ===
 loc: มะเขือแจ้ | เมืองลำพูน | ลำพูน | 51000
 tags: clinic, organisation, amphoe-mueang, no-subdistrict, no-postcode, courier-note
+warn: ambiguous-location
 ---
 [[N:คลินิกกายภาพบำบัดเมืองเหนือ]]
 [[A:155/9 ถ.ลำพูน-ป่าซาง]]

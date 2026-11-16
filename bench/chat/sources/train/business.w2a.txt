@@ -74,6 +74,7 @@ tags: cafe, landmark, no-house-number, alias, no-postcode, same-name-once
 ===
 loc: ศรีสมเด็จ | ศรีสมเด็จ | ร้อยเอ็ด | 45000
 tags: typo-province, glued-moo, no-postcode, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ร้านหมอแคนการไฟฟ้า]] [[A:ม7บ้านหนองแวง]] [[D:อ.ศรีสมเด็จ]] [[V:ร้อยเอ็จ]] [[P:0857742219]]
 ===

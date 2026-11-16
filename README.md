@@ -31,6 +31,16 @@ const { fields, spans } = parser.parse(
 );
 ```
 
+`parse` also returns:
+
+- `recipients`: one entry per delivery when a message holds several. `fields`
+  and `inferred` repeat the first.
+- `inferred`: the subdistrict, district, province and postcode filled in from
+  the gazetteer when the message leaves them out.
+- `warnings`: any of `"ambiguous-location"` (the written fields fit more than
+  one district, province or postcode), `"phone-length"` (the phone is not a
+  Thai length; it is kept as typed) and `"multiple-recipients"`.
+
 `createAddressParser({ version, locations })` builds the Candidate Engine from
 the same expanded gazetteer. Pass `{ diagnostics: "full" }` to it for candidate
 evidence, pruning outcomes, and abstention reasons. Full diagnostics may
@@ -60,31 +70,43 @@ matters more than the last few points of accuracy.
 and reviewed by separate agents under `bench/chat/GUIDE.md`. A record counts
 only when all seven fields match exactly.
 
-Measured on 2026-11-15, one machine, shipped model:
+Measured on 2026-11-16, one machine, shipped model:
 
 | Set | Tagger | Candidate Engine |
 |---|---:|---:|
-| Sealed holdout, exact records (860) | 823 (95.7%) | 72 (8.4%) |
-| Parse time, median / p95 | 8.4 ms / 14.6 ms | 3.4 ms / 6.5 ms |
+| Sealed holdout v2, exact records (860) | 826 (96.0%) | 72 (8.4%) |
+| Sealed holdout v4, issue #6 categories, exact records (375) | 345 (92.0%) | 0 |
+| Parse time, median / p95 | 8.1 ms / 14.4 ms | 3.4 ms / 6.7 ms |
 
-Holdout fields correct out of 860: name 839, phone 859, address 843,
-subdistrict 854, district 853, province 854, zipcode 860.
+Holdout v2 fields correct out of 860: name 842, phone 858, address 840,
+subdistrict 857, district 855, province 856, zipcode 860.
+
+Holdout v4 covers issue #6: contact handles 57/62, name labels 62/64,
+partial administrative chains 61/66, shared Bangkok postcodes 58/60,
+wrong-length phones 60/63, and several deliveries in one message 47/60
+(the recipient count is right on all 60). It was read once, against a
+pre-registered bar of 95% on the first five categories; they scored
+298/315 (94.6%), two records short.
 
 Read it with these limits in mind:
 
 - Every message is synthetic: written by language-model agents to imitate
   real shopper chat, then reviewed. No real customer message is in it.
-- The holdout messages were never trained on and their failures were never
-  inspected, but its total, with per-category and per-field counts, was
-  read about twenty times while choosing between builds, so 95.7% is mildly
-  optimistic. An independent audit put the unbiased figure near 94.5 to
-  95.5%, with about 1.4 points of sampling error on 860 records. A second neural seed on the same linear model scored 820.
-  Seven earlier builds without the fifth data wave scored 810 to 816.
+- The v2 holdout messages were never trained on and their failures were
+  never inspected, but its total, with per-category and per-field counts,
+  was read about twenty-five times across two releases, so 96.0% is mildly
+  optimistic. GUIDE v2 also relabelled it: the previous model scores 824 on
+  the relabelled gold, against 823 before. An earlier independent audit put
+  the unbiased figure near 94.5 to 95.5%, with about 1.4 points of sampling
+  error on 860 records.
+- The v4 holdout was read once. Its 375 records carry about 1.4 points of
+  sampling error on the five-category figure.
 - The first bench batch (1,588 records, the old dev and test1 splits) is
   folded into the shipped model's training, so its numbers no longer measure
-  anything.
-- Reviewers flagged about twenty holdout records that the guide does not
-  settle. The linear half alone scores 808.
+  anything. The spent v3 holdout (`bench/chat/sources/spent/`) and the round
+  4 development sets (`bench/chat/sources/dev/`) are never trained on.
+- Reviewers flagged about twenty v2 holdout records that the guide does not
+  settle.
 
 Rebuild the shipped model (needs Python with PyTorch only for training):
 

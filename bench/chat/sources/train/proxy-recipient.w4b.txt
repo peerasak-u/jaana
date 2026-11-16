@@ -405,6 +405,7 @@ tags: glued, office-colleague, bare-first-name, bangkok, no-province
 ===
 loc: ศรีเตี้ย | บ้านโฮ่ง | ลำพูน | 51130
 tags: northern, grandmother, title-nang, two-phones, buyer-and-recipient
+warn: phone-length
 ---
 หนูชื่อแนน 0619936628 สั่งให้แม่อุ้ยนะเจ้า
 [[N:นางบัวคำ ปัญญาดี]] [[P:0539803214]]

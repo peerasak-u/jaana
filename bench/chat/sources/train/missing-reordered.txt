@@ -162,6 +162,7 @@ tags: postcode-first, phone-second, alias, province-last
 ===
 loc: หารแก้ว | หางดง | เชียงใหม่ | 50230
 tags: no-subdistrict, no-postcode, landmark, nickname-bracket, no-prefix
+warn: ambiguous-location
 ---
 [[N:จิราภรณ์ (แอน)]]
 [[A:99/3 ม.2 ใกล้ตลาดหารแก้ว]] [[D:หางดง]] [[V:เชียงใหม่]]
@@ -399,6 +400,7 @@ tags: no-prefix, no-province, postcode-glued-phone, glued
 ===
 loc: ลำไทร | ลำลูกกา | ปทุมธานี | 12150
 tags: no-subdistrict, no-postcode, housing-estate, name-last
+warn: ambiguous-location
 ---
 [[A:59/203 หมู่บ้านพฤกษา 28 ถ.ลำลูกกา คลอง 7]]
 [[D:อ.ลำลูกกา]] [[V:ปทุมธานี]]
@@ -837,6 +839,7 @@ tags: split-bubbles, no-province, amphoe-mueang, name-late
 ===
 loc: บ้านนา | เมืองชุมพร | ชุมพร | 86190
 tags: no-subdistrict, no-district, province-and-postcode-only, road-with-place-name
+warn: ambiguous-location
 ---
 [[N:อรุณี เพชรรัตน์]] [[A:33/4 ม.9 ถ.ชุมพร-ปากน้ำ]] [[V:ชุมพร]] [[Z:86190]] [[P:0897720635]]
 ===

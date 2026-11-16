@@ -136,6 +136,7 @@ tags: multiline, nickname-brackets, muang, clean
 ===
 loc: ตะปอน | ขลุง | จันทบุรี | 22110
 tags: orchard, alias, no-postcode, delivery-note, name-after-address, no-subdistrict
+warn: ambiguous-location
 ---
 [[A:สวนลุงแดง 52 ม.7 บ้านตะปอนน้อย]] [[D:อ.ขลุง]] [[V:จันท์]] [[N:คุณแดง วงศ์ทอง]] [[P:0899051764]] ส่งช่วงเช้านะครับ บ่ายไปสวน
 ===
@@ -335,6 +336,7 @@ tags: market, shop-in-address, place-name-in-market, oneline
 ===
 loc: สำนักขาม | สะเดา | สงขลา | 90120
 tags: no-dot-prefix, spaced-prefix, no-postcode, phone-before-address, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:สมศักดิ์ แก้วมณี]] [[P:0872295061]] [[A:บ้านเลขที่ 62 ม 4 บ้านทุ่งไหม้]] [[D:อ สะเดา]] [[V:จ สงขลา]]
 ===
@@ -443,6 +445,7 @@ tags: alias, landmark, nickname, oneline
 ===
 loc: ท่าช้าง | พรหมพิราม | พิษณุโลก | 65150
 tags: typo-province, no-postcode, name-after-address, labels, no-subdistrict
+warn: ambiguous-location
 ---
 [[A:บ้านเลขที่ 67 หมู่ 2]] [[D:อ.พรหมพิราม]] [[V:จ.พิศณุโลก]] ผู้รับ [[N:นายเฉลิม ทองอยู่]] โทร [[P:0885541207]]
 ===

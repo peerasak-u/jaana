@@ -5,6 +5,17 @@ import { locationKey, parseSource, type ChatRecord, type Pool, type SourceIssue 
 
 export const CHAT_ROOT = "bench/chat/sources";
 
+/**
+ * The location pool of a source file scored outside the two pools. `spent/`
+ * holds read-out holdouts and `dev/` holds development sets; both are written
+ * on bench locations and no training loader reads either folder.
+ */
+export function sourcePoolOf(path: string): Pool {
+	if (/(?:^|\/)(?:bench|spent|dev)\/[^/]+$/u.test(path)) return "bench";
+	if (/(?:^|\/)train\/[^/]+$/u.test(path)) return "train";
+	throw new Error(`${path} is not in a bench, train, spent or dev folder`);
+}
+
 export function locationMap(locations: readonly LocationTuple[]): Map<string, LocationTuple> {
 	return new Map(locations.map((location) => [locationKey(location), location]));
 }

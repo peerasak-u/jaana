@@ -459,10 +459,11 @@ describe("shipped tagger model", () => {
 		});
 	});
 
-	test("a province written only inside its city district's name is not output", () => {
-		const fields = parser.parse("ณัฐวุฒิ หมานหลี 0623391457 5/1 ม.1 ต.ป่ากอ อ.เมืองพังงา 82000").fields;
-		expect(fields.district).toBe("เมืองพังงา");
-		expect(fields.province).toBeNull();
+	test("a province written only inside its city district's name is inferred, not read", () => {
+		const result = parser.parse("ณัฐวุฒิ หมานหลี 0623391457 5/1 ม.1 ต.ป่ากอ อ.เมืองพังงา 82000");
+		expect(result.fields.district).toBe("เมืองพังงา");
+		expect(result.fields.province).toBe("พังงา");
+		expect(result.inferred).toEqual(["province"]);
 	});
 
 	test("a place name inside a village name stays in the address detail", () => {

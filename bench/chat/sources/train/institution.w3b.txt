@@ -642,7 +642,7 @@ tags: school, no-person, no-phone, no-postcode, org-name-has-subdistrict
 loc: กำแพงเพชร | รัตภูมิ | สงขลา | 90180
 tags: police, abbrev-agency, subdistrict-looks-like-province, province-in-brackets, landline
 ---
-[[N:สภ.กำแพงเพชร (สงขลา)]]
+[[N:สภ.กำแพงเพชร]] (สงขลา)
 [[A:ม.2]] [[S:ต.กำแพงเพชร]] [[D:อ.รัตภูมิ]] [[V:จ.สงขลา]] [[Z:90180]]
 [[P:074-389-215]]
 ===

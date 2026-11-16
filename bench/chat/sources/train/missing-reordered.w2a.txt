@@ -92,6 +92,7 @@ tags: phone-first, thai-digits, name-last, oneline
 ===
 loc: นาบ่อคำ | เมืองกำแพงเพชร | กำแพงเพชร | 62000
 tags: no-subdistrict, no-postcode, amphoe-mueang, detail-after-admin
+warn: ambiguous-location
 ---
 [[N:สมศักดิ์ ใจเย็น]] [[D:อ.เมือง]] [[V:กำแพงเพชร]] [[A:88 ม.10 บ้านโนนสมบูรณ์]] [[P:0896621084]]
 ===

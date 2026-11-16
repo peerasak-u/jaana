@@ -1,5 +1,10 @@
 # Writing chat address records
 
+GUIDE v2, 2026-11-16. Changes from v1: a bracket after a name that holds a
+contact handle or a place name is outside `N`, and so is the label
+`ชื่อเล่น`; `P` keeps 9 to 12 digits as typed; the `warn:` header; records
+with several deliveries.
+
 This is the contract for everyone who writes records under
 `bench/chat/sources/`. A record is one message a Thai online shopper sent to a
 seller in a chat, plus marks that say which characters are the name, phone,
@@ -32,9 +37,15 @@ tags: typo-province, thai-digits, name-last
 - A line that is exactly `===` starts a record.
 - `loc:` is the true location as `subdistrict | district | province | postcode`.
   Copy it from the sampler output. It is the answer key for the
-  administrative fields, whatever the message spells.
+  administrative fields, whatever the message spells. A record with several
+  deliveries has `loc1:`, `loc2:`, ... instead (see
+  [Several deliveries](#several-deliveries)).
 - `tags:` is optional, comma separated, free text. Name the phenomena in the
   message (`typo-district`, `no-newline`, `two-phones`, `company`, and so on).
+- `warn:` is the comma-separated list of warnings the parser should raise for
+  this message (see [Warnings](#warnings)). Leave it out when there are none.
+- Each header line appears at most once. A second `loc:` is an error, not a
+  correction.
 - A line that is exactly `---` ends the header. Everything after it, up to the
   next `===`, is the message. Line breaks are kept. Trailing blank lines are
   dropped.
@@ -56,6 +67,8 @@ tags: typo-province, thai-digits, name-last
 
 A mark never starts or ends with a space. Only `A` may contain a line break.
 A field the shopper did not write gets no mark. Do not mark anything else.
+"How many" counts per delivery. Marks of a second or later delivery carry its
+number: `[[N2:...]]`, `[[P2:...]]`, `[[A2:...]]`.
 
 ### N, the recipient
 
@@ -63,17 +76,30 @@ A field the shopper did not write gets no mark. Do not mark anything else.
 - Include the honorific or title (`คุณ`, `นาย`, `น.ส.`, `ดร.`, `K.`, `Khun`,
   `Mr.`), a nickname in brackets right after the name, and a company's legal
   form (`บริษัท ... จำกัด`, `บจก.`, `หจก.`, `ร้าน`).
-- Exclude the label (`ชื่อ:`, `ผู้รับ`, `ส่งให้`, `ถึง`, `attn.`) and any
-  particle after the name (`ค่ะ`, `ครับ`, `นะคะ`).
+- Exclude the label (`ชื่อ:`, `ชื่อเล่น`, `ชื่อเล่น:`, `ชื่อเล่นคือ`, `ผู้รับ`,
+  `ส่งให้`, `ถึง`, `attn.`) and any particle after the name (`ค่ะ`, `ครับ`,
+  `นะคะ`): `ชื่อเล่น [[N:บีม]]`, never `ชื่อ[[N:เล่น บีม]]`.
 - A kinship or call word joined to the name is part of it (`ป้าน้อย`,
   `ลุงสมพงษ์`, `น้องมายด์`, `ครูวาสนา`).
-- Brackets written right after the name are part of it, whatever they hold:
-  a nickname, a relation, a department. `[[N:คุณสมศรี ใจดี (แม่)]]`,
-  `[[N:อบต.หนองบัว (กองคลัง)]]`. The two exceptions: brackets holding
-  address detail are `A` (`[[N:รร.บ้านท่า]] ([[A:ม.3]])`), and brackets
-  holding a remark to the seller are unmarked.
-  A label inside the brackets does not change this:
-  `[[N:บจก.เอบีซี (attn. คุณบี)]]`.
+- Brackets written right after the name are part of it when they hold a
+  nickname, a relation, a department, or a contact person:
+  `[[N:คุณสมศรี ใจดี (แม่)]]`, `[[N:อบต.หนองบัว (กองคลัง)]]`. A label inside
+  the brackets does not change this: `[[N:บจก.เอบีซี (attn. คุณบี)]]`.
+  The exceptions:
+  - Address detail in brackets is `A`: `[[N:รร.บ้านท่า]] ([[A:ม.3]])`.
+  - A remark to the seller in brackets is unmarked.
+  - A contact handle in brackets is unmarked and not part of `N`. A contact
+    bracket is one whose text starts with `LINE`, `Line`, `ไลน์`, `IG`,
+    `FB`, `Facebook`, `เฟส`, `ID ไลน์`, `ID LINE`, or `@`: `[[N:คุณบีม]] (LINE: beam_shop)`,
+    `[[N:น้องมายด์]] (@mind.mind)`. A word that only contains `ไลน์`, as in
+    `(หัวหน้าไลน์ 3)`, is a department and stays in `N`.
+  - A place name in brackets is not part of `N`. A place bracket holds only a
+    province or district name, with or without its prefix, or a nickname of
+    one: `(กทม.)`, `(บางกอก)`, `(เชียงใหม่)`. When it names the `loc:`
+    province or district and the message has no other mark of that kind,
+    mark it inside the bracket, `[[N:คุณแป้ง]] ([[V:กทม.]])`, with the tag
+    `alias` for a nickname. Otherwise leave it unmarked:
+    `[[N:สภ.กำแพงเพชร]] (สงขลา)` when `[[V:จ.สงขลา]]` is written later.
 - An organisation and its contact person written next to each other are one
   name: `[[N:บจก.รุ่งเรืองการค้า (คุณเอ ฝ่ายจัดซื้อ)]]`. The order does not
   matter: `[[N:ครูวาสนา ปินตา โรงเรียนบ้านดงวิทยา]]`. "Next to each other" means
@@ -100,8 +126,14 @@ A field the shopper did not write gets no mark. Do not mark anything else.
   unmarked.
   The exception is a correction (`แก้เบอร์เป็น ...`): mark the corrected
   number, because the first one is wrong.
-- It must be a Thai number: 9 or 10 digits starting with 0, or the `+66`/`66`
-  form of one. Invent every number.
+- Mark the number exactly as typed, even when its length is wrong: 9 to 12
+  digits starting with 0, or the `+66`/`66` form of one. Never drop a digit to
+  make it look right. A number of the wrong length also needs
+  `warn: phone-length` (see [Warnings](#warnings)). Invent every number.
+- The gold value is the digits as typed: separators and brackets dropped,
+  Thai digits made ASCII, a leading `+66`, `0066`, or `66` (and one `0` right
+  after it) read as `0`, and nothing cut. `081-234-56789` is `08123456789`.
+  `+66 (0)81 234 5678` is `0812345678`.
 
 ### A, the address detail
 
@@ -142,9 +174,53 @@ A field the shopper did not write gets no mark. Do not mark anything else.
 - The five digits only, Arabic or Thai. It must be the `loc:` postcode. The
   label (`รหัสไปรษณีย์`) is not part of it.
 
+## Warnings
+
+`warn:` lists, comma separated, every warning the message should raise, from
+this closed set. `check.ts` derives the set from the marks, `loc:`, and the
+gazetteer, and names the exact `warn:` line a record needs.
+
+| Warning | Add it when |
+|---|---|
+| `ambiguous-location` | For some delivery, the administrative fields the shopper wrote (its `S`, `D`, `V`, `Z` marks) leave the route open: they fit gazetteer tuples that differ in district, province or postcode. Examples: only `[[V:ราชบุรี]]` is written; or subdistrict, district and province are written without a postcode, and that subdistrict has two postcodes. An unknown subdistrict alone is not ambiguous, because district and postcode still route the parcel. A delivery whose only administrative mark is `Z`, or that has none, needs no warning. `check.ts` decides. |
+| `phone-length` | A marked phone has the wrong length for a Thai number. A mobile (`06`, `08`, `09`) needs 10 digits; any other number needs 9. Judge the gold digits, after the `+66` rule. |
+| `multiple-recipients` | The message holds more than one delivery, so the record uses `loc1:`, `loc2:`. |
+
+## Several deliveries
+
+Some messages hold more than one delivery: two numbered orders, `ส่วนอีกที่`,
+a gift for a relative next to the buyer's own address, or one person's work
+and home addresses. Each delivery is a recipient.
+
+- The header gives `loc1:`, `loc2:`, ... in the order the deliveries are
+  written, and `warn:` includes `multiple-recipients`. `loc:` and `loc1:`
+  never appear together, and a single delivery always uses `loc:`.
+- Unnumbered marks belong to delivery 1. Marks of delivery 2 are `N2`, `P2`,
+  `A2`, `S2`, `D2`, `V2`, `Z2`, and so on. `N1` is never written.
+- Every delivery after the first has at least one mark.
+- A name, phone, or field written once for two deliveries is marked once,
+  where it is written, with the number of the delivery it is written in.
+  Two deliveries for the same person (work and home) are two recipients, and
+  the name is marked once.
+
+```
+===
+loc1: บ่อกระดาน | ปากท่อ | ราชบุรี | 70140
+loc2: กำแพงเพชร | รัตภูมิ | สงขลา | 90180
+warn: multiple-recipients
+---
+1. [[N:คุณวิไลพร ทองดี]] [[P:089-123-4567]] [[A:45/2 ม.3]] [[S:ต.บ่อกระดาน]] [[D:อ.ปากท่อ]] [[Z:70140]]
+2. ส่งให้แม่ [[N2:คุณสมศรี ทองดี]] [[A2:12 ม.5]] [[S2:ต.กำแพงเพชร]] [[D2:อ.รัตภูมิ]] [[V2:สงขลา]] [[Z2:90180]]
+```
+
+These records never train the tagger, because the tagger reads one delivery
+at a time.
+
 ## Hard rules
 
-1. One message describes one delivery address.
+1. A record holds one delivery with `loc:`, or several with `loc1:`,
+   `loc2:`, ... and numbered marks. Write several only for the
+   `multi-recipient` category.
 2. Every person, phone number, house number, company, and shop is invented.
 3. Each `loc:` comes from your own sampler output. Use each location at most
    twice.
@@ -170,9 +246,13 @@ bun scripts/chat/sample-locations.ts --pool <pool> --seed <your-seed> --n 140
 bun scripts/chat/check.ts bench/chat/sources/<pool>/<your-file>.txt --show 5
 ```
 
-`check.ts` must print `"issues":0`. Fix every issue it reports. Then reread
-twenty of your own records against the mark rules above, because the checker
-cannot see a wrong boundary.
+`check.ts` must print `"issues":0`. Fix every issue it reports, including the
+`warn:` line it asks for. Then reread twenty of your own records against the
+mark rules above, because the checker cannot see a wrong boundary.
+
+Before a batch merges, `bun scripts/chat/dedup.ts` must report no cross-pool
+pair. `bun scripts/chat/relabel-v2.ts <files> --write` brings a v1 file to v2
+mechanically and prints counts only.
 
 ## Categories
 
@@ -192,3 +272,16 @@ cannot see a wrong boundary.
 | `phone-numbers` | Phone format variety and number noise: `+66`, spaces, dots, Thai digits, two numbers, landlines, plus order numbers, tracking numbers, and LINE IDs that are not the phone. |
 | `missing-reordered` | Fields missing or in unusual order: phone first, name last, postcode first, no subdistrict, no province, `อ.เมือง`. |
 | `proxy-recipient` | Someone else receives: family, a neighbour's shop, a colleague, nicknames, Facebook or LINE display names, buyer and recipient both named. |
+
+Each holdout v3 category (`bench/chat/sources/bench/<category>.v3.txt`) tests
+one rule from issue #6. Every record in the file shows its category's case;
+the rest of the message stays as varied as above.
+
+| Category | What every record holds |
+|---|---|
+| `contact-handle` | A contact handle next to the name: `(LINE: …)`, `(ไลน์ …)`, `(IG: …)`, `(FB: …)`, `เฟส …`, `ID ไลน์ …`, `(@handle)`, bracketed or not, before or after the name. The handle is never part of `N`. |
+| `name-labels` | One of: a name led by `ชื่อเล่น`, `ชื่อเล่น:`, or `ชื่อเล่นคือ`; a place-name bracket after the name (`(กทม.)`, `(บางกอก)`, `(เชียงใหม่)`); a company name written before the house number. |
+| `partial-admin` | Only part of the administrative chain is written: subdistrict and postcode, district and postcode, or subdistrict and district, plus subdistrict names shared by several provinces. Some resolve to one tuple and some need `ambiguous-location`; `check.ts` says which. |
+| `bangkok-shared-postcode` | A Bangkok address whose postcode is shared by several เขต, in Thai or romanized (`Bangna`, `Bang Na`, `Khlong Toei`). The เขต or แขวง is written, so the postcode alone does not decide it. |
+| `phone-length` | Most records hold a phone of the wrong length as typed (9-digit mobiles, 11 or 12 digits, dashes in odd places) with `warn: phone-length`. The rest hold a valid phone next to a 13-digit tax ID, which is never marked `P`, and need no phone warning. |
+| `multi-recipient` | Two or more deliveries in one message, in the [Several deliveries](#several-deliveries) format: numbered orders, `ส่วนอีกที่`, work and home of one person, a gift for family. |

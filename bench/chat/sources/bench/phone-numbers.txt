@@ -80,6 +80,7 @@ tags: alias, office-tower, odd-grouping, courier-note
 ===
 loc: บ่อกวางทอง | บ่อทอง | ชลบุรี | 20270
 tags: oneline, old-phone-format
+warn: phone-length
 ---
 ชื่อ [[N:สมพงษ์ ทับทิมทอง]] [[A:9/2 ม.3]] [[S:ต.บ่อกวางทอง]] [[D:อ.บ่อทอง]] [[V:ชลบุรี]] [[Z:20270]] โทร [[P:0-8946-1127]] ส่งเคอรี่ครับ
 ===

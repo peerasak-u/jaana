@@ -18,6 +18,7 @@ tags: company, landline, alias, order-items, delivery-instruction, no-prefix
 ===
 loc: ชัยบาดาล | ชัยบาดาล | ลพบุรี | 15230
 tags: live-cf, cod, same-name-once, no-postcode, nickname
+warn: ambiguous-location
 ---
 555 ได้ค่ะ เอาเลย CF 3 ชิ้นค่ะ
 [[N:ป้าบุญเรือน]] [[P:089 552 0137]]

@@ -269,6 +269,7 @@ tags: obj, provincial-org, person-other-line, abbrev-start
 ===
 loc: ศาลเจ้าไก่ต่อ | ลาดยาว | นครสวรรค์ | 60150
 tags: school-contains-subdistrict, no-person, minimal
+warn: phone-length
 ---
 [[N:โรงเรียนศาลเจ้าไก่ต่อวิทยา]] [[D:อ.ลาดยาว]] [[V:นครสวรรค์]] [[Z:60150]] [[P:056-271-0490]]
 ===

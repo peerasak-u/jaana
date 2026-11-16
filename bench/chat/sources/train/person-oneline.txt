@@ -546,6 +546,7 @@ tags: alias, courier-note-before-phone, bangkok
 ===
 loc: คลองยาง | เกาะลันตา | กระบี่ | 81120
 tags: resort, romanized-organisation, organisation-no-person, landline, no-subdistrict, no-postcode, no-prefix
+warn: ambiguous-location
 ---
 [[N:Lanta Sunset Bungalow]] [[A:111 ม.5]] [[D:เกาะลันตา]] [[V:กระบี่]] [[P:075-668-291]]
 ===

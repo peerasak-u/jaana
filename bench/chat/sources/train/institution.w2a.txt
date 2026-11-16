@@ -355,6 +355,7 @@ tags: hospital, nurse, person-first, same-line, ward, oneline
 ===
 loc: พังกาญจน์ | พนม | สุราษฎร์ธานี | 84250
 tags: school, institution-only, typo-province, numbered-list
+warn: phone-length
 ---
 1) [[N:โรงเรียนบ้านพังกาญจน์]]
 2) [[A:เลขที่ 77 หมู่ 2]]

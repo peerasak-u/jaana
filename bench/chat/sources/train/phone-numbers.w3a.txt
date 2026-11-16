@@ -279,6 +279,7 @@ tags: phone-between-slashes, nickname, oneline, alias
 ===
 loc: นาหว้า | ปทุมราชวงศา | อำนาจเจริญ | 37110
 tags: phone-9-digits, short-mobile, no-postcode, alias
+warn: phone-length
 ---
 [[N:แม่ทองม้วน]] [[A:16 ม.7]] [[S:นาหว้า]] [[D:ปทุมราชวงศา]] [[V:อำนาจ]] โทร [[P:089123476]] (เบอร์แม่ค่ะ)
 ===
