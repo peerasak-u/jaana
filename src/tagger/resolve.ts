@@ -17,20 +17,20 @@ const PREFIXES: Record<AdministrativeField, readonly string[]> = {
 };
 /** Short forms and nicknames shoppers write for a province. */
 export const PROVINCE_ALIASES: ReadonlyMap<string, readonly string[]> = new Map(Object.entries({
-	กรุงเทพมหานคร: ["กทม", "กทม.", "กรุงเทพ", "กรุงเทพฯ", "dm,"],
+	กรุงเทพมหานคร: ["กทม", "กทม.", "กรุงเทพ", "กรุงเทพฯ", "บางกอก", "bangkok", "bkk", "dm,"],
 	นนทบุรี: ["นนท์", "นนท"],
 	ปทุมธานี: ["ปทุม"],
 	นครราชสีมา: ["โคราช"],
-	กาญจนบุรี: ["กาญจน์"],
+	กาญจนบุรี: ["กาญจน์", "กาญ"],
 	อุบลราชธานี: ["อุบล", "อุบลฯ"],
 	สมุทรสาคร: ["มหาชัย"],
 	สมุทรสงคราม: ["แม่กลอง"],
 	สมุทรปราการ: ["ปากน้ำ"],
 	สุพรรณบุรี: ["สุพรรณ"],
-	พระนครศรีอยุธยา: ["อยุธยา"],
+	พระนครศรีอยุธยา: ["อยุธยา", "กรุงเก่า"],
 	ฉะเชิงเทรา: ["แปดริ้ว"],
 	นครศรีธรรมราช: ["นครศรี", "นครศรีฯ"],
-	อุดรธานี: ["อุดร"],
+	อุดรธานี: ["อุดร", "อุดรฯ"],
 	ประจวบคีรีขันธ์: ["ประจวบ"],
 	สุราษฎร์ธานี: ["สุราษฎร์"],
 }));
@@ -38,6 +38,7 @@ const ALIASED_PROVINCE = new Map(
 	[...PROVINCE_ALIASES].flatMap(([province, aliases]) => aliases.map((alias) => [alias, province] as const)),
 );
 const MIN_FUZZY_RATIO = 0.8;
+const MIN_TRUNCATED_STEM = 4;
 const FUZZY_DISCOUNT = 0.9;
 const BARE_CITY_SIMILARITY = 0.9;
 const POSTCODE_SCORE = 0.6;
@@ -51,10 +52,17 @@ export type AdministrativeValues = Record<AdministrativeField | "zipcode", strin
 /** Surface forms of one tagged span with its administrative prefix removed. */
 export function nameForms(field: AdministrativeField, text: string): string[] {
 	const compact = text.replace(/\s+/gu, " ").trim();
-	const forms = new Set([compact.replace(/\s/gu, "")]);
+	// A romanized form keeps its spaces, which mark a romanized prefix word such as `Khet`.
+	const forms = new Set([ROMANIZED.test(compact) ? compact : compact.replace(/\s/gu, "")]);
 	for (const prefix of PREFIXES[field]) {
 		if (compact.startsWith(prefix)) {
 			forms.add(compact.slice(prefix.length).replace(/[\s.]/gu, ""));
+		}
+	}
+	if (field === "district") {
+		for (const form of forms) {
+			const province = form.startsWith("เมือง") ? ALIASED_PROVINCE.get(form.slice("เมือง".length)) : undefined;
+			if (province) forms.add(`เมือง${province}`);
 		}
 	}
 	return [...forms].filter((form) => form.length > 0);
@@ -69,7 +77,7 @@ export function formSimilarity(
 	let best = 0;
 	for (const form of forms) {
 		if (form === name) return 1;
-		if (field === "province" && ALIASED_PROVINCE.get(form) === name) return 1;
+		if (field === "province" && ALIASED_PROVINCE.get(form.toLowerCase()) === name) return 1;
 		if (field === "district" && form === "เมือง" && name.startsWith("เมือง")) {
 			best = Math.max(best, BARE_CITY_SIMILARITY);
 			continue;
@@ -152,6 +160,16 @@ export function createTupleResolver(
 			}
 		}
 		if (result.size > 0) return result;
+		if (field !== "province") {
+			for (const form of forms) {
+				// A shopper cuts a long name short, often closing it with a karan: `อ.จตุรพักตร์` for จตุรพักตรพิมาน.
+				const stem = form.replace(/.์$/u, "");
+				if (stem.length < MIN_TRUNCATED_STEM) continue;
+				const longer = names[field].filter((name) => name.length > stem.length && name.startsWith(stem));
+				if (longer.length === 1) raise(longer[0]!, FUZZY_DISCOUNT);
+			}
+			if (result.size > 0) return result;
+		}
 		for (const form of forms) {
 			for (const name of names[field]) {
 				if (Math.abs(name.length - form.length) > 2) continue;
