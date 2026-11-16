@@ -18,9 +18,14 @@ const outputPath = option("--output") ?? ".bench-results/chat.json";
 const failuresPath = option("--failures") ?? ".bench-results/chat-dev-failures.jsonl";
 const test1FailuresPath = ".bench-results/chat-test1-failures.jsonl";
 const extraFailuresPath = ".bench-results/chat-extra-failures.jsonl";
-/** Train-pool files to score as a separate development set, comma separated. */
+/**
+ * Files to score as a separate development set, comma separated: train-pool
+ * files, or spent holdouts moved to `sources/spent/`. Spent files hold bench
+ * locations and are never trained on; only their totals stopped being unbiased.
+ */
 const extraPaths = (option("--extra") ?? "").split(",").filter(Boolean);
-if (extraPaths.some((path) => !path.includes("/sources/train/"))) throw new Error("--extra takes train-pool source files only");
+const extraPool = (path: string) => (path.includes("/sources/spent/") ? "bench" : "train");
+if (extraPaths.some((path) => !/\/sources\/(?:train|spent)\//u.test(path))) throw new Error("--extra takes train-pool or spent source files only");
 const minimum = option("--min-test-exact");
 const rounds = Number(option("--timing-rounds") ?? "3");
 const readHoldout = Bun.argv.includes("--read-holdout");
@@ -159,7 +164,7 @@ function time(set: readonly ChatRecord[]) {
 const first = records.filter((record) => !isHoldout(record));
 const dev = evaluate(first.filter((record) => splitOf(record.raw) === "dev"), true);
 const test1 = evaluate(first.filter((record) => splitOf(record.raw) === "test"), true);
-const extraRecords = (await Promise.all(extraPaths.map((path) => loadSourceFile(path, "train", locationMap(locations))))).flatMap(({ records, issues }) => {
+const extraRecords = (await Promise.all(extraPaths.map((path) => loadSourceFile(path, extraPool(path), locationMap(locations))))).flatMap(({ records, issues }) => {
 	if (issues.length > 0) throw new Error(`${issues.length} source issues in --extra. Run scripts/chat/check.ts`);
 	return records;
 });
