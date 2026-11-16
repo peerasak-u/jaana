@@ -30,10 +30,12 @@ import {
 import {
 	ADMINISTRATIVE_FIELDS,
 	closestTuple,
+	createLocationFiller,
 	createTupleResolver,
 	formSimilarity,
 	nameForms,
 	PROVINCE_ALIASES,
+	ROMANIZED,
 	type AdministrativeField,
 	type AdministrativeTexts,
 	type AdministrativeValues,
@@ -41,7 +43,6 @@ import {
 
 const MIN_SIBLING_RATIO = 0.7;
 const MIN_WORD_RATIO = 0.85;
-const ROMANIZED =/^[^ก-๎]*[A-Za-z][^ก-๎]*$/u;
 const THAI_DIGITS = "๐๑๒๓๔๕๖๗๘๙";
 const DISTRICT_BIT = 1 << ANCHOR_FIELDS.indexOf("district");
 
@@ -445,6 +446,7 @@ export function createScoredParser(
 ): TaggerParser {
 	const anchor = createAnchorer(locations);
 	const resolve = createTupleResolver(locations);
+	const fillLocation = createLocationFiller(locations);
 	const siblingTuples = new Map<string, LocationTuple[]>();
 	for (const location of locations) {
 		const key = `${location.province}\u0000${location.district}`;
@@ -647,6 +649,7 @@ export function createScoredParser(
 				administrative.district = administrative.subdistrict;
 				administrative.subdistrict = null;
 			}
+			const location = fillLocation(administrative);
 			const name = text("NAME");
 			const phone = text("PHONE");
 			const recipient: TaggedRecipient = {
@@ -654,11 +657,12 @@ export function createScoredParser(
 					name: name ? normalizeCandidate("NAME", name) : null,
 					phone: phone ? normalizeCandidate("PHONE", phone) : null,
 					address: address ? normalizeCandidate("ADDRESS_DETAIL", address) : null,
-					...administrative,
+					...location.values,
 				},
-				inferred: [],
+				inferred: location.inferred,
 			};
-			return { raw, ...recipient, spans, warnings: [], recipients: [recipient] };
+			const warnings: ParseWarning[] = location.ambiguous ? ["ambiguous-location"] : [];
+			return { raw, ...recipient, spans, warnings, recipients: [recipient] };
 		},
 	};
 }
