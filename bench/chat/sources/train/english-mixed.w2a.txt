@@ -148,6 +148,7 @@ tags: clean, romanized-name, name-last
 ===
 loc: แกดำ | แกดำ | มหาสารคาม | 44190
 tags: single-district-name, office, government, english-attn
+warn: ambiguous-location
 ---
 [[N:สำนักงานเกษตรอำเภอแกดำ (attn. Khun Wipa)]]
 [[A:ที่ว่าการอำเภอ ชั้น 1]] [[D:แกดำ]] [[V:มหาสารคาม]] [[Z:44190]]
@@ -356,6 +357,7 @@ Mobile: [[P:0874431029]]
 ===
 loc: บางน้ำเปรี้ยว | บางน้ำเปรี้ยว | ฉะเชิงเทรา | 24150
 tags: alias, province-nickname, one-mention-district, shop
+warn: ambiguous-location
 ---
 [[N:ร้าน Baan Khanom by Nok]] [[A:45 ถ.สุวินทวงศ์]] [[D:บางน้ำเปรี้ยว]] [[V:แปดริ้ว]] [[Z:24150]] โทร [[P:0866041192]]
 ===
@@ -446,6 +448,7 @@ tags: typo-province, rural, english-label-tel
 ===
 loc: บ่อพลอย | บ่อพลอย | กาญจนบุรี | 71160
 tags: gem-shop, shop, english-shop, district-once
+warn: ambiguous-location
 ---
 [[N:Bo Ploy Gems & Jewelry]]
 [[A:7 ถ.บ่อพลอย-หนองปรือ]] [[D:อ.บ่อพลอย]] [[V:กาญจนบุรี]] [[Z:71160]]
@@ -508,6 +511,7 @@ tags: postcode-glued-province, english-name, one-line
 ===
 loc: ลำผักชี | หนองจอก | กรุงเทพมหานคร | 10530
 tags: village, english-village, no-subdistrict
+warn: ambiguous-location
 ---
 [[A:Baan Pruksa 33, 101/450 Soi Liap Wari 30]] [[D:เขตหนองจอก]] [[V:กรุงเทพมหานคร]] [[Z:10530]]
 [[N:K.Pun]] [[P:0937741025]]
@@ -618,6 +622,7 @@ real phone [[P:0813320913]] ka
 ===
 loc: บัวลาย | บัวลาย | นครราชสีมา | 30120
 tags: district-once, temple-rural, english-ordering-note
+warn: ambiguous-location
 ---
 order 3 boxes for the temple fair ka
 ส่ง [[N:วัดบ้านเพ็ก]] [[A:ม.5]] [[D:อ.บัวลาย]] [[V:นครราชสีมา]] [[Z:30120]] ติดต่อหลวงพี่ [[P:0884419066]]
@@ -748,6 +753,7 @@ Tel:[[P:0953328417]]
 ===
 loc: นาโพธิ์ | นาโพธิ์ | บุรีรัมย์ | 31230
 tags: district-once, typo-province, romanized-name, rural
+warn: ambiguous-location
 ---
 [[N:Prasert Inta]] [[A:บ้านเลขที่ 22 ม.12]] [[D:อ.นาโพธิ์]] [[V:บุรีรัม]] [[Z:31230]] [[P:0827714561]]
 ===

@@ -60,18 +60,35 @@ export function addResult(
   expected: ExpectedAddress,
   actual: ExpectedAddress | null,
 ): void {
+  addRecipients(metrics, [expected], actual ? [actual] : null);
+}
+
+/**
+ * Scores one message with any number of deliveries. Fields are compared per
+ * recipient in written order, a missing recipient counting as all null, and
+ * the message is exact only when every recipient matches.
+ */
+export function addRecipients(
+  metrics: MetricAccumulator,
+  expected: readonly ExpectedAddress[],
+  actual: readonly ExpectedAddress[] | null,
+): void {
   metrics.records += 1;
   if (!actual) {
     metrics.failures += 1;
-    for (const field of FIELD_NAMES) metrics.fields[field].total += 1;
+    for (const field of FIELD_NAMES) metrics.fields[field].total += expected.length;
     return;
   }
-  let exact = true;
-  for (const field of FIELD_NAMES) {
-    const fieldMetric = metrics.fields[field];
-    fieldMetric.total += 1;
-    if (actual[field] === expected[field]) fieldMetric.correct += 1;
-    else exact = false;
+  let exact = expected.length === actual.length;
+  for (let index = 0; index < Math.max(expected.length, actual.length); index += 1) {
+    const want = expected[index];
+    const got = actual[index];
+    for (const field of FIELD_NAMES) {
+      const fieldMetric = metrics.fields[field];
+      fieldMetric.total += 1;
+      if ((got ? got[field] : null) === (want ? want[field] : null)) fieldMetric.correct += 1;
+      else exact = false;
+    }
   }
   if (exact) metrics.exactRecords += 1;
 }

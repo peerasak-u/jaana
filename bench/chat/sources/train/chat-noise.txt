@@ -18,6 +18,7 @@ tags: company, landline, alias, order-items, delivery-instruction, no-prefix
 ===
 loc: ชัยบาดาล | ชัยบาดาล | ลพบุรี | 15230
 tags: live-cf, cod, same-name-once, no-postcode, nickname
+warn: ambiguous-location
 ---
 555 ได้ค่ะ เอาเลย CF 3 ชิ้นค่ะ
 [[N:ป้าบุญเรือน]] [[P:089 552 0137]]
@@ -75,6 +76,7 @@ tags: temple, alias, landline, owner-note, payment-note
 ===
 loc: แดนสงวน | ระโนด | สงขลา | 90140
 tags: sticker-placeholder, no-subdistrict, particle-glued, oneline-address
+warn: ambiguous-location
 ---
 [สติกเกอร์]
 พี่คะ ส่งตามนี้ค่ะ [[N:น.ส.นูรีซัน หมัดหลี]] [[A:9/2 หมู่ที่ 5]] [[D:อ.ระโนด]] [[V:จ.สงขลา]] [[Z:90140]] [[P:0846620319]]นะคะ
@@ -198,6 +200,7 @@ tags: child-recipient, typo-province, parent-phone, order-items
 ===
 loc: โพนสวรรค์ | โพนสวรรค์ | นครพนม | 48190
 tags: same-name-once, cod, elderly, emoji, phone-before-address
+warn: ambiguous-location
 ---
 สวัสดีจ้า สั่งหมอนยางพารา 2 ใบ
 [[N:ลุงเสถียร พรมมา]] โทร [[P:0817204485]]
@@ -414,6 +417,7 @@ tags: school, contact-person, receipt-request, order-items
 ===
 loc: จอมบึง | จอมบึง | ราชบุรี | 70150
 tags: phone-first, same-name-once, no-newline, order-after, emoji
+warn: ambiguous-location
 ---
 [[N:ชาญวิทย์ บุญมาก]] [[P:0921105568]] [[A:65/3 ม.1 ถ.จอมบึง-บ้านคา]] [[D:จอมบึง]] [[V:ราชบุรี]] [[Z:70150]] เสื้อโปโล M 3 ตัว L 2 ตัว โอนแล้วครับ ✅
 ===
@@ -529,6 +533,7 @@ tags: proxy, typo-moo, typo-province, two-phones, order-after
 ===
 loc: สายไหม | สายไหม | กรุงเทพมหานคร | 10220
 tags: same-name-once, placename-in-soi, alias, nickname-brackets, no-newline, delivery-instruction
+warn: ambiguous-location
 ---
 ได้เลยค่ะ ส่ง [[N:คุณจิราพร (ฝน)]] [[A:88/123 หมู่บ้านอมรพันธ์ 9 ซ.สายไหม 56]] [[D:สายไหม]] [[V:กทม]] [[Z:10220]] [[P:0864451092]] ฝากป้อมยามได้ค่ะ
 ===
@@ -770,6 +775,7 @@ tags: subdistrict-looks-like-alias, admin-repeated-in-chat, emoji, full-prefixes
 ===
 loc: ศรีธาตุ | ศรีธาตุ | อุดรธานี | 41230
 tags: same-name-once, road-with-placename, name-after-address, no-newline, payment-note
+warn: ambiguous-location
 ---
 เอาสร้อยข้อมือ 2 เส้นค่ะ ส่ง [[A:59 ม.1 ถ.ศรีธาตุ-วังสามหมอ]] [[D:ศรีธาตุ]] [[V:อุดรธานี]] [[Z:41230]] [[N:นางสาวอัญชลี ไชยแสง]] [[P:0971402268]] โอนแล้วค่ะ
 ===
@@ -825,6 +831,7 @@ tags: phone-first, no-newline, nickname-only, urgent, emoji
 ===
 loc: บางคอแหลม | บางคอแหลม | กรุงเทพมหานคร | 10120
 tags: shop, same-name-once, no-province, no-subdistrict, landline, delivery-time
+warn: ambiguous-location
 ---
 ขอสั่งน้ำดื่ม 20 แพ็คค่ะ ส่งร้านเลย
 [[N:ร้านนิดหน่อยมินิมาร์ท]] [[A:401 ถ.เจริญราษฎร์]] [[D:บางคอแหลม]] [[Z:10120]]
@@ -1063,6 +1070,7 @@ tags: monk, temple-in-address, proxy-phone, religious
 ===
 loc: พัฒนานิคม | พัฒนานิคม | ลพบุรี | 15140
 tags: combine-orders, same-name-once-prefixed, no-subdistrict
+warn: ambiguous-location
 ---
 สั่งเพิ่มค่ะ เมื่อวานสั่งไปแล้ว 2 ชิ้น วันนี้อีก 1 รวมส่งทีเดียวได้ไหมคะ
 [[N:สมศรี แก้วกาญจน์]] [[A:88 ม.7]] [[D:อ.พัฒนานิคม]] [[V:ลพบุรี]] [[Z:15140]] [[P:0832245610]]
@@ -1101,6 +1109,7 @@ tags: no-house-number, landmark, no-prefix, name-after-address, no-newline
 ===
 loc: คันนายาว | คันนายาว | กรุงเทพมหานคร | 10230
 tags: live-cf, item-number-lookalike, romanized-name, plus66, same-name-once, alias
+warn: ambiguous-location
 ---
 CF ค่า 💖 เบอร์ 7 กับ 15
 [[N:Pang Pattama]]

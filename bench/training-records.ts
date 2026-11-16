@@ -44,10 +44,11 @@ export async function loadTrainingRecords(options: TrainingRecordOptions): Promi
 	const folded = loadedBench.records.filter(
 		(record) => !isHoldout(record) && (fold === "all" || splitOf(record.raw) === fold),
 	);
+	// The tagger sees one delivery at a time, so a message with several never trains it.
 	const sampledChat = [
 		...loadedChat.records.filter((record) => fnv1a(record.id) % 100 < options.chatPercent),
 		...folded,
-	];
+	].filter((record) => record.recipients.length === 1);
 	const chat = augmentChatRecords(sampledChat, {
 		copies: options.augment - 1,
 		seed: options.seed,

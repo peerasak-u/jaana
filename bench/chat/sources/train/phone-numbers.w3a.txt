@@ -12,6 +12,7 @@ tags: two-phones, slash, oneline
 ===
 loc: สามง่าม | โพธิ์ทอง | อ่างทอง | 14120
 tags: institution, landline, extension, no-subdistrict
+warn: ambiguous-location
 ---
 เรียนแอดมินค่ะ ส่งเอกสารตามนี้
 [[N:องค์การบริหารส่วนตำบลสามง่าม (กองคลัง)]]
@@ -225,6 +226,7 @@ tags: company, landline, extension, tax-id, branch
 ===
 loc: สระใคร | สระใคร | หนองคาย | 43100
 tags: same-name-once, phone-dots, no-prefix
+warn: ambiguous-location
 ---
 [[N:คุณประยงค์]] [[A:8 ม.6]] [[D:สระใคร]] [[V:หนองคาย]] [[Z:43100]] [[P:098.551.7034]]
 ===
@@ -279,6 +281,7 @@ tags: phone-between-slashes, nickname, oneline, alias
 ===
 loc: นาหว้า | ปทุมราชวงศา | อำนาจเจริญ | 37110
 tags: phone-9-digits, short-mobile, no-postcode, alias
+warn: phone-length
 ---
 [[N:แม่ทองม้วน]] [[A:16 ม.7]] [[S:นาหว้า]] [[D:ปทุมราชวงศา]] [[V:อำนาจ]] โทร [[P:089123476]] (เบอร์แม่ค่ะ)
 ===
@@ -708,6 +711,7 @@ tags: thai-digits, mixed-digits, alias
 ===
 loc: บางไทร | บางไทร | พระนครศรีอยุธยา | 13190
 tags: same-name-once, phone-dot-label, no-subdistrict, alias
+warn: ambiguous-location
 ---
 [[N:คุณประเสริฐ บัวงาม]] [[A:44 ม.2 ถ.บางไทร-ป่าโมก]] [[D:บางไทร]] [[V:อยุธยา]] [[Z:13190]] โทร.[[P:0816632907]]
 ===
@@ -906,6 +910,7 @@ tags: phone-dash-mixed-groups, line-id, emoji
 ===
 loc: ปากท่อ | ปากท่อ | ราชบุรี | 70140
 tags: same-name-once, two-phones-pipe, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:คุณชวลิต]] | [[P:0817740092]] | 0627740092 | [[A:7/1 ม.2]] [[D:ปากท่อ]] [[V:ราชบุรี]] [[Z:70140]]
 ===

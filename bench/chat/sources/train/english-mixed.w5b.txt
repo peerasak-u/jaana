@@ -165,6 +165,7 @@ Phone : [[P:089-6631-702]]
 ===
 loc: หนองแขม | หนองแขม | กรุงเทพมหานคร | 10160
 tags: oneline, foreign-buyer, apartment, english-detail, no-subdistrict
+warn: ambiguous-location
 ---
 Good day! Kindly send to [[N:Ms. Maricel Dela Cruz]] [[A:Room 3B, Baan Pakdee Apartment, Soi Phetkasem 81]] [[D:เขตหนองแขม]] [[V:กรุงเทพฯ]] [[Z:10160]] contact [[P:0962274518]] God bless
 ===
@@ -359,6 +360,7 @@ my number [[P:0838826590]], she has no phone
 ===
 loc: ไทรน้อย | ไทรน้อย | นนทบุรี | 11150
 tags: oneline, no-name, housing-estate, english-detail, district-once-no-prefix, place-in-road
+warn: ambiguous-location
 ---
 ส่งบ้าน ok นะคะ [[A:Casa Ville Sai Noi 88/12 ถ.บางกรวย-ไทรน้อย]] [[D:ไทรน้อย]] [[V:นนทบุรี]] [[Z:11150]] [[P:095-226-3417]] (ชื่อตามเฟสเลยค่ะ)
 ===

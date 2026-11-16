@@ -18,6 +18,7 @@ tags: name-last, no-postcode, oneline, particle
 ===
 loc: คลองหก | คลองหลวง | ปทุมธานี | 12120
 tags: company, no-subdistrict, landline, multiline
+warn: ambiguous-location
 ---
 [[N:หจก.ทวีทรัพย์ อลูมิเนียม]]
 [[A:55/12 ม.6 ถ.รังสิต-นครนายก]]
@@ -62,6 +63,7 @@ tags: phone-first, amphoe-mueang, no-postcode, first-name-only
 ===
 loc: ท่าอิฐ | ปากเกร็ด | นนทบุรี | 11120
 tags: name-last, no-subdistrict, no-province, district-only-postcode, housing-estate
+warn: ambiguous-location
 ---
 [[A:99/154 หมู่บ้านพฤกษาวิลล์ 22 ซ.6]]
 [[D:ปากเกร็ด]] [[Z:11120]]
@@ -84,6 +86,7 @@ tags: school, person-apart-from-org, name-last, no-house-number
 ===
 loc: ทรายกองดินใต้ | คลองสามวา | กรุงเทพมหานคร | 10510
 tags: phone-first, no-subdistrict, alias, bangkok
+warn: ambiguous-location
 ---
 โทร [[P:0896652013]] [[N:คุณวิชัย]] [[A:28/115 ซ.ประชาร่วมใจ 45]] [[D:เขตคลองสามวา]] [[V:กทม]] [[Z:10510]]
 ===
@@ -124,6 +127,7 @@ tags: glued, no-spaces, name-last, kinship
 ===
 loc: บางพลับ | โพธิ์ทอง | อ่างทอง | 14120
 tags: no-subdistrict, no-postcode, admin-first, landmark, name-after-address
+warn: ambiguous-location
 ---
 ส่ง [[D:อ.โพธิ์ทอง]] [[V:จ.อ่างทอง]] นะคะ
 [[A:บ้านเลขที่ 44/2 หมู่ 6 (ตรงข้ามโรงสีเฮียกิม)]]
@@ -158,6 +162,7 @@ tags: no-prefix, no-house-number, no-phone, name-last, kinship, village
 ===
 loc: ลุมพินี | ปทุมวัน | กรุงเทพมหานคร | 10330
 tags: company, office-tower, no-subdistrict, alias, landline
+warn: ambiguous-location
 ---
 [[N:บริษัท ไบรท์ไลน์ คอนซัลติ้ง จำกัด]]
 [[A:อาคารวิทยุทาวเวอร์ ชั้น 18 ห้อง 1803 ถ.วิทยุ]]
@@ -181,11 +186,13 @@ tags: no-name, house-number-after-admin, split-detail
 ===
 loc: วังทองหลาง | วังทองหลาง | กรุงเทพมหานคร | 10310
 tags: phone-after-name, district-only, glued-postcode, alias, detail-last
+warn: ambiguous-location
 ---
 [[N:นาย ภาคิน]] [[P:0827730015]] [[D:วังทองหลาง]] [[V:กทม]][[Z:10310]] [[A:เลขที่ 45/9 ซ.ร่วมมิตร 2]]
 ===
 loc: โคกกว้าง | บุ่งคล้า | บึงกาฬ | 38000
 tags: no-subdistrict, no-postcode, province-first, village, first-name-only
+warn: ambiguous-location
 ---
 [[V:บึงกาฬ]] [[D:อ.บุ่งคล้า]]
 [[A:บ้านดอนเสียด ม.4 บ้านเลขที่ 3]]
@@ -263,6 +270,7 @@ tags: dormitory, amphoe-mueang, name-last, slashes
 ===
 loc: ยายชา | สามพราน | นครปฐม | 73110
 tags: phone-first, no-subdistrict, housing-estate, multiline
+warn: ambiguous-location
 ---
 [[P:081-447-0925]]
 [[N:คุณกฤษดา ผลบุญ]]
@@ -301,6 +309,7 @@ tags: admin-first, no-province, name-last, bangkok, multiline
 ===
 loc: เมืองยาว | ห้างฉัตร | ลำปาง | 52190
 tags: no-subdistrict, no-postcode, admin-first, village, house-number-after-moo
+warn: ambiguous-location
 ---
 [[D:อ.ห้างฉัตร]] [[V:ลำปาง]] นะครับ
 [[A:บ้านแม่ตาก ม.9 เลขที่ 140]]
@@ -331,6 +340,7 @@ tags: thai-digits, name-last, alias, kinship
 ===
 loc: วัดอรุณ | บางกอกใหญ่ | กรุงเทพมหานคร | 10600
 tags: phone-first, no-subdistrict, no-province, english-honorific
+warn: ambiguous-location
 ---
 [[P:0918823307]] [[N:K.Ploy]] [[A:158/3 ซ.อรุณอมรินทร์ 34]] [[D:เขตบางกอกใหญ่]] [[Z:10600]]
 ===

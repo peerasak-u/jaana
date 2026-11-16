@@ -121,6 +121,7 @@ Attn: [[N:Ms. Sarah Collins (Grade 4 teacher)]]
 ===
 loc: บางน้ำเปรี้ยว | บางน้ำเปรี้ยว | ฉะเชิงเทรา | 24150
 tags: hospital, institution-only, same-name-once, alias, department, landline
+warn: ambiguous-location
 ---
 ส่ง [[N:รพ.บางน้ำเปรี้ยว]] [[A:แผนกเภสัชกรรม ชั้น 1]] [[D:บางน้ำเปรี้ยว]] [[V:แปดริ้ว]] [[Z:24150]] ค่ะ เบอร์ห้องยา [[P:038-581-224]]
 ===
@@ -296,6 +297,7 @@ tags: school, keyboard-slip, very-messy, oneline, no-postcode
 ===
 loc: เนินขาม | เนินขาม | ชัยนาท | 17130
 tags: hospital, same-name-once, institution-only, no-prefix
+warn: ambiguous-location
 ---
 [[N:รพ.สต.หนองมะกอก]]
 [[A:122 หมู่ 4]] [[D:เนินขาม]] [[V:ชัยนาท]] [[Z:17130]]
@@ -355,6 +357,7 @@ tags: hospital, nurse, person-first, same-line, ward, oneline
 ===
 loc: พังกาญจน์ | พนม | สุราษฎร์ธานี | 84250
 tags: school, institution-only, typo-province, numbered-list
+warn: phone-length
 ---
 1) [[N:โรงเรียนบ้านพังกาญจน์]]
 2) [[A:เลขที่ 77 หมู่ 2]]
@@ -463,6 +466,7 @@ tags: army, school, person-separate-line, rank
 ===
 loc: โพทะเล | โพทะเล | พิจิตร | 66130
 tags: hospital, same-name-once, nurse, institution-first, oneline
+warn: ambiguous-location
 ---
 [[N:รพ.โพทะเล พยาบาลจิราพร]] [[A:ตึกผู้ป่วยนอก]] [[D:อ.โพทะเล]] [[V:พิจิตร]] [[Z:66130]] [[P:0863325718]]
 ===
@@ -642,6 +646,7 @@ tags: hospital, health-centre, institution-only, landmark, no-postcode
 ===
 loc: ทุ่งครุ | ทุ่งครุ | กรุงเทพมหานคร | 10140
 tags: university, dorm, same-name-once, student, oneline, alias
+warn: ambiguous-location
 ---
 ส่งหอใน [[A:หอพักนักศึกษา หอ C ห้อง 1105 มหาวิทยาลัยพระจอมทุ่งครุ ถ.ประชาอุทิศ]] [[D:ทุ่งครุ]] [[V:กทม]] [[Z:10140]] [[N:นายภาณุวัฒน์ ชัยมงคล]] [[P:0638827150]]
 ===
@@ -787,6 +792,7 @@ To: [[N:Asst. Prof. Dr. Wanchai K.]]
 ===
 loc: สารภี | สารภี | เชียงใหม่ | 50140
 tags: hospital, same-name-once, no-prefix, nurse, separate-lines
+warn: ambiguous-location
 ---
 [[N:คุณปวีณ์ธิดา อินต๊ะ]]
 [[A:รพ.สารภีราษฎร์ ตึกผู้ป่วยนอก ห้องฟันชั้น 1]]
@@ -935,6 +941,7 @@ tags: school, cod, chat-noise, separate-lines
 ===
 loc: กุดชุม | กุดชุม | ยโสธร | 35140
 tags: hospital, same-name-once, nurse, person-first, same-line, oneline
+warn: ambiguous-location
 ---
 [[N:พยาบาลชลิดา รพ.กุดชุมรวมใจ]] [[A:แผนกผู้ป่วยนอก]] [[D:กุดชุม]] [[V:ยโสธร]] [[Z:35140]] [[P:0825562140]]
 ===
@@ -968,6 +975,7 @@ tags: school, person-separate-line, landmark, teacher
 ===
 loc: บางใหญ่ | บางใหญ่ | นนทบุรี | 11140
 tags: school, same-name-once, institution-first, person-same-line, alias
+warn: ambiguous-location
 ---
 [[N:โรงเรียนอนุบาลบางใหญ่ ครูกุ้ง (ครูประจำชั้น อ.2/1)]]
 [[A:123 ม.6 ถ.กาญจนาภิเษก]] [[D:บางใหญ่]] [[V:นนท]] [[Z:11140]]
@@ -1030,6 +1038,7 @@ tags: hospital, nurse, separate-lines, ward, label-typo
 ===
 loc: ทุ่งน้าว | สอง | แพร่ | 54120
 tags: school, institution-first, person-in-brackets, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:รร.บ้านทุ่งน้าว (ครูเจษฎา ตาคำ)]] [[A:ม.6]] [[D:อ.สอง]] [[V:แพร่]] [[Z:54120]] [[P:0896623148]]
 ===

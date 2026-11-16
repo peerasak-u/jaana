@@ -31,6 +31,7 @@ tags: no-spaces, typo-province, glued, amphoe-mueang
 ===
 loc: แสวงหา | แสวงหา | อ่างทอง | 14150
 tags: same-name-once, no-subdistrict, emoji, phone-spaces
+warn: ambiguous-location
 ---
 ส่ง [[N:คุณกาญจนา มีทรัพย์]] [[A:17 หมู่ 5]] [[D:แสวงหา]] [[V:อ่างทอง]] [[Z:14150]] เบอร์ [[P:095 448 1726]] ขอบคุณค่ะ🙏
 ===
@@ -76,6 +77,7 @@ tags: postcode-before-province, label-phone
 ===
 loc: ม่วงน้อย | ป่าซาง | ลำพูน | 51120
 tags: no-subdistrict, village-same-as-subdistrict, kinship-name, stray-dots
+warn: ambiguous-location
 ---
 [[N:แม่ศรีนวล อินต๊ะ]] [[A:140 ม.5 บ้านม่วงน้อย]] [[D:อ.ป่าซาง]].. [[V:ลำพูน]] [[Z:51120]] [[P:0815562013]]
 ===
@@ -126,6 +128,7 @@ hi ka ส่ง [[N:Ploy]] [[P:0956610384]] [[A:111 Moo 2]] [[S:ต.บ้าน
 ===
 loc: สวี | สวี | ชุมพร | 86130
 tags: same-name-once, kinship-name, road
+warn: ambiguous-location
 ---
 [[N:พี่หน่อง]] [[A:3/18 ถ.สวีนิคม]] [[D:สวี]] [[V:ชุมพร]] [[Z:86130]] [[P:0819905513]] ส่งแฟลชได้ค่ะ
 ===

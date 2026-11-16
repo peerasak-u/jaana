@@ -166,6 +166,7 @@ tags: clinic, bangkok-landline, two-phones-slash, same-name-sub-district
 ===
 loc: เคียนซา | เคียนซา | สุราษฎร์ธานี | 84260
 tags: spaced-phone, phone-emoji, same-name-once-is-district, alias, no-subdistrict
+warn: ambiguous-location
 ---
 ที่อยู่นะครับ 👇
 [[N:ณรงค์ชัย ทองสม]]
@@ -381,6 +382,7 @@ tags: thai-digit-phone, no-separators, one-line, clean
 ===
 loc: คลองเจ็ด | คลองหลวง | ปทุมธานี | 12120
 tags: dormitory, two-phones-or, nickname-bracket, courier-note
+warn: ambiguous-location
 ---
 ส่งหอค่ะ
 [[N:ธิดารัตน์ (มายด์)]]
@@ -462,6 +464,7 @@ tags: national-id-lookalike, warranty, clean
 ===
 loc: ท่าก๊อ | แม่สรวย | เชียงราย | 57180
 tags: no-subdistrict, plus66-hyphen-zero, line-id, no-name
+warn: ambiguous-location
 ---
 ส่ง [[A:42 ม.6 บ้านป่าก๊อ]] [[D:อ.แม่สรวย]] [[V:เชียงราย]] [[Z:57180]]
 [[P:+66-0-9374-18852]]

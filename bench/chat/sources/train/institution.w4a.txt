@@ -1,6 +1,7 @@
 ===
 loc: ห้วยยาง | บัวใหญ่ | นครราชสีมา | 30120
 tags: rpsst, institution-contains-subdistrict, person-other-line, no-subdistrict
+warn: ambiguous-location
 ---
 ส่งที่
 [[A:รพ.สต.ห้วยยาง ม.4]] [[D:อ.บัวใหญ่]] [[V:จ.นครราชสีมา]] [[Z:30120]]
@@ -37,6 +38,7 @@ tags: government, department-same-line, bangkok, alias
 ===
 loc: บางคล้า | บางคล้า | ฉะเชิงเทรา | 24110
 tags: hospital, ward-before-institution, proxy-end, fak-hai
+warn: ambiguous-location
 ---
 ส่ง [[A:ห้องยา รพ.บางคล้า]] [[D:อ.บางคล้า]] [[V:ฉะเชิงเทรา]] [[Z:24110]] ฝากให้เภสัชหัวหน้า [[N:คุณศิริลักษณ์]] นะคะ [[P:0863021477]]
 ===
@@ -121,6 +123,7 @@ tags: district-office, same-name-subdistrict-district, typo-province
 ===
 loc: ดีหลวง | สทิงพระ | สงขลา | 90190
 tags: rpsst, abbrev-start, person-other-line, ward-word
+warn: ambiguous-location
 ---
 [[A:รพ.สต.ดีหลวง
 ห้องฉุกเฉิน]]
@@ -163,6 +166,7 @@ tags: temple, abbot, alias, landmark
 ===
 loc: โหรา | อาจสามารถ | ร้อยเอ็ด | 45160
 tags: kosor, gov-abbrev, person-other-line
+warn: ambiguous-location
 ---
 [[A:กศน.ตำบลโหรา]]
 ครูผู้รับ
@@ -187,6 +191,7 @@ tags: school-contains-subdistrict, thai-digits, older-buyer
 ===
 loc: เสาไห้ | เสาไห้ | สระบุรี | 18160
 tags: police, station, contact-person-same-line
+warn: ambiguous-location
 ---
 ส่งให้ที่ทำงานพ่อค่ะ
 [[N:ด.ต.ประเสริฐ บุญยืน สภ.เสาไห้]]
@@ -204,6 +209,7 @@ tags: border-patrol, unit, multiline, no-postcode
 ===
 loc: ป่าป้อง | ดอยสะเก็ด | เชียงใหม่ | 50220
 tags: rpsst, ward-before, no-person
+warn: ambiguous-location
 ---
 [[N:ห้องคลังยา รพ.สต.ป่าป้อง]] [[A:ม.3]] [[D:ดอยสะเก็ด]] [[V:เชียงใหม่]] [[Z:50220]] [[P:053-104-622]]
 ===
@@ -269,6 +275,7 @@ tags: obj, provincial-org, person-other-line, abbrev-start
 ===
 loc: ศาลเจ้าไก่ต่อ | ลาดยาว | นครสวรรค์ | 60150
 tags: school-contains-subdistrict, no-person, minimal
+warn: ambiguous-location, phone-length
 ---
 [[N:โรงเรียนศาลเจ้าไก่ต่อวิทยา]] [[D:อ.ลาดยาว]] [[V:นครสวรรค์]] [[Z:60150]] [[P:056-271-0490]]
 ===
@@ -306,6 +313,7 @@ tags: health-office, sso-abbrev, person-other-line, ssa
 ===
 loc: โนนทองอินทร์ | กู่แก้ว | อุดรธานี | 41130
 tags: school, child, alias, messy
+warn: ambiguous-location
 ---
 ส่งที่โรงเรียนหลานนะคะ ป.4
 [[N:ด.ญ.ปุณยาพร สีหาวงษ์]]
@@ -386,6 +394,7 @@ tags: elderly-home, government, department-same-line, bangkok
 ===
 loc: พันชาลี | วังทอง | พิษณุโลก | 65130
 tags: obt-abbrev-start, person-other-line, proxy, typo-province
+warn: ambiguous-location
 ---
 [[A:อบต.พันชาลี]]
 ผู้รับ [[N:นางวาสนา จันทร์หอม (นักวิชาการพัสดุ)]]
@@ -424,6 +433,7 @@ tags: kosor-abbrev-start, person-other-line, typo-province
 ===
 loc: ท่าวังพร้าว | สันป่าตอง | เชียงใหม่ | 50120
 tags: rpsst, informal-dorm, staff-house
+warn: ambiguous-location
 ---
 [[N:หมอแอม]]
 [[A:บ้านพักเจ้าหน้าที่หลังที่ 3 หลัง รพ.สต.ท่าวังพร้าว]]
@@ -504,6 +514,7 @@ tags: provincial-hall, building, room, alias
 ===
 loc: ประดู่ | สำโรงทาบ | สุรินทร์ | 32170
 tags: school-contains-subdistrict, child, proxy, typo-province
+warn: ambiguous-location
 ---
 พ่อเป็นคนสั่งนะครับ ส่งให้ลูกที่โรงเรียน
 [[N:ด.ช.ธนภัทร สมานมิตร]]
@@ -546,6 +557,7 @@ tags: university-campus, department-not-name, bangkok, university-abbrev-m
 ===
 loc: สำนักตะคร้อ | เทพารักษ์ | นครราชสีมา | 30210
 tags: kosor, abbrev-start, person-other-line, no-phone
+warn: ambiguous-location
 ---
 [[A:กศน.ตำบลสำนักตะคร้อ]]
 [[N:ครูกัลยา ปัดภัย]]
@@ -574,6 +586,7 @@ tags: checkpoint, ranger, unit, multiline
 ===
 loc: หนองทรายขาว | บ้านหมี่ | ลพบุรี | 15110
 tags: rpsst, proxy-end, fak-hai, role-word, oneline
+warn: ambiguous-location
 ---
 [[A:สถานีอนามัยหนองทรายขาว ม.2]] [[D:บ้านหมี่]] [[V:ลพบุรี]] [[Z:15110]] ฝากให้ อสม. [[N:ป้าลำดวน]] ด้วยจ้า [[P:0865520387]]
 ===
@@ -632,6 +645,7 @@ tags: tessaban, department-in-brackets, same-name
 ===
 loc: สำพะเนียง | บ้านแพรก | พระนครศรีอยุธยา | 13240
 tags: rpsst-abbrev-start, person-other-line, alias
+warn: ambiguous-location
 ---
 [[A:รพ.สต.สำพะเนียง ม.2]]
 ผู้รับ: [[N:คุณสุรีย์พร แจ่มใส]]
@@ -745,6 +759,7 @@ tags: oneline, person-first, institution-in-address, alias
 ===
 loc: หนองสว่าง | หล่มสัก | เพชรบูรณ์ | 67110
 tags: obt-abbrev-start, person-other-line, sub-unit
+warn: ambiguous-location
 ---
 [[A:อบต.หนองสว่าง
 หน่วยป้องกันและบรรเทาสาธารณภัย]]
@@ -759,6 +774,7 @@ tags: school, typo-province, glued, no-person
 ===
 loc: โพนจาน | โพนสวรรค์ | นครพนม | 48190
 tags: rpsst, proxy-end, fak-hai, kinship
+warn: ambiguous-location
 ---
 ส่งที่ [[A:รพ.สต.โพนจาน]] [[D:อ.โพนสวรรค์]] [[V:นครพนม]] [[Z:48190]] นะคะ
 ฝากให้น้องสาว [[N:หมอนิ่ม ศุภรัตน์]] ทำงานที่นั่นค่ะ
@@ -774,6 +790,7 @@ tags: school, hill, multiline, typo-label
 ===
 loc: นางาม | มัญจาคีรี | ขอนแก่น | 40160
 tags: kosor, abbrev-start, person-other-line, oneline-mix
+warn: ambiguous-location
 ---
 [[A:กศน.ต.นางาม]]
 [[N:ครูโอ๋]] [[P:0874451092]] [[D:อ.มัญจาคีรี]] [[V:ขอนแก่น]] [[Z:40160]]
@@ -887,6 +904,7 @@ tags: military-camp, self-help-settlement, multiline
 ===
 loc: โนนแดง | โนนศิลา | ขอนแก่น | 40110
 tags: school-contains-subdistrict, child, proxy, messy
+warn: ambiguous-location
 ---
 ส่งให้น้องที่โรงเรียนนะคะ
 น้อง [[N:ด.ญ.ฟ้าใส]] ม.2/3
@@ -1015,6 +1033,7 @@ tags: school-contains-subdistrict, oneline, glued-particle
 ===
 loc: ดงแดง | จตุรพักตรพิมาน | ร้อยเอ็ด | 45180
 tags: kosor-abbrev-start, person-other-line, typo-district
+warn: ambiguous-location
 ---
 [[A:กศน.ตำบลดงแดง]]
 [[N:ครูศรีสุดา โพธิ์ศรี]]
@@ -1098,6 +1117,7 @@ tags: university-dorm, informal-dorm, no-cue, bangkok, same-name, alias
 ===
 loc: หนองแปน | กมลาไสย | กาฬสินธุ์ | 46130
 tags: school-contains-subdistrict, contact-same-line, glued
+warn: ambiguous-location
 ---
 [[N:ครูดารุณีรร.หนองแปนวิทยา]] [[A:ม.2]] [[D:อ.กมลาไสย]] [[V:จ.กาฬสินธุ์]] [[Z:46130]] [[P:0871133029]]
 ===
@@ -1117,6 +1137,7 @@ tags: hospital, oneline, same-name, contact-same-line
 ===
 loc: เขาแดง | สะบ้าย้อย | สงขลา | 90210
 tags: school, kosor, abbrev-start, person-other-line, no-postcode
+warn: ambiguous-location
 ---
 [[A:กศน.อำเภอสะบ้าย้อย]]
 ครูประจำกลุ่ม 3
@@ -1195,6 +1216,7 @@ tags: district-office, ward-word-before, person-other-line, same-name
 ===
 loc: หลุบเลา | ภูพาน | สกลนคร | 47180
 tags: rpsst, oneline, proxy-end, fak-hai, no-postcode
+warn: ambiguous-location
 ---
 ส่ง [[A:รพ.สต.หลุบเลา]] [[D:อ.ภูพาน]] [[V:สกลนคร]] ฝากให้พยาบาลวิชาชีพ [[N:คุณจุฑามาศ]] [[P:0868814503]] ขอบคุณค่ะ
 ===
@@ -1206,6 +1228,7 @@ tags: school-contains-subdistrict, typo-province, no-phone
 ===
 loc: บางพระครู | นครหลวง | พระนครศรีอยุธยา | 13260
 tags: temple-contains-subdistrict, no-person, alias, oneline
+warn: ambiguous-location
 ---
 [[N:วัดบางพระครู]] [[A:ม.2]] [[D:นครหลวง]] [[V:กรุงเก่า]] [[Z:13260]] โทร [[P:0815547093]]
 ===
@@ -1218,6 +1241,7 @@ tags: school, hill, person-first, label-form
 ===
 loc: ม่วงน้อย | ป่าซาง | ลำพูน | 51120
 tags: obt-abbrev-start, person-other-line, sub-unit
+warn: ambiguous-location
 ---
 [[A:อบต.ม่วงน้อย
 ห้องกองสวัสดิการสังคม]]

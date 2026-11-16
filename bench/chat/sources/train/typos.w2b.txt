@@ -242,6 +242,7 @@ tags: adjacent-key-detail, honorific-no-dot, typo-province, emoji
 ===
 loc: บ่อทอง | หนองม่วง | ลพบุรี | 15170
 tags: no-subdistrict, tone-slip, typo-province, oneline
+warn: ambiguous-location
 ---
 ส่งดว้ยนะครับ [[N:นายสุรชัย พรมมา]] [[A:78 หมู่ 10]] [[D:อ.หนองม่วง]] [[V:ลพบุลี]] [[Z:15170]] [[P:0617752034]]
 ===
@@ -316,6 +317,7 @@ tags: dash-list, typo-label, doubled-tone, typo-subdistrict
 ===
 loc: บางแค | บางแค | กรุงเทพมหานคร | 10160
 tags: bangkok, alias, no-subdistrict, glued-soi, typo-district, oneline
+warn: ambiguous-location
 ---
 [[N:คุณอรทัย]] [[A:มบ.เพชรเกษมวิลล่า 45/88 ซ.เพชรเกษม63]] [[D:บางแคร]] [[V:กทม]] [[Z:10160]] [[P:0827736401]]
 ===
@@ -387,6 +389,7 @@ tags: clean, dropped-letter-province, landline, multiline
 ===
 loc: หมอนทอง | บางน้ำเปรี้ยว | ฉะเชิงเทรา | 24150
 tags: shop, no-subdistrict, typo-province, place-in-road
+warn: ambiguous-location
 ---
 แอดครับ ส่งที่ร้านเลยครับ
 [[N:ร้านหมอนทองการเกษตร]]
@@ -504,6 +507,7 @@ tags: school-in-detail, teacher, no-phone, no-postcode, typo-subdistrict
 ===
 loc: สวี | สวี | ชุมพร | 86130
 tags: same-name-once, no-prefix, sound-swap-province, oneline
+warn: ambiguous-location
 ---
 [[N:นายสมชาย ทองเนื้อแปด]] [[A:20/1 ม.5 ถ.เพชรเกษม]] [[D:สวี]] [[V:ชุมพล]] [[Z:86130]] [[P:0857130962]]
 ===
@@ -577,6 +581,7 @@ tags: no-name, typo-label, dropped-vowel-district, full-prefix
 ===
 loc: โคกเจริญ | โคกเจริญ | ลพบุรี | 15250
 tags: same-name-once, no-prefix, typo-district, multi-bubble
+warn: ambiguous-location
 ---
 [[N:นายเฉลิม สุขขี]]
 [[A:4 ม.9]]
@@ -759,6 +764,7 @@ tags: clinic, dropped-letters-subdistrict, landline
 ===
 loc: พระรักษ์ | พะโต๊ะ | ชุมพร | 86180
 tags: no-subdistrict, missing-tone-district, emoji, oneline
+warn: ambiguous-location
 ---
 [[N:นายสุเมธ ด้วงทอง]] [[A:55 หมู่ 3]] [[D:อ.พะโตะ]] [[V:ชุมพร]] [[Z:86180]] [[P:0611478803]] 🙏
 ===
@@ -772,6 +778,7 @@ tags: resort, sound-swap-district, multiline
 ===
 loc: สายไหม | สายไหม | กรุงเทพมหานคร | 10220
 tags: bangkok, same-name-once, doubled-letter-district, place-in-soi, oneline
+warn: ambiguous-location
 ---
 [[N:นางสาวอรอนงค์ ทวีสุข]] [[A:99/9 ซ.สายไหม 56]] [[D:สายไหมม]] [[V:กรุงเทพ]] [[Z:10220]] [[P:0627719335]]
 ===
@@ -864,6 +871,7 @@ tags: shop, contact-person, sound-swap-district, landline
 ===
 loc: สังขะ | สังขะ | สุรินทร์ | 32150
 tags: same-name-once, doubled-vowel-district, village, name-last
+warn: ambiguous-location
 ---
 ส่งของมาที่ [[A:บ้านกะทม 9 ม.12]] [[D:อ.สังขะะ]] [[V:สุรินทร์]] [[Z:32150]] นะครับ
 [[N:นายบุญมา ศรีสังข์]] / [[P:0819974502]]

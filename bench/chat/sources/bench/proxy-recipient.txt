@@ -167,6 +167,7 @@ tags: sibling, split-bubbles, name-last
 ===
 loc: สามโคก | สามโคก | ปทุมธานี | 12160
 tags: kin-call-name, landmark, alias, same-name-once, oneline
+warn: ambiguous-location
 ---
 ฝากให้[[N:ลุงสมพงษ์ เกตุแก้ว]]ครับ [[A:9 ม.5 หน้าวัดสิงห์]] [[D:สามโคก]] [[V:ปทุม]] [[Z:12160]] [[P:0814426637]]
 ===
@@ -316,6 +317,7 @@ tags: sibling, no-dot-prefix, glued-postcode, label-typo, oneline, first-name-on
 ===
 loc: บางกระทุ่ม | บางกระทุ่ม | พิษณุโลก | 65110
 tags: police-rank, spouse-workplace, police-station, district-only
+warn: ambiguous-location
 ---
 ส่งไปที่ทำงานแฟนนะคะ เค้าอยู่เวรทั้งวัน
 [[N:ร.ต.อ.ชาญชัย บุญมา]]
@@ -466,6 +468,7 @@ Line ID :
 ===
 loc: ออเงิน | สายไหม | กรุงเทพมหานคร | 10220
 tags: child, child-title, no-subdistrict, no-phone, alias, glued-postcode
+warn: ambiguous-location
 ---
 ส่งในชื่อลูกสาวนะคะ ลูกอยู่กับยาย [[N:ด.ญ.ปริมลดา สุขสม]]
 [[A:9/14 ซ.สายไหม 56]] [[D:เขตสายไหม]] [[V:กทม]][[Z:10220]]
@@ -544,6 +547,7 @@ tags: company-with-contact, alias, extension, colleague
 ===
 loc: ตลิ่งชัน | ตลิ่งชัน | กรุงเทพมหานคร | 10170
 tags: grandparent, same-name-once, alias, glued-particles
+warn: ambiguous-location
 ---
 ส่งให้คุณตานะคะ [[N:คุณตาประยงค์ เพชรสุข]]
 [[A:15 ซ.ชักพระ 6 ถ.ชักพระ]] [[D:ตลิ่งชัน]] [[V:กทม.]][[Z:10170]]ค่ะ
@@ -611,6 +615,7 @@ tags: buyer-and-recipient, slash-names, typo-district, multiline
 ===
 loc: ปะคำ | ปะคำ | บุรีรัมย์ | 31220
 tags: parent, thai-digits-house, no-subdistrict, cod, emoji
+warn: ambiguous-location
 ---
 ปลายทางนะคะ 💵
 ส่งให้แม่ [[N:นางพิมพา หอมจันทร์]]
@@ -675,6 +680,7 @@ tags: hostel, org-recipient, foreign-guest, alias
 ===
 loc: วังทองหลาง | วังทองหลาง | กรุงเทพมหานคร | 10310
 tags: colleague, office, same-name-once, alias, oneline
+warn: ambiguous-location
 ---
 ฝากน้องที่ออฟฟิศรับนะคะ [[N:คุณแพรวา]] [[A:อาคารพรีเมียร์ ชั้น 4 เลขที่ 45 ซ.ลาดพร้าว 87]] [[D:วังทองหลาง]] [[V:กทม]] [[Z:10310]] [[P:02-539-6612]] เวลาทำการ 9-17 น.
 ===
@@ -694,6 +700,7 @@ tags: partner-parent, alias, multiline, amphoe-mueang
 ===
 loc: วังพัฒนา | บางซ้าย | พระนครศรีอยุธยา | 13270
 tags: spouse, no-subdistrict, oneline, alias
+warn: ambiguous-location
 ---
 ส่งให้ภรรยาผมครับ เค้าขายส้มตำอยู่ ชื่อ [[N:น.ส.อรทัย เพ็งศรี]] [[A:63 ม.2 หน้าโรงเรียนวัดวังพัฒนา]] [[D:อ.บางซ้าย]] [[V:อยุธยา]] [[Z:13270]] [[P:0917740062]]
 ===

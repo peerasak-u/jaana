@@ -1,4 +1,5 @@
-import { normalizeCandidate, normalizePhone, normalizePostcode } from "../../src/normalize";
+import { normalizeCandidate, normalizePostcode } from "../../src/normalize";
+import type { ParseWarning } from "../../src/tagger/parser";
 import type { LocationTuple, OutputLabel } from "../../src/types";
 import type { DatasetRecord, DatasetSpan, ExpectedAddress } from "../dataset";
 
@@ -20,11 +21,122 @@ export interface SourceIssue {
 	readonly file: string;
 	readonly line: number;
 	readonly message: string;
+	/** On a `warn:` mismatch, the set the marks need. */
+	readonly warnings?: readonly ParseWarning[];
 }
 
+/**
+ * One message. `recipients` holds the gold per delivery in written order,
+ * and `expected` repeats the first. `spans` holds every recipient's marks.
+ */
 export interface ChatRecord extends DatasetRecord {
 	readonly tags: readonly string[];
 	readonly sourceLine: number;
+	readonly warnings: readonly ParseWarning[];
+	readonly recipients: readonly ExpectedAddress[];
+}
+
+/**
+ * Gold phone digits as typed: separators dropped, Thai digits made ASCII,
+ * `+66`/`66` read as a leading 0, and nothing cut. It copies the `+66` rule
+ * of `normalizePhone` instead of calling it, so the gold does not move when
+ * the parser's phone rules do.
+ */
+export function goldPhone(text: string): string | null {
+	const digits = text
+		.replace(/[๐-๙]/gu, (digit) => String("๐๑๒๓๔๕๖๗๘๙".indexOf(digit)))
+		.replace(/\D/gu, "")
+		.replace(/^(0066|66)0?/u, "0");
+	return /^0\d{8,11}$/u.test(digits) ? digits : null;
+}
+
+/** A mobile number (06, 08, 09) has 10 digits; any other Thai number has 9. */
+export function hasThaiPhoneLength(digits: string): boolean {
+	return /^0[689]\d{8}$/u.test(digits) || /^0[1-57]\d{7}$/u.test(digits);
+}
+
+const ADMINISTRATIVE = {
+	SUBDISTRICT: "subdistrict",
+	DISTRICT: "district",
+	PROVINCE: "province",
+	POSTCODE: "zipcode",
+} as const satisfies Partial<Record<OutputLabel, keyof LocationTuple>>;
+
+type AdministrativeField = (typeof ADMINISTRATIVE)[keyof typeof ADMINISTRATIVE];
+
+interface Gazetteer {
+	/** Tuples per projection onto a set of fields, keyed by field list then values. */
+	readonly tuplesPer: Map<string, number>;
+	readonly placeNames: ReadonlySet<string>;
+}
+
+const gazetteers = new WeakMap<ReadonlyMap<string, LocationTuple>, Gazetteer>();
+const FIELD_SETS = Array.from({ length: 15 }, (_, mask) =>
+	Object.values(ADMINISTRATIVE).filter((_, bit) => ((mask + 1) >> bit) & 1),
+);
+
+function projection(location: LocationTuple, fields: readonly AdministrativeField[]): string {
+	return `${fields.join(",")}=${fields.map((field) => location[field]).join("|")}`;
+}
+
+function gazetteerOf(locations: ReadonlyMap<string, LocationTuple>): Gazetteer {
+	const cached = gazetteers.get(locations);
+	if (cached) return cached;
+	const tuplesPer = new Map<string, number>();
+	const placeNames = new Set(["กทม", "บางกอก", "bkk", "bangkok", "โคราช"]);
+	for (const location of locations.values()) {
+		for (const fields of FIELD_SETS) {
+			const key = projection(location, fields);
+			tuplesPer.set(key, (tuplesPer.get(key) ?? 0) + 1);
+		}
+		placeNames.add(location.province);
+		placeNames.add(location.district);
+	}
+	const gazetteer = { tuplesPer, placeNames };
+	gazetteers.set(locations, gazetteer);
+	return gazetteer;
+}
+
+interface RecipientGold {
+	readonly location: LocationTuple;
+	readonly spans: readonly DatasetSpan[];
+}
+
+/**
+ * When each warning is expected, from the marks alone. `warn:` must list
+ * exactly these, so the checker tells a writer what to add.
+ */
+const EXPECTED_WARNINGS: Record<ParseWarning, (recipients: readonly RecipientGold[], gazetteer: Gazetteer) => boolean> = {
+	"ambiguous-location": (recipients, gazetteer) =>
+		recipients.some(({ location, spans }) => {
+			const written = Object.entries(ADMINISTRATIVE)
+				.filter(([label]) => spans.some((span) => span.label === label))
+				.map(([, field]) => field);
+			return written.length > 0 && gazetteer.tuplesPer.get(projection(location, written))! > 1;
+		}),
+	"phone-length": (recipients) =>
+		recipients.some(({ spans }) => spans.some((span) => span.label === "PHONE" && !hasThaiPhoneLength(span.canonical!))),
+	"multiple-recipients": (recipients) => recipients.length > 1,
+};
+
+export const WARNINGS = Object.keys(EXPECTED_WARNINGS) as ParseWarning[];
+
+const CONTACT_HANDLE = /^\s*(?:line\b|ไลน์|ig\b|id\s*(?:line|ไลน์)|@)/iu;
+
+/** The bare place name a bracket holds: no dots, spaces, or prefix. */
+export function bracketPlace(inner: string): string {
+	return inner.replace(/[.\s]/gu, "").toLowerCase().replace(/^(?:จังหวัด|อำเภอ|เขต|จ|อ)/u, "");
+}
+
+/** GUIDE v2: a bracket after a name that holds either kind is not part of `N`. */
+export function nameBracketKind(
+	inner: string,
+	locations: ReadonlyMap<string, LocationTuple>,
+): "contact-handle" | "place-name" | null {
+	if (CONTACT_HANDLE.test(inner)) return "contact-handle";
+	const { placeNames } = gazetteerOf(locations);
+	const bare = inner.replace(/[.\s]/gu, "").toLowerCase();
+	return placeNames.has(bare) || placeNames.has(bracketPlace(inner)) ? "place-name" : null;
 }
 
 export function fnv1a(text: string): number {
@@ -135,11 +247,95 @@ export interface ParseOptions {
 	readonly locations: ReadonlyMap<string, LocationTuple>;
 }
 
+interface Header {
+	/** One per delivery, in written order. */
+	readonly locations: readonly LocationTuple[];
+	readonly tags: readonly string[];
+	readonly warnings: readonly ParseWarning[];
+}
+
+function headerOf(lines: readonly string[], options: ParseOptions, fail: (message: string) => void): Header | null {
+	const seen = new Set<string>();
+	const numbered = new Map<number, LocationTuple>();
+	let single: LocationTuple | undefined;
+	let tags: string[] = [];
+	let warnings: ParseWarning[] = [];
+	let valid = true;
+	const reject = (message: string): void => {
+		fail(message);
+		valid = false;
+	};
+	for (const line of lines) {
+		if (line.trim() === "") continue;
+		const match = /^(loc(\d*)|tags|warn):(.*)$/u.exec(line);
+		if (!match) {
+			reject(`unknown header line: ${line}`);
+			continue;
+		}
+		const [, key, number, value] = match as unknown as [string, string, string, string];
+		if (seen.has(key)) {
+			reject(`repeated ${key}: header`);
+			continue;
+		}
+		seen.add(key);
+		if (key === "tags") {
+			tags = value.split(",").map((tag) => tag.trim()).filter(Boolean);
+			continue;
+		}
+		if (key === "warn") {
+			const values = value.split(",").map((warning) => warning.trim()).filter(Boolean);
+			for (const warning of values) {
+				if (!(WARNINGS as string[]).includes(warning)) reject(`unknown warning ${warning}. Use ${WARNINGS.join(", ")}`);
+			}
+			if (new Set(values).size !== values.length) reject("warn: lists a warning twice");
+			warnings = WARNINGS.filter((warning) => values.includes(warning));
+			continue;
+		}
+		if (number !== "" && !/^[1-9]\d*$/u.test(number)) {
+			reject(`${key}: is not loc: or loc1:, loc2:, ...`);
+			continue;
+		}
+		const tupleKey = value.split("|").map((part) => part.trim()).join("|");
+		const location = options.locations.get(tupleKey);
+		if (!location) reject(`${key} is not a gazetteer tuple: ${tupleKey}`);
+		else if (poolOf(location) !== options.pool) reject(`${key} belongs to the ${poolOf(location)} pool, not ${options.pool}: ${tupleKey}`);
+		else if (number === "") single = location;
+		else numbered.set(Number(number), location);
+	}
+	if (!valid) return null;
+	if (single && numbered.size > 0) reject("use either loc: or loc1:, loc2:, ..., not both");
+	else if (numbered.size === 1) reject("one delivery uses loc:, not loc1:");
+	else if (!single && numbered.size === 0) reject("record has no loc: line");
+	else {
+		for (let index = 1; index <= numbered.size; index += 1) {
+			if (!numbered.has(index)) reject(`loc${index}: is missing`);
+		}
+	}
+	if (!valid) return null;
+	const locations = single ? [single] : Array.from({ length: numbered.size }, (_, index) => numbered.get(index + 1)!);
+	return { locations, tags, warnings };
+}
+
+function expectedOf(spans: readonly DatasetSpan[]): ExpectedAddress {
+	const find = (label: OutputLabel): string | null => spans.find((span) => span.label === label)?.canonical ?? null;
+	const address = spans.filter((span) => span.label === "ADDRESS_DETAIL").map((span) => span.text).join(" ");
+	return {
+		name: find("NAME"),
+		phone: find("PHONE"),
+		address: address ? normalizeCandidate("ADDRESS_DETAIL", address) : null,
+		subdistrict: find("SUBDISTRICT"),
+		district: find("DISTRICT"),
+		province: find("PROVINCE"),
+		zipcode: find("POSTCODE"),
+	};
+}
+
 export function parseSource(
 	text: string,
 	options: ParseOptions,
 ): { records: ChatRecord[]; issues: SourceIssue[] } {
 	const { file } = options;
+	const gazetteer = gazetteerOf(options.locations);
 	const issues: SourceIssue[] = [];
 	const records: ChatRecord[] = [];
 	const seen = new Set<string>();
@@ -148,61 +344,61 @@ export function parseSource(
 			issues.push({ file, line: block.line, message });
 		};
 		const before = issues.length;
-		let location: LocationTuple | undefined;
-		let tags: string[] = [];
-		for (const headerLine of block.header) {
-			if (headerLine.trim() === "") continue;
-			const match = /^(loc|tags):(.*)$/u.exec(headerLine);
-			if (!match) {
-				fail(`unknown header line: ${headerLine}`);
-				continue;
-			}
-			if (match[1] === "tags") {
-				tags = match[2]!.split(",").map((tag) => tag.trim()).filter(Boolean);
-				continue;
-			}
-			const key = match[2]!.split("|").map((part) => part.trim()).join("|");
-			location = options.locations.get(key);
-			if (!location) fail(`loc is not a gazetteer tuple: ${key}`);
-			else if (poolOf(location) !== options.pool) fail(`loc belongs to the ${poolOf(location)} pool, not ${options.pool}: ${key}`);
-		}
-		if (!location) {
-			if (issues.length === before) fail("record has no loc: line");
-			continue;
-		}
+		const header = headerOf(block.header, options, fail);
+		if (!header) continue;
+		const { tags } = header;
 
 		let raw = "";
 		const spans: DatasetSpan[] = [];
-		const pattern = /\[\[([A-Z]):([\s\S]*?)\]\]/gu;
+		const byRecipient: DatasetSpan[][] = header.locations.map(() => []);
+		const pattern = /\[\[([A-Z])(\d*):([\s\S]*?)\]\]/gu;
 		let cursor = 0;
 		for (const match of block.body.matchAll(pattern)) {
 			raw += block.body.slice(cursor, match.index);
 			cursor = match.index + match[0].length;
 			const mark = match[1] as Mark;
-			const spanText = match[2]!;
+			const number = match[2]!;
+			const spanText = match[3]!;
 			const label = MARKS[mark];
 			if (!label) {
 				fail(`unknown mark ${match[1]}`);
 				continue;
 			}
-			if (spanText.trim() !== spanText || spanText === "") fail(`${mark} span is empty or has edge whitespace: "${spanText}"`);
-			if (label !== "ADDRESS_DETAIL" && spanText.includes("\n")) fail(`${mark} span crosses a line break`);
-			if (label !== "ADDRESS_DETAIL" && spans.some((span) => span.label === label)) fail(`more than one ${mark} span`);
 			const start = raw.length;
 			raw += spanText;
+			if (number !== "" && (number === "1" || !/^[1-9]\d*$/u.test(number) || Number(number) > header.locations.length)) {
+				fail(number === "1" ? `write ${mark}, not ${mark}1, for the first recipient` : `${mark}${number} mark has no loc${number}: header`);
+				continue;
+			}
+			const recipient = number === "" ? 0 : Number(number) - 1;
+			const location = header.locations[recipient]!;
+			const own = byRecipient[recipient]!;
+			if (spanText.trim() !== spanText || spanText === "") fail(`${mark} span is empty or has edge whitespace: "${spanText}"`);
+			if (label !== "ADDRESS_DETAIL" && spanText.includes("\n")) fail(`${mark} span crosses a line break`);
+			if (label !== "ADDRESS_DETAIL" && own.some((span) => span.label === label)) fail(`more than one ${mark}${number} span`);
 			let canonical: string | null = normalizeCandidate(label, spanText);
-			if (label === "PHONE" && normalizePhone(spanText) === null) fail(`P span is not a Thai phone number: "${spanText}"`);
+			if (label === "PHONE") {
+				canonical = goldPhone(spanText);
+				if (canonical === null) fail(`P span is not a Thai phone number of 9 to 12 digits: "${spanText}"`);
+			}
 			if (label === "POSTCODE") {
 				if (normalizePostcode(spanText) !== location.zipcode) fail(`Z span "${spanText}" is not the loc postcode ${location.zipcode}`);
 			}
-			for (const [field, administrative] of [["subdistrict", "SUBDISTRICT"], ["district", "DISTRICT"], ["province", "PROVINCE"]] as const) {
-				if (label !== administrative) continue;
+			if (label === "NAME") {
+				for (const bracket of spanText.matchAll(/\(([^()]*)\)/gu)) {
+					const kind = nameBracketKind(bracket[1]!, options.locations);
+					if (kind) fail(`${mark}${number} holds a ${kind} bracket. Move it out of the name`);
+				}
+				if (spanText.startsWith("เล่น") && /ชื่อ\s*$/u.test(raw.slice(0, start))) fail(`${mark}${number} starts with เล่น of the label ชื่อเล่น. Keep the label outside`);
+			}
+			for (const [administrative, field] of Object.entries(ADMINISTRATIVE)) {
+				if (label !== administrative || field === "zipcode") continue;
 				canonical = location[field];
 				if (!tags.includes("alias") && !resemblesName(spanText, canonical)) {
 					fail(`${mark} span "${spanText}" does not resemble ${canonical}. Fix the mark, or add the tag alias if it is a nickname or romanized form`);
 				}
 			}
-			spans.push({
+			const span: DatasetSpan = {
 				label,
 				text: spanText,
 				canonical,
@@ -210,40 +406,48 @@ export function parseSource(
 				end: raw.length,
 				codePointStart: Array.from(raw.slice(0, start)).length,
 				codePointEnd: Array.from(raw).length,
-			});
+			};
+			spans.push(span);
+			own.push(span);
 		}
 		raw += block.body.slice(cursor);
 		if (raw.includes("[[") || raw.includes("]]")) fail("message still contains [[ or ]] after removing marks");
 		if (raw.trim() === "") fail("message is empty");
 		if (raw.length > 700) fail(`message is ${raw.length} characters, over the 700 limit`);
 		if (spans.length === 0) fail("message has no marked span");
+		byRecipient.forEach((own, index) => {
+			if (index > 0 && own.length === 0) fail(`loc${index + 1}: has no marked span`);
+		});
 		if (seen.has(raw)) fail("duplicate message in this file");
 		seen.add(raw);
 		if (issues.length > before) continue;
 
-		const find = (label: OutputLabel): string | null => spans.find((span) => span.label === label)?.canonical ?? null;
-		const address = spans.filter((span) => span.label === "ADDRESS_DETAIL").map((span) => span.text).join(" ");
-		const expected: ExpectedAddress = {
-			name: find("NAME"),
-			phone: find("PHONE"),
-			address: address ? normalizeCandidate("ADDRESS_DETAIL", address) : null,
-			subdistrict: find("SUBDISTRICT"),
-			district: find("DISTRICT"),
-			province: find("PROVINCE"),
-			zipcode: find("POSTCODE"),
-		};
+		const gold = byRecipient.map((own, index) => ({ location: header.locations[index]!, spans: own }));
+		const warnings = WARNINGS.filter((warning) => EXPECTED_WARNINGS[warning](gold, gazetteer));
+		if (warnings.join(",") !== header.warnings.join(",")) {
+			issues.push({
+				file,
+				line: block.line,
+				message: `warn: must be "${warnings.join(", ")}" for these marks, not "${header.warnings.join(", ")}"`,
+				warnings,
+			});
+			continue;
+		}
+		const recipients = byRecipient.map(expectedOf);
 		records.push({
 			id: `${options.idPrefix}-${String(records.length + 1).padStart(4, "0")}`,
 			raw,
 			caseType: options.category,
 			difficulty: "chat",
 			spans,
-			expected,
-			normalizationExpected: expected,
-			seedLocation: location,
+			expected: recipients[0]!,
+			normalizationExpected: recipients[0]!,
+			seedLocation: header.locations[0]!,
 			partition: { profile: options.idPrefix },
 			tags,
 			sourceLine: block.line,
+			warnings,
+			recipients,
 		});
 	}
 	return { records, issues };

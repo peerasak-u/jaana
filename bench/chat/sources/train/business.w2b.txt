@@ -309,6 +309,7 @@ tags: partnership, very-messy, no-dot-prefix, typo-province, call-word, courier-
 ===
 loc: หนองหญ้าไซ | หนองหญ้าไซ | สุพรรณบุรี | 72240
 tags: factory, oneline, sd-written-once, contact-glued-label
+warn: ambiguous-location
 ---
 ส่ง [[A:บริษัท หนองหญ้าไซฟีดมิลล์ จำกัด เลขที่ 300 ม.6]] [[D:หนองหญ้าไซ]] [[V:สุพรรณบุรี]] [[Z:72240]] ติดต่อ[[N:คุณชาตรี]] [[P:035-535-781]]
 ===
@@ -469,6 +470,7 @@ tags: factory, contact-first, phone-before-address, alias, extension, km-marker
 ===
 loc: สตึก | สตึก | บุรีรัมย์ | 31150
 tags: shop, emoji, sd-written-once, name-in-brackets-after-phone, call-word
+warn: ambiguous-location
 ---
 📍[[A:ร้านสตึกการเกษตร 44 ม.1]] [[D:สตึก]] [[V:บุรีรัมย์]] [[Z:31150]]
 📞[[P:089-615-2207]] ([[N:ลุงเฉลิม]])
@@ -982,6 +984,7 @@ attn. [[N:คุณปรีชา (IT)]] [[P:077-355-018]]
 ===
 loc: กุดจับ | กุดจับ | อุดรธานี | 41250
 tags: shop, sd-written-once, alias, two-phones, phone-owner-note, no-person
+warn: ambiguous-location
 ---
 ส่ง [[N:ร้านกุดจับวัสดุ]] [[A:9 ม.1]] [[D:กุดจับ]] [[V:อุดร]] [[Z:41250]] โทร [[P:042-217-338]] (ร้าน) 093-552-1104 (มือถือ)
 ===

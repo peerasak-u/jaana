@@ -156,6 +156,7 @@ tags: no-newline, glued-all, name-phone-glued, lead-in-glued
 ===
 loc: ไทรน้อย | ไทรน้อย | นนทบุรี | 11150
 tags: multiline, same-name-once, alias, village-abbrev, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:คุณแพรวา]]
 [[A:89/12 มบ.ไทรน้อยวิลเลจ]] [[D:ไทรน้อย]] [[V:นนท์]] [[Z:11150]]
@@ -224,6 +225,7 @@ tags: no-newline, organisation, government, department-in-brackets, landline, no
 ===
 loc: นาป่า | เมืองเพชรบูรณ์ | เพชรบูรณ์ | 67000
 tags: multiline, no-subdistrict, no-dot-prefix, road-no-dot, postcode-glued-province, chat-opener
+warn: ambiguous-location
 ---
 พี่คะ ที่อยู่หนูนะคะ
 [[N:สุดา]] [[A:144/2 ม1 ถสามัคคีชัย]]
@@ -410,6 +412,7 @@ tags: multiline, thai-digits, postcode-glued-province, older-buyer
 ===
 loc: ท่าตูม | แก่งคอย | สระบุรี | 18110
 tags: no-newline, no-name, no-subdistrict, glued-all, particle-glued
+warn: ambiguous-location
 ---
 ส่งที่[[A:47/1ม.7]][[D:อ.แก่งคอย]][[V:สระบุรี]][[Z:18110]] เบอร์[[P:0865519932]]ค่ะ
 ===

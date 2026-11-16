@@ -71,6 +71,7 @@ tags: oneline, label-typo, r-l-swap, typo-province, name-after-address
 ===
 loc: บางแค | บางแค | กรุงเทพมหานคร | 10160
 tags: shop, market, once-no-prefix, extra-letter, delivery-note
+warn: ambiguous-location
 ---
 ร้านค้าส่งนะคะ
 [[N:ร้านเจ๊หงส์ เครื่องสำอางค์]]
@@ -174,6 +175,7 @@ tags: multiline, full-prefixes, dropped-letter, r-l-swap, missing-karan, name-la
 ===
 loc: อาจสามารถ | อาจสามารถ | ร้อยเอ็ด | 45160
 tags: oneline, once-no-prefix, remark-in-brackets, sound-spelling, d-t-swap, child-recipient
+warn: ambiguous-location
 ---
 [[N:ด.ญ.ปริมา ศรีสุข]] (ฝากแม่รับค่ะ) [[A:90 ม.2]] [[D:อาจสามาด]] [[V:ร้อยเอ็ต]] [[Z:45160]] [[P:0928871430]]
 ===
@@ -357,6 +359,7 @@ tags: oneline, missing-tone, tone-slip, postcode-before-province
 ===
 loc: หนองเรือ | หนองเรือ | ขอนแก่น | 40210
 tags: shop, once-no-prefix, r-l-swap, missing-tone, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ร้านหนองเรือวัสดุ]] [[A:5 ถ.มะลิวัลย์]] [[D:หนองเลือ]] [[V:ขอนแกน]] [[Z:40210]] [[P:043-294-118]]
 ===

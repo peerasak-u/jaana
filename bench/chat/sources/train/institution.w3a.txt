@@ -346,6 +346,7 @@ tags: multiline, school, very-messy, typo-district, tone-slip, contact-org-same-
 ===
 loc: ซับใหญ่ | ซับใหญ่ | ชัยภูมิ | 36130
 tags: oneline, government, district-office, department, org-no-person, same-name-written-once
+warn: ambiguous-location
 ---
 [[N:ที่ว่าการอำเภอซับใหญ่ งานปกครอง]] [[A:ม.1]] [[D:ซับใหญ่]] [[V:ชัยภูมิ]] [[Z:36130]] [[P:044-056-123]]
 ===
@@ -571,6 +572,7 @@ tags: oneline, school, department, contact-org-same-line, bangkok, same-name-twi
 ===
 loc: สนม | สนม | สุรินทร์ | 32160
 tags: multiline, hospital, department, contact-in-brackets, org-first, same-name-written-once
+warn: ambiguous-location
 ---
 [[N:โรงพยาบาลสนมรวมใจ (งานพัสดุ คุณศรีนวล)]]
 [[A:135 ม.1]] [[D:สนม]] [[V:จ.สุรินทร์]] [[Z:32160]]

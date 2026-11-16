@@ -251,6 +251,7 @@ tags: correction, two-phones-correction, bangkok, deep-soi, alias
 ===
 loc: ป่าโมก | ป่าโมก | อ่างทอง | 14130
 tags: same-name-once, no-subdistrict, elderly, no-name
+warn: ambiguous-location
 ---
 สวัสดีครับ ผมอายุเยอะพิมพ์ช้านะครับ ต้องการไม้เท้าอลูมิเนียมแบบ 4 ขา 1 อัน กับถุงเท้ากันลื่นสีน้ำตาล 3 คู่ ยังมีขายไหมครับ ถ้ามี ส่ง [[A:บ้านเลขที่ 88 หมู่ 5]] [[D:ป่าโมก]] [[V:อ่างทอง]] [[Z:14130]] โทร [[P:035-661-284]]
 ===
@@ -428,6 +429,7 @@ tags: chat-bubbles, phone-later, isan, name-first
 ===
 loc: ทวีวัฒนา | ทวีวัฒนา | กรุงเทพมหานคร | 10170
 tags: university, english-mix, d-once, no-subdistrict, alias
+warn: ambiguous-location
 ---
 Hi admin, MacBook sleeve 13 inch สีดำยังมีไหมครับ plus mouse pad 1 อัน. Please ship to
 [[N:Kittipong S.]]
@@ -557,6 +559,7 @@ tags: condo, juristic-office, delivery-instruction, alias
 ===
 loc: ท้ายเหมือง | ท้ายเหมือง | พังงา | 82120
 tags: d-once-no-prefix, dive-shop, business, english-mix
+warn: ambiguous-location
 ---
 Hello ka ร้านดำน้ำของเราสนใจ wetsuit 3mm size M 4 ตัว L 4 ตัว มีของพร้อมส่งไหมคะ
 Ship to [[N:Andaman Blue Dive Shop]] [[A:42/1 ม.5 ถ.เพชรเกษม]] [[D:ท้ายเหมือง]] [[V:พังงา]] [[Z:82120]] Tel [[P:+66 81 223 4019]]
@@ -1040,6 +1043,7 @@ tags: delivery-instruction, kinship, landmark-market, name-after-address
 ===
 loc: นายูง | นายูง | อุดรธานี | 41380
 tags: d-once, alias, isan, no-subdistrict
+warn: ambiguous-location
 ---
 สวัสดีครับ เครื่องตัดหญ้าสะพายหลัง 2 จังหวะ มีพร้อมส่งไหมครับ ใบมีดสำรองอีก 2 ใบ
 [[N:ทองพูล คำมา]] [[A:9 ม.2]] [[D:นายูง]] [[V:อุดร]] [[Z:41380]] [[P:0845523019]]
@@ -1099,5 +1103,6 @@ CF แม่ค้าเลยจ้า ผ้าไหมมัดหมี่�
 ===
 loc: บ่อทอง | หนองจิก | ปัตตานี | 94170
 tags: no-name, no-subdistrict, short, payment-note
+warn: ambiguous-location
 ---
 โอนแล้วค่ะ 350 ข้าวเกรียบปลา 5 ห่อ ส่ง [[A:12/1 ม.3]] [[D:อ.หนองจิก]] [[V:ปัตตานี]] [[Z:94170]] [[P:0893316025]]

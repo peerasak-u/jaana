@@ -76,6 +76,7 @@ tags: oneline, postcode-glued, kinship-name, south, courier-note
 ===
 loc: วัฒนานคร | วัฒนานคร | สระแก้ว | 27160
 tags: same-name-once, landmark, no-subdistrict, name-phone-first
+warn: ambiguous-location
 ---
 [[N:กิตติพงษ์ แสงงาม]] [[P:095-662-1870]]
 [[A:143 หมู่ 11 บ้านหนองตะเคียน ตรงข้าม รพ.สต.]]
@@ -111,6 +112,7 @@ tags: typo-province, child-recipient, name-after-address, oneline
 ===
 loc: เมืองเก่าพัฒนา | เวียงเก่า | ขอนแก่น | 40150
 tags: government, organisation, department-brackets, no-subdistrict, no-detail, landline
+warn: ambiguous-location
 ---
 ส่งที่ [[N:อบต.เมืองเก่าพัฒนา (กองช่าง)]]
 [[D:อ.เวียงเก่า]] [[V:จ.ขอนแก่น]] [[Z:40150]]
@@ -201,6 +203,7 @@ tags: same-name-twice, dialect-north, village-first, kinship-name
 ===
 loc: แวงน้อย | แวงน้อย | ขอนแก่น | 40230
 tags: shop, organisation, contact-brackets, same-name-once, two-phones, landline, landmark
+warn: ambiguous-location
 ---
 [[N:ร้านแวงน้อยวัสดุก่อสร้าง (เจ๊หน่อย)]]
 [[A:300 ม.1 ติดถนนใหญ่ ตรงข้ามตลาดสด]]
@@ -326,6 +329,7 @@ tags: rank, same-name-twice, no-prefix
 ===
 loc: ปราณบุรี | ปราณบุรี | ประจวบคีรีขันธ์ | 77120
 tags: alias, farm, order-detail, same-name-once, landmark, name-last
+warn: ambiguous-location
 ---
 ปุ๋ย 5 กระสอบ ส่งที่ [[A:ไร่สับปะรด 52 ม.6 ทางไปเขาเต่า]] [[D:อ.ปราณบุรี]] [[V:ประจวบ]] [[Z:77120]] [[N:คุณสุนทร]] [[P:0815120746]]
 ===

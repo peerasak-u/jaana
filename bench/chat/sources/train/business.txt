@@ -62,6 +62,7 @@ tags: shop, alias, typo-label, rural
 ===
 loc: สำราญราษฎร์ | พระนคร | กรุงเทพมหานคร | 10200
 tags: shop, shophouse, bangkok, alias, no-subdistrict
+warn: ambiguous-location
 ---
 ส่งหน้าร้านเลยค่ะ [[N:ร้านทองเยาวราชฮั่วเส็ง]] [[A:204 ถ.มหาไชย]] [[D:เขตพระนคร]] [[V:กทม]] [[Z:10200]] โทร [[P:02-221-4479]] (เปิด 9 โมง - 5 โมงเย็น)
 ===
@@ -313,6 +314,7 @@ tags: shop, rural, typo-district, very-messy
 ===
 loc: โนนกาหลง | พิบูลมังสาหาร | อุบลราชธานี | 34110
 tags: rice-mill, partnership, abbrev-glued, no-subdistrict, alias
+warn: ambiguous-location
 ---
 [[N:หจก.พิบูลรุ่งเรืองไรซ์]] [[A:57 ม.8]] [[D:อ.พิบูลมังสาหาร]] [[V:อุบลฯ]] [[Z:34110]] โทร.[[P:045-441-778]]
 ===
@@ -405,6 +407,7 @@ tags: durian-orchard, contact-person, oneline, no-postcode
 ===
 loc: ท่าคันโท | ท่าคันโท | กาฬสินธุ์ | 46190
 tags: shop, same-name-once, typo-province
+warn: ambiguous-location
 ---
 [[N:ร้านท่าคันโทอิเล็กทริค]]
 [[A:19 ม.1 ถ.ท่าคันโท-กุดจับ]]
@@ -551,6 +554,7 @@ tags: guesthouse, contact-person, landmark, typo-province
 ===
 loc: สถาน | นาน้อย | น่าน | 55150
 tags: shop, weaving, no-subdistrict, no-phone
+warn: ambiguous-location
 ---
 ขอบคุณค่ะ ส่งที่ร้านได้เลย
 [[N:ร้านผ้าทอสถาน]]
@@ -775,6 +779,7 @@ tags: farm, orchid, online-store, contact-person
 ===
 loc: ช้างกลาง | ช้างกลาง | นครศรีธรรมราช | 80250
 tags: shop, same-name-once, alias, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ร้านช้างกลางอิฐบล็อก]] [[A:8 ม.3]] [[D:ช้างกลาง]] [[V:นครศรีฯ]] [[Z:80250]] โทร [[P:075-355-026]]
 ===
@@ -963,6 +968,7 @@ To: [[N:Khun Arisa (Accounting)]]
 ===
 loc: ช้างใหญ่ | บางไทร | พระนครศรีอยุธยา | 13290
 tags: handicraft-center, no-person, alias, no-subdistrict
+warn: ambiguous-location
 ---
 ส่งของที่ [[N:ศูนย์ศิลปาชีพบางไทร ร้านค้าสวัสดิการ]] [[A:ม.4]] [[D:อ.บางไทร]] [[V:อยุธยา]] [[Z:13290]] [[P:035-366-092]]
 ===
