@@ -8,10 +8,13 @@ const NAMED = new Set(["NAME", "ORG"].map((tag) => TAGS.indexOf(tag as (typeof T
  * A contact channel cue: LINE, IG, FB and their Thai spellings, with an
  * optional `ID` either side, or an `@` that opens a handle.
  */
-const CUE = /(?:(?:id|ไอดี)[ \t]*)?(?:(?:line|ig|fb|facebook)(?![a-z])|ไลน์|ไอจี|เฟส(?:บุ๊[คก])?)(?:[ \t]*(?:id(?![a-z])|ไอดี))?|@/giu;
+const CUE = /(?:(?:id|ไอดี)[ \t]*)?(?:(?:line|ig|fb|facebook)(?![a-z])|ไ[ลร]น์|ไอจี|(?:เพจ)?เฟส(?:บุ๊[คก])?|เพจ)(?:[ \t]*(?:id(?![a-z])|ไอดี))?|@/giu;
 const LATIN_CUE = /^[a-z@ \t]+$/iu;
-const FILLER = /^[ \t]*[:：]?[ \t]*(?:(?:ชื่อ|ส่วนตัว)[ \t]*[:：]?[ \t]*)?/u;
-const BRACKETED_CUE = /^(?:(?:id|ไอดี)[ \t]*)?(?:line|ig|fb|facebook|ไลน์|ไอจี|เฟส|@)/iu;
+/** What a cue's owner or a label puts before the handle: `ไลน์: `, `ไลน์ชื่อ `, or a word naming whose it is, as `ไลน์ลุงแดง: `. */
+const FILLER = /^[ \t]*(?:[ก-๎A-Za-z]{1,12}[ \t]*[:：][ \t]*|[:：]?[ \t]*(?:(?:ชื่อ|ส่วนตัว)[ \t]*[:：]?[ \t]*)?)/u;
+/** Where a handle that runs on to its line's end stops: a sentence particle, or a label that opens the name. */
+const HANDLE_STOP = /[ \t]+(?:(?:นะ)?(?:คะ|ค่ะ|ครับ|จ้า)|นะ|ชื่อจริง|ชื่อ|ผู้รับ)(?=[\s:：]|$)/u;
+const BRACKETED_CUE = /^(?:(?:id|ไอดี)[ \t]*)?(?:line|ig|fb|facebook|ไ[ลร]น์|ไอจี|เฟส|เพจ|@)/iu;
 
 /** Whether a bracket's text, from just inside `(`, opens with a contact cue. */
 export function opensWithContact(inner: string): boolean {
@@ -42,12 +45,17 @@ function handleEnd(raw: string, start: number, end: number): number | null {
 	if (glued && !latinHandle) return null;
 	// `เฟส 2` is a housing estate phase.
 	if (cue.startsWith("เฟส") && /^[0-9๐-๙]/u.test(handle)) return null;
+	// `ชื่อเพจ Mali Bakery` gives the shop's own name.
+	if (cue.startsWith("เพจ") && glued) return null;
 	if (LATIN_CUE.test(cue) && !filler.includes(":") && !/id$/iu.test(cue) && !/[ก-๎]/u.test(handle[0]!) &&
 		!/[._@\d]/u.test(handle)) return null;
 	const lineEnd = raw.indexOf("\n", from);
 	const rest = raw.slice(from, lineEnd < 0 ? raw.length : lineEnd);
 	const lineStart = raw.lastIndexOf("\n", start - 1) + 1;
-	if (!/[\p{L}\p{N}]/u.test(raw.slice(lineStart, start)) && !/[0-9๐-๙]/u.test(rest)) return from + rest.trimEnd().length;
+	if (!/[\p{L}\p{N}]/u.test(raw.slice(lineStart, start)) && !/[0-9๐-๙]/u.test(rest)) {
+		const stop = HANDLE_STOP.exec(rest);
+		return from + (stop && stop.index > 0 ? stop.index : rest.trimEnd().length);
+	}
 	return from + handle.length;
 }
 
@@ -64,6 +72,7 @@ export function clearContactHandles(raw: string, tags: Uint8Array): void {
 		for (let index = from; index < to; index += 1) if (CLEARED.has(tags[index]!)) tags[index] = OTHER;
 	};
 	let leading: number | null = null;
+	let first: number | null = null;
 	const opensLine = (from: number) => /(?:^|\n)[ \t]*$/u.test(raw.slice(0, from));
 	for (const match of raw.matchAll(CUE)) {
 		const start = match.index;
@@ -73,12 +82,14 @@ export function clearContactHandles(raw: string, tags: Uint8Array): void {
 			const lineEnd = raw.indexOf("\n", start);
 			if (close >= 0 && (lineEnd < 0 || close < lineEnd) && opensWithContact(raw.slice(start, close))) {
 				clear(open.index, close + 1);
+				first ??= open.index;
 				if (opensLine(open.index)) leading ??= close + 1;
 				continue;
 			}
 		}
 		const end = handleEnd(raw, start, start + match[0].length);
 		if (end === null) continue;
+		first ??= start;
 		if (opensLine(start)) leading ??= end;
 		const tag = tags[start - 1];
 		if (tag !== undefined && NAMED.has(tag) && tags[start] === tag) {
@@ -92,6 +103,39 @@ export function clearContactHandles(raw: string, tags: Uint8Array): void {
 		clear(start, end);
 	}
 	if (leading !== null) nameAfterHandle(raw, tags, leading);
+	if (first !== null) nameBeforeHandle(raw, tags, first);
+}
+
+/** Chat around a name written before a handle: `ส่ง` before it, `แอด` and a particle after it. */
+const SEND_BEFORE = /^[^\p{L}]*(?:ส่ง(?:ให้|ที่)?(?![ก-๎]))?[ \t]*/u;
+const AFTER_NAME = /(?:[ \t]*(?:แอด|add|ทัก)|(?:นะ)?(?:คะ|ค่ะ|ครับ|คับ|จ้า|จ้ะ)|[ \t]+นะ|[ \t]+)$/iu;
+const MAX_NAME_WORDS = 3;
+
+/**
+ * A shopper writes who they are just before their handle, on its line, as
+ * `ส่ง Kwan 🌸 (IG: kwan.kwn)` or `ฟ้า ค่ะ แอดไลน์ fah.chawang`, or on the
+ * line above a line the handle opens. The tagger often reads the handle's
+ * own words as the name instead, so clearing the handle leaves none. With
+ * no name anywhere, a short untagged stretch there, without its chat
+ * words, is the name.
+ */
+function nameBeforeHandle(raw: string, tags: Uint8Array, cue: number): void {
+	if (tags.some((tag) => NAMED.has(tag))) return;
+	const lineStart = raw.lastIndexOf("\n", cue - 1) + 1;
+	let from = lineStart;
+	let to = cue;
+	if (!/\p{L}/u.test(raw.slice(lineStart, cue))) {
+		if (lineStart === 0) return;
+		from = raw.lastIndexOf("\n", lineStart - 2) + 1;
+		to = lineStart - 1;
+	}
+	from += SEND_BEFORE.exec(raw.slice(from, to))![0].length;
+	for (let after = AFTER_NAME.exec(raw.slice(from, to)); after && after[0].length > 0 && to > from;
+		after = AFTER_NAME.exec(raw.slice(from, to))) to -= after[0].length;
+	const text = raw.slice(from, to);
+	if (!/^[ก-๎A-Za-z]/u.test(text) || /[0-9๐-๙?]/u.test(text) || PLACE_WORD.test(text)) return;
+	if (text.split(/[ \t]+/u).length > MAX_NAME_WORDS || !tags.subarray(from, to).every((tag) => tag === OTHER)) return;
+	tags.fill(NAME_TAG, from, to);
 }
 
 const NAME_TAG = TAGS.indexOf("NAME");
