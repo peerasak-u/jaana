@@ -40,9 +40,13 @@ const LEADING_LABEL = /^(?:(?:ตอบ|จริง|ชื่อจริง|�
 /** A particle the GUIDE keeps out of the name, written as its own word after it. */
 const TRAILING_PARTICLE = /\s+(?:นะ|ค่ะ|คะ|ครับ|จ้า|จ้ะ|นะคะ|นะครับ|นะจ้ะ|นะจ๊ะ|ด้วยนะ|ด้วย|ด้วยค่ะ|ด้วยครับ)$/u;
 
+/** The rest of `ชื่อเล่น` when the tagger starts the name after `ชื่อ`. */
+const NICKNAME_REST = /^เล่น[\s:：]*(?:คือ[\s:：]*)?/u;
+
 function trimLabels(raw: string, range: Range): Range {
 	const text = raw.slice(range.start, range.end);
-	const leading = LEADING_LABEL.exec(text)?.[0].length ?? 0;
+	const nickname = raw.slice(0, range.start).endsWith("ชื่อ") ? NICKNAME_REST.exec(text)?.[0].length : undefined;
+	const leading = nickname ?? LEADING_LABEL.exec(text)?.[0].length ?? 0;
 	const trailing = TRAILING_PARTICLE.exec(text.slice(leading))?.[0].length ?? 0;
 	if (leading + trailing >= text.length) return range;
 	return { start: range.start + leading, end: range.end - trailing };

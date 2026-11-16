@@ -1,11 +1,11 @@
 import { similarityRatio } from "../candidate/fuzzy-match";
-import { normalizeCandidate, normalizePostcode } from "../normalize";
+import { normalizeCandidate, normalizePostcode, typedPhone } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
 import { ANCHOR_FIELDS, createAnchorer, type Anchor } from "./anchor";
 import { decodeEmissions, emissionScores, spanEdges } from "./decode";
 import { featurize } from "./features";
-import { recutPhone } from "./phone";
-import { latinSkeleton, thaiSkeleton } from "./romanize";
+import { hasThaiLength, recutPhone } from "./phone";
+import { fromKedmanee, latinSkeleton, thaiSkeleton } from "./romanize";
 import { composeRecipient } from "./compose";
 import {
 	compileTaggerModel,
@@ -107,19 +107,52 @@ const NAMED = new Set([TAGS.indexOf("NAME"), TAGS.indexOf("ORG")]);
 const BRACKET_AFTER = /^[ \t]*\([^()\n\d+]*\)/u;
 /** A sentence-final particle: the bracket is a remark to the seller, which the GUIDE leaves unmarked. */
 const REMARK_END = /(?:ค่ะ|คะ|ครับ|นะ|จ้า|จ้ะ|จ๊ะ)\s*\)$/u;
+/** A contact handle such as `(LINE: beam_shop)`, which is no part of the name. */
+const CONTACT_START = /^[ \t]*\([ \t]*(?:(?:line|ig|id)(?![a-z])|ไลน์|@)/iu;
+const CITY_NAMES = ["บางกอก", "กรุงเทพ", "bangkok", "bkk"];
+
+function placeKey(text: string): string {
+	return text.toLowerCase().replace(/^(?:จังหวัด|จ\.)/u, "").replace(/[\s.ฯ]/gu, "");
+}
+
+/** Province names and their aliases, as `placeKey` writes them. */
+function placeKeys(locations: readonly LocationTuple[]): ReadonlySet<string> {
+	const names = [
+		...locations.map((location) => location.province),
+		...[...PROVINCE_ALIASES.values()].flat(),
+		...CITY_NAMES,
+	];
+	return new Set(names.map(placeKey));
+}
+
+/** A bracket group holding a contact handle or only a province or city, which the GUIDE keeps out of the name. */
+function outsideName(group: string, places: ReadonlySet<string>): boolean {
+	return CONTACT_START.test(group) || places.has(placeKey(group.slice(group.indexOf("(") + 1, -1)));
+}
+
+const LAST_BRACKET = /[ \t]*\([^()\n]*\)$/u;
+
+/** Drops such a bracket group where the tagger ends the name with it, as in `คุณบีม (LINE: beam_shop)`. */
+function withoutTrailingBracket(raw: string, name: Range, places: ReadonlySet<string>): Range {
+	const match = LAST_BRACKET.exec(raw.slice(name.start, name.end));
+	if (!match || match.index === 0 || !outsideName(match[0], places)) return name;
+	return { start: name.start, end: name.start + match.index };
+}
 
 /**
- * The GUIDE keeps brackets written right after a name in the name, whatever
- * they hold, as in `ลุงจันทร์ (ผู้รับ)`, unless they hold a remark to the
- * seller or a number. Extends a name or organisation run over such a
- * bracket group when the tagger left all of it untagged.
+ * The GUIDE keeps brackets written right after a name in the name, as in
+ * `ลุงจันทร์ (ผู้รับ)`, unless they hold a remark to the seller, a number,
+ * a contact handle, or only a province or city. Extends a name or
+ * organisation run over such a bracket group when the tagger left all of
+ * it untagged.
  */
-function attachBracketAfterName(raw: string, tags: Uint8Array): void {
+function attachBracketAfterName(raw: string, tags: Uint8Array, places: ReadonlySet<string>): void {
 	for (let end = 1; end < raw.length; end += 1) {
 		const tag = tags[end - 1]!;
 		if (!NAMED.has(tag) || tags[end] === tag) continue;
 		const group = BRACKET_AFTER.exec(raw.slice(end))?.[0];
-		if (!group || REMARK_END.test(group) || !tags.subarray(end, end + group.length).every((other) => other === OTHER)) continue;
+		if (!group || REMARK_END.test(group) || outsideName(group, places)) continue;
+		if (!tags.subarray(end, end + group.length).every((other) => other === OTHER)) continue;
 		tags.fill(tag, end, end + group.length);
 	}
 }
@@ -253,7 +286,7 @@ function runsOf(raw: string, tags: Uint8Array): Run[] {
 }
 
 /** Output spans after the organisation runs are resolved into the name or the address. */
-function spansOf(raw: string, runs: readonly Run[]): TaggedSpan[] {
+function spansOf(raw: string, runs: readonly Run[], places: ReadonlySet<string>): TaggedSpan[] {
 	const recipient = composeRecipient(
 		raw,
 		runs.find((run) => run.tag === "NAME") ?? null,
@@ -265,7 +298,7 @@ function spansOf(raw: string, runs: readonly Run[]): TaggedSpan[] {
 	for (const run of runs) {
 		if (run.tag !== "NAME" && run.tag !== "ORG" && run.tag !== "OTHER") spans.push(span(run.tag, run));
 	}
-	if (recipient.name) spans.push(span("NAME", recipient.name));
+	if (recipient.name) spans.push(span("NAME", withoutTrailingBracket(raw, recipient.name, places)));
 	for (const range of recipient.address) spans.push(span("ADDRESS_DETAIL", range));
 	return spans.sort((left, right) => left.start - right.start);
 }
@@ -445,6 +478,7 @@ export function createScoredParser(
 ): TaggerParser {
 	const anchor = createAnchorer(locations);
 	const resolve = createTupleResolver(locations);
+	const places = placeKeys(locations);
 	const siblingTuples = new Map<string, LocationTuple[]>();
 	for (const location of locations) {
 		const key = `${location.province}\u0000${location.district}`;
@@ -569,12 +603,12 @@ export function createScoredParser(
 			const anchored = anchor(raw);
 			const tags = decodeEmissions(scorer.score(raw, anchored.flags), scorer.transitions, spanEdges(raw));
 			closeBrackets(raw, tags);
-			attachBracketAfterName(raw, tags);
+			attachBracketAfterName(raw, tags, places);
 			recutPhone(raw, tags);
 			completePostcode(raw, tags);
 			finishLine(raw, tags);
 			joinPrefixWords(raw, tags);
-			const spans = spansOf(raw, runsOf(raw, tags));
+			const spans = spansOf(raw, runsOf(raw, tags), places);
 			const text = (label: OutputLabel): string | undefined =>
 				spans.find((span) => span.label === label)?.text;
 			const subdistrict = text("SUBDISTRICT");
@@ -647,18 +681,21 @@ export function createScoredParser(
 				administrative.district = administrative.subdistrict;
 				administrative.subdistrict = null;
 			}
-			const name = text("NAME");
-			const phone = text("PHONE");
+			const nameText = text("NAME");
+			const name = nameText ? normalizeCandidate("NAME", nameText) : null;
+			const phoneText = text("PHONE");
+			const phone = phoneText ? typedPhone(phoneText) : null;
+			const warnings: ParseWarning[] = phone && !hasThaiLength(phone) ? ["phone-length"] : [];
 			const recipient: TaggedRecipient = {
 				fields: {
-					name: name ? normalizeCandidate("NAME", name) : null,
-					phone: phone ? normalizeCandidate("PHONE", phone) : null,
+					name: name === null ? null : fromKedmanee(name) ?? name,
+					phone,
 					address: address ? normalizeCandidate("ADDRESS_DETAIL", address) : null,
 					...administrative,
 				},
 				inferred: [],
 			};
-			return { raw, ...recipient, spans, warnings: [], recipients: [recipient] };
+			return { raw, ...recipient, spans, warnings, recipients: [recipient] };
 		},
 	};
 }
