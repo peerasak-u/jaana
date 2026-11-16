@@ -39,7 +39,10 @@ if (issues.length > 0) {
 
 function parseWith(name: SystemName, raw: string): ExpectedAddress | null {
 	try {
-		return { ...systems[name].parse(raw).fields };
+		const result = systems[name].parse(raw);
+		// Gold marks only what the shopper wrote, so gazetteer-filled fields are not scored here.
+		const inferred = "inferred" in result ? result.inferred : [];
+		return { ...result.fields, ...Object.fromEntries(inferred.map((field) => [field, null])) };
 	} catch {
 		return null;
 	}

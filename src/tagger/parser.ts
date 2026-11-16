@@ -57,13 +57,21 @@ export type ParseWarning = "ambiguous-location" | "phone-length" | "multiple-rec
 
 export type InferredField = "subdistrict" | "district" | "province" | "zipcode";
 
-export interface TaggedAddress {
-	readonly raw: string;
+export interface TaggedRecipient {
 	readonly fields: ParsedFields;
-	readonly spans: readonly TaggedSpan[];
-	readonly warnings: readonly ParseWarning[];
 	/** Administrative fields the message did not write, filled from the gazetteer. */
 	readonly inferred: readonly InferredField[];
+}
+
+/**
+ * One parsed message. `recipients` holds one entry per delivery in the
+ * message, usually one; `fields` and `inferred` repeat the first entry.
+ */
+export interface TaggedAddress extends TaggedRecipient {
+	readonly raw: string;
+	readonly spans: readonly TaggedSpan[];
+	readonly warnings: readonly ParseWarning[];
+	readonly recipients: readonly TaggedRecipient[];
 }
 
 export interface TaggerParser {
@@ -641,18 +649,16 @@ export function createScoredParser(
 			}
 			const name = text("NAME");
 			const phone = text("PHONE");
-			return {
-				raw,
+			const recipient: TaggedRecipient = {
 				fields: {
 					name: name ? normalizeCandidate("NAME", name) : null,
 					phone: phone ? normalizeCandidate("PHONE", phone) : null,
 					address: address ? normalizeCandidate("ADDRESS_DETAIL", address) : null,
 					...administrative,
 				},
-				spans,
-				warnings: [],
 				inferred: [],
 			};
+			return { raw, ...recipient, spans, warnings: [], recipients: [recipient] };
 		},
 	};
 }
