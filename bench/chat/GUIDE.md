@@ -30,7 +30,6 @@ tags: multiline, landmark
 ===
 loc: สำโรงเหนือ | เมืองสมุทรปราการ | สมุทรปราการ | 10270
 tags: typo-province, thai-digits, name-last
-warn: ambiguous-location
 ---
 [[A:99 หมู่บ้านสุขใจ]] โทร[[P:๐๘๑ ๒๓๔ ๕๖๗๘]] [[D:อ.เมือง]] [[V:สมุทรปรากาน]][[Z:10270]] [[N:บจก.รุ่งเรืองการค้า (คุณเอ)]]
 ```
@@ -183,7 +182,7 @@ gazetteer, and names the exact `warn:` line a record needs.
 
 | Warning | Add it when |
 |---|---|
-| `ambiguous-location` | For some delivery, the administrative fields the shopper wrote (its `S`, `D`, `V`, `Z` marks) fit more than one gazetteer tuple, and those tuples differ in a field the shopper left out. Examples: only `[[V:ราชบุรี]]` is written; or subdistrict, district and province are written without a postcode, and that subdistrict has two postcodes. A delivery with no administrative mark needs no warning. |
+| `ambiguous-location` | For some delivery, the administrative fields the shopper wrote (its `S`, `D`, `V`, `Z` marks) leave the route open: they fit gazetteer tuples that differ in district, province or postcode. Examples: only `[[V:ราชบุรี]]` is written; or subdistrict, district and province are written without a postcode, and that subdistrict has two postcodes. An unknown subdistrict alone is not ambiguous, because district and postcode still route the parcel. A delivery whose only administrative mark is `Z`, or that has none, needs no warning. `check.ts` decides. |
 | `phone-length` | A marked phone has the wrong length for a Thai number. A mobile (`06`, `08`, `09`) needs 10 digits; any other number needs 9. Judge the gold digits, after the `+66` rule. |
 | `multiple-recipients` | The message holds more than one delivery, so the record uses `loc1:`, `loc2:`. |
 
