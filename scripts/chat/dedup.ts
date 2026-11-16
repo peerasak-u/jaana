@@ -78,8 +78,8 @@ const { locations } = await loadParserResources("resources/gazetteer.json");
 const map = locationMap(locations);
 const entries: Entry[] = [];
 let sourceIssues = 0;
-// Spent holdouts hold bench locations and are scored as dev, so a later holdout must not echo them.
-for (const [folder, pool] of [["train", "train"], ["bench", "bench"], ["spent", "bench"]] as const satisfies readonly (readonly [string, Pool])[]) {
+// Spent holdouts and dev sets hold bench locations and are scored as dev, so a holdout must not echo them.
+for (const [folder, pool] of [["train", "train"], ["bench", "bench"], ["spent", "bench"], ["dev", "bench"]] as const satisfies readonly (readonly [string, Pool])[]) {
 	const directory = join(CHAT_ROOT, folder);
 	for (const file of (await readdir(directory)).filter((name) => name.endsWith(".txt")).sort()) {
 		const path = join(directory, file);

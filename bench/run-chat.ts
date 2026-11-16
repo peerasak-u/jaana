@@ -2,7 +2,7 @@ import { mkdir } from "node:fs/promises";
 import { createAddressParser } from "../src";
 import { createTaggerParser, type ParseWarning } from "../src/tagger/parser";
 import type { AnyTaggerModel } from "../src/tagger/model";
-import { loadChatPool, loadSourceFile, locationMap } from "./chat/load";
+import { loadChatPool, loadSourceFile, locationMap, sourcePoolOf } from "./chat/load";
 import { holdoutOf, isHoldout, splitOf, type ChatRecord } from "./chat/markup";
 import type { ExpectedAddress } from "./dataset";
 import { loadParserResources } from "./gazetteer";
@@ -20,12 +20,12 @@ const test1FailuresPath = ".bench-results/chat-test1-failures.jsonl";
 const extraFailuresPath = ".bench-results/chat-extra-failures.jsonl";
 /**
  * Files to score as a separate development set, comma separated: train-pool
- * files, or spent holdouts moved to `sources/spent/`. Spent files hold bench
- * locations and are never trained on; only their totals stopped being unbiased.
+ * files, spent holdouts moved to `sources/spent/`, or development sets in
+ * `sources/dev/`. Spent and dev files hold bench locations and are never
+ * trained on.
  */
 const extraPaths = (option("--extra") ?? "").split(",").filter(Boolean);
-const extraPool = (path: string) => (path.includes("/sources/spent/") ? "bench" : "train");
-if (extraPaths.some((path) => !/\/sources\/(?:train|spent)\//u.test(path))) throw new Error("--extra takes train-pool or spent source files only");
+if (extraPaths.some((path) => !/\/sources\/(?:train|spent|dev)\//u.test(path))) throw new Error("--extra takes train, spent or dev source files only");
 const minimum = option("--min-test-exact");
 const rounds = Number(option("--timing-rounds") ?? "3");
 const readHoldout = Bun.argv.includes("--read-holdout");
@@ -164,7 +164,7 @@ function time(set: readonly ChatRecord[]) {
 const first = records.filter((record) => !isHoldout(record));
 const dev = evaluate(first.filter((record) => splitOf(record.raw) === "dev"), true);
 const test1 = evaluate(first.filter((record) => splitOf(record.raw) === "test"), true);
-const extraRecords = (await Promise.all(extraPaths.map((path) => loadSourceFile(path, extraPool(path), locationMap(locations))))).flatMap(({ records, issues }) => {
+const extraRecords = (await Promise.all(extraPaths.map((path) => loadSourceFile(path, sourcePoolOf(path), locationMap(locations))))).flatMap(({ records, issues }) => {
 	if (issues.length > 0) throw new Error(`${issues.length} source issues in --extra. Run scripts/chat/check.ts`);
 	return records;
 });

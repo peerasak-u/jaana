@@ -139,3 +139,11 @@ test("a message is exact only when every recipient matches in order", () => {
 	expect(metrics.exactRecords).toBe(1);
 	expect(metrics.fields.name).toEqual({ correct: 3, total: 6 });
 });
+
+test("spent and dev sources hold bench locations, train sources train ones", async () => {
+	const { sourcePoolOf } = await import("../bench/chat/load");
+	expect(sourcePoolOf("bench/chat/sources/dev/x.r4.txt")).toBe("bench");
+	expect(sourcePoolOf("bench/chat/sources/spent/x.v3.txt")).toBe("bench");
+	expect(sourcePoolOf("bench/chat/sources/train/x.dev.txt")).toBe("train");
+	expect(() => sourcePoolOf("elsewhere/x.txt")).toThrow();
+});

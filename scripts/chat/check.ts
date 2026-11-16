@@ -1,9 +1,8 @@
 import { loadParserResources } from "../../bench/gazetteer";
-import { loadSourceFile, locationMap } from "../../bench/chat/load";
-import type { Pool } from "../../bench/chat/markup";
+import { loadSourceFile, locationMap, sourcePoolOf } from "../../bench/chat/load";
 
 const paths = Bun.argv.slice(2).filter((argument) => argument.endsWith(".txt"));
-if (paths.length === 0) throw new Error("usage: bun scripts/chat/check.ts <bench/chat/sources/(bench|train)/file.txt> [--show N]");
+if (paths.length === 0) throw new Error("usage: bun scripts/chat/check.ts <bench/chat/sources/(bench|train|spent|dev)/file.txt> [--show N]");
 const showIndex = Bun.argv.indexOf("--show");
 const show = showIndex >= 0 ? Number(Bun.argv[showIndex + 1]) : 0;
 
@@ -11,9 +10,7 @@ const { locations } = await loadParserResources("resources/gazetteer.json");
 const map = locationMap(locations);
 let failed = false;
 for (const path of paths) {
-	const pool = path.includes("/train/") ? "train" : path.includes("/bench/") ? "bench" : undefined;
-	if (!pool) throw new Error(`${path} is not under sources/bench or sources/train`);
-	const { records, issues } = await loadSourceFile(path, pool as Pool, map);
+	const { records, issues } = await loadSourceFile(path, sourcePoolOf(path), map);
 	for (const issue of issues) console.log(`${issue.file}:${issue.line} ${issue.message}`);
 	const fieldCounts: Record<string, number> = {};
 	for (const record of records) {

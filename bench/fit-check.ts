@@ -1,7 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import { createTaggerParser } from "../src/tagger/parser";
 import type { AnyTaggerModel } from "../src/tagger/model";
-import { loadSourceFile, locationMap } from "./chat/load";
+import { loadSourceFile, locationMap, sourcePoolOf } from "./chat/load";
 import type { ChatRecord } from "./chat/markup";
 import type { ExpectedAddress } from "./dataset";
 import { loadParserResources } from "./gazetteer";
@@ -23,7 +23,7 @@ const parser = createTaggerParser(model, locations);
 const byKey = locationMap(locations);
 const records: ChatRecord[] = [];
 for (const path of paths) {
-	const loaded = await loadSourceFile(path, path.includes("/sources/spent/") ? "bench" : "train", byKey);
+	const loaded = await loadSourceFile(path, sourcePoolOf(path), byKey);
 	if (loaded.issues.length > 0) throw new Error(`${loaded.issues.length} source issues in ${path}`);
 	records.push(...loaded.records);
 }
