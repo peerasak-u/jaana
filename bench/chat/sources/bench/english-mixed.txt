@@ -135,6 +135,7 @@ tags: organisation, partnership, contact-person, landline, oneline
 ===
 loc: สามโคก | สามโคก | ปทุมธานี | 12160
 tags: alias, same-name-once, no-subdistrict, order-details, payment-note, english-labels
+warn: ambiguous-location
 ---
 Order: Matcha latte powder x2 + oat milk x1
 Ship: [[A:31/2 ม.6 หมู่บ้าน Green Valley]] [[D:สามโคก]] [[V:ปทุม]] [[Z:12160]]
@@ -301,6 +302,7 @@ plz send asap ka 🙏🙏 [[A:บ้านเลขที่ 11 หมู่ 3]]
 ===
 loc: ไทรใหญ่ | ไทรน้อย | นนทบุรี | 11150
 tags: alias, display-name, no-subdistrict, english-village
+warn: ambiguous-location
 ---
 ที่อยู่ for delivery ค่ะ
 [[N:Kwan]] 🌸
@@ -354,6 +356,7 @@ tags: alias, english-landmark, rural, no-prefix, bilingual-name
 ===
 loc: คำอาฮวน | เมืองมุกดาหาร | มุกดาหาร | 49000
 tags: organisation, government, department, no-subdistrict, amphoe-mueang, landline, english-note
+warn: ambiguous-location
 ---
 ส่งในนาม [[N:องค์การบริหารส่วนตำบลคำอาฮวน (กองคลัง)]]
 [[A:99 ม.6]] [[D:อ.เมือง]] [[V:จ.มุกดาหาร]] [[Z:49000]]
@@ -426,6 +429,7 @@ tags: karaoke-thai, typo-district, name-after-address, rural
 ===
 loc: คอนสวรรค์ | คอนสวรรค์ | ชัยภูมิ | 36140
 tags: same-name-once, no-prefix, province-in-road, order-details, romanized-name
+warn: ambiguous-location
 ---
 hello ka จะเอา 2 size คือ S กับ M
 [[N:Jennifer Suksom]]
@@ -549,6 +553,7 @@ Tax ID 0105559012345
 ===
 loc: หนองผือ | จตุรพักตรพิมาน | ร้อยเอ็ด | 45180
 tags: slash-separator, typo-district, no-subdistrict, romanized-name
+warn: ambiguous-location
 ---
 [[N:Wanida P.]] / [[A:14 ม.3 บ้านหนองผือ]] / [[D:อ.จตุรพักตร์พิมาน]] / [[V:ร้อยเอ็ด]] / [[Z:45180]] / [[P:0836619902]]
 ===
@@ -681,6 +686,7 @@ deliver to: [[N:Tree House Bike Cafe]], [[A:55/1 ม.7]] [[S:ต.ทรงคน
 ===
 loc: วังทองหลาง | วังทองหลาง | กรุงเทพมหานคร | 10310
 tags: alias, same-name-once, no-subdistrict, delivery-time
+warn: ambiguous-location
 ---
 [[N:Nicha]]
 [[A:111 ซ.ลาดพร้าว 94]] [[D:วังทองหลาง]] [[V:กทม.]] [[Z:10310]]
@@ -736,6 +742,7 @@ Hi ka
 ===
 loc: ไร่รถ | ดอนเจดีย์ | สุพรรณบุรี | 72170
 tags: alias, mixed-digits, no-subdistrict, no-prefix
+warn: ambiguous-location
 ---
 [[N:Joe Kittisak]] [[P:08๑-776-2340]]
 [[A:12 ม.3]] [[D:ดอนเจดีย์]] [[V:สุพรรณ]] [[Z:72170]]

@@ -91,6 +91,7 @@ tags: no-house-number, landmark, directions, name-after-address, no-postcode
 ===
 loc: แก่งกระจาน | แก่งกระจาน | เพชรบุรี | 76170
 tags: farm, business, road-km, same-name-once, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ไร่สับปะรดลุงเชิด]]
 [[A:222 ม.2 ถนนสายเพชรบุรี-แก่งกระจาน กม.42]] [[D:แก่งกระจาน]] [[V:เพชรบุรี]] [[Z:76170]]
@@ -271,6 +272,7 @@ tags: alias, province-first, landmark, nickname-only, amphoe-mueang-short
 ===
 loc: สามชุก | สามชุก | สุพรรณบุรี | 72130
 tags: shop, market, alias, same-name-once, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ร้านขนมบ้านป้าอ้วน]] [[A:ตลาดสามชุก 100 ปี ห้องแถวที่ 12]] [[D:สามชุก]] [[V:สุพรรณ]] [[Z:72130]]
 โทร [[P:0863304419]]
@@ -417,6 +419,7 @@ tags: alias, district-short-form, no-prefix, no-postcode
 ===
 loc: ท่าลี่ | ท่าลี่ | เลย | 42140
 tags: same-name-once, no-subdistrict, name-after-address
+warn: ambiguous-location
 ---
 [[A:บ้านเลขที่ 199 ม.1 บ้านหนองผือ]] [[D:อ.ท่าลี่]] [[V:จ.เลย]] [[Z:42140]] [[N:นางสาวอรพิน แสนสุข]] [[P:0617730481]]
 ===
@@ -578,6 +581,7 @@ tags: landmark, amphoe-mueang-short, no-postcode, name-phone-first
 ===
 loc: สูงเนิน | สูงเนิน | นครราชสีมา | 30170
 tags: alias, same-name-once, payment-note, oneline
+warn: ambiguous-location
 ---
 [[N:คุณป้าละเอียด]] [[A:บ้านเลขที่ 8 ม.6 บ้านโนนกุ่ม]] [[D:สูงเนิน]] [[V:โคราช]] [[Z:30170]] [[P:0896623084]] โอนแล้วนะคะ 590
 ===
@@ -763,6 +767,7 @@ tags: typo-province, village-first, no-postcode, name-last
 ===
 loc: ห้วยกระเจา | ห้วยกระเจา | กาญจนบุรี | 71170
 tags: oneline, same-name-once, no-subdistrict, no-postcode
+warn: ambiguous-location
 ---
 [[N:นายปรีชา มีสุข]] [[A:บ้านเลขที่ 41 หมู่ 7 บ้านหนองปลาไหล]] [[D:ห้วยกระเจา]] [[V:กาญจนบุรี]] [[P:0896320473]]
 ===

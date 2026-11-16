@@ -18,6 +18,7 @@ tags: multiline, labels, nickname-brackets, condo, alias
 ===
 loc: ห้างฉัตร | ห้างฉัตร | ลำปาง | 52190
 tags: multiline, kinship-name, same-name-once, no-subdistrict, no-prefixes
+warn: ambiguous-location
 ---
 ส่ง [[N:ลุงสมพร ปัญญาวงค์]]
 [[A:บ้านเลขที่ 112 หมู่ 7 บ้านแม่ฮ่าง]]
@@ -144,6 +145,7 @@ tags: multiline, extra-spaces, spaced-prefix, desktop
 ===
 loc: ท่าวังผา | ท่าวังผา | น่าน | 55140
 tags: multiline, workplace, org-in-address, no-subdistrict
+warn: ambiguous-location
 ---
 ขอส่งที่ทำงานนะคะ
 [[N:ณิชาภา ธิวงค์]]
@@ -433,6 +435,7 @@ tags: multiline, no-province, placename-in-soi, lead-in
 ===
 loc: วังทองหลาง | วังทองหลาง | กรุงเทพมหานคร | 10310
 tags: multiline, same-name-once, alias, no-prefixes
+warn: ambiguous-location
 ---
 [[N:นางสาวกัญญารัตน์ มีชัย]]
 [[A:88/7 ถ.ประดิษฐ์มนูธรรม]]

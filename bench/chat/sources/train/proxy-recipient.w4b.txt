@@ -169,6 +169,7 @@ tags: sister, dormitory, nickname-bracket, same-name-twice, instruction, alias
 ===
 loc: นาเชือก | นาเชือก | มหาสารคาม | 44170
 tags: neighbour-shop, organisation, landmark, name-once-no-prefix
+warn: ambiguous-location
 ---
 ฝากส่งพี่บอยร้านซ่อมรถนะ [[N:ร้านบอยการช่าง]] [[A:5 ม.1 หน้าตลาดสด]] [[D:นาเชือก]] [[V:มหาสารคาม]] [[Z:44170]] [[P:0843321906]]
 ===
@@ -315,6 +316,7 @@ tags: housing-estate, daughter, child-title, alias, instruction
 ===
 loc: บ้านแพ้ว | บ้านแพ้ว | สมุทรสาคร | 74120
 tags: glued, shop, organisation, no-person, written-once
+warn: ambiguous-location
 ---
 ส่งเข้าร้านพี่สาวเลยค่ะ[[N:ร้านกัญญาผ้าม่าน]][[A:88/3ม.1]][[D:บ้านแพ้ว]][[V:สมุทรสาคร]][[Z:74120]] [[P:0815526740]]
 ===
@@ -405,6 +407,7 @@ tags: glued, office-colleague, bare-first-name, bangkok, no-province
 ===
 loc: ศรีเตี้ย | บ้านโฮ่ง | ลำพูน | 51130
 tags: northern, grandmother, title-nang, two-phones, buyer-and-recipient
+warn: phone-length
 ---
 หนูชื่อแนน 0619936628 สั่งให้แม่อุ้ยนะเจ้า
 [[N:นางบัวคำ ปัญญาดี]] [[P:0539803214]]
@@ -669,6 +672,7 @@ tags: northern, health-centre, organisation-with-person, cousin
 ===
 loc: ไม้แก่น | ไม้แก่น | ปัตตานี | 94220
 tags: deep-south, name-once-no-prefix, mother, title-nang, glued
+warn: ambiguous-location
 ---
 ส่งให้แม่ค่ะ[[N:นางรอฮานี เจะหะ]] [[A:22/1ม.2]] [[D:ไม้แก่น]] [[V:ปัตตานี]] [[Z:94220]] [[P:0874402917]]
 ===
@@ -806,6 +810,7 @@ tags: glued, everything-glued, grandfather, title-nai, isan
 ===
 loc: บ้านฝาง | บ้านฝาง | ขอนแก่น | 40270
 tags: name-once-no-prefix, brother-in-law, bare-first-name
+warn: ambiguous-location
 ---
 ส่งให้น้องเขยครับ ชื่อ [[N:ชาตรี]] โทร [[P:0812247790]] [[A:88 ม.1]] [[D:บ้านฝาง]] [[V:ขอนแก่น]] [[Z:40270]]
 ===

@@ -134,6 +134,7 @@ tags: online-store, warehouse, display-name, contact-apart, alias, courier-note,
 ===
 loc: ขามสะแกแสง | ขามสะแกแสง | นครราชสีมา | 30290
 tags: company, same-name-once, no-prefix-admin, oneline
+warn: ambiguous-location
 ---
 [[N:บริษัท ขามสะแกแสงพืชผล จำกัด]] [[A:12 หมู่ 1 ถนนมิตรภาพ-ขามสะแกแสง]] [[D:ขามสะแกแสง]] [[V:นครราชสีมา]] [[Z:30290]] โทร [[P:0848831275]]
 ===
@@ -450,6 +451,7 @@ tags: company, foreign-name, contact-apart, role-note, village
 ===
 loc: ภูผาม่าน | ภูผาม่าน | ขอนแก่น | 40350
 tags: resort, same-name-once, no-prefix, courier-note
+warn: ambiguous-location
 ---
 [[N:ม่อนหมอกรีสอร์ท]] [[A:88 ม.2]] [[D:ภูผาม่าน]] [[V:ขอนแก่น]] [[Z:40350]] โทร [[P:080-554-1196]] ฝากไว้ที่ล็อบบี้ได้ค่ะ
 ===

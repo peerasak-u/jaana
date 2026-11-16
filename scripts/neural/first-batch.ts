@@ -4,10 +4,10 @@ import { CHAT_ROOT, loadSourceFile, locationMap } from "../../bench/chat/load";
 import { HOLDOUT_FILE, isHoldout, splitOf, type ChatRecord } from "../../bench/chat/markup";
 import type { LocationTuple } from "../../src/types";
 
-
 /**
  * The first benchmark batch, split into dev and test1 as `bench/run-chat.ts`
- * splits it. The sealed holdout files are never opened.
+ * splits it, without messages that hold several deliveries, because the
+ * tagger sees one at a time. The sealed holdout files are never opened.
  */
 export async function loadFirstBatch(
 	locations: readonly LocationTuple[],
@@ -21,7 +21,7 @@ export async function loadFirstBatch(
 		const loaded = await loadSourceFile(join(directory, file), "bench", map);
 		if (loaded.issues.length > 0) throw new Error(`${loaded.issues.length} source issues in ${file}`);
 		for (const record of loaded.records) {
-			if (isHoldout(record) || seen.has(record.raw)) continue;
+			if (isHoldout(record) || record.recipients.length > 1 || seen.has(record.raw)) continue;
 			seen.add(record.raw);
 			records.push(record);
 		}

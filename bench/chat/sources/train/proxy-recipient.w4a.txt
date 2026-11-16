@@ -353,6 +353,7 @@ tags: dialect-south, brother, phone-first
 ===
 loc: ชนบท | ชนบท | ขอนแก่น | 40180
 tags: written-once, no-prefix, proxy-shop, person-in-chatter, dialect-isan
+warn: ambiguous-location
 ---
 ส่งร้านตัดผมหน้าตลาดเด้อ ฝาก[[N:พี่ต้น]]ไว้ พี่ต้นฮู้จัก
 [[A:ร้านต้นแฮร์คัท 45 ถ.ศรีชนบท]] [[D:ชนบท]] [[V:ขอนแก่น]] [[Z:40180]]
@@ -687,6 +688,7 @@ tags: shop-as-recipient, remark-anyone, oneline, glued-particle
 ===
 loc: พนมทวน | พนมทวน | กาญจนบุรี | 71140
 tags: written-once, no-subdistrict, mother, relation-bracket
+warn: ambiguous-location
 ---
 สั่งให้คุณแม่ค่ะ
 [[N:นางประไพ สุขสม (คุณแม่)]]
@@ -703,6 +705,7 @@ tags: proxy-shop, person-in-chatter, shop-in-address, opener-general
 ===
 loc: บางคล้า | บางคล้า | ฉะเชิงเทรา | 24110
 tags: written-once, temple, org-as-recipient, alias, no-phone
+warn: ambiguous-location
 ---
 ส่งไปวัดค่ะ ไม่ต้องใส่ชื่อพระ
 [[N:วัดโพธิ์ทองบางคล้า]]

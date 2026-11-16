@@ -110,6 +110,7 @@ tags: school, contact-in-brackets, wrong-tone, dropped-letter, landline, oneline
 ===
 loc: ตลิ่งชัน | ตลิ่งชัน | กรุงเทพมหานคร | 10170
 tags: same-name-once, no-subdistrict, wrong-tone, dropped-letter-province, multiline
+warn: ambiguous-location
 ---
 [[N:ปณิตา ศรีวงษ์]]
 [[A:19/5 ซ.ชักพระ 6 ถ.ชักพระ]]

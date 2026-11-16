@@ -118,6 +118,7 @@ tags: clinic, contact-slash, title, two-phones, no-postcode, amphoe-mueang
 ===
 loc: จตุจักร | จตุจักร | กรุงเทพมหานคร | 10900
 tags: market-stall, shop, alias, no-subdistrict, place-name-in-chat
+warn: ambiguous-location
 ---
 ร้านเราอยู่จตุจักรนะคะ ส่งมาที่แผงเลยค่ะ
 [[N:ร้าน Moon Vintage]] [[A:ตลาดนัดจตุจักร โครงการ 2 ซอย 4 แผง 112]] [[D:เขตจตุจักร]] [[V:กทม.]] [[Z:10900]]
@@ -148,6 +149,7 @@ tags: shop, typo-district, no-postcode, bangkok
 ===
 loc: ทวีวัฒนา | ทวีวัฒนา | กรุงเทพมหานคร | 10170
 tags: warehouse, contact-same-line, same-name-once, no-province, no-newline
+warn: ambiguous-location
 ---
 [[N:บริษัท เอเชียโฮมแวร์ จำกัด คุณปิยะพงษ์ (คลังสินค้า)]] [[A:โกดัง B2 เลขที่ 9/99 ถ.พุทธมณฑลสาย 3]] [[D:ทวีวัฒนา]] [[Z:10170]] โทร [[P:062-448-1103]] ลงของได้ 9 โมงถึงบ่าย 3
 ===
@@ -278,6 +280,7 @@ tags: company, po-box, place-name-in-detail, no-phone, clean
 ===
 loc: สายไหม | สายไหม | กรุงเทพมหานคร | 10220
 tags: clinic, alias, same-name-once, labels, road-and-soi-carry-district-name
+warn: ambiguous-location
 ---
 [[N:คลินิกเสริมความงาม เดอะเฟซ]]
 ที่อยู่: [[A:9/124 ถ.สายไหม ซ.สายไหม 56]] [[D:สายไหม]] [[V:กทม]] [[Z:10220]]

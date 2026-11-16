@@ -199,6 +199,7 @@ tags: english-detail, thai-admin, farm, org, no-person
 ===
 loc: ไทรน้อย | ไทรน้อย | นนทบุรี | 11150
 tags: alias, romanized-admin, written-once, district-only
+warn: ambiguous-location
 ---
 Hello! ship to [[N:Kanokwan P.]]
 [[A:88/12 Moo 3 Soi Sai Noi 10]], [[D:Sai Noi]], [[V:Nonthaburi]] [[Z:11150]]
@@ -390,6 +391,7 @@ tags: english-name, thai-admin, temple, monk, org
 ===
 loc: บางพลัด | บางพลัด | กรุงเทพมหานคร | 10700
 tags: alias, romanized-admin, bangkok, condo, khet-only
+warn: ambiguous-location
 ---
 [[N:Chris Taylor]]
 [[A:Lumpini Place Pinklao, Bldg A, Rm 2210, 1 Charan Sanitwong 88]]
@@ -404,6 +406,7 @@ tags: english-detail, thai-admin, bangkok, soi-english, missing-province
 ===
 loc: ทุ่งเขาหลวง | ทุ่งเขาหลวง | ร้อยเอ็ด | 45170
 tags: alias, romanized-admin, written-once, no-name, short
+warn: ambiguous-location
 ---
 [[A:105 Moo 7]] [[D:Thung Khao Luang]] [[V:Roi Et]] [[Z:45170]] / [[P:0827783310]]
 ===
@@ -483,6 +486,7 @@ tags: alias, romanized-admin, same-name-twice, school, contact-person, slash
 ===
 loc: ค้อใหญ่ | พนมไพร | ร้อยเอ็ด | 45140
 tags: english-detail, thai-admin, no-subdistrict, landmark
+warn: ambiguous-location
 ---
 ส่งให้ [[N:Mae Nuan]] ค่ะ
 [[A:36 Moo 9 next to 7-Eleven]] [[D:อ.พนมไพร]] [[V:ร้อยเอ็ด]] [[Z:45140]]
@@ -836,6 +840,7 @@ Tel [[P:02-564-7120]] ext. 3214
 ===
 loc: หนองแซง | หนองแซง | สระบุรี | 18170
 tags: alias, romanized-admin, written-once, no-subdistrict, foreign-buyer
+warn: ambiguous-location
 ---
 [[N:Mr. Ahmed Khan]] [[P:0954478210]]
 [[A:3/5 Moo 6]] [[D:Nong Saeng]] [[V:Saraburi]] [[Z:18170]]

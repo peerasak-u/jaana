@@ -174,7 +174,7 @@ function assemble(source: ChatRecord, draft: Draft, id: string): ChatRecord {
 		province: find("PROVINCE"),
 		zipcode: find("POSTCODE"),
 	};
-	return { ...source, id, raw, spans, expected, normalizationExpected: expected, seedLocation: location };
+	return { ...source, id, raw, spans, expected, normalizationExpected: expected, seedLocation: location, recipients: [expected] };
 }
 
 function donorsOf(records: readonly ChatRecord[], locations: readonly LocationTuple[]): Donors {

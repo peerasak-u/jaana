@@ -21,6 +21,7 @@ tags: government, form-template, landline, org-with-contact, alias
 ===
 loc: ห้วยแย้ | หนองบัวระเหว | ชัยภูมิ | 36250
 tags: local-admin, no-person, subdistrict-inside-org-name, no-subdistrict, particle-glued
+warn: ambiguous-location
 ---
 ส่ง [[N:อบต.ห้วยแย้ กองคลัง]] [[A:ม.1]] [[D:อ.หนองบัวระเหว]] [[V:ชัยภูมิ]] [[Z:36250]]ค่ะ ออกใบเสร็จในนาม อบต. ด้วยนะคะ
 ===
@@ -128,6 +129,7 @@ tags: temple, proxy, name-last, no-district-prefix
 ===
 loc: บางบ่อ | บางบ่อ | สมุทรปราการ | 10560
 tags: police, rank, no-subdistrict, multiline
+warn: ambiguous-location
 ---
 [[N:ร.ต.อ.สุรเชษฐ์ ใจกล้า]]
 [[A:สภ.บางบ่อ งานสอบสวน]]
@@ -159,6 +161,7 @@ tags: dormitory, college, oneline, labels
 ===
 loc: ใหม่พัฒนา | เกาะคา | ลำปาง | 52130
 tags: local-admin, org-with-contact, subdistrict-inside-org-name, no-subdistrict, landline
+warn: ambiguous-location
 ---
 [[N:เทศบาลตำบลใหม่พัฒนา งานป้องกันและบรรเทาสาธารณภัย (คุณประเสริฐ ยาวิชัย)]]
 [[A:222 ม.9]] [[D:อ.เกาะคา]] [[V:จ.ลำปาง]] [[Z:52130]]
@@ -289,6 +292,7 @@ tags: army, rank, rank-looks-like-prefix, multiline
 ===
 loc: ห้วยทับทัน | ห้วยทับทัน | ศรีสะเกษ | 33210
 tags: hospital, dentist, district-inside-org-name, same-name-once, person-org-adjacent, no-detail
+warn: ambiguous-location
 ---
 ส่ง [[N:ทพญ.นิภาพร แสงสว่าง กลุ่มงานทันตกรรม โรงพยาบาลห้วยทับทัน]] [[D:ห้วยทับทัน]] [[V:ศรีสะเกษ]] [[Z:33210]] [[P:0864451278]]
 ===
@@ -593,6 +597,7 @@ tags: school, no-person, no-phone, no-postcode, no-house-number
 ===
 loc: ท่าตะเกียบ | ท่าตะเกียบ | ฉะเชิงเทรา | 24160
 tags: government, org-with-contact, same-name-once, no-prefix, phone-in-middle
+warn: ambiguous-location
 ---
 ส่ง[[N:คุณนิพนธ์ ที่ว่าการอำเภอท่าตะเกียบ]] [[A:ห้องปลัด]] [[P:0864417702]] [[D:ท่าตะเกียบ]] [[V:ฉะเชิงเทรา]] [[Z:24160]]
 ===
@@ -659,6 +664,7 @@ tags: army, conscript, glued, alias, no-province, person-org-adjacent, very-mess
 ===
 loc: เทพา | เทพา | สงขลา | 90150
 tags: islamic-school, person-org-adjacent, same-name-once, no-prefix
+warn: ambiguous-location
 ---
 ส่ง [[N:ปอเนาะบ้านคลองต่ำ บาบอฮาซัน]] [[A:ม.5]] [[D:เทพา]] [[V:สงขลา]] [[Z:90150]] [[P:0849023316]]
 ===
@@ -683,6 +689,7 @@ tags: local-admin, chat-bubbles, particle-split, alias
 ===
 loc: ดอนพุทรา | ดอนตูม | นครปฐม | 73150
 tags: club, elderly-club, org-with-contact, subdistrict-inside-org-name
+warn: ambiguous-location
 ---
 [[N:ชมรมผู้สูงอายุตำบลดอนพุทรา (ป้าสมจิต ประธานชมรม)]] [[A:ศาลาประชาคม ม.4]] [[D:อ.ดอนตูม]] [[V:นครปฐม]] [[Z:73150]] [[P:081-447-6603]]
 ===

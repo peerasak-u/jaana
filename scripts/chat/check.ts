@@ -21,6 +21,8 @@ for (const path of paths) {
 			if (value !== null) fieldCounts[field] = (fieldCounts[field] ?? 0) + 1;
 		}
 	}
+	const warningCounts: Record<string, number> = {};
+	for (const warning of records.flatMap((record) => record.warnings)) warningCounts[warning] = (warningCounts[warning] ?? 0) + 1;
 	const tuples = new Set(records.map((record) => Object.values(record.seedLocation).join("|")));
 	console.log(JSON.stringify({
 		path,
@@ -30,9 +32,11 @@ for (const path of paths) {
 		multiline: records.filter((record) => record.raw.includes("\n")).length,
 		medianLength: records.map((record) => record.raw.length).sort((a, b) => a - b)[Math.floor(records.length / 2)] ?? 0,
 		fieldCounts,
+		warningCounts,
+		multiRecipient: records.filter((record) => record.recipients.length > 1).length,
 	}));
 	for (const record of records.slice(0, show)) {
-		console.log(JSON.stringify({ raw: record.raw, expected: record.expected }, null, 1));
+		console.log(JSON.stringify({ raw: record.raw, warnings: record.warnings, recipients: record.recipients }, null, 1));
 	}
 	if (issues.length > 0) failed = true;
 }

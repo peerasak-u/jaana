@@ -10,6 +10,7 @@ tags: multiline, dashed-phone, clean
 ===
 loc: บางบาล | บางบาล | พระนครศรีอยุธยา | 13250
 tags: oneline, plus66-spaced, alias, no-subdistrict, same-name-once
+warn: ambiguous-location
 ---
 [[N:ธีรวัฒน์ ชูแสง]] [[P:+66 89 552 0743]] [[A:45/3 หมู่ 2]] [[D:บางบาล]] [[V:อยุธยา]] [[Z:13250]] ครับ
 ===
@@ -243,6 +244,7 @@ tags: correction, swapped-digits
 ===
 loc: ตากฟ้า | ตากฟ้า | นครสวรรค์ | 60190
 tags: government, org-department, landline, press-extension, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:องค์การบริหารส่วนตำบลตากฟ้า (กองช่าง)]]
 [[A:199 ม.1]] [[D:อ.ตากฟ้า]] [[V:จ.นครสวรรค์]] [[Z:60190]]
@@ -284,6 +286,7 @@ WhatsApp/phone [[P:+66812076634]]
 ===
 loc: บางขุนเทียน | จอมทอง | กรุงเทพมหานคร | 10150
 tags: cf, order-detail, tracking-number, emoji-phone, alias, no-subdistrict
+warn: ambiguous-location
 ---
 CF เสื้อ M สีดำ 2 ตัวค่ะ 🙏
 [[N:ณัฐธิดา ปานทอง]]

@@ -83,6 +83,7 @@ tags: police, bangkok, org-only, extension, admin-in-name
 ===
 loc: บางชัน | คลองสามวา | กรุงเทพมหานคร | 10510
 tags: mosque, imam, contact-in-bracket, no-subdistrict, alias
+warn: ambiguous-location
 ---
 [[N:มัสยิดนูรุลฮุดา (อิหม่ามอับดุลเลาะ มะหะหมัด)]]
 [[A:88 ซ.ราษฎร์อุทิศ 17]] [[D:เขตคลองสามวา]] [[V:กทม]] [[Z:10510]]
@@ -90,6 +91,7 @@ tags: mosque, imam, contact-in-bracket, no-subdistrict, alias
 ===
 loc: คลองจินดา | สามพราน | นครปฐม | 73110
 tags: government, non-formal-education, kinship-title, org-with-person, admin-in-name, no-subdistrict-mark
+warn: ambiguous-location
 ---
 ส่งให้[[N:ครูนก กศน.ตำบลคลองจินดา]]นะคะ
 [[A:ศาลาประชาคม ม.7]] [[D:อ.สามพราน]] [[V:นครปฐม]] [[Z:73110]]
@@ -246,6 +248,7 @@ tags: border-police, rank, person-apart, contact-label, no-phone-label
 ===
 loc: บางคู้ | ท่าวุ้ง | ลพบุรี | 15150
 tags: local-admin, org-only, international-phone, landline, postcode-before-province, no-subdistrict-mark, admin-in-name
+warn: ambiguous-location
 ---
 ส่ง [[N:อบต.บางคู้]] ค่ะ [[D:ท่าวุ้ง]] [[V:ลพบุรี]] [[Z:15150]] โทร [[P:(+66) 36 489 211]]
 ===
@@ -272,6 +275,7 @@ tags: army, rank, unit, org-with-person, bangkok, no-province, phone-emoji
 ===
 loc: วังม่วง | วังม่วง | สระบุรี | 18220
 tags: local-admin, org-only, same-name-once, particle-glued, admin-in-name
+warn: ambiguous-location
 ---
 ที่อยู่ส่งของค่ะ [[N:อบต.วังม่วง]] [[A:ม.5]] [[D:วังม่วง]] [[V:สระบุรี]] [[Z:18220]] เบอร์[[P:0863307415]]ค่ะ
 ===
@@ -284,6 +288,7 @@ tags: meditation-centre, nun, person-apart, typo-province, no-phone, labels
 ===
 loc: ภูแลนคา | บ้านเขว้า | ชัยภูมิ | 36170
 tags: health, rpst-full-name, org-only, admin-in-name, no-subdistrict-mark, no-phone
+warn: ambiguous-location
 ---
 [[N:โรงพยาบาลส่งเสริมสุขภาพตำบลภูแลนคา]] [[A:หมู่ 9]] [[D:อำเภอบ้านเขว้า]] [[V:ชัยภูมิ]] [[Z:36170]]
 ===
@@ -441,6 +446,7 @@ tags: police, full-station-name, phone-correction, person-apart, rank, subdistri
 ===
 loc: ลาดหลุมแก้ว | ลาดหลุมแก้ว | ปทุมธานี | 12140
 tags: child-centre, temple-name, org-only, same-name-once, alias, subdistrict-in-name
+warn: ambiguous-location
 ---
 [[N:ศูนย์พัฒนาเด็กเล็กวัดลาดหลุมแก้ว]]
 [[A:ม.1]] [[D:ลาดหลุมแก้ว]] [[V:ปทุม]] [[Z:12140]]
@@ -690,6 +696,7 @@ tags: health, old-name-health-station, org-only, no-phone, landmark
 ===
 loc: ละแม | ละแม | ชุมพร | 86170
 tags: government, district-health-office, abbreviation, same-name-once, org-only
+warn: ambiguous-location
 ---
 [[N:สสอ.ละแม]] [[A:ถ.เพชรเกษม]] [[D:ละแม]] [[V:ชุมพร]] [[Z:86170]] [[P:077-559-108]] ค่ะ
 ===
@@ -824,6 +831,7 @@ tags: local-admin, contact-in-bracket, role-title, org-with-person
 ===
 loc: เฝ้าไร่ | เฝ้าไร่ | หนองคาย | 43120
 tags: government, agriculture-office, same-name-once, admin-in-name, org-only
+warn: ambiguous-location
 ---
 [[N:สำนักงานเกษตรอำเภอเฝ้าไร่]] [[D:เฝ้าไร่]] [[V:หนองคาย]] [[Z:43120]]
 โทร [[P:042-405-271]] ค่ะ ขอบคุณค่ะ
@@ -913,6 +921,7 @@ tags: village-assistant-head, abbreviation-title, rural, no-postcode, landmark
 ===
 loc: ลำลูกกา | ลำลูกกา | ปทุมธานี | 12150
 tags: government, registration-office, person-apart, same-name-once, admin-in-name
+warn: ambiguous-location
 ---
 [[N:คุณมาลัย วงษ์ทอง]]
 [[A:สำนักทะเบียนอำเภอลำลูกกา]] [[D:ลำลูกกา]] [[V:ปทุมธานี]] [[Z:12150]]

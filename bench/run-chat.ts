@@ -1,12 +1,12 @@
 import { mkdir } from "node:fs/promises";
 import { createAddressParser } from "../src";
-import { createTaggerParser } from "../src/tagger/parser";
+import { createTaggerParser, type ParseWarning } from "../src/tagger/parser";
 import type { AnyTaggerModel } from "../src/tagger/model";
 import { loadChatPool } from "./chat/load";
 import { holdoutOf, isHoldout, splitOf, type ChatRecord } from "./chat/markup";
 import type { ExpectedAddress } from "./dataset";
 import { loadParserResources } from "./gazetteer";
-import { addResult, createMetrics, exactAcceptance, FIELD_NAMES, summarize, type MetricAccumulator } from "./metrics";
+import { addRecipients, createMetrics, exactAcceptance, FIELD_NAMES, summarize, type MetricAccumulator } from "./metrics";
 
 function option(name: string): string | undefined {
 	const index = Bun.argv.indexOf(name);
@@ -37,15 +37,28 @@ if (issues.length > 0) {
 	throw new Error(`${issues.length} source issues. Fix them before benchmarking`);
 }
 
-function parseWith(name: SystemName, raw: string): ExpectedAddress | null {
+interface Parsed {
+	readonly recipients: readonly ExpectedAddress[];
+	readonly warnings: readonly ParseWarning[];
+}
+
+function parseWith(name: SystemName, raw: string): Parsed | null {
 	try {
 		const result = systems[name].parse(raw);
-		// Gold marks only what the shopper wrote, so gazetteer-filled fields are not scored here.
-		const inferred = "inferred" in result ? result.inferred : [];
-		return { ...result.fields, ...Object.fromEntries(inferred.map((field) => [field, null])) };
+		const recipients = "recipients" in result ? result.recipients : [{ fields: result.fields, inferred: [] }];
+		return {
+			// Gold marks only what the shopper wrote, so gazetteer-filled fields are not scored here.
+			recipients: recipients.map(({ fields, inferred }) => ({ ...fields, ...Object.fromEntries(inferred.map((field) => [field, null])) })),
+			warnings: "warnings" in result ? result.warnings : [],
+		};
 	} catch {
 		return null;
 	}
+}
+
+function sameWarnings(left: readonly ParseWarning[], right: readonly ParseWarning[]): boolean {
+	const set = new Set(left);
+	return set.size === new Set(right).size && right.every((warning) => set.has(warning));
 }
 
 function percentile(sorted: readonly number[], fraction: number): number {
@@ -64,19 +77,28 @@ function evaluate(set: readonly ChatRecord[], collectFailures: boolean) {
 	const metrics = Object.fromEntries(SYSTEM_NAMES.map((name) => [name, createMetrics()])) as Record<SystemName, MetricAccumulator>;
 	const categories = new Map<string, Record<SystemName, MetricAccumulator>>();
 	const failures: Failure[] = [];
+	let warningsExact = 0;
+	let recipientCount = 0;
 	for (const record of set) {
 		const group = categories.get(record.caseType) ??
 			(Object.fromEntries(SYSTEM_NAMES.map((name) => [name, createMetrics()])) as Record<SystemName, MetricAccumulator>);
 		categories.set(record.caseType, group);
 		for (const name of SYSTEM_NAMES) {
 			const actual = parseWith(name, record.raw);
-			addResult(metrics[name], record.expected, actual);
-			addResult(group[name], record.expected, actual);
-			if (!collectFailures || name !== "tagger") continue;
+			addRecipients(metrics[name], record.recipients, actual?.recipients ?? null);
+			addRecipients(group[name], record.recipients, actual?.recipients ?? null);
+			if (name !== "tagger") continue;
+			if (actual && sameWarnings(actual.warnings, record.warnings)) warningsExact += 1;
+			if (actual?.recipients.length === record.recipients.length) recipientCount += 1;
+			if (!collectFailures) continue;
 			const wrong: Failure["wrong"] = {};
-			for (const field of FIELD_NAMES) {
-				const got = actual?.[field] ?? null;
-				if (got !== record.expected[field]) wrong[field] = { expected: record.expected[field], actual: got };
+			const count = Math.max(record.recipients.length, actual?.recipients.length ?? 0);
+			for (let index = 0; index < count; index += 1) {
+				for (const field of FIELD_NAMES) {
+					const want = record.recipients[index]?.[field] ?? null;
+					const got = actual?.recipients[index]?.[field] ?? null;
+					if (got !== want) wrong[index === 0 ? field : `${field}#${index + 1}`] = { expected: want, actual: got };
+				}
 			}
 			if (Object.keys(wrong).length > 0) {
 				failures.push({ id: record.id, category: record.caseType, tags: record.tags, raw: record.raw, wrong });
@@ -94,6 +116,8 @@ function evaluate(set: readonly ChatRecord[], collectFailures: boolean) {
 		),
 		metrics,
 		failures,
+		warningsExact,
+		recipientCount,
 	};
 }
 
@@ -143,15 +167,23 @@ const line = (set: ReturnType<typeof evaluate>) => ({
 		`${set.metrics[name].exactRecords}/${set.records} (${((100 * set.metrics[name].exactRecords) / Math.max(1, set.records)).toFixed(1)}%)`,
 	])),
 	parseErrors: Object.fromEntries(SYSTEM_NAMES.map((name) => [name, set.metrics[name].failures])),
+	warningsExact: `${set.warningsExact}/${set.records}`,
+	recipientCount: `${set.recipientCount}/${set.records}`,
 	taggerFields: FIELD_NAMES.map((field) => `${field} ${set.metrics.tagger.fields[field].correct}`).join(", "),
 	categories: Object.fromEntries(Object.entries(set.categories).map(([category, value]) => [category, value.tagger])),
 });
+const stored = (set: ReturnType<typeof evaluate>) => ({
+	records: set.records,
+	systems: set.systems,
+	categories: set.categories,
+	tagger: { warningsExact: set.warningsExact, recipientCount: set.recipientCount },
+});
 const report = {
 	model: { path: modelPath, version: model.version, bytes: modelText.length, gzipBytes: Bun.gzipSync(modelText).length },
-	dev: { records: dev.records, systems: dev.systems, categories: dev.categories },
-	test1: { records: test1.records, systems: test1.systems, categories: test1.categories },
+	dev: stored(dev),
+	test1: stored(test1),
 	holdouts: readHoldout
-		? Object.fromEntries(Object.entries(holdouts).map(([name, set]) => [name, { records: set.records, systems: set.systems, categories: set.categories }]))
+		? Object.fromEntries(Object.entries(holdouts).map(([name, set]) => [name, stored(set)]))
 		: Object.fromEntries(holdoutNames.map((name) => [name, "sealed"])),
 	timing: time(records),
 };

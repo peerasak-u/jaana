@@ -201,6 +201,7 @@ tags: typo-province, extra-vowel, typo-district
 ===
 loc: กันตัง | กันตัง | ตรัง | 92110
 tags: typo-district, doubled-letter, clean-layout
+warn: ambiguous-location
 ---
 [[N:คุณปิยะนุช หมัดหลี]]
 [[A:15 ถ.ตรัง-กันตัง]] [[D:อ.กันตังง]] [[V:จ.ตรัง]] [[Z:92110]]
@@ -667,6 +668,7 @@ tags: typo-district, typo-province, extra-vowel, adjacent-key
 ===
 loc: นาคู | นาคู | กาฬสินธุ์ | 46160
 tags: typo-province, lo-swap, missing-letter, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ครูพัชรินทร์ ภูมิภักดิ์]] [[A:28 ม.1]] [[D:อ.นาคู]] [[V:จ.กาลสินธุ์]] [[Z:46160]] [[P:0813349061]]
 ===
@@ -904,6 +906,7 @@ tags: typo-district, missing-karan, typo-subdistrict, missing-tone
 ===
 loc: ปง | ปง | พะเยา | 56140
 tags: typo-province, doubled-vowel, name-once
+warn: ambiguous-location
 ---
 [[N:สมศรี ใจดี (แม่)]]
 [[A:17 ม.1]] [[D:ปง]] [[V:พะเยาา]] [[Z:56140]]

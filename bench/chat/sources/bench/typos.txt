@@ -240,6 +240,7 @@ tags: missing-karan, doubled-chars, phone-after-name, light
 ===
 loc: ดอนพุด | ดอนพุด | สระบุรี | 18210
 tags: same-name-once, sound-spelling, landmark, no-subdistrict, nickname
+warn: ambiguous-location
 ---
 [[N:ลุงเปี๊ยก]] [[A:บ้านเลขที่ 3 ม.1 หน้าวัดดอนพุด]] [[D:ดอนพุธ]] [[V:สระบุรี]] [[Z:18210]] [[P:0896631027]]
 ===
@@ -515,6 +516,7 @@ tags: shop, sound-spelling, alias
 ===
 loc: ตะกั่วป่า | ตะกั่วป่า | พังงา | 82110
 tags: same-name-once, missing-tone, no-prefix, light
+warn: ambiguous-location
 ---
 [[N:คุณมาริสา หวังดี]]
 [[A:21/6 ถ.ศรีตะกั่วป่า]] [[D:ตะกั่วปา]] [[V:พังงา]] [[Z:82110]]
@@ -671,6 +673,7 @@ tags: sound-spelling, light, housing-estate
 ===
 loc: ขอนคลาน | ทุ่งหว้า | สตูล | 91120
 tags: tone-slip, sound-spelling, envelope, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:นายฮาซัน ทองสม]]
 [[A:3 ม.2 บ้านขอนคลาน]] [[D:อ.ทุ่งหว่า]] [[V:จ.สตูน]] [[Z:91120]]

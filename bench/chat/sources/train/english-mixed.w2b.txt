@@ -104,6 +104,7 @@ phone [[P:0862215490]] wife name [[N:Khun Noi]] she will receive
 ===
 loc: บางปะหัน | บางปะหัน | พระนครศรีอยุธยา | 13220
 tags: alias, province-nickname, foreign-name, wrong-order, postcode-first
+warn: ambiguous-location
 ---
 [[Z:13220]] [[V:อยุธยา]] [[D:อ.บางปะหัน]]
 [[A:14 ม.3]]
@@ -190,6 +191,7 @@ tags: foreign-name, rural, no-postcode, delivery-note
 ===
 loc: บางมูลนาก | บางมูลนาก | พิจิตร | 66120
 tags: alias, romanized-admin, same-name-once, one-line, comma
+warn: ambiguous-location
 ---
 [[N:Peter Novak]], [[A:41/3 Moo 2, Phichit-Taphan Hin Rd]], [[D:Bang Mun Nak]], [[V:Phichit]], [[Z:66120]], [[P:0815582093]]
 ===
@@ -383,6 +385,7 @@ Contact [[P:02-312-6045]] ext 204
 ===
 loc: เมยวดี | เมยวดี | ร้อยเอ็ด | 45250
 tags: foreign-name, rural, same-name-once, no-prefix
+warn: ambiguous-location
 ---
 ส่ง [[N:Mr. Frank Ellison]] [[P:0885512730]]
 [[A:14 ม.1 บ้านเมยวดี]] [[D:เมยวดี]] [[V:ร้อยเอ็ด]] [[Z:45250]]
@@ -470,6 +473,7 @@ attn. [[N:Ms. Sophie Laurent]]
 ===
 loc: บ้านกล้วย | ชนแดน | เพชรบูรณ์ | 67190
 tags: alias, romanized-admin, one-line, no-subdistrict, rural
+warn: ambiguous-location
 ---
 [[N:Mr. Gary Thompson]] [[A:61 Moo 4 Ban Kluai]] [[D:Chon Daen]] [[V:Phetchabun]] [[Z:67190]] tel [[P:0857731460]]
 ===
@@ -650,6 +654,7 @@ tags: foreign-name, school-volunteer, person-and-org-apart, rural
 ===
 loc: ทุ่งครุ | ทุ่งครุ | กรุงเทพมหานคร | 10140
 tags: alias, romanized-admin, same-name-once, university-dorm, student
+warn: ambiguous-location
 ---
 To: [[N:Mr. Ali Hassan]]
 [[A:International Dorm, Room 615, 126 Pracha Uthit Rd.]]
@@ -765,6 +770,7 @@ reception will sign for it
 ===
 loc: กุดชมภู | พิบูลมังสาหาร | อุบลราชธานี | 34110
 tags: foreign-name, rural, no-subdistrict, no-phone, thai-partner
+warn: ambiguous-location
 ---
 ผู้รับ: [[N:Mr. Robert Kane]]
 [[A:61 ม.10 บ้านกุดชมภู]] [[D:อ.พิบูลมังสาหาร]] [[V:อุบลราชธานี]] [[Z:34110]]
@@ -838,6 +844,7 @@ tags: alias, romanized-admin, durian-farm, organisation-contact, one-line
 ===
 loc: ศรีสมเด็จ | ศรีสมเด็จ | ร้อยเอ็ด | 45000
 tags: foreign-name, rural, same-name-once, no-prefix, thai-partner
+warn: ambiguous-location
 ---
 ส่งให้แฟนค่ะ ฝรั่งค่ะ ชื่อ [[N:Mr. Larry Dunn]]
 [[A:7 ม.1]] [[D:ศรีสมเด็จ]] [[V:ร้อยเอ็ด]] [[Z:45000]]

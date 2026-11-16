@@ -9,6 +9,7 @@ tags: company, multiline, department, landline, extension, contact-separate-line
 ===
 loc: ประเวศ | ประเวศ | กรุงเทพมหานคร | 10250
 tags: company, contact-in-brackets, oneline, alias, same-name-once, particle
+warn: ambiguous-location
 ---
 ส่ง [[N:บจก.ไบรท์ฟู้ดส์ (คุณต้อม)]] [[A:55/8 ซ.เฉลิมพระเกียรติ ร.9 ซอย 28]] [[D:ประเวศ]] [[V:กทม]] [[Z:10250]] โทร [[P:0865531207]] ค่ะ
 ===
@@ -72,6 +73,7 @@ tags: shop, full-prefixes, opening-hours, landline-spaced, emoji
 ===
 loc: ป่าบอน | ป่าบอน | พัทลุง | 93170
 tags: partnership, contact-apart, department-after-name, same-name-once, landline-spaced
+warn: ambiguous-location
 ---
 [[A:หจก.ป่าบอนพาราวู้ด 77 ม.5]] [[D:ป่าบอน]] [[V:พัทลุง]] [[Z:93170]] [[N:คุณสุนันทา]] บัญชี [[P:074 610 482]]
 ===
@@ -296,6 +298,7 @@ tags: factory, rubber, no-district-prefix, two-phones, mobile-first
 ===
 loc: บางเสาธง | บางเสาธง | สมุทรปราการ | 10540
 tags: company, same-name-once, contact-slash, alias, factory, soi
+warn: ambiguous-location
 ---
 [[N:บริษัท เอเชีย แพ็คกิ้ง จำกัด / คุณศิริชัย]] [[A:99/5 ม.6 ซ.กิ่งแก้ว 37]] [[D:บางเสาธง]] [[V:ปากน้ำ]] [[Z:10540]] [[P:02-170-6625]]
 ===
@@ -306,6 +309,7 @@ tags: shop, no-postcode, no-phone, landmark, rural
 ===
 loc: จอมศรี | เพ็ญ | อุดรธานี | 41150
 tags: car-dealer, department-next-to-org, alias, no-subdistrict, phone-dots
+warn: ambiguous-location
 ---
 [[N:หจก.เพ็ญมอเตอร์เซลส์ ฝ่ายอะไหล่]]
 [[A:222 ม.1 ถ.อุดร-บ้านผือ]] [[D:อ.เพ็ญ]] [[V:อุดร]] [[Z:41150]]
@@ -386,6 +390,7 @@ tags: shop, chat-noise, emoji, delivery-instruction, alias, no-subdistrict-prefi
 ===
 loc: แม่จริม | แม่จริม | น่าน | 55170
 tags: coffee-roaster, same-name-once, no-subdistrict, no-phone-label, postcode-glued
+warn: ambiguous-location
 ---
 [[N:โรงคั่วกาแฟดอยแม่จริม]] [[A:115 ม.4]] [[D:อ.แม่จริม]] [[V:น่าน]][[Z:55170]] [[P:0895516204]]
 ===
@@ -453,6 +458,7 @@ tags: shop, durian, oneline, no-subdistrict-prefix, name-last, phone-first
 ===
 loc: จอมทอง | จอมทอง | กรุงเทพมหานคร | 10150
 tags: company, deep-soi, contact-in-brackets, no-subdistrict, bkk-romanized, alias
+warn: ambiguous-location
 ---
 [[N:บริษัท ไทยสไมล์ อีเวนท์ จำกัด (คุณนิพนธ์ ฝ่ายจัดซื้อ)]]
 [[A:12 ซ.เอกชัย 46 แยก 3-1 ถ.เอกชัย]] [[D:เขตจอมทอง]] [[V:BKK]] [[Z:10150]]
@@ -460,6 +466,7 @@ tags: company, deep-soi, contact-in-brackets, no-subdistrict, bkk-romanized, ali
 ===
 loc: เขมราฐ | เขมราฐ | อุบลราชธานี | 34170
 tags: shop, alias, same-name-once, masked-phone, no-phone, copied-from-app
+warn: ambiguous-location
 ---
 [[N:ร้านเขมราฐอิเล็กทริค]]
 (+66)81*****47
@@ -468,6 +475,7 @@ tags: shop, alias, same-name-once, masked-phone, no-phone, copied-from-app
 ===
 loc: ทับสะแก | ทับสะแก | ประจวบคีรีขันธ์ | 77130
 tags: coconut-factory, alias, province-first-order, person-and-org, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:คุณสมเกียรติ โรงงานมะพร้าวทับสะแก]]
 [[V:ประจวบฯ]] [[D:อ.ทับสะแก]] [[A:144 ม.2 ถ.เพชรเกษม]] [[Z:77130]]
@@ -533,5 +541,6 @@ tags: cooperative, no-postcode, no-phone-label, numbered-list, alias
 ===
 loc: บางคอแหลม | บางคอแหลม | กรุงเทพมหานคร | 10120
 tags: hotel, same-name-once, no-subdistrict, contact-apart, no-phone
+warn: ambiguous-location
 ---
 ส่ง [[A:โรงแรมริเวอร์เพิร์ล 2150 ถ.เจริญกรุง]] [[D:บางคอแหลม]] [[V:กรุงเทพมหานคร]] [[Z:10120]] ให้ [[N:คุณภาวิณี]] แผนกจัดซื้อค่ะ

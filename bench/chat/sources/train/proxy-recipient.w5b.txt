@@ -148,6 +148,7 @@ tags: sibling, workplace, company-in-address, department-unmarked, delivery-note
 ===
 loc: หนองกุงศรี | หนองกุงศรี | กาฬสินธุ์ | 46220
 tags: same-name-once, typo-province, proxy-family, buyer-phone-only, village-first
+warn: ambiguous-location
 ---
 ฝากส่งให้ตาหน่อยครับ
 [[N:ตาเคน ภูผาลา]]
@@ -374,6 +375,7 @@ tags: friend-shop, organisation, contact-bracket, alias, chat-before-address
 ===
 loc: บางซื่อ | บางซื่อ | กรุงเทพมหานคร | 10800
 tags: partner, office-tower, same-name-once, alias, nickname-first, oneline
+warn: ambiguous-location
 ---
 ส่งให้แฟนที่ออฟฟิศค่ะ [[N:คุณต้น ณัฐพล]] [[P:0816630275]] [[A:ตึกเอสพีทาวเวอร์ ชั้น 9 ถ.ประชาราษฎร์สาย 2]] [[D:บางซื่อ]] [[V:กทม]] [[Z:10800]]
 ===

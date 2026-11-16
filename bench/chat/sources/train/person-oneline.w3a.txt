@@ -51,6 +51,7 @@ tags: phone-first, unprefixed-admin, no-postcode, no-title
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: once-name-is-district, dash-separator, emoji, alias
+warn: ambiguous-location
 ---
 📍[[A:199/7 ซ.เดชะตุงคะ 1]]-[[D:ดอนเมือง]]-[[V:กทม.]]-[[Z:10210]] 📞[[P:061-772-5098]] [[N:พี่ตั๊ก]]
 ===
@@ -91,6 +92,7 @@ tags: clean, title, no-postcode
 ===
 loc: วังยาง | วังยาง | นครพนม | 48130
 tags: once-name-is-district, name-last, slash-separator
+warn: ambiguous-location
 ---
 [[A:126 ม.2]] / [[D:วังยาง]] / [[V:นครพนม]] / [[Z:48130]] / [[P:0827763019]] / [[N:วิไลวรรณ ศรีคำ]]
 ===
@@ -211,6 +213,7 @@ tags: clean, title
 ===
 loc: ประเวศ | ประเวศ | กรุงเทพมหานคร | 10250
 tags: once-name-is-district, name-between, landmark-after-postcode, alias
+warn: ambiguous-location
 ---
 [[A:301/88 ซ.เฉลิมพระเกียรติ ร.9 ซ.28]] [[D:ประเวศ]] [[V:กทม.]] [[Z:10250]] [[A:ใกล้พาราไดซ์พาร์ค]] [[N:ปิยะนุช]] [[P:0807765134]]
 ===
@@ -276,6 +279,7 @@ tags: unprefixed-admin, landmark-after-postcode, no-title
 ===
 loc: เมืองยาง | เมืองยาง | นครราชสีมา | 30270
 tags: alias, once-name-is-district, double-dot
+warn: ambiguous-location
 ---
 [[N:ครูอรอุมา]]..[[A:3 ม.8]]..[[D:เมืองยาง]]..[[V:โคราช]]..[[Z:30270]]..[[P:0611749063]]
 ===
@@ -291,6 +295,7 @@ tags: shop, contact-person, district-first
 ===
 loc: อมก๋อย | อมก๋อย | เชียงใหม่ | 50310
 tags: once-name-is-district, no-name, unprefixed-admin
+warn: ambiguous-location
 ---
 ส่งที่ [[A:77 ม.1 บ้านอมก๋อย]] [[D:อมก๋อย]] [[V:เชียงใหม่]] [[Z:50310]] [[P:0897520146]] ค่ะ
 ===
@@ -381,6 +386,7 @@ tags: typo-province, glued-particle, unprefixed-admin
 ===
 loc: บางไทร | บางไทร | พระนครศรีอยุธยา | 13190
 tags: alias, once-name-is-district, district-first, landmark-after-postcode
+warn: ambiguous-location
 ---
 [[D:อ.บางไทร]] [[V:อยุธยา]] [[Z:13190]] [[A:42 ม.1 ใกล้ศูนย์ศิลปาชีพบางไทร]] [[N:ประภาพร]] [[P:0938813054]]
 ===
@@ -536,6 +542,7 @@ tags: postcode-middle, double-dot, landmark-after-postcode
 ===
 loc: บางบัวทอง | บางบัวทอง | นนทบุรี | 11110
 tags: once-name-is-district, alias, glued-particle
+warn: ambiguous-location
 ---
 [[N:กฤษดา สุขเกษม]] [[P:0927708315]] [[A:123/44 ม.2 ถ.บางกรวย-ไทรน้อย]] [[D:บางบัวทอง]] [[V:นนท์]][[Z:11110]]ครับ
 ===
@@ -611,6 +618,7 @@ tags: unprefixed-admin, landmark-after-postcode, particle
 ===
 loc: โคกเจริญ | โคกเจริญ | ลพบุรี | 15250
 tags: once-name-is-district, phone-first, slash
+warn: ambiguous-location
 ---
 [[P:0832276510]] / [[N:คุณยุพิน]] / [[A:99 ม.1]] / [[D:โคกเจริญ]] / [[V:ลพบุรี]] / [[Z:15250]]
 ===
@@ -651,6 +659,7 @@ tags: unprefixed-admin, phone-between, dash
 ===
 loc: สัมพันธวงศ์ | สัมพันธวงศ์ | กรุงเทพมหานคร | 10100
 tags: bangkok, once-name-is-district, shop, contact-person, alias
+warn: ambiguous-location
 ---
 [[N:ร้านเฮงฮวดพาณิชย์ (เจ๊หมวย)]] [[A:381 ถ.เยาวราช]] [[D:สัมพันธวงศ์]] [[V:กทม.]] [[Z:10100]] [[P:02-222-4817]]
 ===

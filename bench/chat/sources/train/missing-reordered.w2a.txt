@@ -7,6 +7,7 @@ tags: postcode-first, large-to-small, multiline
 ===
 loc: ซับใหญ่ | ซับใหญ่ | ชัยภูมิ | 36130
 tags: phone-first, same-name-once, no-prefix, kinship-name
+warn: ambiguous-location
 ---
 [[P:0893310457]] [[N:ป้าบัวผัน]] [[A:12 ม.7 บ้านโนนแดง]] [[D:ซับใหญ่]] [[V:ชัยภูมิ]] [[Z:36130]] ค่ะ
 ===
@@ -61,6 +62,7 @@ tags: shop, phone-first, landline, no-prefix, landmark
 ===
 loc: ยางขาว | พยุหะคีรี | นครสวรรค์ | 60130
 tags: no-subdistrict, postcode-before-province, detail-after-admin, oneline
+warn: ambiguous-location
 ---
 ส่ง [[D:อ.พยุหะคีรี]] [[Z:60130]] [[V:นครสวรรค์]] [[A:บ้านเลขที่ 23 หมู่ 5]] ครับ [[N:นายวีระ บุญเรือง]] [[P:0814025567]]
 ===
@@ -92,6 +94,7 @@ tags: phone-first, thai-digits, name-last, oneline
 ===
 loc: นาบ่อคำ | เมืองกำแพงเพชร | กำแพงเพชร | 62000
 tags: no-subdistrict, no-postcode, amphoe-mueang, detail-after-admin
+warn: ambiguous-location
 ---
 [[N:สมศักดิ์ ใจเย็น]] [[D:อ.เมือง]] [[V:กำแพงเพชร]] [[A:88 ม.10 บ้านโนนสมบูรณ์]] [[P:0896621084]]
 ===
@@ -177,6 +180,7 @@ Tel. [[P:02-462-1180]]
 ===
 loc: คลองเฉลิม | กงหรา | พัทลุง | 93180
 tags: no-subdistrict, name-last, typo-label, oneline
+warn: ambiguous-location
 ---
 [[A:72 หมู่ 9]] [[D:อ.กงหรา]] [[V:พัทลุง]] [[Z:93180]] เบอ [[P:0956620137]] ชือ [[N:อาทิตย์ หนูแก้ว]]
 ===
@@ -248,6 +252,7 @@ tags: phone-first, name-last, comma-separated, no-prefix, oneline
 ===
 loc: หนองกระทุ่ม | เมืองนครราชสีมา | นครราชสีมา | 30000
 tags: postcode-first, alias, no-subdistrict, no-province, shop, landmark, landline
+warn: ambiguous-location
 ---
 [[Z:30000]] [[D:เมืองโคราช]] [[A:1150/7 ถ.มิตรภาพ ใกล้เดอะมอลล์]] [[N:ร้านกาแฟบ้านสวนสุข]] โทร [[P:044-255-910]]
 ===
@@ -293,6 +298,7 @@ tags: club, department, postcode-first, large-to-small, detail-after-name, landl
 ===
 loc: ท่าพระ | เมืองขอนแก่น | ขอนแก่น | 40260
 tags: phone-first, no-subdistrict, no-province, dormitory, name-last
+warn: ambiguous-location
 ---
 โทร [[P:0848812039]] ส่ง [[A:หอพักบ้านเพื่อน ห้อง 214 ถ.มิตรภาพ]] [[D:อ.เมืองขอนแก่น]] [[Z:40260]] [[N:ภูมิ]]
 ===
@@ -311,6 +317,7 @@ tags: typo-province, no-district, no-phone, province-first, detail-last, kinship
 ===
 loc: สะพานไกร | บ้านลาด | เพชรบุรี | 76150
 tags: phone-first, shop, name-last, slash-separated, no-subdistrict, landline
+warn: ambiguous-location
 ---
 [[P:032-491-226]] / [[A:44 ม.3]] / [[D:อ.บ้านลาด]] / [[V:เพชรบุรี]] / [[Z:76150]] / [[N:ร้านป้าแจ่มขนมหวาน]]
 ===
@@ -439,6 +446,7 @@ tags: shop, no-person, phone-between-detail-and-admin, name-last, alias, landlin
 ===
 loc: บ่อทอง | ทองแสนขัน | อุตรดิตถ์ | 53230
 tags: no-subdistrict, no-postcode, admin-first, name-last, particle
+warn: ambiguous-location
 ---
 ส่ง [[D:ทองแสนขัน]] [[V:อุตรดิตถ์]] จ้า [[A:บ้านเลขที่ 18 ม.5]] เบอร์ [[P:0874430126]] ชื่อ [[N:ทองพูน]] ขอบคุณจ้า
 ===
@@ -464,6 +472,7 @@ tags: typo-province, postcode-before-province, detail-before-district, district-
 ===
 loc: บึงกาสาม | หนองเสือ | ปทุมธานี | 12170
 tags: postcode-first, no-subdistrict, no-province, detail-after-admin, nickname
+warn: ambiguous-location
 ---
 [[Z:12170]] [[D:หนองเสือ]] [[A:คลอง 9 ฝั่งตะวันตก เลขที่ 102 ม.2]] [[N:ไก่]] [[P:0610023471]]
 ===
@@ -503,6 +512,7 @@ tags: name-between-detail-and-admin, no-phone, courier-note
 ===
 loc: เจดีย์ชัย | ปัว | น่าน | 55120
 tags: phone-first, no-subdistrict, district-glued-province, name-last, multiline
+warn: ambiguous-location
 ---
 [[P:0827715049]]
 [[A:บ้านเลขที่ 140 ม.6 บ้านดอนแก้ว]]
@@ -554,6 +564,7 @@ tags: typo-district, shop, large-to-small, postcode-after-detail, no-prefix
 ===
 loc: ดุสิต | ดุสิต | กรุงเทพมหานคร | 10300
 tags: phone-first, same-name-once, no-province, detail-after-admin, name-last, kinship-name
+warn: ambiguous-location
 ---
 [[P:0864403921]] [[D:ดุสิต]] [[Z:10300]] [[A:ซ.ราชวิถี 12 เลขที่ 45/7]] [[N:คุณป้าละมัย]]
 ===
@@ -586,6 +597,7 @@ tags: typo-subdistrict, alias, name-last, oneline
 ===
 loc: ลำโพ | บางบัวทอง | นนทบุรี | 11110
 tags: alias, no-subdistrict, no-postcode, admin-first, name-last
+warn: ambiguous-location
 ---
 [[D:บางบัวทอง]] [[V:นนท]] [[A:หมู่บ้านลำโพวิลเลจ 55/120]] โทร [[P:0957741036]] ชื่อ [[N:นายภูวดล ศรีจันทร์]]
 ===
@@ -629,6 +641,7 @@ tags: app-copy, plus66, large-to-small, comma-separated, detail-last, multiline
 ===
 loc: เปือย | ลืออำนาจ | อำนาจเจริญ | 37000
 tags: admin-first, no-subdistrict, no-name, no-prefix, detail-after-admin
+warn: ambiguous-location
 ---
 [[D:ลืออำนาจ]] [[V:อำนาจเจริญ]] [[Z:37000]] [[A:21 ม.5 บ้านดงมะยาง]] [[P:0612203397]]
 ===
@@ -639,6 +652,7 @@ tags: clinic, org-contact, name-between-detail-and-admin, no-postcode, no-provin
 ===
 loc: คลองนิยมยาตรา | บางบ่อ | สมุทรปราการ | 10560
 tags: postcode-first, no-subdistrict, large-to-small, detail-after-admin
+warn: ambiguous-location
 ---
 [[Z:10560]] [[D:อ.บางบ่อ]] [[V:จ.สมุทรปราการ]] [[A:99/3 ม.7 ถ.เทพารักษ์ กม.25]] [[N:นายสาโรจน์ แซ่ลิ้ม]] [[P:0814456203]]
 ===
@@ -683,6 +697,7 @@ tags: province-first, name-inside-admin, full-prefix, large-to-small, oneline
 ===
 loc: ชีวาน | พิมาย | นครราชสีมา | 30110
 tags: typo-province, no-subdistrict, no-postcode, kinship-name
+warn: ambiguous-location
 ---
 [[A:บ้านชีวาน 145 ม.2]] [[D:พิมาย]] [[V:นครราชศรีมา]] [[N:ลุงคำ]] [[P:0882230561]]
 ===
@@ -734,6 +749,7 @@ tags: postcode-first, alias, district-before-subdistrict, province-last-in-line,
 ===
 loc: ห้วยไร่ | หล่มสัก | เพชรบูรณ์ | 67110
 tags: shop, no-person, no-phone, no-subdistrict, name-last
+warn: ambiguous-location
 ---
 [[A:102/3 ถ.สามัคคีชัย]] [[D:อ.หล่มสัก]] [[V:เพชรบูรณ์]] [[Z:67110]] ส่งให้ [[N:ร้านหล่มสักเภสัช]] ด้วยค่ะ
 ===
@@ -769,6 +785,7 @@ tags: name-first, dotted-phone, typo-province, glued, very-messy
 ===
 loc: สองพี่น้อง | สองพี่น้อง | สุพรรณบุรี | 72110
 tags: same-name-once, large-to-small, no-prefix, display-name, multiline
+warn: ambiguous-location
 ---
 ส่งที่นี่นะคะ
 [[V:สุพรรณบุรี]] [[D:สองพี่น้อง]] [[Z:72110]]
@@ -799,6 +816,7 @@ tags: postcode-first-line, name-second, detail-after-admin, phone-last, no-prefi
 ===
 loc: จะกว๊ะ | รามัน | ยะลา | 95140
 tags: no-subdistrict, no-phone, name-between-detail-and-admin
+warn: ambiguous-location
 ---
 [[A:บ้านจะกว๊ะ 41 ม.3]] [[N:บังมะ]] [[D:อ.รามัน]] [[V:ยะลา]] [[Z:95140]]
 ===
@@ -831,6 +849,7 @@ tags: typo-province, large-to-small, name-between-admin-and-detail, detail-last,
 ===
 loc: บางด้วน | ภาษีเจริญ | กรุงเทพมหานคร | 10160
 tags: condo, name-between-detail-and-admin, no-subdistrict, no-province
+warn: ambiguous-location
 ---
 [[A:ลุมพินีวิลล์ ตึก C ชั้น 9 ห้อง 917]] [[N:ธนพร]] [[D:เขตภาษีเจริญ]] [[Z:10160]] [[P:0891114420]]
 ===
@@ -866,6 +885,7 @@ tags: resort, no-person, large-to-small, name-before-detail, no-postcode, landma
 ===
 loc: สุวารี | รือเสาะ | นราธิวาส | 96150
 tags: name-glued-phone, no-subdistrict, glued
+warn: ambiguous-location
 ---
 [[N:มะยูโซะ]][[P:0897712034]] [[A:44ม.5]] [[D:อ.รือเสาะ]] [[V:นราธิวาส]] [[Z:96150]]
 ===
@@ -883,6 +903,7 @@ tags: labels, name-between-detail-and-admin, no-phone, no-postcode, multiline
 ===
 loc: หล่มเก่า | หล่มเก่า | เพชรบูรณ์ | 67120
 tags: phone-first, same-name-once, dash-separated, detail-after-admin, name-last
+warn: ambiguous-location
 ---
 [[P:0612289934]] - [[D:หล่มเก่า]] [[V:เพชรบูรณ์]] [[Z:67120]] - [[A:บ้านติ้ว 71 ม.2]] - [[N:ทองสุข]]
 ===

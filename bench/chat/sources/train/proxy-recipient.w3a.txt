@@ -23,6 +23,7 @@ tags: workplace, shop-in-address, name-last, name-after-address
 ===
 loc: โขงเจียม | โขงเจียม | อุบลราชธานี | 34220
 tags: grandparent, relation-not-name, alias, same-name-once, buyer-phone-only
+warn: ambiguous-location
 ---
 แม่ค้าจ๋า ส่งให้ยายนะ ยายชื่อ[[N:บัวผัน ศรีโคตร]]
 [[A:บ้านเลขที่ 23 หมู่ 1]] [[D:โขงเจียม]] [[V:อุบล]] [[Z:34220]]
@@ -96,6 +97,7 @@ tags: condo, partner, bracket-role, two-phones, courier-note
 ===
 loc: บ้าหวี | หาดสำราญ | ตรัง | 92120
 tags: rural, headman-receives, title-call-word, buyer-phone-only, no-subdistrict
+warn: ambiguous-location
 ---
 ส่งที่บ้านผู้ใหญ่บ้านนะครับ เพราะบ้านผมรถเข้าไม่ถึง
 ให้[[N:ผู้ใหญ่หมาด]]รับแทนครับ
@@ -202,6 +204,7 @@ tags: phone-first, aunt, call-word, alias, amphoe-mueang-ayutthaya, no-postcode
 ===
 loc: วังขอนขว้าง | โคกสำโรง | ลพบุรี | 15120
 tags: org, government, department, staff-orders, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:อบต.วังขอนขว้าง (กองช่าง)]] [[A:ม.5]] [[D:อ.โคกสำโรง]] [[V:จ.ลพบุรี]] [[Z:15120]]
 ทางนี้เจ้าหน้าที่สั่งค่ะ ออกใบเสร็จในนามอบต.นะคะ โทร [[P:036-776-310]]
@@ -359,6 +362,7 @@ attn. [[N:คุณวราภรณ์ (ฝ่ายบุคคล)]]
 ===
 loc: หนองเรือ | หนองเรือ | ขอนแก่น | 40210
 tags: one-line, grandchild, call-word, same-name-once, buyer-phone-only
+warn: ambiguous-location
 ---
 ส่งไปหาหลานที่ [[A:42 ม.2]] [[D:หนองเรือ]] [[V:ขอนแก่น]] [[Z:40210]] หลานชื่อ[[N:น้องเฟิร์น]] เบอร์ยายเองนะ [[P:0610095528]] หลานยังไม่มีมือถือ
 ===
@@ -639,6 +643,7 @@ tags: form, label-recipient, remark-bracket, two-phones
 ===
 loc: คลองเขื่อน | คลองเขื่อน | ฉะเชิงเทรา | 24000
 tags: one-line, call-word, bracket-role, buyer-named-after, same-name-once, no-subdistrict
+warn: ambiguous-location
 ---
 ส่ง [[N:พี่เอ๋ (คนรับ)]] [[A:23 ม.4]] [[D:คลองเขื่อน]] [[V:ฉะเชิงเทรา]] [[Z:24000]] [[P:0816620937]] ค่ะ ส่วนหนูชื่อแนน เป็นคนโอนเงิน
 ===
@@ -737,6 +742,7 @@ tags: org, shop, subdistrict-looks-like-province, no-person
 ===
 loc: บ้านโฮ่ง | บ้านโฮ่ง | ลำพูน | 51130
 tags: one-line, no-prefix, same-name-once, aunt, call-word, no-phone
+warn: ambiguous-location
 ---
 ป้าจันทร์ฝากสั่งค่ะ ส่งชื่อ[[N:ป้าจันทร์เพ็ญ]] [[A:76 ม.5]] [[D:บ้านโฮ่ง]] [[V:ลำพูน]] [[Z:51130]] ป้าไม่มีเบอร์ ถ้าหาไม่เจอถามร้านค้าตรงข้ามวัด
 ===
@@ -780,6 +786,7 @@ tags: org, dental-clinic, no-person, alias
 ===
 loc: ทวีวัฒนา | ทวีวัฒนา | กรุงเทพมหานคร | 10170
 tags: one-line, call-word, bracket-role, same-name-once, alias
+warn: ambiguous-location
 ---
 ที่อยู่จ้า [[N:พี่หมี (ผู้รับ)]] [[A:52/18 ซ.พุทธมณฑลสาย 3 แยก 9]] [[D:ทวีวัฒนา]] [[V:กทม]] [[Z:10170]] [[P:0962240871]] หมีเป็นพี่ชายเราเอง
 ===

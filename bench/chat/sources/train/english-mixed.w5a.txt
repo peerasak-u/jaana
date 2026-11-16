@@ -508,6 +508,7 @@ books for the English camp, thank you ka
 ===
 loc: กุดจับ | กุดจับ | อุดรธานี | 41250
 tags: same-name-once, no-subdistrict, first-name-only, order-after, oneline
+warn: ambiguous-location
 ---
 [[N:Somsak]] [[P:0816643309]] [[A:21 Moo 6]] [[D:กุดจับ]] [[V:อุดรธานี]] [[Z:41250]] - 2x black hoodie size XL pls
 ===

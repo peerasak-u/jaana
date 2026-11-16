@@ -57,6 +57,7 @@ tags: neighbour-shop, person-and-shop, no-province-prefix
 ===
 loc: หนองบัวแดง | หนองบัวแดง | ชัยภูมิ | 36210
 tags: no-newline, spouse, relation-bracket, same-name-once, particle
+warn: ambiguous-location
 ---
 ส่งชื่อแฟนค่ะ [[N:สมพงษ์ ดวงจันทร์ (สามี)]] [[P:0617783420]] [[A:14 ม.12]] [[D:หนองบัวแดง]] [[V:ชัยภูมิ]] [[Z:36210]] ค่ะ
 ===
@@ -151,6 +152,7 @@ tags: shop, organisation-only, relative-shop, landline, emoji-phone
 ===
 loc: สีลม | บางรัก | กรุงเทพมหานคร | 10500
 tags: colleague, office-tower, company-in-address, k-honorific, landline, no-subdistrict, alias
+warn: ambiguous-location
 ---
 ฝากเพื่อนร่วมงานรับนะคะ วันนั้นลาพอดี
 ผู้รับ: [[N:K.Thanakorn (ต้น)]]
@@ -181,6 +183,7 @@ tags: aunt, buyer-phone-only, no-province, bangkok
 ===
 loc: บางพลีน้อย | บางบ่อ | สมุทรปราการ | 10560
 tags: no-newline, organisation-only, farm, no-subdistrict, km-road
+warn: ambiguous-location
 ---
 ส่งไปฟาร์มพ่อนะคะ ลูกน้องพ่อรับแทนได้ [[N:ฟาร์มกุ้งสมบัติทรัพย์]] [[A:9 ม.11 ถ.บางนา-ตราด กม.42]] [[D:บางบ่อ]] [[V:สมุทรปราการ]] [[Z:10560]] โทร [[P:0863398452]]
 ===
@@ -261,6 +264,7 @@ tags: no-newline, grandparent, isan, mixed-digits, no-prefix, no-postcode, no-ph
 ===
 loc: กุมภวาปี | กุมภวาปี | อุดรธานี | 41110
 tags: colleague, department-bracket, hospital-in-address, same-name-once, alias
+warn: ambiguous-location
 ---
 ส่งให้เพื่อนที่ทำงานค่ะ เค้าจะเอาไปให้หนูอีกที
 ผู้รับ : [[N:คุณจิราภรณ์ นามวงศ์ (ฝ่ายบุคคล)]]

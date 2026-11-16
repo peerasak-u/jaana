@@ -332,6 +332,7 @@ tags: clean, multiline, name-last
 ===
 loc: เพ็ญ | เพ็ญ | อุดรธานี | 41150
 tags: same-name-once, district-only, alias, kin-nickname, order-items
+warn: ambiguous-location
 ---
 ไส้กรอกอีสาน 3 แพ็ค แหนม 2 ห่อ
 ส่ง[[N:ป้าคำ]] [[A:52 ม.11]] [[D:เพ็ญ]] [[V:อุดร]] [[Z:41150]]
@@ -434,6 +435,7 @@ tags: factory, company, order-items, dept
 ===
 loc: ดอนเมือง | ดอนเมือง | กรุงเทพมหานคร | 10210
 tags: sticker, kin-nickname, chat-bubbles, no-postcode, alias
+warn: ambiguous-location
 ---
 [สติกเกอร์]
 แอดดด
@@ -619,6 +621,7 @@ tags: one-line, order-items, typo-province
 ===
 loc: ย่านตาขาว | ย่านตาขาว | ตรัง | 92140
 tags: same-name-once, district-only, sticker, bare-nickname
+warn: ambiguous-location
 ---
 [Sticker]
 ส่ง[[N:บ่าวเจ]]ที [[A:50/3 ถ.ย่านตาขาว-ทุ่งยาว]] [[D:ย่านตาขาว]] [[V:ตรัง]] [[Z:92140]] [[P:0879904236]]
@@ -861,6 +864,7 @@ tags: order-items, classifier, one-line, payment
 ===
 loc: ท่ามะกา | ท่ามะกา | กาญจนบุรี | 71120
 tags: bare-nickname, district-only, short
+warn: ambiguous-location
 ---
 ส่ง[[N:บอย]] [[A:8/2 ม.5]] [[D:ท่ามะกา]] [[V:กาญจนบุรี]] [[Z:71120]] [[P:0899136540]]
 ===

@@ -47,6 +47,7 @@ tags: multiline, name-last, village-name
 ===
 loc: ท่าตะเกียบ | ท่าตะเกียบ | ฉะเชิงเทรา | 24160
 tags: multiline, org-shop, alias, landmark, no-subdistrict
+warn: ambiguous-location
 ---
 [[N:ร้านเจ๊นงค์ ของชำ]]
 [[A:201 ม.1 ตรงข้ามตลาดนัดวันพุธ]]
@@ -149,6 +150,7 @@ tags: multiline, typo-province, name-last, address-first
 ===
 loc: วังทอง | วังทอง | พิษณุโลก | 65130
 tags: multiline, same-name-once, no-subdistrict, spaced-phone
+warn: ambiguous-location
 ---
 ชื่อ [[N:อนุชา พรหมมา]]
 [[A:212/4 ม.1 ถ.สิงหวัฒน์]]
@@ -621,6 +623,7 @@ tags: multiline, labels, full-prefix, one-field-per-line
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: multiline, same-name-once, alias, bangkok
+warn: ambiguous-location
 ---
 [[N:นายธนวัฒน์ ใจเย็น]]
 [[A:88 ซ.ไผ่สิงโต]]
