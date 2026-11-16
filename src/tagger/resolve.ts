@@ -1,6 +1,7 @@
 import { similarityRatio } from "../candidate/fuzzy-match";
 import { normalizePostcode } from "../normalize";
 import type { LocationTuple } from "../types";
+import { latinSkeleton, thaiSkeleton } from "./romanize";
 
 export type AdministrativeField = "subdistrict" | "district" | "province";
 export const ADMINISTRATIVE_FIELDS: readonly AdministrativeField[] = [
@@ -42,6 +43,7 @@ const BARE_CITY_SIMILARITY = 0.9;
 const POSTCODE_SCORE = 0.6;
 const TRUSTED_TUPLE_SCORE = 1.8;
 const MIN_STANDALONE_SIMILARITY = 0.85;
+export const ROMANIZED = /^[^ก-๎]*[A-Za-z][^ก-๎]*$/u;
 
 export type AdministrativeTexts = Partial<Record<AdministrativeField | "zipcode", string>>;
 export type AdministrativeValues = Record<AdministrativeField | "zipcode", string | null>;
@@ -72,7 +74,10 @@ export function formSimilarity(
 			best = Math.max(best, BARE_CITY_SIMILARITY);
 			continue;
 		}
-		best = Math.max(best, similarityRatio(form, name) / 100);
+		const ratio = ROMANIZED.test(form)
+			? similarityRatio(latinSkeleton(form), thaiSkeleton(name))
+			: similarityRatio(form, name);
+		best = Math.max(best, ratio / 100);
 	}
 	return best;
 }
@@ -200,5 +205,58 @@ export function createTupleResolver(
 			values[field] = own;
 		}
 		return values;
+	};
+}
+
+export interface FilledLocation {
+	readonly values: AdministrativeValues;
+	readonly inferred: readonly (AdministrativeField | "zipcode")[];
+	readonly ambiguous: boolean;
+}
+
+const LOCATION_FIELDS = [...ADMINISTRATIVE_FIELDS, "zipcode"] as const;
+
+/**
+ * Fills the administrative fields a message left out when the ones it wrote
+ * agree on them across every gazetteer tuple they match. A postcode alone
+ * fills nothing, since shoppers write one for a whole district or more.
+ */
+export function createLocationFiller(
+	locations: readonly LocationTuple[],
+): (values: AdministrativeValues) => FilledLocation {
+	const byName = ADMINISTRATIVE_FIELDS.map((field) => {
+		const index = new Map<string, LocationTuple[]>();
+		for (const location of locations) {
+			const tuples = index.get(location[field]) ?? [];
+			tuples.push(location);
+			index.set(location[field], tuples);
+		}
+		return index;
+	});
+
+	return (values) => {
+		const missing = LOCATION_FIELDS.filter((field) => values[field] === null);
+		let pool: readonly LocationTuple[] | undefined;
+		ADMINISTRATIVE_FIELDS.forEach((field, index) => {
+			const name = values[field];
+			if (name === null) return;
+			const tuples = byName[index]!.get(name) ?? [];
+			if (!pool || tuples.length < pool.length) pool = tuples;
+		});
+		if (!pool || missing.length === 0) return { values, inferred: [], ambiguous: false };
+		const matches = pool.filter((location) =>
+			LOCATION_FIELDS.every((field) => values[field] === null || location[field] === values[field]));
+		if (matches.length === 0) return { values, inferred: [], ambiguous: false };
+		const filled = { ...values };
+		const inferred: (AdministrativeField | "zipcode")[] = [];
+		let ambiguous = false;
+		for (const field of missing) {
+			const value = matches[0]![field];
+			if (matches.every((location) => location[field] === value)) {
+				filled[field] = value;
+				inferred.push(field);
+			} else ambiguous = true;
+		}
+		return { values: filled, inferred, ambiguous };
 	};
 }
