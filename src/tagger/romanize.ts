@@ -58,3 +58,27 @@ export function latinSkeleton(text: string): string {
 	const letters = text.trim().replace(LATIN_PREFIX, "").toLowerCase().replace(/ng/gu, "G").replace(/[^a-zG]/gu, "");
 	return dropGlides([...letters].map((letter) => (letter === "G" ? "G" : LATIN_CLASS.get(letter) ?? "")).join(""));
 }
+
+const QWERTY = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
+const KEDMANEE = "ๆไำพะัีรนยบลฟหกดเ้่าสวงผปแอิืทมใฝ";
+const KEDMANEE_KEY = new Map([...QWERTY].map((key, index) => [key, KEDMANEE[index]!] as const));
+/** Punctuation keys that type Thai letters, which a romanized name never holds mid-word. */
+const THAI_LETTER_KEY = /.[;[\]',./]./u;
+
+function kedmaneeWord(word: string): string | null {
+	const thai = [...word].map((key) => KEDMANEE_KEY.get(key) ?? "").join("");
+	return thai.length === word.length && /^[ก-ฮเ-ไ][ก-๎]*$/u.test(thai) ? thai : null;
+}
+
+/**
+ * The Thai a name means when it was typed on the English layout of a
+ * Kedmanee keyboard, as `l;ylfu` for `สวัสดี`. Null unless one word holds
+ * a punctuation key mid-word and every word is unshifted keys that give
+ * Thai letters, so `Co.,` and `K.Jay` stay English.
+ */
+export function fromKedmanee(name: string): string | null {
+	const words = name.split(" ");
+	if (!words.some((word) => THAI_LETTER_KEY.test(word))) return null;
+	const thai = words.map(kedmaneeWord);
+	return thai.every((word) => word !== null) ? thai.join(" ") : null;
+}
