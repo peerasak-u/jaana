@@ -24,6 +24,8 @@ interface Cluster extends Range {
 const NAME = String.raw`[ \t:]*(?<name>(?:(?!ต\.|ตำบล|แขวง|อ\.|อำเภอ|จ\.|จังหวัด)[^\s\d,/:()])*)`;
 const SUBDISTRICT = new RegExp(String.raw`(?:ตำบล|แขวง|(?<![^\s\d]\.)ต\.(?!ค\.))${NAME}`, "gu");
 const DISTRICT = new RegExp(String.raw`(?:อำเภอ|เขต|(?<![^\s\d]\.)อ\.)${NAME}`, "gu");
+/** `ต` and `อ` written without their dots, as `ตหาดแพง อศรีสงคาม`; trusted only as a pair the gazetteer knows, the district by its first letters to allow a typo. */
+const BARE_PAIR = /(?<![ก-๎])ต(?<subdistrict>[ก-๎]{2,})[ \t]*อ(?<district>[ก-๎]{2,})/gu;
 const DIGIT_RUN = /[0-9๐-๙]+/gu;
 const THAI_LETTER = /[ก-ฺเ-๎]/u;
 /** Long enough to tell a written place name from a person's name after the teacher's `อ.`. */
@@ -36,13 +38,16 @@ const DENIED = /ไม่ใช่[ \t]*$/u;
 const NOT_DELIVERED = /ใบกำกับ|ใบเสร็จ|บิล|ภ\.?พ\.?[ \t]*20|เก่า|ไม่ใช้แล้ว|ไม่ได้อยู่|ไม่มีคนอยู่/u;
 
 /** A numbered or bulleted list item at a line start. */
-const LIST_ITEM = String.raw`(?<=^|\n)[ \t]*(?:\(?\d{1,2}(?:\.(?!\d)|\)|/(?=[ \t]))|[กขคง]\.(?=[ \t])|[①-⑩]|[-•*★☆✅]|🔸|🔹)`;
+const LIST_ITEM = String.raw`(?<=^|\n)[ \t]*(?:\(?\d{1,2}(?:\.(?!\d)|\)|/(?=[ \t]))|[กขคง]\.(?=[ \t])|[A-D]\)|[①-⑩]|[-•*★☆✅]|🔸|🔹)`;
 /** Words that open the next delivery, as `ที่ 2`, `ส่วนอีกที่`, `ลังสอง`. */
 const PHRASE = [
 	String.raw`(?:คนที่|ผู้รับคนที่|ออเดอร์ที่|ออเดอร์|ที่อยู่(?:ที่)?|(?<!หมู่|ซอย|ซ\.|เลข)ที่|เซ[ตท]|ชุดที่|กล่องที่|ล็อต)[ \t]*\d(?![\d/])`,
 	String.raw`(?:ส่วน)?อีก(?:ที่|อัน|กล่อง|ขวด|ชุด|ออเดอร์|คน|เซ[ตท]|ล็อต|ลัง)(?:นึง|หนึ่ง)?|ส่วนอีก`,
 	String.raw`(?:คนที่|คน|ที่|อัน|กล่อง|ขวด|ชุด|ล็อต|ลัง|เซ[ตท])(?:แรก|สอง|สาม)`,
+	// Drop-off points, branches, and children are named mid-line too, as `ห้างเอ สาขา 2`, so only a line start opens one.
+	String.raw`(?<=^|\n)[ \t]*(?:(?:จุดส่ง|จุด|สาขา)(?:ที่)?[ \t]*\d(?![\d/])|จุด(?:แรก|สอง|สาม)|คน(?:โต|กลาง|เล็ก))`,
 ].join("|");
+const ITEM_LINE = new RegExp(String.raw`(?<marker>${LIST_ITEM})[^\n]*`, "gu");
 const OPENER = new RegExp(String.raw`(?:${LIST_ITEM}|${PHRASE})[ \t]*`, "gu");
 const OPENING_PHRASE = new RegExp(PHRASE, "u");
 /** Weaker joiners between two deliveries written on one line. */
@@ -90,6 +95,7 @@ export function createSplitter(locations: readonly LocationTuple[]): Splitter {
 		subdistrict: new Set(locations.map((location) => location.subdistrict.slice(0, NAME_START))),
 		district: new Set(locations.map((location) => location.district.slice(0, NAME_START))),
 	};
+	const pairs = new Set(locations.map((location) => `${location.subdistrict}|${location.district.slice(0, NAME_START)}`));
 	const names = new Set([...locations.map((location) => location.province), ...[...PROVINCE_ALIASES.values()].flat()]);
 	const province = new RegExp(
 		`(?:จังหวัด|จ\\.)[ \\t]*(?:${[...names].sort((left, right) => right.length - left.length).map(escape).join("|")})?|${[...names].map(escape).join("|")}`,
@@ -107,6 +113,14 @@ export function createSplitter(locations: readonly LocationTuple[]): Splitter {
 				if (glued || !starts[kind].has(name.slice(0, NAME_START))) continue;
 				found.push({ kind, name, start: match.index, end: match.index + match[0].length });
 			}
+		}
+		for (const match of raw.matchAll(BARE_PAIR)) {
+			const subdistrict = match.groups!.subdistrict!;
+			const district = match.groups!.district!;
+			if (!pairs.has(`${subdistrict}|${district.slice(0, NAME_START)}`)) continue;
+			const end = match.index + match[0].length;
+			found.push({ kind: "subdistrict", name: subdistrict, start: match.index, end: match.index + 1 + subdistrict.length });
+			found.push({ kind: "district", name: district, start: end - district.length - 1, end });
 		}
 		const named = [...found];
 		for (const match of raw.matchAll(province)) {
@@ -159,15 +173,29 @@ export function createSplitter(locations: readonly LocationTuple[]): Splitter {
 			const bare = [last, group].some((cluster) => cluster?.names.size === 1);
 			const completes = (bare || (!PHONE.test(between) && !OPENING_PHRASE.test(between))) &&
 				[...group.names.keys()].every((kind) => kind === "province" || !last?.names.has(kind));
-			if (last && (sharesName(last, group) || completes)) {
+			if (last && ((sharesName(last, group) && !conflicts(last, group)) || completes)) {
 				merged[merged.length - 1] = { start: last.start, end: group.end, names: new Map([...last.names, ...group.names]) };
 			} else merged.push(group);
 		}
 		return merged;
 	}
 
+	/**
+	 * List items that each write a phone and an administrative mention, for a
+	 * message whose deliveries are too sparse to cluster, as a second item with
+	 * only a province. No single delivery of the train pool writes two.
+	 */
+	function items(raw: string): Range[] {
+		const found = mentions(raw);
+		return [...raw.matchAll(ITEM_LINE)]
+			.map((match) => ({ start: match.index + match.groups!.marker!.length, end: match.index + match[0].length }))
+			.filter((item) => PHONE.test(raw.slice(item.start, item.end)) &&
+				found.some((mention) => item.start <= mention.start && mention.end <= item.end));
+	}
+
 	return (raw) => {
-		const found = clusters(raw);
+		let found: readonly Range[] = clusters(raw);
+		if (found.length < 2) found = items(raw);
 		if (found.length < 2) return [{ start: 0, end: raw.length }];
 		const blocks: Range[] = [];
 		let start = firstStart(raw, found[0]!.start);
@@ -205,6 +233,14 @@ function sameName(left: string | undefined, right: string | undefined): boolean 
 function sharesName(left: Cluster, right: Cluster): boolean {
 	return (["subdistrict", "district", "zipcode"] as const).some((kind) => left.names.get(kind) !== "เมือง" &&
 		sameName(left.names.get(kind), right.names.get(kind)));
+}
+
+/** One delivery writes one subdistrict, district, and postcode, so two clusters that write different ones are two deliveries. */
+function conflicts(left: Cluster, right: Cluster): boolean {
+	return (["subdistrict", "district", "zipcode"] as const).some((kind) => {
+		const [one, other] = [left.names.get(kind), right.names.get(kind)];
+		return one !== undefined && other !== undefined && !one.startsWith(other) && !other.startsWith(one);
+	});
 }
 
 /**
