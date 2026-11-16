@@ -1,0 +1,389 @@
+===
+loc: บางนา | บางนา | กรุงเทพมหานคร | 10260
+tags: romanized, alias, oneline, same-name-twice
+---
+Hi admin pls send to [[N:Natthaya K.]] [[A:88/14 Soi Bangna-Trad 25]] [[S:Bangna]], [[D:Bang Na]], [[V:Bangkok]] [[Z:10260]] tel [[P:0891457732]] thx 🙏
+===
+loc: บางนา | บางนา | กรุงเทพมหานคร | 10260
+tags: multiline, khet-only, alias, condo
+---
+ส่งที่นี่ค่ะ
+[[N:คุณศิรินภา วงศ์ทอง]]
+[[A:คอนโดเดอะริช ตึก B ชั้น 19 ห้อง 1907 ซ.อุดมสุข 3]]
+[[D:เขตบางนา]] [[V:กทม.]] [[Z:10260]]
+[[P:086-552-0193]]
+===
+loc: บางจาก | พระโขนง | กรุงเทพมหานคร | 10260
+tags: chat-noise, no-province, particle-glued
+---
+แอดคะ เอาสีครีม M 1 ตัวค่ะ โอนแล้วนะคะ
+ส่ง [[N:น.ส.พิมพ์ชนก แสงอรุณ]] [[A:45/7 ซ.สุขุมวิท 101/1]] [[S:แขวงบางจาก]] [[D:เขตพระโขนง]] [[Z:10260]]ค่ะ
+เบอร์ [[P:0927718840]]
+===
+loc: บางจาก | พระโขนง | กรุงเทพมหานคร | 10260
+tags: romanized, alias, khet-prefix, lowercase, foreign-buyer
+---
+[[N:Mr. Daniel Hartmann]]
+[[A:Unit 1203, The Base Park West, Sukhumvit 77]]
+[[S:khwaeng bang chak]], [[D:khet phra khanong]]
+[[V:bkk]] [[Z:10260]]
+mobile [[P:+66 81 774 2093]]
+===
+loc: คลองตัน | คลองเตย | กรุงเทพมหานคร | 10110
+tags: romanized, alias, typo-district, company
+---
+Please deliver to [[N:Siam Bloom Co., Ltd. (attn. Khun Ploy, HR)]]
+[[A:12th Fl., Rama Tower, 1550 New Phetchaburi Rd.]]
+[[S:Khlong Tan]], [[D:Klong Toey]], [[V:Bangkok]] [[Z:10110]]
+Tel. [[P:02-118-4470]] ext. 21
+===
+loc: คลองตัน | คลองเตย | กรุงเทพมหานคร | 10110
+tags: oneline, glued, no-spaces, alias
+---
+[[N:ภาคภูมิ ทองมา]][[P:0813345021]] [[A:99/12ซ.สุขุมวิท26]][[S:แขวงคลองตัน]][[D:เขตคลองเตย]][[V:กทม]][[Z:10110]]
+===
+loc: พระโขนง | คลองเตย | กรุงเทพมหานคร | 10110
+tags: khet-only, landmark, form-template, alias
+---
+ชื่อ-นามสกุล : [[N:วรรณวิสา ปัญญาดี]]
+ที่อยู่ : [[A:2/19 ซ.สุขุมวิท 50 (ตรงข้ามตลาดคลองเตย)]] [[D:เขต คลองเตย]] [[V:กรุงเทพฯ]]
+รหัสไปรษณีย์ : [[Z:10110]]
+เบอร์โทร : [[P:0847712093]]
+สินค้า : กระเป๋าผ้า สีเขียว
+===
+loc: คลองเตยเหนือ | วัฒนา | กรุงเทพมหานคร | 10110
+tags: romanized, alias, mixed-script, condo
+---
+ส่ง [[N:Khun Mintra (มิ้น)]] นะคะ
+[[A:Condo Thonglor Haus 55, ห้อง 2307 Thonglor Soi 4]] [[S:Khlong Toei Nuea]], [[D:Watthana]] [[Z:10110]]
+[[P:095-332-8417]]
+===
+loc: คลองเตยเหนือ | วัฒนา | กรุงเทพมหานคร | 10110
+tags: business, clinic, thai, prefix-variation
+---
+[[N:คลินิกทันตกรรมยิ้มใส สาขาอโศก]]
+[[A:21/5 อาคารอโศกเพลส ชั้น 3 ถ.สุขุมวิท 21]]
+[[S:แขวงคลองเตยเหนือ]] [[D:เขตวัฒนา]] [[V:กรุงเทพมหานคร]] [[Z:10110]]
+โทร [[P:02-259-3381]]
+ขอใบกำกับภาษีด้วยนะคะ
+===
+loc: คลองตันเหนือ | วัฒนา | กรุงเทพมหานคร | 10110
+tags: romanized, alias, typos, missing-name
+---
+pls ship to [[A:9/88 Sukhumvit 63 Ekkamai]] [[S:Kwaeng Klong Tan Nua]] [[D:Wattana]] [[Z:10110]] , phone [[P:0864491120]], thank u na ka
+===
+loc: สามเสนนอก | ห้วยขวาง | กรุงเทพมหานคร | 10310
+tags: romanized, alias, khet-only, capitals
+---
+[[N:PIMCHANOK R.]]
+[[A:55/221 SOI PRACHARAT BAMPEN 18]]
+[[D:KHET HUAI KHWANG]] [[V:BKK]] [[Z:10310]]
+[[P:0816203347]]
+===
+loc: สามเสนนอก | ห้วยขวาง | กรุงเทพมหานคร | 10310
+tags: chat-noise, thai, cod, delivery-note
+---
+สวัสดีค่ะ ขอสั่งครีม 2 กระปุก เก็บปลายทางนะคะ
+ที่อยู่ [[A:120/45 ซ.สุทธิสาร 3]] [[S:แขวงสามเสนนอก]] [[D:เขตห้วยขวาง]] [[Z:10310]]
+ผู้รับ [[N:ป้าบุญเรือน]] [[P:089-412-7730]]
+โทรก่อนส่งนะคะ 😊
+===
+loc: คลองเจ้าคุณสิงห์ | วังทองหลาง | กรุงเทพมหานคร | 10310
+tags: romanized, alias, typo-district, autocorrect
+---
+To: [[N:Kittipong S.]]
+[[A:77/3 Soi Lat Phrao 101 Yaek 10]], [[S:Khlong Chao Khun Sing]], [[D:Kher Wang Thonglang]] [[Z:10310]]
+[[P:0937741025]]
+===
+loc: คลองจั่น | บางกะปิ | กรุงเทพมหานคร | 10240
+tags: romanized, alias, khet-prefix, lowercase
+---
+[[N:nong may]] [[P:0953328417]]
+[[A:199/88 moo baan seri villa soi ramkhamhaeng 106]] [[S:khwaeng khlong chan]] [[D:khet bangkapi]] [[V:bangkok]] [[Z:10240]]
+===
+loc: คลองจั่น | บางกะปิ | กรุงเทพมหานคร | 10240
+tags: institution, school, thai, khet-only
+---
+[[N:โรงเรียนอนุบาลพุทธชาด (ครูวาสนา)]]
+[[A:333 ถ.เสรีไทย ซ.เสรีไทย 7]] [[D:เขตบางกะปิ]] [[Z:10240]]
+โทร [[P:02-375-1186]]
+===
+loc: หัวหมาก | บางกะปิ | กรุงเทพมหานคร | 10240
+tags: mixed-script, alias, condo, student
+---
+ส่งมาที่ [[A:condo Lumpini Ramkhamhaeng 24 ตึก A ห้อง 815]] [[S:Hua Mak]] [[D:Bang Kapi]] [[Z:10240]] นะครับ
+[[N:ณัฐวุฒิ (ต้น)]] [[P:0898801126]]
+===
+loc: หัวหมาก | บางกะปิ | กรุงเทพมหานคร | 10240
+tags: thai, multiline, particle-glued, alias
+---
+ส่งของที่
+[[N:ด.ญ.ปริมลดา จันทร์หอม]]
+[[A:14/2 ซ.รามคำแหง 39 ใกล้เซเว่น]]
+[[S:แขวงหัวหมาก]] [[D:บางกะปิ]] [[V:กทม.]]
+[[Z:10240]]
+[[P:061-337-8821]]นะคะ
+===
+loc: จรเข้บัว | ลาดพร้าว | กรุงเทพมหานคร | 10230
+tags: romanized, alias, oneline, typo-district
+---
+send 2 [[N:K.Bow]] [[A:55/9 Soi Nakniwat 48]] [[S:Chorakhe Bua]] [[D:Lat Prao]] [[Z:10230]] [[P:0612245098]]
+===
+loc: จรเข้บัว | ลาดพร้าว | กรุงเทพมหานคร | 10230
+tags: thai, multiline, landmark, wrong-prefix, alias
+---
+ที่อยู่จ้า
+[[N:มยุรี ศรีสวัสดิ์]]
+[[A:18/4 ซ.ลาดปลาเค้า 24 บ้านรั้วสีฟ้า]]
+[[S:ต.จรเข้บัว]] [[D:อ.ลาดพร้าว]] [[V:กทม]] [[Z:10230]]
+📞 [[P:087-660-1948]]
+===
+loc: ลาดพร้าว | ลาดพร้าว | กรุงเทพมหานคร | 10230
+tags: romanized, alias, same-name-twice, khet-prefix
+---
+[[N:Thanaphon K.]]
+[[A:41 Soi Lat Phrao 64 Yaek 3]]
+[[S:Khwaeng Lat Phrao]] [[D:Khet Lat Phrao]]
+[[V:Bangkok]] [[Z:10230]]
+Tel: [[P:0819020034]]
+===
+loc: ลาดพร้าว | ลาดพร้าว | กรุงเทพมหานคร | 10230
+tags: shop, thai, chat-noise, khet-only
+---
+CF 3 ชิ้นค่ะ โอน 1,290 แล้ว
+ส่งร้านนะคะ [[N:ร้านเจ๊หมวยเบเกอรี่]] [[A:299 ถ.โชคชัย 4]] [[D:เขตลาดพร้าว]] [[Z:10230]] โทร [[P:0866201974]]
+===
+loc: นวมินทร์ | บึงกุ่ม | กรุงเทพมหานคร | 10240
+tags: romanized, alias, typo-subdistrict, mixed-case
+---
+Ship to: [[N:Ms. Yuki Tanaka]]
+[[A:88/12 Nawamin 111]], [[S:Navamin]], [[D:Bueng Kum]], [[V:Bangkok]] [[Z:10240]]
+[[P:(+66) 92 551 2047]]
+===
+loc: สะพานสูง | สะพานสูง | กรุงเทพมหานคร | 10240
+tags: thai, same-name-once, no-prefix, oneline
+---
+[[N:คุณอัมพร ใจเย็น]] [[A:7/77 หมู่บ้านเพอร์เฟคเพลส ซ.รามคำแหง 164]] [[D:สะพานสูง]] [[V:กรุงเทพ]] [[Z:10240]] [[P:0835561029]]
+===
+loc: รามอินทรา | คันนายาว | กรุงเทพมหานคร | 10230
+tags: romanized, alias, company, khet-only
+---
+[[N:Nampueng Shop'z]]
+[[A:140/5 Ram Inthra Km. 8]] [[D:Khet Khannayao]] [[Z:10230]]
+LINE: nampueng.shop
+[[P:0909812233]]
+===
+loc: คันนายาว | คันนายาว | กรุงเทพมหานคร | 10230
+tags: thai, form-template, numbered, same-name-twice
+---
+1. ชื่อ [[N:นายสมพงษ์ เรืองศรี]]
+2. ที่อยู่ [[A:62 ซ.รามอินทรา 109]] [[S:แขวงคันนายาว]] [[D:เขตคันนายาว]] [[V:กรุงเทพมหานคร]] [[Z:10230]]
+3. เบอร์ [[P:0613378821]]
+===
+loc: สนามบิน | ดอนเมือง | กรุงเทพมหานคร | 10210
+tags: romanized, alias, institution, khet-only
+---
+[[N:Air Logistics Office 3 (Flt.Lt. Chatchai)]]
+[[A:171 Phahonyothin Rd.]] [[D:Don Mueang]] [[V:Bangkok]] [[Z:10210]]
+[[P:02-534-1177]]
+===
+loc: สนามบิน | ดอนเมือง | กรุงเทพมหานคร | 10210
+tags: thai, chat-noise, emoji, payment-note
+---
+แนบสลิปแล้วค่ะ 🙏
+📍 [[A:59/8 ซ.เดชะตุงคะ 1]] [[S:แขวงสนามบิน]] [[D:เขตดอนเมือง]] [[Z:10210]]
+[[N:คุณกัญญา ทิพย์มณี]]
+☎️ [[P:0826614570]]
+===
+loc: สีกัน | ดอนเมือง | กรุงเทพมหานคร | 10210
+tags: romanized, alias, typos, oneline, lowercase
+---
+pls send [[A:23/45 soi songprapa 14]] [[S:kwang sikan]] [[D:donmueng]] [[Z:10210]] to [[N:jirapa]] [[P:0874413902]] ka
+===
+loc: อนุสาวรีย์ | บางเขน | กรุงเทพมหานคร | 10220
+tags: thai, glued-postcode, alias
+---
+[[N:ธนพร แก้วใส]] [[P:0816203348]]
+[[A:12/8 ซ.พหลโยธิน 48]] [[S:แขวงอนุสาวรีย์]] [[D:เขตบางเขน]] [[V:กทม]][[Z:10220]]
+===
+loc: อนุสาวรีย์ | บางเขน | กรุงเทพมหานคร | 10220
+tags: romanized, alias, government, attn
+---
+[[N:Office of Bang Khen District, Registration Section]]
+[[A:2 Phahonyothin Rd. (near BTS Wat Phra Sri)]]
+[[S:Anusawari]], [[D:Bang Khen]], [[V:Bangkok]] [[Z:10220]]
+Tel [[P:02-521-0011]]
+===
+loc: ท่าแร้ง | บางเขน | กรุงเทพมหานคร | 10220
+tags: thai, no-province, wrong-prefix
+---
+ส่งพัสดุให้ [[N:จ.ส.อ.ชาตรี มั่นคง]] ครับ
+[[A:5/120 ม.4 ซ.วัชรพล]] [[S:ต.ท่าแร้ง]] [[D:อ.บางเขน]] [[Z:10220]]
+[[P:081 662 0458]]
+===
+loc: คลองถนน | สายไหม | กรุงเทพมหานคร | 10220
+tags: romanized, alias, khet-only, mixed-script
+---
+[[N:Pong (พงศกร)]] [[P:0927734100]]
+[[A:บ้านเลขที่ 33/6 ซ.สายไหม 56]] [[D:Khet Sai Mai]] [[V:Bkk.]] [[Z:10220]]
+===
+loc: สายไหม | สายไหม | กรุงเทพมหานคร | 10220
+tags: thai, same-name-twice, no-prefix, line-break-inside
+---
+ส่ง
+[[N:แม่น้องปุยฝ้าย]]
+[[A:99/41 หมู่บ้านพฤกษาวิลล์ 12 ซ.สายไหม 79]]
+[[S:สายไหม]] [[D:สายไหม]]
+[[V:กรุงเทพ]] [[Z:10220]]
+[[P:0851102236]]
+===
+loc: สายไหม | สายไหม | กรุงเทพมหานคร | 10220
+tags: romanized, alias, same-name-once, missing-name
+---
+address: [[A:7/2 Soi Saphan Mai 11]] [[D:Saimai]] [[Z:10220]]
+tel [[P:0631189450]]
+ฝากไว้ที่ป้อมยามนะครับ
+===
+loc: หนองบอน | ประเวศ | กรุงเทพมหานคร | 10250
+tags: thai, company, contact-person, khet-only
+---
+[[N:บจก.ไทยรุ่งโลจิส (คุณศศิธร ฝ่ายจัดซื้อ)]]
+[[A:300/14 ถ.ศรีนครินทร์]] [[D:เขตประเวศ]] [[V:กรุงเทพฯ]] [[Z:10250]]
+โทร [[P:02-110-2450]] ต่อ 112
+===
+loc: สวนหลวง | สวนหลวง | กรุงเทพมหานคร | 10250
+tags: romanized, alias, same-name-twice, capitals
+---
+[[N:WARAPORN T.]] / [[P:089-551-8263]]
+[[A:15/33 SOI ON NUT 17 YAEK 10]]
+[[S:SUAN LUANG]], [[D:SUAN LUANG]], [[V:BANGKOK]] [[Z:10250]]
+===
+loc: สวนหลวง | สวนหลวง | กรุงเทพมหานคร | 10250
+tags: thai, chat-noise, bubbles, khet-only
+---
+สวัสดีค่ะ เอาเซรั่ม 1 ขวดนะคะ
+[[N:คุณวิไล]] [[A:44 ซ.พัฒนาการ 30]]
+[[D:เขตสวนหลวง]] [[Z:10250]]
+อ้อ เบอร์ [[P:0634420981]] นะคะ
+===
+loc: ช่องนนทรี | ยานนาวา | กรุงเทพมหานคร | 10120
+tags: romanized, alias, office-tower, attn
+---
+[[N:Mr. Arun Mehta]]
+[[A:Fl. 23 Unit 2301, Empire Point, 1 Narathiwat Ratchanakharin Rd.]]
+[[S:Chong Nonsi]], [[D:Yannawa]], [[V:Bangkok]] [[Z:10120]]
+[[P:+66812240713]]
+===
+loc: ทุ่งวัดดอน | สาทร | กรุงเทพมหานคร | 10120
+tags: thai, temple, no-person
+---
+[[N:วัดดอนสามัคคีธรรม]]
+[[A:61 ถ.เจริญราษฎร์]] [[S:แขวงทุ่งวัดดอน]] [[D:เขตสาทร]] [[Z:10120]]
+[[P:02-211-4092]]
+===
+loc: บางโคล่ | บางคอแหลม | กรุงเทพมหานคร | 10120
+tags: romanized, alias, oneline, typo-district
+---
+[[N:Khun Lek]] [[P:0812678834]] [[A:1186/2 Charoen Krung 107]] [[S:Bang Klo]] [[D:Bang Kor Laem]] [[V:Bangkok]] [[Z:10120]]
+===
+loc: บางมด | จอมทอง | กรุงเทพมหานคร | 10150
+tags: thai, oneline, no-prefix, postcode-first
+---
+ส่งที่ [[A:77/5 ซ.พระราม 2 ซอย 33]] [[Z:10150]] [[S:บางมด]] [[D:จอมทอง]] [[N:คุณแพร]] [[P:0863310942]] ค่ะ
+===
+loc: บางบอน | บางบอน | กรุงเทพมหานคร | 10150
+tags: romanized, alias, same-name-once, khet-prefix, mixed-case
+---
+[[N:Somchai P.]] [[A:15/3 Soi Ekachai 76]] [[D:Khet Bangbon]] [[Z:10150]] Tel [[P:0891234590]]
+===
+loc: บางแคเหนือ | บางแค | กรุงเทพมหานคร | 10160
+tags: thai, typo-subdistrict, no-province, glued
+---
+[[N:นส.กมลชนก ใจงาม]],[[A:99/41 ซ.เพชรเกษม 69/1]],[[S:แขวงบางแคเหนอ]],[[D:เขตบางแค]],[[Z:10160]],[[P:0953328411]]
+===
+loc: บางหว้า | ภาษีเจริญ | กรุงเทพมหานคร | 10160
+tags: romanized, alias, typo-district, khet-only
+---
+pls send to [[N:Aom]] [[A:22 Soi Phet Kasem 28]] [[D:Phasi Chareon]] [[Z:10160]] [[P:0612009874]] COD na ka
+===
+loc: หนองค้างพลู | หนองแขม | กรุงเทพมหานคร | 10160
+tags: thai, factory, company, no-person
+---
+[[N:หจก.ศรีสวัสดิ์ก่อสร้าง]] [[A:88 ม.2 ซ.เพชรเกษม 81]] [[S:แขวงหนองค้างพลู]] [[D:เขตหนองแขม]] [[V:กรุงเทพมหานคร]] [[Z:10160]] โทร [[P:02-421-5590]]
+===
+loc: ตลาดพลู | ธนบุรี | กรุงเทพมหานคร | 10600
+tags: romanized, alias, khet-only, lowercase, chat-noise
+---
+hello ka size L 2 pcs, transfer done
+[[N:benz]] [[A:15/2 soi thoet thai 18]] [[D:thonburi]] [[V:bkk]] [[Z:10600]] [[P:0897713302]]
+===
+loc: ตลาดพลู | ธนบุรี | กรุงเทพมหานคร | 10600
+tags: thai, oneline, landmark, particle-glued
+---
+[[N:ลุงสมาน]] [[A:12 ซ.เทอดไท 33 ข้างร้านข้าวมันไก่]] [[S:ตลาดพลู]] [[D:เขตธนบุรี]] [[Z:10600]]ครับ [[P:0812236654]]
+===
+loc: วัดท่าพระ | บางกอกใหญ่ | กรุงเทพมหานคร | 10600
+tags: romanized, alias, khet-prefix, no-name
+---
+Deliver: [[A:9/14 Soi Itsaraphap 37]], [[S:Khwaeng Wat Tha Phra]], [[D:Khet Bangkok Yai]], [[Z:10600]]. Call [[P:0846613320]] before
+===
+loc: คลองต้นไทร | คลองสาน | กรุงเทพมหานคร | 10600
+tags: thai, condo, khet-only, alias
+---
+[[N:คุณฐิติมา]] [[A:คอนโดริเวอร์ไซด์ ชั้น 21 ห้อง 2104 ถ.เจริญนคร]] [[D:คลองสาน]] [[V:กทม.]] [[Z:10600]] [[P:0918840327]]
+===
+loc: บางพลัด | บางพลัด | กรุงเทพมหานคร | 10700
+tags: romanized, alias, same-name-twice, oneline
+---
+[[N:Mr. Kevin Lim]] [[A:55 Soi Charan Sanit Wong 79]] [[S:Bang Phlat]] [[D:Bang Phlat]] [[V:Bangkok]] [[Z:10700]] [[P:0826675512]]
+===
+loc: ศิริราช | บางกอกน้อย | กรุงเทพมหานคร | 10700
+tags: thai, institution, dormitory
+---
+[[N:น.ส.ปวีณา ศรีคำ]]
+[[A:หอพักพยาบาล ตึก 3 ห้อง 512 ถ.วังหลัง]] [[S:แขวงศิริราช]] [[D:เขตบางกอกน้อย]] [[Z:10700]] [[P:0899401127]]
+===
+loc: ถนนเพชรบุรี | ราชเทวี | กรุงเทพมหานคร | 10400
+tags: romanized, alias, office-tower, khet-only
+---
+[[N:Mint Studio Co., Ltd.]] [[A:Fl. 11 Platinum Square, 222 Phetchaburi Rd.]] [[D:Ratchathewi]] [[V:Bangkok]] [[Z:10400]] tel [[P:02-650-1188]]
+===
+loc: ถนนเพชรบุรี | ราชเทวี | กรุงเทพมหานคร | 10400
+tags: thai, chat-noise, correction
+---
+ขอโทษค่ะ บ้านเลขที่ 18 ไม่ใช่ 81 ส่งใหม่ตามนี้นะคะ [[N:นิภา บุญมา]] [[A:18 ซ.เพชรบุรี 7]] [[S:แขวงถนนเพชรบุรี]] [[D:เขตราชเทวี]] [[Z:10400]] [[P:0861120473]]
+===
+loc: ฉิมพลี | ตลิ่งชัน | กรุงเทพมหานคร | 10170
+tags: romanized, alias, typos, rural-like
+---
+[[N:Jeab]] [[A:33/1 Moo 3 Soi Chimphli 12]] [[S:Chimplee]] [[D:Talingchan]] [[Z:10170]] [[P:0861234890]]
+===
+loc: ศาลาธรรมสพน์ | ทวีวัฒนา | กรุงเทพมหานคร | 10170
+tags: thai, institution, temple, monk
+---
+ถวาย [[N:พระมหาสมศักดิ์ วัดศาลาธรรม]] [[A:ซ.พุทธมณฑลสาย 2 ซอย 14]] [[S:แขวงศาลาธรรมสพน์]] [[D:เขตทวีวัฒนา]] [[V:กรุงเทพฯ]] [[Z:10170]] [[P:0816629034]]
+===
+loc: บางปะกอก | ราษฎร์บูรณะ | กรุงเทพมหานคร | 10140
+tags: thai, typo-district, oneline
+---
+[[N:ธนวัฒน์ ใจมั่น]] [[P:0927788431]] [[A:61/4 ซ.ประชาอุทิศ 9]] [[S:แขวงบางปะกอก]] [[D:เขตราชบูรณะ]] [[Z:10140]]
+===
+loc: ทุ่งครุ | ทุ่งครุ | กรุงเทพมหานคร | 10140
+tags: romanized, alias, same-name-once, university-dorm
+---
+[[N:Pim (KMUTT)]] [[A:Dorm 2 Rm. 314, 126 Pracha Uthit Rd.]] [[D:Thung Khru]] [[Z:10140]] [[P:0941268833]]
+===
+loc: สัมพันธวงศ์ | สัมพันธวงศ์ | กรุงเทพมหานคร | 10100
+tags: thai, shop, market, same-name-twice
+---
+[[N:ร้านเฮียเส็งผ้าม่าน]] [[A:ตลาดสำเพ็ง ซ.วานิช 1 แผง C-23]] [[S:แขวงสัมพันธวงศ์]] [[D:เขตสัมพันธวงศ์]] [[Z:10100]] [[P:02-224-6612]]
+===
+loc: บ้านบาตร | ป้อมปราบศัตรูพ่าย | กรุงเทพมหานคร | 10100
+tags: romanized, alias, khet-prefix, short-district
+---
+[[N:Khun Noi]] [[A:40 Soi Ban Bat]] [[S:Khwaeng Ban Bat]] [[D:Khet Pom Prap]] [[V:Bangkok]] [[Z:10100]] [[P:0858803341]]
+===
+loc: บางชัน | คลองสามวา | กรุงเทพมหานคร | 10510
+tags: thai, oneline, no-postcode
+---
+[[N:ป้าแดง ขายส่ง]] [[A:9/9 ม.2 ถ.ราษฎร์อุทิศ]] [[S:บางชัน]] [[D:เขตคลองสามวา]] [[V:กรุงเทพฯ]] [[P:0819923041]]
