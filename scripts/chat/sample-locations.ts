@@ -26,8 +26,10 @@ const { locations } = await loadParserResources("resources/gazetteer.json");
 const eligible = locations.filter((location) => poolOf(location) === pool);
 const metro = eligible.filter((location) => METRO.has(location.province));
 const upcountry = eligible.filter((location) => !METRO.has(location.province));
+const reachable = (metroShare > 0 ? metro.length : 0) + (metroShare < 1 ? upcountry.length : 0);
+if (reachable < count) console.error(`only ${reachable} ${pool}-pool locations match, printing all of them`);
 const picked = new Set<string>();
-while (picked.size < count) {
+while (picked.size < Math.min(count, reachable)) {
 	const source = random() < metroShare ? metro : upcountry;
 	const location = source[Math.floor(random() * source.length)]!;
 	picked.add(`${location.subdistrict} | ${location.district} | ${location.province} | ${location.zipcode}`);
