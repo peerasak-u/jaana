@@ -352,6 +352,16 @@ const summary = {
 };
 await Bun.write(`${resultDir}/summary.json`, `${JSON.stringify(summary, null, 2)}\n`);
 
+if (setName === "holdout") {
+	const stamp = new Date().toISOString();
+	const versions = [...new Set(sample.map((record) => holdoutOf(record.id)!))].sort();
+	const rows = versions.map((version) => {
+		const part = score(sample.filter((record) => holdoutOf(record.id) === version), taggerAnswer);
+		return [stamp, "resources/tagger-model.json", summary.tagger.modelGzipBytes, `${version}/llm-sample`, part.exactRecords, part.records].join("\t");
+	});
+	await appendFile(".audit/holdout-reads.tsv", `${rows.join("\n")}\n`);
+}
+
 if (setName === "pilot") {
 	const llmFailures = [];
 	for (const id of systemIds) {

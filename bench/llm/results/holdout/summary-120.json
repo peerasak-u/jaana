@@ -1,0 +1,225 @@
+{
+  "set": "holdout",
+  "sampleRecords": 120,
+  "perGroup": 6,
+  "tagger": {
+    "label": "Jaana tagger",
+    "modelGzipBytes": 168495,
+    "records": 120,
+    "exactRecords": 113,
+    "exactRecordAccuracy": 0.9416666666666667,
+    "failures": 0,
+    "failureRate": 0,
+    "fields": {
+      "name": {
+        "correct": 124,
+        "total": 126,
+        "accuracy": 0.9841269841269841
+      },
+      "phone": {
+        "correct": 125,
+        "total": 126,
+        "accuracy": 0.9920634920634921
+      },
+      "address": {
+        "correct": 123,
+        "total": 126,
+        "accuracy": 0.9761904761904762
+      },
+      "subdistrict": {
+        "correct": 126,
+        "total": 126,
+        "accuracy": 1
+      },
+      "district": {
+        "correct": 125,
+        "total": 126,
+        "accuracy": 0.9920634920634921
+      },
+      "province": {
+        "correct": 124,
+        "total": 126,
+        "accuracy": 0.9841269841269841
+      },
+      "zipcode": {
+        "correct": 126,
+        "total": 126,
+        "accuracy": 1
+      }
+    },
+    "categories": {
+      "abbrev-glued": "5/6",
+      "bangkok-shared-postcode": "6/6",
+      "business": "6/6",
+      "chat-noise": "6/6",
+      "condo-city": "6/6",
+      "contact-handle": "4/6",
+      "english-mixed": "6/6",
+      "form-template": "6/6",
+      "institution": "4/6",
+      "missing-reordered": "6/6",
+      "multi-recipient": "6/6",
+      "name-labels": "6/6",
+      "partial-admin": "6/6",
+      "person-multiline": "6/6",
+      "person-oneline": "6/6",
+      "phone-length": "6/6",
+      "phone-numbers": "5/6",
+      "proxy-recipient": "6/6",
+      "rural": "6/6",
+      "typos": "5/6"
+    },
+    "parseMs": {
+      "median": 10.907,
+      "p95": 18.251,
+      "parses": 360
+    }
+  },
+  "systems": {
+    "haiku": {
+      "label": "Claude Haiku 5.5",
+      "records": 120,
+      "exactRecords": 90,
+      "exactRecordAccuracy": 0.75,
+      "failures": 0,
+      "failureRate": 0,
+      "fields": {
+        "name": {
+          "correct": 120,
+          "total": 126,
+          "accuracy": 0.9523809523809523
+        },
+        "phone": {
+          "correct": 115,
+          "total": 126,
+          "accuracy": 0.9126984126984127
+        },
+        "address": {
+          "correct": 115,
+          "total": 126,
+          "accuracy": 0.9126984126984127
+        },
+        "subdistrict": {
+          "correct": 116,
+          "total": 126,
+          "accuracy": 0.9206349206349206
+        },
+        "district": {
+          "correct": 121,
+          "total": 126,
+          "accuracy": 0.9603174603174603
+        },
+        "province": {
+          "correct": 122,
+          "total": 126,
+          "accuracy": 0.9682539682539683
+        },
+        "zipcode": {
+          "correct": 125,
+          "total": 126,
+          "accuracy": 0.9920634920634921
+        }
+      },
+      "categories": {
+        "abbrev-glued": "5/6",
+        "bangkok-shared-postcode": "4/6",
+        "business": "3/6",
+        "chat-noise": "6/6",
+        "condo-city": "5/6",
+        "contact-handle": "6/6",
+        "english-mixed": "4/6",
+        "form-template": "6/6",
+        "institution": "5/6",
+        "missing-reordered": "4/6",
+        "multi-recipient": "4/6",
+        "name-labels": "4/6",
+        "partial-admin": "3/6",
+        "person-multiline": "6/6",
+        "person-oneline": "5/6",
+        "phone-length": "5/6",
+        "phone-numbers": "4/6",
+        "proxy-recipient": "4/6",
+        "rural": "6/6",
+        "typos": "1/6"
+      },
+      "callErrors": 0,
+      "wallMs": {
+        "median": 4742,
+        "p95": 7776
+      },
+      "apiMs": {
+        "median": 3648,
+        "p95": 7058
+      },
+      "costUsd": 0.174302,
+      "inputTokens": 398653,
+      "outputTokens": 72293,
+      "taggerSameIds": {
+        "records": 120,
+        "exactRecords": 113,
+        "exactRecordAccuracy": 0.9416666666666667,
+        "failures": 0,
+        "failureRate": 0,
+        "fields": {
+          "name": {
+            "correct": 124,
+            "total": 126,
+            "accuracy": 0.9841269841269841
+          },
+          "phone": {
+            "correct": 125,
+            "total": 126,
+            "accuracy": 0.9920634920634921
+          },
+          "address": {
+            "correct": 123,
+            "total": 126,
+            "accuracy": 0.9761904761904762
+          },
+          "subdistrict": {
+            "correct": 126,
+            "total": 126,
+            "accuracy": 1
+          },
+          "district": {
+            "correct": 125,
+            "total": 126,
+            "accuracy": 0.9920634920634921
+          },
+          "province": {
+            "correct": 124,
+            "total": 126,
+            "accuracy": 0.9841269841269841
+          },
+          "zipcode": {
+            "correct": 126,
+            "total": 126,
+            "accuracy": 1
+          }
+        },
+        "categories": {
+          "abbrev-glued": "5/6",
+          "bangkok-shared-postcode": "6/6",
+          "business": "6/6",
+          "chat-noise": "6/6",
+          "condo-city": "6/6",
+          "contact-handle": "4/6",
+          "english-mixed": "6/6",
+          "form-template": "6/6",
+          "institution": "4/6",
+          "missing-reordered": "6/6",
+          "multi-recipient": "6/6",
+          "name-labels": "6/6",
+          "partial-admin": "6/6",
+          "person-multiline": "6/6",
+          "person-oneline": "6/6",
+          "phone-length": "6/6",
+          "phone-numbers": "5/6",
+          "proxy-recipient": "6/6",
+          "rural": "6/6",
+          "typos": "5/6"
+        }
+      }
+    }
+  }
+}

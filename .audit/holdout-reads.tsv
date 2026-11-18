@@ -5,3 +5,11 @@ ts	model	gzipBytes	holdout	taggerExact	records
 2026-11-16T13:00:13.577Z	resources/tagger-model.json	168073	v3	317	370
 2026-11-16T16:06:06.708Z	resources/tagger-model.json	168495	v2	826	860
 2026-11-16T16:06:06.709Z	resources/tagger-model.json	168495	v4	345	375
+2026-11-18T06:35:24.751Z	resources/tagger-model.json	168495	v2/llm-sample	79	84
+2026-11-18T06:35:24.751Z	resources/tagger-model.json	168495	v4/llm-sample	34	36
+2026-11-18T06:37:37.742Z	resources/tagger-model.json	168495	v2/llm-sample	79	84
+2026-11-18T06:37:37.742Z	resources/tagger-model.json	168495	v4/llm-sample	34	36
+2026-11-18T06:43:07.331Z	resources/tagger-model.json	168495	v2/llm-sample	26	28
+2026-11-18T06:43:07.331Z	resources/tagger-model.json	168495	v4/llm-sample	12	12
+2026-11-18T06:43:19.141Z	resources/tagger-model.json	168495	v2/llm-sample	26	28
+2026-11-18T06:43:19.141Z	resources/tagger-model.json	168495	v4/llm-sample	12	12

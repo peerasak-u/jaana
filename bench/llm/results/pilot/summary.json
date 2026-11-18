@@ -1,0 +1,300 @@
+{
+  "set": "pilot",
+  "sampleRecords": 12,
+  "perGroup": 2,
+  "tagger": {
+    "label": "Jaana tagger",
+    "modelGzipBytes": 168495,
+    "records": 12,
+    "exactRecords": 11,
+    "exactRecordAccuracy": 0.9166666666666666,
+    "failures": 0,
+    "failureRate": 0,
+    "fields": {
+      "name": {
+        "correct": 13,
+        "total": 14,
+        "accuracy": 0.9285714285714286
+      },
+      "phone": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "address": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "subdistrict": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "district": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "province": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "zipcode": {
+        "correct": 14,
+        "total": 14,
+        "accuracy": 1
+      }
+    },
+    "categories": {
+      "bangkok-shared-postcode": "2/2",
+      "contact-handle": "2/2",
+      "multi-recipient": "1/2",
+      "name-labels": "2/2",
+      "partial-admin": "2/2",
+      "phone-length": "2/2"
+    },
+    "parseMs": {
+      "median": 8.579,
+      "p95": 17.068,
+      "parses": 36
+    }
+  },
+  "systems": {
+    "haiku": {
+      "label": "Claude Haiku 5.5",
+      "records": 12,
+      "exactRecords": 10,
+      "exactRecordAccuracy": 0.8333333333333334,
+      "failures": 0,
+      "failureRate": 0,
+      "fields": {
+        "name": {
+          "correct": 12,
+          "total": 14,
+          "accuracy": 0.8571428571428571
+        },
+        "phone": {
+          "correct": 13,
+          "total": 14,
+          "accuracy": 0.9285714285714286
+        },
+        "address": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "subdistrict": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "district": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "province": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "zipcode": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        }
+      },
+      "categories": {
+        "bangkok-shared-postcode": "2/2",
+        "contact-handle": "2/2",
+        "multi-recipient": "1/2",
+        "name-labels": "2/2",
+        "partial-admin": "1/2",
+        "phone-length": "2/2"
+      },
+      "callErrors": 0,
+      "wallMs": {
+        "median": 4778,
+        "p95": 8100
+      },
+      "apiMs": {
+        "median": 3759,
+        "p95": 7358
+      },
+      "costUsd": 0.016143,
+      "inputTokens": 40027,
+      "outputTokens": 6677,
+      "taggerSameIds": {
+        "records": 12,
+        "exactRecords": 11,
+        "exactRecordAccuracy": 0.9166666666666666,
+        "failures": 0,
+        "failureRate": 0,
+        "fields": {
+          "name": {
+            "correct": 13,
+            "total": 14,
+            "accuracy": 0.9285714285714286
+          },
+          "phone": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "address": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "subdistrict": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "district": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "province": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "zipcode": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          }
+        },
+        "categories": {
+          "bangkok-shared-postcode": "2/2",
+          "contact-handle": "2/2",
+          "multi-recipient": "1/2",
+          "name-labels": "2/2",
+          "partial-admin": "2/2",
+          "phone-length": "2/2"
+        }
+      }
+    },
+    "deepseek": {
+      "label": "DeepSeek 4.1 Flash (free)",
+      "records": 12,
+      "exactRecords": 11,
+      "exactRecordAccuracy": 0.9166666666666666,
+      "failures": 0,
+      "failureRate": 0,
+      "fields": {
+        "name": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "phone": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "address": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "subdistrict": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "district": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        },
+        "province": {
+          "correct": 13,
+          "total": 14,
+          "accuracy": 0.9285714285714286
+        },
+        "zipcode": {
+          "correct": 14,
+          "total": 14,
+          "accuracy": 1
+        }
+      },
+      "categories": {
+        "bangkok-shared-postcode": "2/2",
+        "contact-handle": "2/2",
+        "multi-recipient": "1/2",
+        "name-labels": "2/2",
+        "partial-admin": "2/2",
+        "phone-length": "2/2"
+      },
+      "callErrors": 0,
+      "wallMs": {
+        "median": 4889,
+        "p95": 10994
+      },
+      "apiMs": {
+        "median": 2206,
+        "p95": 5006
+      },
+      "costUsd": 0,
+      "inputTokens": 189399,
+      "outputTokens": 3782,
+      "taggerSameIds": {
+        "records": 12,
+        "exactRecords": 11,
+        "exactRecordAccuracy": 0.9166666666666666,
+        "failures": 0,
+        "failureRate": 0,
+        "fields": {
+          "name": {
+            "correct": 13,
+            "total": 14,
+            "accuracy": 0.9285714285714286
+          },
+          "phone": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "address": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "subdistrict": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "district": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "province": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          },
+          "zipcode": {
+            "correct": 14,
+            "total": 14,
+            "accuracy": 1
+          }
+        },
+        "categories": {
+          "bangkok-shared-postcode": "2/2",
+          "contact-handle": "2/2",
+          "multi-recipient": "1/2",
+          "name-labels": "2/2",
+          "partial-admin": "2/2",
+          "phone-length": "2/2"
+        }
+      }
+    }
+  }
+}
