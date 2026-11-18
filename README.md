@@ -41,6 +41,26 @@ const { fields, spans } = parser.parse(
   one district, province or postcode), `"phone-length"` (the phone is not a
   Thai length; it is kept as typed) and `"multiple-recipients"`.
 
+### Delivery notes
+
+Pass the note model to read what the shopper wrote for the courier:
+
+```ts
+import notes from "./resources/notes-model.json";
+
+const parser = createTaggerParser(model, expandGazetteer(gazetteer), { notes });
+parser.parse("88 ม.2 ต.หนองบัว อ.เมือง จ.อุดรธานี 41000 คุณแดง 0812345678 บ้านอยู่ตรงข้ามร้านของชำ รั้วสีเขียว ถ้าไม่อยู่ฝากร้านของชำได้เลยค่ะ").notes;
+// "บ้านอยู่ตรงข้ามร้านของชำ รั้วสีเขียว ถ้าไม่อยู่ฝากร้านของชำ"
+```
+
+`notes` holds drop-off instructions, timing and call-first requests, how to
+find the place, and COD or courier choice, joined by one space; `noteSpans`
+gives each piece with its offsets. A landmark written inside the address
+(`12 ม.4 ตรงข้ามร้านของชำ ต.ธาตุเชิงชุม`) stays in `address`; written as its own
+sentence it is a note. The note model reads only text outside the seven
+fields, so the fields are the same with or without it. See
+`docs/adr/0005-delivery-note-reader.md`.
+
 `createAddressParser({ version, locations })` builds the Candidate Engine from
 the same expanded gazetteer. Pass `{ diagnostics: "full" }` to it for candidate
 evidence, pruning outcomes, and abstention reasons. Full diagnostics may
@@ -52,7 +72,8 @@ contain input text, so do not log them for private data.
 |---|---:|---:|
 | `resources/tagger-model.json` (linear + neural) | 742 KB | 168 KB |
 | `resources/gazetteer.json` (7,431 tuples) | 345 KB | 59 KB |
-| `dist/index.js` (both parsers) | 107 KB | 27 KB |
+| `resources/notes-model.json` (delivery notes, optional) | 88 KB | 55 KB |
+| `dist/index.js` (both parsers and the note reader) | 165 KB | 41 KB |
 
 The model file is an ensemble: the linear half holds an Int8Array and a
 transition table, the neural half holds int8 tensors with one scale each.
@@ -115,6 +136,30 @@ CHAT_BENCH_FOLD=all bash scripts/chat/retrain.sh resources/experiments/final-p2.
 CHAT_BENCH_FOLD=all bash scripts/neural/build.sh <python> resources/experiments/final-p2.json 31
 cp resources/experiments/neural/ensemble-gru96crf-s31.json resources/tagger-model.json
 bun run bench/run-chat.ts
+```
+
+## Delivery-note benchmark
+
+GUIDE v3 marks notes with `R`. Measured on 2026-11-19 with
+`bun run bench/run-notes.ts`, character F1 of the note text and records whose
+notes match exactly:
+
+| Set | Note reader | Cue-word rules |
+|---|---:|---:|
+| Dev: spent v3 and dev r4, 730 records, 115 with notes | F1 0.869, exact 697 | F1 0.532, exact 643 |
+| Sealed holdout v5 `notes`, 120 records, 92 with notes, read once | F1 0.939, exact 95 | F1 0.709, exact 58 |
+
+The reader adds about 0.4 ms per message. v5 was written by the same kind of
+writer agent as the `notes.w7*` train files, so read it as an upper bound.
+The shipped tagger gets 110 of the 120 v5 records exact on the seven fields.
+
+Retrain the note reader (seconds, no PyTorch). `scripts/notes/teach.ts`
+relabels the train pool with Claude (resumable; about $1 with Haiku and $3
+for the Sonnet pass over likely-note records):
+
+```bash
+bun run scripts/notes/train.ts --eval dev --epochs 12 --dimension 65536 --output resources/notes-model.json
+bun run bench/run-notes.ts --set dev
 ```
 
 ## Commands

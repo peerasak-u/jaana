@@ -3,6 +3,8 @@ import type { AnyTaggerModel } from "../tagger/model";
 import { createTaggerParser, type TaggedAddress } from "../tagger/parser";
 import gazetteer from "../../resources/gazetteer.json";
 import model from "../../resources/tagger-model.json";
+import notes from "../../resources/notes-model.json";
+import type { NoteModel } from "../notes/model";
 import { EXAMPLES } from "./examples";
 
 const ROUNDS = 5;
@@ -10,6 +12,7 @@ const ROUNDS = 5;
 const parser = createTaggerParser(
 	model as unknown as AnyTaggerModel,
 	expandGazetteer(gazetteer as unknown as CompactGazetteer),
+	{ notes: notes as NoteModel },
 );
 
 for (const example of EXAMPLES) parser.parse(example.text);
