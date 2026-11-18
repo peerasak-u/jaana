@@ -1,4 +1,5 @@
 import { normalizeCandidate, normalizePostcode } from "../../src/normalize";
+import { NOTE_EDGE } from "../../src/notes/trim";
 import type { ParseWarning } from "../../src/tagger/parser";
 import type { LocationTuple, OutputLabel } from "../../src/types";
 import type { DatasetRecord, DatasetSpan, ExpectedAddress } from "../dataset";
@@ -25,6 +26,16 @@ export interface SourceIssue {
 	readonly warnings?: readonly ParseWarning[];
 }
 
+/** One `R` piece: a delivery note, kept apart from the seven field spans. */
+export interface NoteSpan {
+	readonly text: string;
+	readonly start: number;
+	readonly end: number;
+	/** 0 for the first delivery. */
+	readonly recipient: number;
+}
+
+
 /**
  * One message. `recipients` holds the gold per delivery in written order,
  * and `expected` repeats the first. `spans` holds every recipient's marks.
@@ -34,6 +45,8 @@ export interface ChatRecord extends DatasetRecord {
 	readonly sourceLine: number;
 	readonly warnings: readonly ParseWarning[];
 	readonly recipients: readonly ExpectedAddress[];
+	/** `R` marks in written order. Empty for a file written before GUIDE v3. */
+	readonly notes: readonly NoteSpan[];
 }
 
 /**
@@ -357,6 +370,7 @@ export function parseSource(
 
 		let raw = "";
 		const spans: DatasetSpan[] = [];
+		const notes: NoteSpan[] = [];
 		const byRecipient: DatasetSpan[][] = header.locations.map(() => []);
 		const pattern = /\[\[([A-Z])(\d*):([\s\S]*?)\]\]/gu;
 		let cursor = 0;
@@ -366,6 +380,20 @@ export function parseSource(
 			const mark = match[1] as Mark;
 			const number = match[2]!;
 			const spanText = match[3]!;
+			if ((match[1] as string) === "R") {
+				const start = raw.length;
+				raw += spanText;
+				if (number !== "" && (number === "1" || !/^[1-9]\d*$/u.test(number) || Number(number) > header.locations.length)) {
+					fail(number === "1" ? "write R, not R1, for the first recipient" : `R${number} mark has no loc${number}: header`);
+					continue;
+				}
+				if (spanText.trim() !== spanText || spanText === "") fail(`R span is empty or has edge whitespace: "${spanText}"`);
+				if (spanText.includes("\n")) fail("R span crosses a line break");
+				if (spanText.includes("[[")) fail("R span covers another mark");
+				if (NOTE_EDGE.test(spanText)) fail(`R span "${spanText}" keeps a particle at its edge. Leave it outside`);
+				notes.push({ text: spanText, start, end: raw.length, recipient: number === "" ? 0 : Number(number) - 1 });
+				continue;
+			}
 			const label = MARKS[mark];
 			if (!label) {
 				fail(`unknown mark ${match[1]}`);
@@ -455,6 +483,7 @@ export function parseSource(
 			sourceLine: block.line,
 			warnings,
 			recipients,
+			notes,
 		});
 	}
 	return { records, issues };

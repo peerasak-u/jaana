@@ -1,5 +1,9 @@
 # Writing chat address records
 
+GUIDE v3, 2026-11-19, adds the `R` mark for delivery notes (see
+[R, the delivery note](#r-the-delivery-note)). Every other rule is v2, so a v2
+file stays valid and simply has no `R` marks.
+
 GUIDE v2, 2026-11-16. Changes from v1: a bracket after a name that holds a
 contact handle or a place name is outside `N`, and so is the label
 `ชื่อเล่น`; `P` keeps 9 to 12 digits as typed; the `warn:` header; records
@@ -64,8 +68,10 @@ tags: typo-province, thai-digits, name-last
 | `D` | district (อำเภอ, เขต) | at most one |
 | `V` | province | at most one |
 | `Z` | postcode | at most one |
+| `R` | delivery note | any number of pieces |
 
 A mark never starts or ends with a space. Only `A` may contain a line break.
+`R` never overlaps another mark.
 A field the shopper did not write gets no mark. Do not mark anything else.
 "How many" counts per delivery. Marks of a second or later delivery carry its
 number: `[[N2:...]]`, `[[P2:...]]`, `[[A2:...]]`.
@@ -174,6 +180,60 @@ number: `[[N2:...]]`, `[[P2:...]]`, `[[A2:...]]`.
 - The five digits only, Arabic or Thai. It must be the `loc:` postcode. The
   label (`รหัสไปรษณีย์`) is not part of it.
 
+### R, the delivery note
+
+A delivery note is text the courier or the packer needs for this parcel that
+is not already one of the seven fields. Mark it `R`, one piece per clause,
+in any number of pieces. Marks of a later delivery are `R2`, `R3`, ...
+
+It is a note when it says one of these:
+
+- Where or with whom to leave the parcel: `ฝากไว้ที่ป้อมยาม`, `ฝากรปภ.ได้เลย`,
+  `วางไว้หน้าประตูรั้ว`, `ถ้าไม่อยู่ฝากร้านข้างบ้าน`, `ให้น้องที่ร้านเซ็นรับแทน`.
+- When to come or how to reach the person: `โทรก่อนส่ง`, `ส่งช่วงเย็นหลัง 5 โมง`,
+  `วันเสาร์ไม่อยู่`, `กดกริ่งแรงๆ`, a warning such as `หมาดุ`.
+- How to find the place, when the words are not part of the address detail:
+  a landmark, a direction, the entrance, or what the house looks like written
+  as its own sentence, after the address or apart from it:
+  `บ้านอยู่ตรงข้ามร้านของชำ รั้วสีเขียว`, `เข้าทางประตูหลังหมู่บ้าน`,
+  `เลี้ยวซ้ายหลังวัดหลังที่ 3`.
+- How it ships or is paid at the door: `เก็บเงินปลายทาง`, `ปลายทาง`, `COD`,
+  `ไม่ต้องเก็บปลายทาง`, `ส่ง Kerry`, `ส่ง flash`, `ส่ง EMS`.
+
+Landmark or note. The same words can be either, and the position decides.
+A landmark written inside the address detail, between the house number and
+the administrative names or right after them on the same line with no
+sentence break, is part of `A`, as the A rule says:
+`[[A:12 ม.4 ตรงข้ามร้านของชำ]] [[S:ต.ธาตุเชิงชุม]]`. Written as a sentence
+of its own, it is `R`: `[[A:88 ม.2]] [[S:ต.หนองบัว]] ... [[P:0812345678]]
+[[R:บ้านอยู่ตรงข้ามร้านของชำ]] [[R:รั้วสีเขียว]]`. A sentence that says it
+with a verb or a subject (`บ้านอยู่`, `อยู่`, `ถ้าหาไม่เจอ`, `เข้าทาง`) is a
+sentence of its own.
+
+Not a note: greetings, thanks, apologies, order items, sizes, colours,
+quantities, prices, `โอนแล้ว`, slips, questions about stock or delivery
+time (`ได้ของวันไหนคะ`), field labels, contact handles (`LINE: ...`),
+tax-invoice requests, packing and gift-wrap requests (`แพ็คดีๆ`,
+`ห่อของขวัญ`, `แยกกล่อง`), `ส่งด่วน`, a second phone number, the proxy phrase
+`ฝากส่งให้แม่` (it asks the seller to send to someone; the name is `N`),
+and a sentence that only repeats what the address
+already says (`ส่งที่ร้านในห้างค่ะ` before the shop's full address). The
+general place sentence that the A rule leaves unmarked stays unmarked when it
+adds nothing the address does not say.
+
+Boundaries:
+
+- One `R` per clause. Two notes separated by a space, a line break or other
+  text are two pieces. A reason joined to its note stays in it:
+  `[[R:ส่งช่วงเย็นหลัง 5 โมง]]นะจ๊ะ [[R:กลางวันไปกรีดยาง]]`.
+- Leave out polite particles and words that only soften the request at the
+  edges: `ค่ะ`, `คะ`, `ครับ`, `นะ`, `นะคะ`, `นะครับ`, `จ้า`, `จ๊ะ`, `เด้อ`,
+  `ด้วย`, `ได้`, `ได้เลย`, `ได้มั้ย`, `ka`, `na`, `krub`. `ไม่ได้` is a
+  refusal, not a softener, and stays in: `[[R:ส่งวันเสาร์ไม่ได้]]`. Leave out emoji and edge
+  punctuation. `[[R:ฝากรปภ.ไว้]]ได้เลยค่ะ`, `[[R:ส่งเก็บปลายทาง]]ได้มั้ยคะ`.
+- Inside brackets, the mark starts inside: `([[R:โทรก่อนส่ง]]ด้วยค่ะ [[R:หมาดุ]])`.
+- A note never crosses a line break and never covers a field mark.
+
 ## Warnings
 
 `warn:` lists, comma separated, every warning the message should raise, from
@@ -272,6 +332,7 @@ mechanically and prints counts only.
 | `phone-numbers` | Phone format variety and number noise: `+66`, spaces, dots, Thai digits, two numbers, landlines, plus order numbers, tracking numbers, and LINE IDs that are not the phone. |
 | `missing-reordered` | Fields missing or in unusual order: phone first, name last, postcode first, no subdistrict, no province, `อ.เมือง`. |
 | `proxy-recipient` | Someone else receives: family, a neighbour's shop, a colleague, nicknames, Facebook or LINE display names, buyer and recipient both named. |
+| `notes` | GUIDE v3. Delivery notes (`R`) inside real chat: where to leave the parcel, call first, time windows, warnings, COD and courier, and how to find the place. Half the records hold a landmark: some inside `A`, some as a sentence of its own marked `R`, a few with both. About one record in five holds no note at all, only chat that is not a note (order items, thanks, transfer done, stock questions). |
 
 Each holdout v3 category (`bench/chat/sources/bench/<category>.v3.txt`) tests
 one rule from issue #6. Every record in the file shows its category's case;
