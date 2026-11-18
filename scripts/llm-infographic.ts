@@ -117,6 +117,9 @@ mark.g-admin, .out-key.g-admin { background: #D6DDF2; }
 .out-val em { font-style: normal; font-size: 14px; font-weight: 700; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #F2A77E; color: var(--ink); vertical-align: 3px; }
 .notes { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
 .notes span { font-size: 19px; font-weight: 600; background: var(--card); border: 1.5px solid var(--border); border-radius: 999px; padding: 8px 16px; }
+.dense td { font-size: 22px; padding: 8px 8px; }
+.dense th { padding: 8px 8px 9px; }
+.dense tr.section th { padding-top: 18px; color: var(--muted); }
 .spacer { flex: 1; }
 .cta {
 	display: flex; align-items: center; justify-content: space-between;
@@ -214,43 +217,57 @@ function hero(view: View, example: Example): string {
 }
 
 function detail(view: View): string {
-	const head = view.rows.map((row) => `<th class="${row.key === "jaana" ? "us" : ""}">${esc(row.label)}</th>`).join("");
+	const us = (row: Row) => (row.key === "jaana" ? "us" : "");
+	const head = view.rows.map((row) => `<th class="${us(row)}">${esc(row.label)}</th>`).join("");
 	const body = FIELDS.map((field) => {
 		const cells = view.rows.map((row) => {
 			const value = row.fields[field];
-			const cls = row.key === "jaana" ? "us" : value < 0.9 ? "low" : "";
-			return `<td class="${cls}">${pct(value)}</td>`;
+			return `<td class="${row.key === "jaana" ? "us" : value < 0.9 ? "low" : ""}">${pct(value)}</td>`;
 		}).join("");
 		return `<tr><td>${FIELD_LABEL[field]}</td>${cells}</tr>`;
 	}).join("");
-	const total = view.rows.map((row) => `<td class="${row.key === "jaana" ? "us" : ""}">${pct(row.exact)}</td>`).join("");
-	const cost = (row: Row) => row.costUsd === null || row.costUsd === 0 ? "ฟรี" : `$${((row.costUsd / row.records) * 1000).toFixed(2)}`;
+	const cost = (row: Row) => (row.costUsd === null || row.costUsd === 0 ? "ฟรี" : `$${((row.costUsd / row.records) * 1000).toFixed(2)}`);
 	const line = (title: string, value: (row: Row) => string) =>
-		`<tr><td>${title}</td>${view.rows.map((row) => `<td class="${row.key === "jaana" ? "us" : ""}">${value(row)}</td>`).join("")}</tr>`;
-	return shell("Jaana vs LLM: per field", `
-		${top(`เจาะทีละช่อง`)}
-		<h1 style="margin-top:48px;font-size:72px">แล้วเทียบกับ <span class="hl">LLM</span> ล่ะ?</h1>
-		<div class="lede">% ที่ตอบถูกในแต่ละช่อง จาก ${view.records} ข้อความเดียวกัน · ตัวแดง = ต่ำกว่า 90%</div>
-		<div class="card" style="margin-top:28px;padding:26px 34px 18px">
-			<table><thead><tr><th>ช่อง</th>${head}</tr></thead><tbody>${body}
-			<tr class="total"><td>ถูกครบทั้งข้อ</td>${total}</tr></tbody></table>
+		`<tr><td>${title}</td>${view.rows.map((row) => `<td class="${us(row)}">${value(row)}</td>`).join("")}</tr>`;
+	const bars = view.rows.map((row) => `
+		<div class="bar-row">
+			<div class="bar-label" style="color:${row.key === "jaana" ? "var(--accent)" : "var(--ink)"}">${esc(row.label)}<small>${esc(row.key === "jaana" ? `~${view.sizeKb} KB · CPU ในเครื่อง` : row.note)}</small></div>
+			<div class="track"><div class="fill" style="width:${(row.exact * 100).toFixed(1)}%;background:${row.color}"></div></div>
+			<div class="bar-value" style="color:${row.key === "jaana" ? "var(--accent)" : "var(--ink)"}">${pct(row.exact)}<small>${Math.round(row.exact * row.records)}/${row.records} ข้อ</small></div>
+		</div>`).join("");
+	const llms = view.rows.filter((row) => row.key !== "jaana");
+	const notes = [
+		"Jaana วัดบน MacBook CPU เธรดเดียว",
+		"LLM นับเวลาที่ API ใช้ตอบ ไม่รวมเวลาเปิดโปรแกรม และได้ prompt กติกาเดียวกับเฉลยพร้อมตัวอย่าง 3 ข้อ",
+		...(llms.some((row) => row.key === "haiku") ? ["Haiku เรียกผ่าน Claude Code CLI คิดเงินตามราคา list ที่ CLI รายงาน"] : []),
+		...(llms.some((row) => row.key === "deepseek") ? ["DeepSeek เรียกผ่าน OpenCode รุ่นฟรี ซึ่งแนบ prompt ของ agent มาด้วยทุกครั้ง"] : []),
+		`ข้อความทดสอบเป็นข้อมูลสังเคราะห์ สุ่มเท่าๆกันจาก ${view.groups} หมวด · เฉลยตามกติกาใน bench/chat/GUIDE.md · วัด ${view.date}`,
+	];
+	return shell("Jaana Benchmark", `
+		${top(`Benchmark · <b>${view.records} แชท</b>`)}
+		<div class="kicker" style="margin-top:44px">ชุดทดสอบ holdout ที่โมเดลไม่เคยเห็นตอนเทรน</div>
+		<h1 style="font-size:80px">แม่นแค่ไหน<span class="hl">?</span></h1>
+		<div class="lede" style="margin-top:8px">ข้อหนึ่งต้องถูกครบทั้ง 7 ช่องถึงนับ ผิดช่องเดียว = ผิดทั้งข้อ</div>
+		<div class="card" style="margin-top:24px;padding:26px 36px">
+			<h2>ถูกครบทั้ง 7 ช่อง</h2>
+			<div class="bars">${bars}</div>
 		</div>
-		<div class="card" style="margin-top:20px;padding:22px 34px 14px">
-			<table><thead><tr><th>ใช้จริง</th>${head}</tr></thead><tbody>
+		<div class="card dense" style="margin-top:18px;padding:12px 34px 10px">
+			<table><thead><tr><th>ถูกรายช่อง</th>${head}</tr></thead><tbody>${body}
+			<tr class="section"><th>ใช้จริง</th>${view.rows.map(() => "<th></th>").join("")}</tr>
 			${line("เวลาต่อข้อความ", (row) => speed(row.medianMs))}
 			${line("ค่าใช้จ่าย / 1,000 ข้อความ", cost)}
-			${line("รันที่ไหน", (row) => row.key === "jaana" ? "ในเครื่อง" : "คลาวด์")}
 			</tbody></table>
 		</div>
 		<div class="spacer"></div>
-		<div class="foot">Jaana วัดบน MacBook CPU เธรดเดียว · LLM นับเวลาที่ API ใช้ตอบ (ไม่รวมเวลาเปิดโปรแกรม) · Haiku เรียกผ่าน Claude Code CLI คิดเงินตามราคา list ที่ CLI รายงาน · DeepSeek เรียกผ่าน OpenCode รุ่นฟรี ซึ่งแนบ prompt ของ agent มาด้วยทุกครั้ง · เฉลยตามกติกาใน bench/chat/GUIDE.md</div>
+		<div class="foot">${notes.join(" · ")}</div>
 	`);
 }
 
-export async function render(view: View, example: Example, withComparison: boolean, outDir: string): Promise<string[]> {
+export async function render(view: View, example: Example, outDir: string): Promise<string[]> {
 	await mkdir(outDir, { recursive: true });
 	const pages: Record<string, string> = { "jaana-1-what-it-does": hero(view, example) };
-	if (withComparison) pages["jaana-2-vs-llm"] = detail(view);
+	if (view.rows.length > 1) pages["jaana-2-benchmark"] = detail(view);
 	const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 	const outputs: string[] = [];
 	for (const [name, html] of Object.entries(pages)) {
@@ -295,12 +312,12 @@ async function shippedKb(modelGzipBytes: number): Promise<number> {
 }
 
 if (import.meta.main) {
-	const summaryPath = Bun.argv[2] ?? "bench/llm/results/holdout/summary.json";
+	const summaryPath = Bun.argv[2] ?? "bench/llm/results/holdout/summary-120.json";
 	const outDir = Bun.argv[3] ?? "docs/infographic";
 	const summary = (await Bun.file(summaryPath).json()) as Summary;
 	const complete = LLMS.filter(({ key }) => summary.systems[key]?.records === summary.sampleRecords);
 	for (const { key } of LLMS.filter((llm) => !complete.includes(llm))) {
-		console.error(`skipping the comparison card: ${key} has ${summary.systems[key]?.records ?? 0}/${summary.sampleRecords} answers. Finish the run and rescore with --systems haiku,deepseek --limit 0`);
+		console.error(`leaving ${key} off the benchmark card: it has ${summary.systems[key]?.records ?? 0}/${summary.sampleRecords} answers`);
 	}
 	const { tagger } = summary;
 	const view: View = {
@@ -319,5 +336,5 @@ if (import.meta.main) {
 	const parser = createTaggerParser(await Bun.file("resources/tagger-model.json").json(), expandGazetteer(await Bun.file("resources/gazetteer.json").json()));
 	const parsed = parser.parse(EXAMPLE);
 	const example: Example = { raw: EXAMPLE, spans: parsed.spans, fields: parsed.fields, inferred: parsed.inferred };
-	console.log((await render(view, example, complete.length === LLMS.length, outDir)).join("\n"));
+	console.log((await render(view, example, outDir)).join("\n"));
 }
