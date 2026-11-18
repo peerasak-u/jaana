@@ -1,6 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
+import { createTaggerParser, expandGazetteer } from "../src";
 
 const FIELDS = ["name", "phone", "address", "subdistrict", "district", "province", "zipcode"] as const;
 type Field = (typeof FIELDS)[number];
@@ -93,6 +94,29 @@ h1 .small { font-size: 64px; display: block; letter-spacing: -0.03em; }
 .tile .big span { font-size: 26px; letter-spacing: -0.01em; }
 .tile .what { font-size: 20px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
 .tile .what b { color: var(--ink); }
+.headline2 { margin-top: 6px; font-size: 54px; font-weight: 800; line-height: 1.2; letter-spacing: -0.025em; }
+.demo { margin-top: 36px; display: grid; grid-template-columns: 1fr 92px 400px; align-items: center; }
+.chat { background: var(--card); border: 1.5px solid var(--border); border-radius: 26px; padding: 22px 24px 24px; box-shadow: 0 10px 30px rgba(89, 65, 0, 0.08); transform: rotate(-1.2deg); }
+.chat-head { display: flex; align-items: center; gap: 10px; font-size: 18px; color: var(--muted); font-weight: 600; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #F2A77E, #D9733F); }
+.bubble { margin-top: 14px; background: #F3ECE0; border-radius: 6px 22px 22px 22px; padding: 18px 20px; font-size: 21px; line-height: 1.85; }
+mark { border-radius: 6px; padding: 2px 3px; color: var(--ink); font-weight: 600; }
+mark.g-name, .out-key.g-name { background: #F9D3BC; }
+mark.g-phone, .out-key.g-phone { background: #C9E8DF; }
+mark.g-address, .out-key.g-address { background: #EDDDB0; }
+mark.g-admin, .out-key.g-admin { background: #D6DDF2; }
+.arrow { display: flex; flex-direction: column; align-items: center; color: var(--accent); }
+.arrow span { font-size: 17px; font-weight: 800; }
+.arrow b { font-size: 50px; line-height: 1; }
+.arrow small { font-size: 15px; color: var(--muted); font-weight: 600; }
+.out { background: var(--ink); color: #FBEFE3; border-radius: 26px; padding: 22px 22px 16px; box-shadow: 0 14px 34px rgba(44, 30, 19, 0.25); }
+.out-head { font-size: 18px; font-weight: 700; color: #F2A77E; margin-bottom: 10px; }
+.out-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid rgba(251, 239, 227, 0.12); }
+.out-key { flex: none; width: 84px; text-align: center; font-size: 16px; font-weight: 700; color: var(--ink); border-radius: 8px; padding: 3px 0; }
+.out-val { font-size: 21px; font-weight: 600; }
+.out-val em { font-style: normal; font-size: 14px; font-weight: 700; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #F2A77E; color: var(--ink); vertical-align: 3px; }
+.notes { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+.notes span { font-size: 19px; font-weight: 600; background: var(--card); border: 1.5px solid var(--border); border-radius: 999px; padding: 8px 16px; }
 .spacer { flex: 1; }
 .cta {
 	display: flex; align-items: center; justify-content: space-between;
@@ -126,36 +150,66 @@ function top(pill: string): string {
 	return `<div class="top"><div class="logo">${LOGO}</div><div class="pill">${pill}</div></div>`;
 }
 
-function hero(view: View): string {
-	const [jaana, ...llms] = view.rows;
-	const best = Math.max(...llms.map((row) => row.exact));
-	const slowest = Math.min(...llms.map((row) => row.medianMs));
-	const bars = view.rows.map((row) => `
-		<div class="bar-row">
-			<div class="bar-label" style="color:${row.key === "jaana" ? "var(--accent)" : "var(--ink)"}">${esc(row.label)}<small>${esc(row.key === "jaana" ? `~${view.sizeKb} KB · CPU ในเครื่อง` : row.note)}</small></div>
-			<div class="track"><div class="fill" style="width:${(row.exact * 100).toFixed(1)}%;background:${row.color}"></div></div>
-			<div class="bar-value" style="color:${row.key === "jaana" ? "var(--accent)" : "var(--ink)"}">${pct(row.exact)}<small>${Math.round(row.exact * row.records)}/${row.records} ข้อ</small></div>
-		</div>`).join("");
-	const lead = Math.round((jaana!.exact - best) * 100);
-	const wins = lead > 0;
-	return shell("Jaana vs LLM", `
+const EXAMPLE = "สวัสดีค่ะแม่ค้า 🙏 เอาเสื้อสีครีม 2 ตัว ไซส์ M โอนแล้วนะคะ\nส่งให้ คุณมายด์ ศรีสุข ค่ะ\n88/14 ม.5 ซ.วัดป่า ต.ธาตุเชิงชุม อ.เมือง จ.สกลนคร\nโทร 089-123-4567 ฝากป้อมยามได้เลยค่ะ";
+
+type Group = "name" | "phone" | "address" | "admin";
+const GROUP_OF: Record<string, Group> = { NAME: "name", PHONE: "phone", ADDRESS_DETAIL: "address", SUBDISTRICT: "admin", DISTRICT: "admin", PROVINCE: "admin", POSTCODE: "admin" };
+const GROUP_OF_FIELD: Record<Field, Group> = { name: "name", phone: "phone", address: "address", subdistrict: "admin", district: "admin", province: "admin", zipcode: "admin" };
+const SHORT_LABEL: Record<Field, string> = { name: "ชื่อ", phone: "เบอร์", address: "ที่อยู่", subdistrict: "ตำบล", district: "อำเภอ", province: "จังหวัด", zipcode: "ไปรษณีย์" };
+
+interface Example {
+	readonly raw: string;
+	readonly spans: readonly { label: string; start: number; end: number }[];
+	readonly fields: Record<Field, string | null>;
+	readonly inferred: readonly Field[];
+}
+
+function highlighted(example: Example): string {
+	let html = "";
+	let cursor = 0;
+	for (const span of [...example.spans].sort((left, right) => left.start - right.start)) {
+		html += esc(example.raw.slice(cursor, span.start));
+		html += `<mark class="g-${GROUP_OF[span.label]}">${esc(example.raw.slice(span.start, span.end))}</mark>`;
+		cursor = span.end;
+	}
+	return (html + esc(example.raw.slice(cursor))).replace(/\n/gu, "<br>");
+}
+
+function hero(view: View, example: Example): string {
+	const [jaana] = view.rows;
+	const rows = FIELDS.map((field) => {
+		const filled = example.inferred.includes(field);
+		return `<div class="out-row"><span class="out-key g-${GROUP_OF_FIELD[field]}">${SHORT_LABEL[field]}</span><span class="out-val">${esc(example.fields[field] ?? "")}${filled ? `<em>เติมให้</em>` : ""}</span></div>`;
+	}).join("");
+	return shell("Jaana Model", `
 		${top(`โอเพนซอร์ส · <b>รันในเบราว์เซอร์</b>`)}
-		<div class="kicker">โมเดลแกะที่อยู่จากแชท ตัวจิ๋วแค่ ~${view.sizeKb} KB</div>
-		<h1><span class="hl">จ่าหน้า</span> ${wins ? "แกะแม่นกว่า" : "แกะสูสี"}<span class="small">Haiku 5.5 &amp; DeepSeek 4.1 Flash</span></h1>
-		<div class="lede">ลูกค้าพิมพ์ที่อยู่มั่วแค่ไหน ก็แยก <b>ชื่อ · เบอร์ · ที่อยู่ · ตำบล · อำเภอ · จังหวัด · รหัสไปรษณีย์</b> ออกมาให้ครบ (ไม่ต้องจ่ายค่า token สักบาท)</div>
-		<div class="card" style="margin-top:34px">
-			<h2>ถูกครบทั้ง 7 ช่อง กี่ข้อ?</h2>
-			<div class="sub">${view.records} ข้อความแชทที่โมเดลไม่เคยเห็น · ผิดช่องเดียว = ผิดทั้งข้อ</div>
-			<div class="bars">${bars}</div>
+		<div class="kicker" style="margin-top:44px">โมเดลตัวจิ๋ว ~${view.sizeKb} KB · รันบน CPU ไม่ต้องต่อเน็ต</div>
+		<h1 style="font-size:104px"><span class="hl">Jaana</span> Model</h1>
+		<div class="headline2">ถอดชื่อ ที่อยู่ เบอร์โทร<br>จากข้อความแชท</div>
+		<div class="demo">
+			<div class="chat">
+				<div class="chat-head"><span class="avatar"></span><span>ลูกค้าทักมาในแชท</span></div>
+				<div class="bubble">${highlighted(example)}</div>
+			</div>
+			<div class="arrow"><span>Jaana</span><b>→</b><small>${speed(jaana!.medianMs)}</small></div>
+			<div class="out">
+				<div class="out-head">ได้ข้อมูลพร้อมส่งของ</div>
+				${rows}
+			</div>
 		</div>
-		<div class="tiles" style="margin-top:22px">
-			<div class="tile"><div class="big">${wins ? "+" : ""}${lead}<span> แต้ม</span></div><div class="what">${wins ? "นำ LLM ที่ดีที่สุดในรอบนี้" : "ห่างจาก LLM ที่ดีที่สุด"}</div></div>
-			<div class="tile"><div class="big">${speed(jaana!.medianMs)}</div><div class="what">ต่อข้อความบน CPU<br>LLM ใช้ <b>${speed(slowest)}+</b></div></div>
-			<div class="tile"><div class="big">0<span> บาท</span></div><div class="what">ไม่ต้องต่อเน็ต<br><b>ข้อมูลลูกค้าไม่ออกจากเครื่อง</b></div></div>
+		<div class="notes">
+			<span>✂️ คำทักทาย ออเดอร์ ฝากป้อมยาม ตัดทิ้ง</span>
+			<span>🧭 อ.เมือง → เมืองสกลนคร</span>
+			<span>📮 ไม่ได้พิมพ์รหัสไปรษณีย์ ก็เติมให้</span>
+		</div>
+		<div class="tiles" style="margin-top:26px">
+			<div class="tile"><div class="big">${pct(jaana!.exact, 0)}</div><div class="what">ถูกครบทั้ง 7 ช่อง<br>จาก ${view.records} แชทที่ไม่เคยเห็น</div></div>
+			<div class="tile"><div class="big">${speed(jaana!.medianMs)}</div><div class="what">ต่อข้อความ<br>บน CPU เธรดเดียว</div></div>
+			<div class="tile"><div class="big">0<span> บาท</span></div><div class="what">ไม่ต้องเรียก API<br><b>ข้อมูลลูกค้าไม่ออกจากเครื่อง</b></div></div>
 		</div>
 		<div class="spacer"></div>
 		<div class="cta"><span>ลองเล่น / เอาไปใช้</span><span class="url">github.com/peerasak-u/jaana →</span></div>
-		<div class="foot">ทดสอบ ${view.date} · ${view.records} ข้อความ สุ่มเท่าๆกันจาก ${view.groups} หมวด ของชุด holdout ที่ไม่เคยใช้เทรน · LLM ได้ prompt กติกาเดียวกับเฉลยพร้อมตัวอย่าง 3 ข้อ · ข้อความทั้งหมดเป็นข้อมูลสังเคราะห์ · ${view.records} ข้อยังน้อย ต่างกัน 1-2 ข้อถือว่าสูสี</div>
+		<div class="foot">ตัวอย่างในภาพคือผลจริงของโมเดล (ชื่อและเบอร์สมมติ) · ความแม่นวัด ${view.date} บน ${view.records} ข้อความ สุ่มเท่าๆกันจาก ${view.groups} หมวดของชุด holdout ที่ไม่เคยใช้เทรน · ข้อความทดสอบเป็นข้อมูลสังเคราะห์</div>
 	`);
 }
 
@@ -175,7 +229,7 @@ function detail(view: View): string {
 		`<tr><td>${title}</td>${view.rows.map((row) => `<td class="${row.key === "jaana" ? "us" : ""}">${value(row)}</td>`).join("")}</tr>`;
 	return shell("Jaana vs LLM: per field", `
 		${top(`เจาะทีละช่อง`)}
-		<h1 style="margin-top:48px;font-size:72px">LLM พลาด<span class="hl">ตรงไหน?</span></h1>
+		<h1 style="margin-top:48px;font-size:72px">แล้วเทียบกับ <span class="hl">LLM</span> ล่ะ?</h1>
 		<div class="lede">% ที่ตอบถูกในแต่ละช่อง จาก ${view.records} ข้อความเดียวกัน · ตัวแดง = ต่ำกว่า 90%</div>
 		<div class="card" style="margin-top:28px;padding:26px 34px 18px">
 			<table><thead><tr><th>ช่อง</th>${head}</tr></thead><tbody>${body}
@@ -189,13 +243,14 @@ function detail(view: View): string {
 			</tbody></table>
 		</div>
 		<div class="spacer"></div>
-		<div class="foot">จ่าหน้า วัดบน MacBook CPU เธรดเดียว · LLM นับเวลาที่ API ใช้ตอบ (ไม่รวมเวลาเปิดโปรแกรม) · Haiku เรียกผ่าน Claude Code CLI คิดเงินตามราคา list ที่ CLI รายงาน · DeepSeek เรียกผ่าน OpenCode รุ่นฟรี ซึ่งแนบ prompt ของ agent มาด้วยทุกครั้ง · เฉลยตามกติกาใน bench/chat/GUIDE.md</div>
+		<div class="foot">Jaana วัดบน MacBook CPU เธรดเดียว · LLM นับเวลาที่ API ใช้ตอบ (ไม่รวมเวลาเปิดโปรแกรม) · Haiku เรียกผ่าน Claude Code CLI คิดเงินตามราคา list ที่ CLI รายงาน · DeepSeek เรียกผ่าน OpenCode รุ่นฟรี ซึ่งแนบ prompt ของ agent มาด้วยทุกครั้ง · เฉลยตามกติกาใน bench/chat/GUIDE.md</div>
 	`);
 }
 
-export async function render(view: View, outDir: string): Promise<string[]> {
+export async function render(view: View, example: Example, withComparison: boolean, outDir: string): Promise<string[]> {
 	await mkdir(outDir, { recursive: true });
-	const pages = { "jaana-vs-llm-1": hero(view), "jaana-vs-llm-2": detail(view) };
+	const pages: Record<string, string> = { "jaana-1-what-it-does": hero(view, example) };
+	if (withComparison) pages["jaana-2-vs-llm"] = detail(view);
 	const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 	const outputs: string[] = [];
 	for (const [name, html] of Object.entries(pages)) {
@@ -243,9 +298,9 @@ if (import.meta.main) {
 	const summaryPath = Bun.argv[2] ?? "bench/llm/results/holdout/summary.json";
 	const outDir = Bun.argv[3] ?? "docs/infographic";
 	const summary = (await Bun.file(summaryPath).json()) as Summary;
-	const missing = LLMS.filter(({ key }) => summary.systems[key]?.records !== summary.sampleRecords);
-	if (missing.length > 0) {
-		throw new Error(`${missing.map(({ key }) => `${key} has ${summary.systems[key]?.records ?? 0}/${summary.sampleRecords}`).join(", ")}. Finish the run and rescore with --systems haiku,deepseek --limit 0 first`);
+	const complete = LLMS.filter(({ key }) => summary.systems[key]?.records === summary.sampleRecords);
+	for (const { key } of LLMS.filter((llm) => !complete.includes(llm))) {
+		console.error(`skipping the comparison card: ${key} has ${summary.systems[key]?.records ?? 0}/${summary.sampleRecords} answers. Finish the run and rescore with --systems haiku,deepseek --limit 0`);
 	}
 	const { tagger } = summary;
 	const view: View = {
@@ -254,12 +309,15 @@ if (import.meta.main) {
 		sizeKb: await shippedKb((tagger as unknown as { modelGzipBytes: number }).modelGzipBytes),
 		date: new Date().toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" }),
 		rows: [
-			{ key: "jaana", label: "จ่าหน้า", note: "", color: "#D9733F", exact: tagger.exactRecords / tagger.records, records: tagger.records, fields: fieldsOf(tagger), medianMs: tagger.parseMs.median, costUsd: 0 },
-			...LLMS.map(({ key, label, note, color }) => {
+			{ key: "jaana", label: "Jaana", note: "", color: "#D9733F", exact: tagger.exactRecords / tagger.records, records: tagger.records, fields: fieldsOf(tagger), medianMs: tagger.parseMs.median, costUsd: 0 },
+			...complete.map(({ key, label, note, color }) => {
 				const system = summary.systems[key]!;
 				return { key, label, note, color, exact: system.exactRecords / system.records, records: system.records, fields: fieldsOf(system), medianMs: system.apiMs.median, costUsd: system.costUsd };
 			}),
 		],
 	};
-	console.log((await render(view, outDir)).join("\n"));
+	const parser = createTaggerParser(await Bun.file("resources/tagger-model.json").json(), expandGazetteer(await Bun.file("resources/gazetteer.json").json()));
+	const parsed = parser.parse(EXAMPLE);
+	const example: Example = { raw: EXAMPLE, spans: parsed.spans, fields: parsed.fields, inferred: parsed.inferred };
+	console.log((await render(view, example, complete.length === LLMS.length, outDir)).join("\n"));
 }
