@@ -54,7 +54,7 @@ tags: handle-ig, unbracketed, dormitory, student, no-province
 loc: ทับไทร | โป่งน้ำร้อน | จันทบุรี | 22140
 tags: handle-before-name, shop, line-oa, courier-note, no-newline
 ---
-(ไลน์ @suanlungpan) [[N:สวนทุเรียนลุงพันธ์]] [[A:77 ม.8]] [[S:ต.ทับไทร]] [[D:อ.โป่งน้ำร้อน]] [[V:จันทบุรี]] [[Z:22140]] โทร [[P:0892234561]] ส่งเคอรี่นะครับ
+(ไลน์ @suanlungpan) [[N:สวนทุเรียนลุงพันธ์]] [[A:77 ม.8]] [[S:ต.ทับไทร]] [[D:อ.โป่งน้ำร้อน]] [[V:จันทบุรี]] [[Z:22140]] โทร [[P:0892234561]] [[R:ส่งเคอรี่]]นะครับ
 ===
 loc: นาแส่ง | เกาะคา | ลำปาง | 52130
 tags: form-template, handle-id-line, labels, order-items
@@ -148,7 +148,7 @@ tags: nickname-bracket, handle-line, two-brackets, courier-note, emoji
 [[N:จิราพร สุขใจ (ฝน)]] (LINE: fon.jiraporn)
 [[A:15/4 ม.7]] [[S:ต.ทุ่งน้อย]] [[D:อ.เมือง]] [[V:นครปฐม]] [[Z:73000]]
 ☎️ [[P:0829914537]]
-โทรก่อนส่งนะคะ
+[[R:โทรก่อนส่ง]]นะคะ
 ===
 loc: มาบตาพุด | เมืองระยอง | ระยอง | 21150
 tags: workplace, company-in-address, handle-line-id, industrial-estate
@@ -167,7 +167,7 @@ tags: handle-ig, unbracketed, glued-label, no-province, emoji, no-newline
 loc: หนองยายพิมพ์ | นางรอง | บุรีรัมย์ | 31110
 tags: handle-before-name, handle-line, cod, order-items, no-postcode
 ---
-ขอสั่งข้าวหอมมะลิ 5 กิโล 2 ถุงครับ เก็บปลายทาง
+ขอสั่งข้าวหอมมะลิ 5 กิโล 2 ถุงครับ [[R:เก็บปลายทาง]]
 (LINE: chai.nangrong) [[N:ชัยวัฒน์ บุญมา]]
 [[A:132 ม.10]] [[S:ต.หนองยายพิมพ์]] [[D:อ.นางรอง]] [[V:บุรีรัมย์]]
 [[P:0874452190]]
@@ -179,7 +179,7 @@ tags: condo, k-honorific, handle-line-th, courier-note, no-province
 [[A:คอนโดริเวอร์วิว อาคาร B ห้อง 1504 ซ.เจริญนคร 14]]
 [[S:แขวงสมเด็จเจ้าพระยา]] [[D:เขตคลองสาน]] [[Z:10600]]
 [[P:0632284471]]
-ฝากนิติได้เลยครับ
+[[R:ฝากนิติ]]ได้เลยครับ
 ===
 loc: ทรายกองดินใต้ | คลองสามวา | กรุงเทพมหานคร | 10510
 tags: typo-label, handle-line, particle-glued, no-newline, alias
@@ -192,7 +192,7 @@ tags: shop, no-person, line-oa, handle-line-th, courier-note
 [[N:ร้านป้าแดงขายส่ง]] (ไลน์ @padaeng.shop)
 [[A:25/3 ม.2 ถ.บ้านบึง-แกลง]] [[S:ต.หนองซ้ำซาก]] [[D:อ.บ้านบึง]] [[V:ชลบุรี]] [[Z:20170]]
 [[P:0864401297]]
-ห้ามส่ง Flash นะคะ
+[[R:ห้ามส่ง Flash]] นะคะ
 ===
 loc: ศาลาด่าน | เกาะลันตา | กระบี่ | 81150
 tags: handle-id-line-th, unbracketed, village, no-postcode
@@ -329,7 +329,7 @@ tags: relation-bracket, handle-line, two-brackets, no-province, emoji
 loc: ไทรใหญ่ | ไทรน้อย | นนทบุรี | 11150
 tags: phone-first, handle-line-th, courier-note, no-newline
 ---
-[[P:0824471109]] [[N:พี่ดาว]] (ไลน์: dao.sainoi) [[A:66 ม.3]] [[S:ต.ไทรใหญ่]] [[D:อ.ไทรน้อย]] [[V:นนทบุรี]] [[Z:11150]] วันเสาร์ไม่อยู่นะคะ
+[[P:0824471109]] [[N:พี่ดาว]] (ไลน์: dao.sainoi) [[A:66 ม.3]] [[S:ต.ไทรใหญ่]] [[D:อ.ไทรน้อย]] [[V:นนทบุรี]] [[Z:11150]] [[R:วันเสาร์ไม่อยู่]]นะคะ
 ===
 loc: คลองเตย | คลองเตย | กรุงเทพมหานคร | 10110
 tags: company, attn, contact-person, line-oa, office-tower, landline, alias
@@ -344,7 +344,7 @@ tags: handle-before-name, handle-at, nickname-only, no-phone, no-postcode
 ---
 (@noknoi.srithep) [[N:นกน้อย]]
 [[A:4 ม.6]] [[S:ต.นาสนุ่น]] [[D:อ.ศรีเทพ]] [[V:เพชรบูรณ์]]
-ส่งไปรษณีย์ EMS นะคะ
+[[R:ส่งไปรษณีย์ EMS]] นะคะ
 ===
 loc: คลองหก | คลองหลวง | ปทุมธานี | 12120
 tags: dormitory, handle-id-line-th, alias, no-newline
@@ -382,7 +382,7 @@ tags: handle-id-line-th, unbracketed, thai-digits, typo-province
 loc: คำเขื่อนแก้ว | ชานุมาน | อำนาจเจริญ | 37210
 tags: military-rank, handle-line, cod, no-newline
 ---
-[[N:จ.ส.อ.ชาตรี มั่นคง]] (Line: chatree.m) [[A:59 ม.1]] [[S:ต.คำเขื่อนแก้ว]] [[D:อ.ชานุมาน]] [[V:อำนาจเจริญ]] [[Z:37210]] [[P:0814472206]] เก็บเงินปลายทาง 590
+[[N:จ.ส.อ.ชาตรี มั่นคง]] (Line: chatree.m) [[A:59 ม.1]] [[S:ต.คำเขื่อนแก้ว]] [[D:อ.ชานุมาน]] [[V:อำนาจเจริญ]] [[Z:37210]] [[P:0814472206]] [[R:เก็บเงินปลายทาง 590]]
 ===
 loc: บางน้ำเชี่ยว | พรหมบุรี | สิงห์บุรี | 16120
 tags: shop, no-person, line-oa, unbracketed, order-items, no-postcode
@@ -410,4 +410,4 @@ tags: relation-bracket, handle-line-relative, two-brackets, landmark-courier-not
 ---
 [[N:คุณสมหญิง ดีใจ (แม่)]] (LINE ลูก: @nut.lht)
 [[A:301 ม.1 ถ.โชคชัย-เดชอุดม]] [[S:ต.ละหานทราย]] [[D:อ.ละหานทราย]] [[V:บุรีรัมย์]] [[Z:31170]]
-[[P:0937720184]] ฝากไว้ร้านข้าวมันไก่หน้าซอยได้ค่ะ
+[[P:0937720184]] [[R:ฝากไว้ร้านข้าวมันไก่หน้าซอย]]ได้ค่ะ

@@ -34,7 +34,7 @@ Mobile [[P:+66 89 214 6630]]
 loc: วัดพระยาไกร | บางคอแหลม | กรุงเทพมหานคร | 10120
 tags: oneline, thai, no-province, glued-particle
 ---
-[[N:ป้าสมจิตร]] [[A:156/3 ซ.เจริญกรุง 103 ถ.เจริญกรุง]] [[S:แขวงวัดพระยาไกร]] [[D:เขตบางคอแหลม]] [[Z:10120]]ค่ะ เบอร์ [[P:0896213307]] ส่งเคอรี่นะคะ
+[[N:ป้าสมจิตร]] [[A:156/3 ซ.เจริญกรุง 103 ถ.เจริญกรุง]] [[S:แขวงวัดพระยาไกร]] [[D:เขตบางคอแหลม]] [[Z:10120]]ค่ะ เบอร์ [[P:0896213307]] [[R:ส่งเคอรี่]]นะคะ
 ===
 loc: ทุ่งมหาเมฆ | สาทร | กรุงเทพมหานคร | 10120
 tags: romanized, alias, company, attn, office-tower
@@ -72,7 +72,7 @@ tags: thai, subdistrict-named-like-district, form-template
 loc: บางค้อ | จอมทอง | กรุงเทพมหานคร | 10150
 tags: romanized, alias, oneline, no-subdistrict
 ---
-[[N:Khun Pim]] [[P:0952217406]] [[A:22/5 Soi Chom Thong 13, Chom Thong Rd]] [[D:Chom Thong]] [[V:Bangkok]] [[Z:10150]] cod na ka
+[[N:Khun Pim]] [[P:0952217406]] [[A:22/5 Soi Chom Thong 13, Chom Thong Rd]] [[D:Chom Thong]] [[V:Bangkok]] [[Z:10150]] [[R:cod]] na ka
 ===
 loc: แสมดำ | บางขุนเทียน | กรุงเทพมหานคร | 10150
 tags: thai, multiline, landmark, delivery-note
@@ -80,7 +80,7 @@ tags: thai, multiline, landmark, delivery-note
 ส่งของที่ [[A:หมู่บ้านพฤกษาวิลล์ 9 เลขที่ 101/45 ถ.พระราม 2 ซ.50 (ใกล้โลตัสพระราม 2)]]
 [[S:แขวงแสมดำ]] [[D:เขตบางขุนเทียน]] [[Z:10150]]
 ผู้รับ [[N:นางสุนีย์ จันทร์หอม]] [[P:089-019-5524]]
-โทรก่อนส่งนะคะ ไม่ค่อยอยู่บ้าน
+[[R:โทรก่อนส่ง]]นะคะ [[R:ไม่ค่อยอยู่บ้าน]]
 ===
 loc: ท่าข้าม | บางขุนเทียน | กรุงเทพมหานคร | 10150
 tags: romanized, karaoke, alias, factory, company
@@ -104,7 +104,7 @@ ok ka ส่งที่ [[A:19/7 soi Phetkasem 19, Phetkasem Rd]] [[S:khwaeng K
 loc: ปากคลองภาษีเจริญ | ภาษีเจริญ | กรุงเทพมหานคร | 10160
 tags: thai, district-only, chat-noise, shop
 ---
-CF 3 ชิ้นค่ะ เก็บปลายทาง
+CF 3 ชิ้นค่ะ [[R:เก็บปลายทาง]]
 [[N:ร้านเจ๊หน่อยผ้าม่าน]]
 [[A:4/21 ซ.เพชรเกษม 30 ถ.เพชรเกษม]] [[D:เขตภาษีเจริญ]] [[V:กรุงเทพ]] [[Z:10160]]
 [[P:0841176352]]
@@ -128,7 +128,7 @@ tags: thai, multiline, landmark, elderly
 loc: ตลาดบางเขน | หลักสี่ | กรุงเทพมหานคร | 10210
 tags: romanized, alias, oneline, no-name
 ---
-send to [[A:121/44 Soi Vibhavadi 60, Vibhavadi Rangsit Rd]] [[S:Talat Bang Khen]] [[D:Lak Si]] [[V:Bangkok]] [[Z:10210]] call [[P:0638810275]] when arrive
+send to [[A:121/44 Soi Vibhavadi 60, Vibhavadi Rangsit Rd]] [[S:Talat Bang Khen]] [[D:Lak Si]] [[V:Bangkok]] [[Z:10210]] [[R:call]] [[P:0638810275]] [[R:when arrive]]
 ===
 loc: ทุ่งสองห้อง | หลักสี่ | กรุงเทพมหานคร | 10210
 tags: thai, government, department, no-person
@@ -143,7 +143,7 @@ tags: romanized, karaoke, alias, glued, mobile
 ---
 [[N:nong mild]] [[P:0925561083]]
 [[A:66/218 m.baan pruksa 37 soi sukhapiban 5 soi 85]] [[S:or ngern]] [[D:saimai]] [[V:bkk]][[Z:10220]]
-ส่งflashนะคะ
+[[R:ส่งflash]]นะคะ
 ===
 loc: คลองกุ่ม | บึงกุ่ม | กรุงเทพมหานคร | 10240
 tags: thai, oneline, comma, marketplace-copy
@@ -159,7 +159,7 @@ Hello admin, size L black 1 pc
 [[A:88/12 Nuanchan 36 Village, Nuanchan Rd]]
 [[D:Bueng Kum]] [[V:Bangkok]] [[Z:10240]]
 [[P:096-118-4702]]
-Leave with security guard please
+[[R:Leave with security guard]] please
 ===
 loc: ดอกไม้ | ประเวศ | กรุงเทพมหานคร | 10250
 tags: thai, rural-prefix-in-bangkok, alias
@@ -211,7 +211,7 @@ tags: thai, multiline, typo-free, delivery-note
 [[S:แขวงสามเสนใน]]
 [[D:เขตพญาไท]] [[Z:10400]]
 ชื่อ [[N:คุณกนกพร วงศ์สวัสดิ์]] [[P:0918852016]]
-ฝากไว้ที่ร้านกาแฟชั้นล่างได้ค่ะ
+[[R:ฝากไว้ที่ร้านกาแฟชั้นล่าง]]ได้ค่ะ
 ===
 loc: ถนนพญาไท | ราชเทวี | กรุงเทพมหานคร | 10400
 tags: romanized, alias, hospital-staff, multiline
@@ -254,7 +254,7 @@ tags: thai, temple, no-person, alias
 [[N:วัดแสนเกษมวนาราม]]
 [[A:เลขที่ 8 ถ.ราษฎร์อุทิศ]] [[S:แขวงแสนแสบ]] [[D:เขตมีนบุรี]] [[V:กทม.]] [[Z:10510]]
 [[P:02-917-0438]]
-ถวายสังฆทานค่ะ ฝากไว้ที่ศาลาได้เลย
+ถวายสังฆทานค่ะ [[R:ฝากไว้ที่ศาลา]]ได้เลย
 ===
 loc: มีนบุรี | มีนบุรี | กรุงเทพมหานคร | 10510
 tags: romanized, karaoke, alias, same-name-twice, chat-noise
@@ -299,7 +299,7 @@ tags: thai, multiline, cafe, no-person
 [[A:17 ซ.อรุณอมรินทร์ 2 ถ.อรุณอมรินทร์]]
 [[S:แขวงวัดอรุณ]] [[D:เขตบางกอกใหญ่]] [[Z:10600]]
 [[P:0947721985]]
-ส่งก่อนร้านเปิด 9 โมงนะคะ
+[[R:ส่งก่อนร้านเปิด 9 โมง]]นะคะ
 ===
 loc: บางขุนศรี | บางกอกน้อย | กรุงเทพมหานคร | 10700
 tags: romanized, alias, oneline, lowercase
@@ -320,7 +320,7 @@ tags: romanized, alias, district-only, market-stall
 ---
 [[N:Je Mui fresh seafood]] [[A:stall C-14
 Klong Toey Market, Rama 4 Rd]] [[D:Khlong Toei]] [[Z:10110]]
-[[P:0815562093]] call before 6am pls
+[[P:0815562093]] [[R:call before 6am]] pls
 ===
 loc: พระโขนงเหนือ | วัฒนา | กรุงเทพมหานคร | 10110
 tags: thai, oneline, chat-noise, payment
@@ -334,7 +334,7 @@ tags: thai, district-only, condo, delivery-note, alias
 [[N:น.ส.อรวรรณ เปี่ยมสุข]] [[P:0897713015]]
 [[A:คอนโดเดอะรูม สาทร ห้อง 2208 ซ.งามดูพลี]]
 [[D:สาทร]] [[V:กทม]] [[Z:10120]]
-ฝากนิติได้เลยค่ะ
+[[R:ฝากนิติ]]ได้เลยค่ะ
 ===
 loc: ยานนาวา | สาทร | กรุงเทพมหานคร | 10120
 tags: romanized, karaoke, alias, subdistrict-named-like-district
@@ -431,4 +431,4 @@ Med student here 😊 pls ship to
 loc: บางบำหรุ | บางพลัด | กรุงเทพมหานคร | 10700
 tags: thai, abbrev-glued, no-prefix, typo-province
 ---
-[[N:คุณวีรยุทธ]] [[P:0814456632]] [[A:55/9 ซ.บรมราชชนนี 4]] [[S:บางบำหรุ]] [[D:บางพลัด]] [[V:กรุงเทพมหานค]][[Z:10700]] ส่งปลายทางครับ
+[[N:คุณวีรยุทธ]] [[P:0814456632]] [[A:55/9 ซ.บรมราชชนนี 4]] [[S:บางบำหรุ]] [[D:บางพลัด]] [[V:กรุงเทพมหานค]][[Z:10700]] [[R:ส่งปลายทาง]]ครับ

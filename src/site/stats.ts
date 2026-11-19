@@ -33,6 +33,22 @@ export interface SiteStats {
 		readonly gazetteerTuples: number;
 	};
 	readonly caveats: readonly string[];
+	/** The delivery-note reader, scored on note text (character F1) and on records whose notes match exactly. */
+	readonly notes: {
+		readonly modelGzipKB: number;
+		readonly addedMs: number;
+		readonly dev: NoteScore;
+		readonly holdout: NoteScore;
+	};
+}
+
+export interface NoteScore {
+	readonly records: number;
+	readonly withNotes: number;
+	readonly f1: number;
+	readonly exact: number;
+	readonly rulesF1: number;
+	readonly rulesExact: number;
 }
 
 export const STATS: SiteStats = {
@@ -67,6 +83,12 @@ export const STATS: SiteStats = {
 	gazetteerGzipKB: 59,
 	parseMs: { median: 8.1, p95: 14.4 },
 	datasets: { trainRecords: 11506, holdoutRecords: 860, gazetteerTuples: 7431 },
+	notes: {
+		modelGzipKB: 55,
+		addedMs: 0.4,
+		dev: { records: 730, withNotes: 115, f1: 0.869, exact: 697, rulesF1: 0.532, rulesExact: 643 },
+		holdout: { records: 120, withNotes: 92, f1: 0.939, exact: 95, rulesF1: 0.709, rulesExact: 58 },
+	},
 	caveats: [
 		"ชุดทดสอบเป็นข้อความสังเคราะห์ที่เขียนเลียนแบบแชตจริงและผ่านการรีวิว ไม่ใช่ข้อความลูกค้าจริง",
 		"นับว่าถูกเฉพาะเมื่อทั้งเจ็ดช่องตรงทุกตัวอักษร ช่องเดียวผิดถือว่าทั้งรายการผิด",

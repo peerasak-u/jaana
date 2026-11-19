@@ -17,6 +17,7 @@
 	--f-district: #2f6fbe;
 	--f-province: #b0377f;
 	--f-zipcode: #4f8a1d;
+	--f-notes: #6b6f7a;
 	--mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 	--sans: system-ui, -apple-system, "Segoe UI", "Sukhumvit Set", "Leelawadee UI", "Noto Sans Thai UI",
 		"Noto Sans Thai", Thonburi, Tahoma, sans-serif;
@@ -41,6 +42,7 @@
 		--f-district: #79aef5;
 		--f-province: #f27cc0;
 		--f-zipcode: #9bd35a;
+		--f-notes: #b7bcc8;
 	}
 }
 
@@ -494,6 +496,8 @@ textarea:focus-visible {
 .f-district { --c: var(--f-district); }
 .f-province { --c: var(--f-province); }
 .f-zipcode { --c: var(--f-zipcode); }
+.f-notes { --c: var(--f-notes); }
+.hl.f-notes { border-bottom-style: dashed; }
 
 .source {
 	margin-top: 16px;
@@ -615,7 +619,7 @@ textarea:focus-visible {
 	padding: 0;
 	margin: 0 0 24px;
 	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-columns: repeat(5, minmax(0, 1fr));
 	gap: 20px;
 }
 
@@ -757,5 +761,16 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
+	}
+}
+
+.note-results {
+	margin-top: 40px;
+	max-width: 760px;
+}
+
+@media (min-width: 561px) {
+	.note-results .bars li {
+		grid-template-columns: 15em minmax(0, 1fr) 13em;
 	}
 }

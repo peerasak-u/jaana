@@ -5,11 +5,13 @@ import { PLACEHOLDER, REPO_URL, STATS } from "./site/stats";
 const SNIPPET = `import { createTaggerParser, expandGazetteer } from "./src";
 import gazetteer from "./resources/gazetteer.json";
 import model from "./resources/tagger-model.json";
+import notes from "./resources/notes-model.json";
 
-const parser = createTaggerParser(model, expandGazetteer(gazetteer));
-const { fields, spans } = parser.parse(chatMessage);
-// fields.name, fields.phone, fields.address, fields.subdistrict,
-// fields.district, fields.province, fields.zipcode`;
+const parser = createTaggerParser(model, expandGazetteer(gazetteer), { notes });
+const result = parser.parse(chatMessage);
+// result.fields.name, .phone, .address, .subdistrict,
+// .district, .province, .zipcode
+// result.notes: "ฝากป้อมยาม โทรก่อนส่ง" or null`;
 
 const STEPS = [
 	{
@@ -32,6 +34,11 @@ const STEPS = [
 		en: "Recipient composition",
 		body: "เลือกชื่อผู้รับจริงเมื่อข้อความมีหลายชื่อ เช่น คนสั่งกับคนรับเป็นคนละคน และเก็บชื่อบริษัทหรือหน่วยงานไว้คู่กับผู้ติดต่อ",
 	},
+	{
+		title: "อ่านหมายเหตุถึงคนส่ง",
+		en: "Delivery-note reader",
+		body: "โมเดลตัวที่สองอ่านเฉพาะข้อความที่เหลือนอกเจ็ดช่อง แล้วเก็บคำสั่งถึงคนส่ง เช่น ฝากป้อมยาม โทรก่อนส่ง ทางเข้าหมู่บ้าน หรือเก็บเงินปลายทาง จุดสังเกตที่เขียนอยู่ในท่อนที่อยู่ยังเป็นที่อยู่ ถ้าเขียนเป็นประโยคแยกจะเป็นหมายเหตุ โมเดลนี้ไม่แตะเจ็ดช่องเดิมเลย",
+	},
 ];
 
 const INDUSTRIES = [
@@ -44,7 +51,7 @@ const INDUSTRIES = [
 
 const LIMITS = [
 	"รองรับเฉพาะที่อยู่ในประเทศไทย ชื่อตำบล อำเภอ จังหวัด ต้องอยู่ในฐานข้อมูลพื้นที่ที่แนบมา",
-	"หนึ่งข้อความต่อหนึ่งที่อยู่ ถ้าแชตมีหลายที่อยู่ ต้องแยกข้อความก่อน",
+	"ข้อความที่มีหลายผู้รับแยกเป็นหลายรายการได้ แต่หมายเหตุยังเป็นของทั้งข้อความ ยังไม่แยกตามผู้รับ",
 	"ชุดทดสอบเป็นข้อความสังเคราะห์ที่ผ่านการรีวิว ยังไม่ได้วัดกับข้อความลูกค้าจริง ผลกับข้อมูลของคุณอาจต่างออกไป",
 	"ไม่ได้ตรวจว่าบ้านเลขที่หรือเบอร์โทรมีอยู่จริง ตรวจได้แค่รูปแบบ",
 	"ควรให้คนตรวจทานก่อนส่งของ โดยเฉพาะข้อความที่พิมพ์ผิดมากหรือข้อมูลไม่ครบ",
@@ -68,12 +75,12 @@ function Results() {
 					<span>ถูกครบทั้งเจ็ดช่อง ({holdout.exact.toLocaleString()} จาก {holdout.records.toLocaleString()} ข้อความ)</span>
 				</div>
 				<div className="kpi">
-					<strong>{STATS.modelGzipKB + STATS.gazetteerGzipKB} KB</strong>
-					<span>โมเดล {STATS.modelGzipKB} KB + ฐานข้อมูลพื้นที่ {STATS.gazetteerGzipKB} KB (gzip)</span>
+					<strong>{STATS.modelGzipKB + STATS.gazetteerGzipKB + STATS.notes.modelGzipKB} KB</strong>
+					<span>โมเดล {STATS.modelGzipKB} KB + ฐานข้อมูลพื้นที่ {STATS.gazetteerGzipKB} KB + หมายเหตุ {STATS.notes.modelGzipKB} KB (gzip)</span>
 				</div>
 				<div className="kpi">
 					<strong>{parseMs.median} ms</strong>
-					<span>ค่ากลางต่อข้อความ p95 {parseMs.p95} ms</span>
+					<span>ค่ากลางต่อข้อความ p95 {parseMs.p95} ms หมายเหตุเพิ่มราว {STATS.notes.addedMs} ms</span>
 				</div>
 			</div>
 
@@ -126,7 +133,42 @@ function Results() {
 					</ul>
 				</div>
 			</div>
+
+			<NoteResults />
 		</>
+	);
+}
+
+function NoteResults() {
+	const { dev, holdout } = STATS.notes;
+	const rows = [
+		{ key: "holdout-model", label: "Jaana ชุดทดสอบปิดผนึก", score: holdout, f1: holdout.f1, exact: holdout.exact },
+		{ key: "holdout-rules", label: "กฎคำสัญญาณ ชุดทดสอบปิดผนึก", score: holdout, f1: holdout.rulesF1, exact: holdout.rulesExact },
+		{ key: "dev-model", label: "Jaana ชุด dev", score: dev, f1: dev.f1, exact: dev.exact },
+		{ key: "dev-rules", label: "กฎคำสัญญาณ ชุด dev", score: dev, f1: dev.rulesF1, exact: dev.rulesExact },
+	];
+	return (
+		<div className="note-results">
+			<h3>หมายเหตุถึงคนส่ง</h3>
+			<ul className="bars">
+				{rows.map((row) => (
+					<li key={row.key}>
+						<span className="bar-label">{row.label}</span>
+						<span className="bar-track" aria-hidden="true">
+							<span className={`bar-fill${row.key.endsWith("model") ? " f-notes" : ""}`} style={{ width: `${row.f1 * 100}%` }} />
+						</span>
+						<span className="bar-value">
+							F1 {row.f1.toFixed(2)} <span className="muted">ตรงทั้งข้อ {row.exact}/{row.score.records}</span>
+						</span>
+					</li>
+				))}
+			</ul>
+			<p className="muted">
+				F1 วัดข้อความหมายเหตุทีละตัวอักษร ชุดทดสอบปิดผนึกมี {holdout.records} ข้อความ ({holdout.withNotes} ข้อความมีหมายเหตุ) อ่านครั้งเดียวหลังตั้งเกณฑ์ไว้ก่อน
+				ชุด dev มี {dev.records} ข้อความ ({dev.withNotes} มีหมายเหตุ) และเป็นหมวดยาก ข้อความทั้งหมดเป็นข้อความสังเคราะห์
+				ชุดทดสอบเขียนโดยเอเจนต์แบบเดียวกับข้อมูลฝึก ตัวเลขจึงน่าจะสูงกว่าแชตจริง ใช้ตัวเลข dev เป็นค่าคาดการณ์จะใกล้กว่า
+			</p>
+		</div>
 	);
 }
 
@@ -157,11 +199,11 @@ export function App() {
 						<h1>วางข้อความแชต<br />ได้ที่อยู่ครบเจ็ดช่อง</h1>
 						<p className="lede">
 							แยกชื่อผู้รับ เบอร์โทร ที่อยู่ ตำบล อำเภอ จังหวัด และรหัสไปรษณีย์ ออกจากข้อความที่ลูกค้าพิมพ์มาแบบไหนก็ได้
-							ทำงานในเบราว์เซอร์ทั้งหมด
+							พร้อมหมายเหตุถึงคนส่ง เช่น ฝากไว้ที่ไหน โทรก่อนส่ง หรือทางเข้าบ้าน ทำงานในเบราว์เซอร์ทั้งหมด
 						</p>
 						<ul className="claims">
 							<li><strong>รันในเบราว์เซอร์</strong><span>ไม่มีเซิร์ฟเวอร์ ข้อมูลลูกค้าไม่ออกจากเครื่อง</span></li>
-							<li><strong>เล็ก</strong><span>โมเดลกับฐานข้อมูลพื้นที่รวมราว {STATS.modelGzipKB + STATS.gazetteerGzipKB} KB เมื่อ gzip ไม่มี dependency</span></li>
+							<li><strong>เล็ก</strong><span>โมเดลกับฐานข้อมูลพื้นที่รวมราว {STATS.modelGzipKB + STATS.gazetteerGzipKB + STATS.notes.modelGzipKB} KB เมื่อ gzip ไม่มี dependency</span></li>
 							<li><strong>เร็ว</strong><span>ราว {STATS.parseMs.median} ms ต่อข้อความ<PlaceholderBadge /></span></li>
 						</ul>
 						<a className="btn" href="#try">ลองวางข้อความ</a>
@@ -244,8 +286,11 @@ export function App() {
 							browser with no runtime dependencies. On a sealed, reviewed synthetic holdout of
 							{" "}{STATS.holdout.records.toLocaleString()} messages in 14 categories it gets
 							{" "}{percent(STATS.holdout.exact / STATS.holdout.records)} of records exactly right across all
-							seven fields{PLACEHOLDER ? " (placeholder figures)" : ""}. Thai addresses only, one address per
-							message.
+							seven fields{PLACEHOLDER ? " (placeholder figures)" : ""}. A second, optional model reads delivery
+							notes for the courier (drop-off, call first, how to find the house, COD) from the text left outside
+							the seven fields, without changing them: character F1 {STATS.notes.holdout.f1.toFixed(2)} on a sealed
+							{" "}{STATS.notes.holdout.records}-message note holdout, {STATS.notes.dev.f1.toFixed(2)} on the harder dev set.
+							Thai addresses only.
 						</p>
 					</div>
 				</section>

@@ -1,3 +1,4 @@
+import { createNoteReader, joinNotes, type NoteModel } from "../notes/model";
 import { similarityRatio } from "../candidate/fuzzy-match";
 import { normalizeCandidate, normalizePostcode, typedPhone } from "../normalize";
 import type { LocationTuple, OutputLabel, ParsedFields } from "../types";
@@ -76,6 +77,26 @@ export interface TaggedAddress extends TaggedRecipient {
 	readonly spans: readonly TaggedSpan[];
 	readonly warnings: readonly ParseWarning[];
 	readonly recipients: readonly TaggedRecipient[];
+	/**
+	 * Delivery notes for the courier, with a note model only: where to leave
+	 * the parcel, when to come, how to find the place, COD or courier. The
+	 * pieces join with one space in written order. Text in a field span is
+	 * never a note, so a landmark the tagger kept in the address stays there.
+	 */
+	readonly notes?: string | null;
+	readonly noteSpans?: readonly NoteSpanOut[];
+}
+
+/** One delivery-note piece of the message. */
+export interface NoteSpanOut {
+	readonly text: string;
+	readonly start: number;
+	readonly end: number;
+}
+
+export interface TaggerParserOptions {
+	/** The delivery-note reader's weights. Without it, `parse` returns no `notes`. */
+	readonly notes?: NoteModel;
 }
 
 export interface TaggerParser {
@@ -544,8 +565,22 @@ function scorerOf(model: AnyTaggerModel): TagScorer {
 export function createTaggerParser(
 	model: AnyTaggerModel,
 	locations: readonly LocationTuple[],
+	options: TaggerParserOptions = {},
 ): TaggerParser {
-	return createScoredParser(scorerOf(model), locations);
+	const parser = createScoredParser(scorerOf(model), locations);
+	if (!options.notes) return parser;
+	const reader = createNoteReader(options.notes);
+	return {
+		parse(raw) {
+			const result = parser.parse(raw);
+			const ranges = reader.read(raw, result.spans);
+			return {
+				...result,
+				notes: joinNotes(raw, ranges),
+				noteSpans: ranges.map(({ start, end }) => ({ text: raw.slice(start, end), start, end })),
+			};
+		},
+	};
 }
 
 export function createScoredParser(

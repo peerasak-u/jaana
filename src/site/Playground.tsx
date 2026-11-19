@@ -1,20 +1,23 @@
 import { useDeferredValue, useEffect, useMemo, useState, type ReactNode } from "react";
-import type { TaggedSpan } from "../tagger/parser";
+import type { NoteSpanOut, TaggedSpan } from "../tagger/parser";
 import { EXAMPLES } from "./examples";
 import { FIELD_BY_LABEL, FIELDS } from "./fields";
 
 type Engine = typeof import("./engine");
 
-function highlight(raw: string, spans: readonly TaggedSpan[]): ReactNode[] {
-	const ordered = [...spans].sort((left, right) => left.start - right.start);
+function highlight(raw: string, spans: readonly TaggedSpan[], notes: readonly NoteSpanOut[] = []): ReactNode[] {
+	const marked = [
+		...spans.map((span) => ({ start: span.start, end: span.end, key: FIELD_BY_LABEL.get(span.label)!.key as string, thai: FIELD_BY_LABEL.get(span.label)!.thai })),
+		...notes.map((note) => ({ start: note.start, end: note.end, key: "notes", thai: "หมายเหตุ" })),
+	];
+	const ordered = marked.sort((left, right) => left.start - right.start);
 	const parts: ReactNode[] = [];
 	let cursor = 0;
 	for (const span of ordered) {
 		if (span.start < cursor) continue;
 		if (span.start > cursor) parts.push(raw.slice(cursor, span.start));
-		const field = FIELD_BY_LABEL.get(span.label)!;
 		parts.push(
-			<mark key={span.start} className={`hl f-${field.key}`} title={field.thai}>
+			<mark key={span.start} className={`hl f-${span.key}`} title={span.thai}>
 				{raw.slice(span.start, span.end)}
 			</mark>,
 		);
@@ -117,11 +120,18 @@ export function Playground() {
 								</div>
 							);
 						})}
+						<div className="field" key="notes">
+							<dt>
+								<span className="swatch f-notes" aria-hidden="true" />
+								หมายเหตุ
+							</dt>
+							<dd className={parsed?.result.notes ? undefined : "empty"}>{parsed?.result.notes ?? "ไม่มี"}</dd>
+						</div>
 					</dl>
 				</div>
 				<div className="source">
 					<p className="source-title">ข้อความเดิม ไฮไลต์ตามช่อง</p>
-					<p className="source-text">{parsed ? highlight(parsed.result.raw, parsed.result.spans) : input || <span className="muted">ยังไม่มีข้อความ</span>}</p>
+					<p className="source-text">{parsed ? highlight(parsed.result.raw, parsed.result.spans, parsed.result.noteSpans) : input || <span className="muted">ยังไม่มีข้อความ</span>}</p>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 {
   "name": "jaana",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "packageManager": "bun@1.3.5",
   "type": "module",
@@ -16,6 +16,8 @@
     "site:examples": "bun run scripts/site-examples.ts",
     "build:gazetteer": "bun run scripts/build-gazetteer.ts",
     "train:tagger": "bun run scripts/train-tagger.ts",
+    "train:notes": "bun run scripts/notes/train.ts",
+    "bench:notes": "bun run bench/run-notes.ts",
     "explainer:snapshot": "bun run scripts/explainer-snapshot.ts",
     "bench": "bun run bench/run.ts",
     "bench:tagger": "bun run bench/run-tagger.ts",

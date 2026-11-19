@@ -13,6 +13,8 @@
 - **Selection score** — the evidence score of a Candidate Engine candidate. It is used for ranking and is not a calibrated probability.
 - **Pruner** — beam search that selects at most one non-overlapping candidate per output label while rewarding location coherence and common ordering.
 - **Validator** — deterministic final referee for offsets, normalization, minimum score, and complete administrative tuple consistency. It never invents candidates.
+- **Delivery note** — text the courier needs that is not one of the seven fields: drop-off, timing and contact, how to find the place, COD and courier choice. Marked `R` in GUIDE v3. A landmark inside the address run is address detail; the same landmark written as its own sentence is a note.
+- **Note reader** — a frozen linear model that runs after the Tagger, over the message and the Tagger's field spans, and labels units outside every field span as note or not. It never changes a field.
 - **Gazetteer** — the authoritative location tuples in compact columnar form. Both parsers expand it once at construction.
 - **Tagger** — a frozen linear model over hashed character features that assigns one tag per UTF-16 unit. It is not a language model.
 - **Tag** — one of the seven output labels or `OTHER`, assigned to a single character.
@@ -27,7 +29,7 @@
 ## Invariants
 
 1. Source offsets are UTF-16 offsets and must reproduce the candidate text exactly.
-2. The public output schema remains NAME, PHONE, ADDRESS_DETAIL, SUBDISTRICT, DISTRICT, PROVINCE, and POSTCODE.
+2. The public output schema remains NAME, PHONE, ADDRESS_DETAIL, SUBDISTRICT, DISTRICT, PROVINCE, and POSTCODE. Delivery notes are an optional extra output from the Note reader and are not a Tag.
 3. Bare `เมือง` is not a district unless province-compatible administrative or sequence context resolves it.
 4. Complete location tuples never cross train, development, and evaluation; generator-declared template families stay on their declared side.
 5. Extra training datasets never contribute a record that shares a location tuple or template family with development or evaluation.
